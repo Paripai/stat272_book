@@ -69,7 +69,8 @@ $z_{\text{cal}}$, $t_{\text{cal}}$, $\chi^2_{\text{cal}}$ and $F_{\text{cal}}$.
 1. **Hypotheses**: state $H_0$ and $H_1$.
 2. **Level of significance**: state $\alpha$.
 3. **Test statistic**: write the formula, substitute the values, and give the result.
-4. **Critical value and critical region**.
+4. **Critical value and critical region** (Chapters 1--2 and Section 3.1), or
+   the **p-value** (from Section 3.2 onward).
 5. **Decision and interpretation**.
 
 ## Writing the conclusion {.unnumbered}

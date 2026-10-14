@@ -8,42 +8,244 @@ source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
 
 ### Learning Objectives
 
-*To be added.*
+1. Recognize when the $z$ method for one mean applies.
+2. Construct and interpret a confidence interval for $\mu$ when $\sigma$ is known.
+3. Carry out a $z$ test for $\mu$ in five steps and write the conclusion.
 
 ### Concept
 
-*To be added.*
+Sometimes the population standard deviation $\sigma$ is known from a large
+source, such as a census or many years of administrative records, while the
+mean may have changed. For example, the spread of daily wages in an industry
+is fairly stable, but the mean wage changes with prices and minimum-wage policy.
+
+When $\sigma$ is known, Chapter 1 tells us that
+$$
+z = \frac{\bar{x} - \mu}{\sigma/\sqrt{n}}
+$$
+follows the standard normal distribution, provided the population is normal or
+$n \ge 30$. Both the confidence interval and the test use this result.
 
 ### Formulas and Conditions
 
-*To be added.*
+**Conditions:** $\sigma$ is known; a random sample; the population is normal or $n \ge 30$.
+
+**$(1-\alpha)100\%$ confidence interval for $\mu$**
+$$
+\bar{x} \pm z_{1-\alpha/2}\,\frac{\sigma}{\sqrt{n}}
+$$
+For a 95% CI, $z_{0.975} = `r fmt(crit_z(.975), 3)`$; for a 99% CI, $z_{0.995} = `r fmt(crit_z(.995), 3)`$.
+
+**Test statistic** for $H_0: \mu = \mu_0$
+$$
+z_{\text{cal}} = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}}
+$$
+
+| $H_1$ | Critical region |
+|:---:|:---|
+| $\mu \ne \mu_0$ | $z_{\text{cal}} < z_{\alpha/2}$ or $z_{\text{cal}} > z_{1-\alpha/2}$ |
+| $\mu < \mu_0$ | $z_{\text{cal}} < z_{\alpha}$ |
+| $\mu > \mu_0$ | $z_{\text{cal}} > z_{1-\alpha}$ |
+
+```{r}
+#| label: ex-2-1
+a_sigma <- 60; a_n <- 36; a_xbar <- 358.4; a_mu0 <- 380
+a_se <- round(a_sigma / sqrt(a_n), 4)
+a_z975 <- crit_z(0.975); a_z95 <- crit_z(0.95)
+a_lo <- a_xbar - a_z975 * a_se; a_hi <- a_xbar + a_z975 * a_se
+a_z <- round((a_xbar - a_mu0) / a_se, 3)
+```
 
 ### Worked Example
 
-*To be added.*
+**Worked Example 2.1.1.** From many years of Labour Force Survey records, the
+standard deviation of the daily wage of construction workers in Chiang Mai is
+$\sigma$ = `r a_sigma` baht. A labour union surveys `r a_n` workers and finds a
+mean daily wage of $\bar{x}$ = `r a_xbar` baht (hypothetical figures). The
+Ministry of Labour reports a mean of `r a_mu0` baht; the union believes the true
+mean is lower.
+
+(a) Construct a 95% confidence interval for the mean daily wage.
+(b) At $\alpha$ = 0.05, test whether the mean daily wage is less than `r a_mu0` baht.
+
+::: {.callout-tip icon=false collapse=false}
+## Solution
+
+**(a)** $n = `r a_n` \ge 30$, so the CLT applies.
+$$
+\frac{\sigma}{\sqrt{n}} = \frac{`r a_sigma`}{\sqrt{`r a_n`}} = `r num(a_se)`
+$$
+$$
+\bar{x} \pm z_{0.975}\frac{\sigma}{\sqrt{n}}
+= `r a_xbar` \pm `r fmt(a_z975, 3)`(`r num(a_se)`)
+= `r a_xbar` \pm `r num(a_z975 * a_se)`
+$$
+95% CI: (`r fmt(a_lo, 2)`, `r fmt(a_hi, 2)`)
+
+We are 95% confident that the mean daily wage of construction workers in Chiang
+Mai is between `r fmt(a_lo, 2)` and `r fmt(a_hi, 2)` baht.
+
+**(b)**
+
+**Step 1: Hypotheses.** $H_0: \mu = `r a_mu0`$ $\quad H_1: \mu < `r a_mu0`$
+
+**Step 2: Level of significance.** $\alpha$ = 0.05
+
+**Step 3: Test statistic.**
+$$
+z_{\text{cal}} = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}}
+= \frac{`r a_xbar` - `r a_mu0`}{`r num(a_se)`} = `r fmt(a_z, 3)`
+$$
+
+**Step 4: Critical value and critical region.** Left-sided test, area 0.05 to
+the left: $z_{0.05} = -z_{0.95} = `r fmt(-a_z95, 3)`$.
+Critical region: $z_{\text{cal}} < `r fmt(-a_z95, 3)`$.
+
+```{r}
+#| label: fig-ex-2-1
+#| fig-cap: "Critical region for Worked Example 2.1.1"
+#| fig-height: 2
+#| fig-width: 5
+#| fig-align: center
+crit_plot("z", "left")
+```
+
+**Step 5: Decision and interpretation.**
+$z_{\text{cal}} = `r fmt(a_z, 3)`$ falls in the critical region
+($`r fmt(a_z, 3)` < `r fmt(-a_z95, 3)`$), so we reject $H_0$.
+That is, the mean daily wage of construction workers in Chiang Mai is less than
+`r a_mu0` baht at the 0.05 level of significance.
+:::
+
+```{r}
+#| label: yt-2-1
+b_sigma <- 12; b_n <- 49; b_xbar <- 214.6; b_mu0 <- 210
+b_se <- round(b_sigma / sqrt(b_n), 4)
+b_lo <- b_xbar - a_z975 * b_se; b_hi <- b_xbar + a_z975 * b_se
+b_z <- round((b_xbar - b_mu0) / b_se, 3)
+```
 
 ### Your Turn
 
 ::: {.callout-note icon=false}
 ## Your Turn 2.1.1
 
-*Problem to be added.*
+The standard deviation of the price of a 5-kg bag of jasmine rice across shops
+is known to be $\sigma$ = `r b_sigma` baht. A price-monitoring agency checks
+`r b_n` shops and finds a mean price of $\bar{x}$ = `r b_xbar` baht
+(hypothetical figures).
+
+(a) Construct a 95% confidence interval for the mean price.
+(b) At $\alpha$ = 0.05, test whether the mean price is different from `r b_mu0` baht.
+:::
+
+::: {.workspace lines="4"}
 :::
 
 ::: {.workspace steps="full"}
 :::
 
 ::: {.answer title="Your Turn 2.1.1"}
-*Solution to be added.*
+**(a)** $\sigma/\sqrt{n} = `r b_sigma`/\sqrt{`r b_n`} = `r num(b_se)`$;
+$`r b_xbar` \pm `r fmt(a_z975, 3)`(`r num(b_se)`) = `r b_xbar` \pm `r num(a_z975 * b_se)`$.
+95% CI: (`r fmt(b_lo, 2)`, `r fmt(b_hi, 2)`).
+We are 95% confident that the mean price of a 5-kg bag of jasmine rice is between
+`r fmt(b_lo, 2)` and `r fmt(b_hi, 2)` baht.
+
+**(b)**
+
+**Step 1.** $H_0: \mu = `r b_mu0` \quad H_1: \mu \ne `r b_mu0`$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $z_{\text{cal}} = \dfrac{`r b_xbar` - `r b_mu0`}{`r num(b_se)`} = `r fmt(b_z, 3)`$
+
+**Step 4.** $z_{0.025} = `r fmt(-a_z975, 3)`$, $z_{0.975} = `r fmt(a_z975, 3)`$.
+Critical region: $z_{\text{cal}} < `r fmt(-a_z975, 3)`$ or $z_{\text{cal}} > `r fmt(a_z975, 3)`$.
+
+**Step 5.** $z_{\text{cal}} = `r fmt(b_z, 3)`$ falls in the critical region
+($`r fmt(b_z, 3)` > `r fmt(a_z975, 3)`$), so we reject $H_0$.
+That is, the mean price of a 5-kg bag of jasmine rice is different from
+`r b_mu0` baht at the 0.05 level of significance; since $\bar{x}$ = `r b_xbar`,
+the mean price is higher than `r b_mu0` baht.
 :::
 
 ### Formula Summary
 
-*To be added.*
+| | Formula |
+|:---|:---|
+| Conditions | $\sigma$ known; population normal or $n \ge 30$ |
+| $(1-\alpha)100\%$ CI for $\mu$ | $\bar{x} \pm z_{1-\alpha/2}\,\sigma/\sqrt{n}$ |
+| Test statistic | $z_{\text{cal}} = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}$ |
+| Critical region | $\ne$: $z_{\text{cal}} < z_{\alpha/2}$ or $z_{\text{cal}} > z_{1-\alpha/2}$; $<$: $z_{\text{cal}} < z_{\alpha}$; $>$: $z_{\text{cal}} > z_{1-\alpha}$ |
+
+```{r}
+#| label: ex-2-1-exercises
+e1_sigma <- 320; e1_n <- 64; e1_xbar <- 1240
+e1_se <- round(e1_sigma / sqrt(e1_n), 4); e1_z <- crit_z(0.995)
+e2_sigma <- 24; e2_n <- 40; e2_xbar <- 156.2; e2_mu0 <- 150
+e2_se <- round(e2_sigma / sqrt(e2_n), 4); e2_z <- round((e2_xbar - e2_mu0) / e2_se, 3)
+e3_sigma <- 12000; e3_n <- 100; e3_xbar <- 52100; e3_mu0 <- 50000
+e3_se <- round(e3_sigma / sqrt(e3_n), 4); e3_z <- round((e3_xbar - e3_mu0) / e3_se, 3)
+```
 
 ### Exercises
 
-*To be added.*
+**2.1.1** Utility records show that the standard deviation of the monthly
+electricity bill of households in a city is `r e1_sigma` baht. A sample of
+`r e1_n` households has a mean bill of `r big(e1_xbar, 0)` baht (hypothetical
+figures). Construct a 99% confidence interval for the mean monthly bill.
+
+::: {.answer title="Exercise 2.1.1"}
+$\sigma/\sqrt{n} = `r e1_sigma`/\sqrt{`r e1_n`} = `r num(e1_se)`$; $z_{0.995} = `r fmt(e1_z, 3)`$.
+$`r e1_xbar` \pm `r fmt(e1_z, 3)`(`r num(e1_se)`) = `r e1_xbar` \pm `r num(e1_z * e1_se)`$.
+99% CI: (`r big(e1_xbar - e1_z * e1_se)`, `r big(e1_xbar + e1_z * e1_se)`).
+We are 99% confident that the mean monthly electricity bill is between
+`r big(e1_xbar - e1_z * e1_se)` and `r big(e1_xbar + e1_z * e1_se)` baht.
+:::
+
+**2.1.2** A company claims that the mean monthly sales per salesperson are more
+than `r e2_mu0` thousand baht. The standard deviation is known to be
+`r e2_sigma` thousand baht. A sample of `r e2_n` salespeople has a mean of
+`r e2_xbar` thousand baht (hypothetical figures). Test the claim at $\alpha$ = 0.01.
+
+::: {.answer title="Exercise 2.1.2"}
+
+**Step 1.** $H_0: \mu = `r e2_mu0` \quad H_1: \mu > `r e2_mu0`$
+
+**Step 2.** $\alpha$ = 0.01
+
+**Step 3.** $\sigma/\sqrt{n} = `r e2_sigma`/\sqrt{`r e2_n`} = `r num(e2_se)`$;
+$z_{\text{cal}} = (`r e2_xbar` - `r e2_mu0`)/`r num(e2_se)` = `r fmt(e2_z, 3)`$
+
+**Step 4.** $z_{0.99} = `r fmt(crit_z(.99), 3)`$. Critical region: $z_{\text{cal}} > `r fmt(crit_z(.99), 3)`$.
+
+**Step 5.** $z_{\text{cal}} = `r fmt(e2_z, 3)`$ does not fall in the critical region
+($`r fmt(e2_z, 3)` < `r fmt(crit_z(.99), 3)`$), so we accept $H_0$.
+That is, the mean monthly sales per salesperson are equal to `r e2_mu0` thousand
+baht at the 0.01 level of significance.
+:::
+
+**2.1.3** The standard deviation of savings deposits at a bank is known to be
+`r big(e3_sigma, 0)` baht. A sample of `r e3_n` accounts has a mean balance of
+`r big(e3_xbar, 0)` baht (hypothetical figures).
+
+(a) At $\alpha$ = 0.05, test whether the mean balance is different from `r big(e3_mu0, 0)` baht.
+(b) Construct a 95% CI for the mean balance. Does it agree with (a)?
+
+::: {.answer title="Exercise 2.1.3"}
+**(a)** $H_0: \mu = `r e3_mu0` \quad H_1: \mu \ne `r e3_mu0`$; $\alpha$ = 0.05.
+$\sigma/\sqrt{n} = `r num(e3_se)`$;
+$z_{\text{cal}} = (`r e3_xbar` - `r e3_mu0`)/`r num(e3_se)` = `r fmt(e3_z, 3)`$.
+Critical region: $z_{\text{cal}} < `r fmt(-a_z975, 3)`$ or $z_{\text{cal}} > `r fmt(a_z975, 3)`$.
+$z_{\text{cal}}$ does not fall in the critical region
+($`r fmt(-a_z975, 3)` < `r fmt(e3_z, 3)` < `r fmt(a_z975, 3)`$), so we accept $H_0$.
+That is, the mean balance is equal to `r big(e3_mu0, 0)` baht at the 0.05 level of significance.
+
+**(b)** $`r e3_xbar` \pm `r fmt(a_z975, 3)`(`r num(e3_se)`)$:
+95% CI (`r big(e3_xbar - a_z975 * e3_se)`, `r big(e3_xbar + a_z975 * e3_se)`).
+The interval contains `r big(e3_mu0, 0)`, which agrees with accepting $H_0$ in (a).
+:::
 
 ::: {.solutions-here}
 :::

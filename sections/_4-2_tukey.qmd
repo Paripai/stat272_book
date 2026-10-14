@@ -4,50 +4,161 @@
 #| label: setup-4-2
 #| include: false
 source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
+crd <- read.csv(data_path("pricing_crd.csv"))
+crd$strategy <- factor(crd$strategy, levels = c("Regular", "Discount", "Bundle"))
+sav <- read.csv(data_path("saving_rate.csv"))
+sav$region <- factor(sav$region, levels = c("North", "Northeast", "Central", "South"))
+model <- aov(sales ~ strategy, data = crd)
+model_sav <- aov(saving ~ region, data = sav)
 ```
 
 ### Learning Objectives
 
-*To be added.*
+1. Explain when a multiple-comparison procedure is needed.
+2. Read the output of `TukeyHSD()`: difference, confidence interval and adjusted p-value.
+3. Decide which pairs of means differ and write the conclusion.
 
 ### Concept
 
-*To be added.*
+When ANOVA rejects $H_0$, we know that **at least one** mean is different, but
+not which ones. Comparing every pair with separate $t$ tests would raise the
+overall chance of a Type I error, as Section 4.1 explained.
 
-### Formulas and Conditions
+**Tukey's honestly significant difference (HSD)** method compares every pair
+of means while keeping the **family-wise** error rate (the chance of at least
+one Type I error among all the comparisons) at $\alpha$ = 0.05. It is based on
+the Studentized range distribution (Table 14). In this course we read Tukey's
+results from R only.
 
-*To be added.*
+::: {.callout-important icon=false}
+## When to use Tukey
+
+Use Tukey only **after** the ANOVA $F$ test rejects $H_0$. If ANOVA accepts
+$H_0$, the conclusion is that all the means are equal, and no pairwise
+comparison is needed.
+:::
+
+### Reading R Output
+
+`TukeyHSD(model)` prints one row for each pair of treatments:
+
+| Column | Meaning |
+|:---|:---|
+| `diff` | difference between the two sample means, in the order of the row name (e.g. `Discount-Regular` = $\bar{x}_D - \bar{x}_R$) |
+| `lwr`, `upr` | lower and upper limits of a 95% (family-wise) CI for the difference |
+| `p adj` | adjusted p-value for $H_0: \mu_i = \mu_j$ |
+
+A pair is significantly different if `p adj` $< 0.05$; equivalently, if the CI
+from `lwr` to `upr` **does not contain 0**.
+
+```{r}
+#| label: ex-4-2
+tk <- TukeyHSD(model)$strategy
+mns <- tapply(crd$sales, crd$strategy, mean)
+```
 
 ### Worked Example
 
-*To be added.*
+**Worked Example 4.2.1.** In Worked Example 4.1.1 the ANOVA rejected $H_0$
+(p-value = `r fmt(summary(model)[[1]][1, "Pr(>F)"], 4)`). The sample means are
+Regular `r num(mns[1])`, Discount `r num(mns[2])` and Bundle `r num(mns[3])`.
+Use the Tukey output to find which pricing strategies differ at $\alpha$ = 0.05.
+
+```{r}
+#| label: r-tukey-crd
+#| echo: !expr show_code
+TukeyHSD(model)
+```
+
+::: {.callout-tip icon=false collapse=false}
+## Solution
+
+| Pair | diff | 95% CI | p adj | Decision |
+|:---|:---:|:---:|:---:|:---|
+| Discount $-$ Regular | `r num(tk[1, "diff"])` | (`r fmt(tk[1, "lwr"], 4)`, `r fmt(tk[1, "upr"], 4)`) | `r fmt(tk[1, "p adj"], 4)` | < 0.05: different |
+| Bundle $-$ Regular | `r num(tk[2, "diff"])` | (`r fmt(tk[2, "lwr"], 4)`, `r fmt(tk[2, "upr"], 4)`) | `r fmt(tk[2, "p adj"], 4)` | < 0.05: different |
+| Bundle $-$ Discount | `r num(tk[3, "diff"])` | (`r fmt(tk[3, "lwr"], 4)`, `r fmt(tk[3, "upr"], 4)`) | `r fmt(tk[3, "p adj"], 4)` | $\ge$ 0.05: not different |
+
+At the 0.05 level of significance:
+
+- mean sales with the Discount strategy are higher than with the Regular strategy;
+- mean sales with the Bundle strategy are higher than with the Regular strategy;
+- mean sales with the Discount and Bundle strategies are equal.
+
+Both promotional strategies beat the regular price, but there is no significant
+difference between them.
+:::
+
+```{r}
+#| label: yt-4-2
+ts <- TukeyHSD(model_sav)$region
+```
 
 ### Your Turn
 
 ::: {.callout-note icon=false}
 ## Your Turn 4.2.1
 
-*Problem to be added.*
+In Your Turn 4.1.1 the ANOVA showed that the mean saving rates differ among the
+four regions. Use the output below to decide which pairs of regions differ at
+$\alpha$ = 0.05, and summarize the result in one or two sentences.
 :::
 
-::: {.workspace steps="none"}
+```{r}
+#| label: r-tukey-sav
+#| echo: !expr show_code
+TukeyHSD(model_sav)
+```
+
+::: {.workspace lines="12"}
 :::
 
 ::: {.answer title="Your Turn 4.2.1"}
-*Solution to be added.*
+Pairs with p adj < 0.05 (CI does not contain 0):
+`r paste(sprintf("%s (p adj = %s)", gsub("-", " $-$ ", rownames(ts)[ts[, "p adj"] < 0.05]), fmt(ts[ts[, "p adj"] < 0.05, "p adj"], 4)), collapse = "; ")`.
+All other pairs are not significantly different.
+
+That is, at the 0.05 level of significance the mean saving rate in the
+Northeast is lower than in the North and lower than in the Central region; the
+other pairs of regions have equal mean saving rates.
 :::
-
-### Reading R Output
-
-*To be added.*
 
 ### Formula Summary
 
-*To be added.*
+| | |
+|:---|:---|
+| When | after ANOVA rejects $H_0$ |
+| R | `TukeyHSD(model)` (CRD); `TukeyHSD(model, "trt")` (RCBD, Section 4.3) |
+| Decision for a pair | different if `p adj` < 0.05, equivalently if (`lwr`, `upr`) does not contain 0 |
+| Direction | sign of `diff` (row `A-B` means $\bar{x}_A - \bar{x}_B$) |
 
 ### Exercises
 
-*To be added.*
+**4.2.1** A Tukey output for three loan products contains the row
+
+```
+                diff       lwr       upr     p adj
+Car-Personal  -1.85  -3.12000  -0.58000 0.0041000
+```
+
+Interpret this row.
+
+::: {.answer title="Exercise 4.2.1"}
+The mean for car loans is 1.85 lower than for personal loans
+($\bar{x}_{\text{Car}} - \bar{x}_{\text{Personal}} = -1.85$). The 95% CI
+(-3.12, -0.58) does not contain 0 and p adj = 0.0041 < 0.05, so the mean
+for car loans is lower than for personal loans at the 0.05 level of significance.
+:::
+
+**4.2.2** An ANOVA comparing four advertising channels gives p-value = 0.2840. A
+student then runs `TukeyHSD()` and finds one pair with p adj = 0.0470. What
+should the conclusion be?
+
+::: {.answer title="Exercise 4.2.2"}
+The ANOVA accepts $H_0$ (0.2840 $\ge$ 0.05), so the conclusion is that the mean
+outcomes of the four channels are equal. Tukey's method should not be used
+after ANOVA accepts $H_0$.
+:::
 
 ::: {.solutions-here}
 :::

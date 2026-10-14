@@ -6,6 +6,15 @@
 library(ggplot2)
 library(knitr)
 
+# Rounding as students do it on a calculator: halves round away from zero
+# (base R would give round(68.46665, 4) = 68.4666 because of binary floating
+# point). Quiz answers are compared exactly, so the book must match a calculator.
+# This masks base::round for the calculations in the book only.
+round <- function(x, digits = 0) {
+  m <- 10^digits
+  sign(x) * floor(abs(x) * m + 0.5 + 1e-9) / m
+}
+
 # Project root, so data files are found from the book and from the slides
 root_dir <- if (file.exists("R/setup.R")) "." else ".."
 data_path <- function(file) file.path(root_dir, "data", file)
@@ -14,7 +23,7 @@ data_path <- function(file) file.path(root_dir, "data", file)
 theme_set(theme_minimal(base_size = 13))
 
 # Numbers in the text: fixed decimals, never scientific notation
-fmt <- function(x, digits = 4) formatC(x, format = "f", digits = digits)
+fmt <- function(x, digits = 4) formatC(round(x, digits), format = "f", digits = digits)
 
 # ---- Critical values as printed in the course tables ----------------------
 # Students use the department's printed tables (Tables 4-7, left-tail areas).
@@ -139,4 +148,35 @@ crit_plot <- function(dist = c("z", "t", "chisq", "F"), side = c("two", "left", 
              label = if (dist %in% c("z", "t")) fmt(cuts, 3) else format(cuts)) +
     coord_cartesian(clip = "off") +
     theme_void() + theme(plot.margin = margin(5, 5, 18, 5))
+}
+
+# Numbers with a thousands separator, e.g. big(52100, 0) -> "52,100"
+big <- function(x, d = 2) formatC(round(x, d), format = "f", digits = d, big.mark = ",")
+
+# Intermediate values: rounded to d decimals, trailing zeros dropped
+# (num(10, 4) -> "10", num(1.714286, 4) -> "1.7143")
+num <- function(x, d = 4) format(round(x, d), digits = 15, nsmall = 0, scientific = FALSE, trim = TRUE)
+
+# R code is shown (folded) only on the web, and only for chunks that set
+#   #| echo: !expr show_code
+# Calculation chunks stay hidden so they do not reveal the answers.
+show_code <- identical(knitr::pandoc_to(), "html")
+
+# p-value as an area: the t (or z) curve with the area beyond the observed
+# statistic shaded, in the direction(s) of H1
+pval_plot <- function(stat, side = c("two", "left", "right"), dist = c("t", "z"), df1 = NULL) {
+  side <- match.arg(side); dist <- match.arg(dist)
+  f <- dens_fun(dist, df1); rng <- dens_range(dist, df1)
+  rng <- c(min(rng[1], -abs(stat) - 0.5), max(rng[2], abs(stat) + 0.5))
+  shade <- function(lo, hi) stat_function(fun = f, xlim = c(lo, hi), geom = "area",
+                                          fill = "darkorange", alpha = 0.55, n = 300)
+  marks <- switch(side, two = c(-abs(stat), abs(stat)), left = stat, right = stat)
+  p <- ggplot() + stat_function(fun = f, xlim = rng, n = 500, linewidth = 0.8)
+  if (side == "right") p <- p + shade(stat, rng[2])
+  if (side == "left")  p <- p + shade(rng[1], stat)
+  if (side == "two")   p <- p + shade(rng[1], -abs(stat)) + shade(abs(stat), rng[2])
+  p + geom_hline(yintercept = 0, linewidth = 0.4) +
+    geom_vline(xintercept = marks, linetype = "dashed", linewidth = 0.4) +
+    annotate("text", x = marks, y = 0, label = fmt(marks, 3), vjust = 1.5, size = 4) +
+    coord_cartesian(clip = "off") + theme_void() + theme(plot.margin = margin(5, 5, 18, 5))
 }

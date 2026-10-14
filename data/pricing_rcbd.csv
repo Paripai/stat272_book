@@ -1,0 +1,16 @@
+"province","strategy","sales"
+"Chiang Mai","Regular",32
+"Lampang","Regular",24
+"Lamphun","Regular",27
+"Phrae","Regular",23
+"Nan","Regular",18
+"Chiang Mai","Discount",37
+"Lampang","Discount",29
+"Lamphun","Discount",33
+"Phrae","Discount",27
+"Nan","Discount",26
+"Chiang Mai","Bundle",35
+"Lampang","Bundle",27
+"Lamphun","Bundle",28
+"Phrae","Bundle",22
+"Nan","Bundle",24

@@ -4,50 +4,332 @@
 #| label: setup-3-5
 #| include: false
 source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
+pricing <- read.csv(data_path("pricing_sales.csv"))
+discount <- pricing$sales[pricing$strategy == "Discount"]
+bundle <- pricing$sales[pricing$strategy == "Bundle"]
+hp <- read.csv(data_path("headphone_prices.csv"))
+online <- hp$price[hp$channel == "Online"]
+physical <- hp$price[hp$channel == "Physical"]
+
+# Pooled two-sample t, rounded as in the book
+pooled <- function(m1, v1, n1, m2, v2, n2) {
+  sp2 <- round(((n1 - 1) * v1 + (n2 - 1) * v2) / (n1 + n2 - 2), 4)
+  se <- round(sqrt(sp2 * (1 / n1 + 1 / n2)), 4)
+  list(sp2 = sp2, se = se, df = n1 + n2 - 2, d = m1 - m2, t = round((m1 - m2) / se, 3))
+}
 ```
 
 ### Learning Objectives
 
-*To be added.*
+1. Tell independent samples from paired samples by how the data were collected.
+2. Use the $F$ test to choose between the pooled $t$ test and the Welch $t$ test.
+3. Carry out the pooled $t$ test and CI by hand, and read both tests from R.
 
 ### Concept
 
-*To be added.*
+Two **independent** random samples are drawn from two populations, for
+example stores using two pricing strategies, or graduates of two universities.
+We estimate $\mu_1 - \mu_2$ by $\bar{x}_1 - \bar{x}_2$. Its standard error
+depends on whether the two population variances are equal:
+
+- **Equal variances** ($\sigma_1^2 = \sigma_2^2$): combine the two sample
+  variances into one **pooled variance** $s_p^2$ and use the **pooled $t$ test**
+  with df $= n_1 + n_2 - 2$. This is calculated by hand.
+- **Unequal variances**: use the **Welch $t$ test**. Its df is not a whole
+  number, so we read it from R.
+
+So the method has a first step: compare the variances with the $F$ test of
+Section 3.4.
+
+::: {.callout-important icon=false}
+## Choosing the method
+
+1. Paired or independent? (Section 3.3) If paired, use the paired $t$ test.
+2. If independent, test $H_0: \sigma_1^2 = \sigma_2^2$ (two-sided, $\alpha$ = 0.05).
+   - accept $H_0$ → **pooled $t$ test**: `t.test(x1, x2, var.equal = TRUE)`
+   - reject $H_0$ → **Welch $t$ test**: `t.test(x1, x2)`
+:::
 
 ### Formulas and Conditions
 
-*To be added.*
+**Conditions:** two independent random samples; both populations approximately normal.
 
-### Worked Example
+**Pooled method** (equal variances), df $= n_1 + n_2 - 2$
+$$
+s_p^2 = \frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2},
+\qquad
+\text{SE} = \sqrt{s_p^2\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}
+$$
+$$
+\text{CI: } (\bar{x}_1 - \bar{x}_2) \pm t_{1-\alpha/2,\,n_1+n_2-2}\,\text{SE}
+\qquad
+t_{\text{cal}} = \frac{\bar{x}_1 - \bar{x}_2}{\text{SE}}
+$$
 
-*To be added.*
+**Welch method** (unequal variances): read $t_{\text{cal}}$, df, p-value and CI from `t.test(x1, x2)`.
+
+| $H_1$ | Critical region (pooled) |
+|:---:|:---|
+| $\mu_1 \ne \mu_2$ | $t_{\text{cal}} < t_{\alpha/2,\,\text{df}}$ or $t_{\text{cal}} > t_{1-\alpha/2,\,\text{df}}$ |
+| $\mu_1 < \mu_2$ | $t_{\text{cal}} < t_{\alpha,\,\text{df}}$ |
+| $\mu_1 > \mu_2$ | $t_{\text{cal}} > t_{1-\alpha,\,\text{df}}$ |
+
+```{r}
+#| label: ex-3-5
+n1 <- length(discount); n2 <- length(bundle)
+m1 <- round(mean(discount), 4); m2 <- round(mean(bundle), 4)
+v1 <- round(var(discount), 4); v2 <- round(var(bundle), 4)
+P <- pooled(m1, v1, n1, m2, v2, n2)
+t95 <- crit_t(.95, P$df); t975 <- crit_t(.975, P$df); me <- t975 * P$se
+fv <- var.test(discount, bundle)
+tg <- t.test(discount, bundle, var.equal = TRUE, alternative = "greater")
+tt <- t.test(discount, bundle, var.equal = TRUE)
+```
+
+### Worked Example: Pooled $t$ Test
+
+**Worked Example 3.5.1.** A retail chain tries two pricing strategies. `r n1`
+stores use a **discount** strategy and `r n2` other stores use a **bundle**
+strategy. Daily sales (units) are recorded (hypothetical data):
+
+```{r}
+#| label: tbl-pricing
+#| tbl-cap: "Daily sales (units) under two pricing strategies"
+knitr::kable(data.frame(Strategy = c("Discount", "Bundle"),
+                        Sales = c(paste(discount, collapse = ", "), paste(bundle, collapse = ", ")),
+                        n = c(n1, n2), Mean = c(num(m1), num(m2)), Variance = c(num(v1), num(v2))))
+```
+
+(a) At $\alpha$ = 0.05, check whether the variances are equal.
+(b) At $\alpha$ = 0.05, test whether mean sales are higher with the discount strategy.
+(c) Construct a 95% confidence interval for $\mu_D - \mu_B$.
+
+::: {.callout-tip icon=false collapse=false}
+## Solution
+
+The stores are different stores, so the samples are independent.
+
+**(a)** $H_0: \sigma_D^2 = \sigma_B^2$ vs $H_1: \sigma_D^2 \ne \sigma_B^2$.
+$F_{\text{cal}} = `r num(v1)`/`r num(v2)` = `r fmt(v1 / v2, 3)`$; from `var.test()` below,
+p-value = `r fmt(fv$p.value, 4)` $\ge$ 0.05, so we accept $H_0$: the variances are
+equal. Use the **pooled** method.
+
+**(b)**
+
+**Step 1: Hypotheses.** $H_0: \mu_D = \mu_B$ $\quad H_1: \mu_D > \mu_B$
+
+**Step 2: Level of significance.** $\alpha$ = 0.05
+
+**Step 3: Test statistic.**
+$$
+s_p^2 = \frac{`r n1 - 1`(`r num(v1)`) + `r n2 - 1`(`r num(v2)`)}{`r n1` + `r n2` - 2} = `r num(P$sp2)`
+$$
+$$
+\text{SE} = \sqrt{`r num(P$sp2)`\left(\frac{1}{`r n1`} + \frac{1}{`r n2`}\right)} = `r num(P$se)`
+$$
+$$
+t_{\text{cal}} = \frac{`r num(m1)` - `r num(m2)`}{`r num(P$se)`} = `r fmt(P$t, 3)`,
+\qquad \text{df} = `r P$df`
+$$
+
+**Step 4: p-value.** From the R output, p-value = `r fmt(tg$p.value, 4)`.
+(With the table: $t_{0.95,\,`r P$df`} = `r fmt(t95, 3)`$, critical region $t_{\text{cal}} > `r fmt(t95, 3)`$.)
+
+**Step 5: Decision and interpretation.** p-value = `r fmt(tg$p.value, 4)` <
+$\alpha$ = 0.05, so we reject $H_0$. That is, mean daily sales are higher with
+the discount strategy than with the bundle strategy at the 0.05 level of significance.
+
+**(c)** $t_{0.975,\,`r P$df`} = `r fmt(t975, 3)`$:
+$`r num(P$d)` \pm `r fmt(t975, 3)`(`r num(P$se)`) = `r num(P$d)` \pm `r num(me)`$.
+95% CI: (`r fmt(P$d - me, 2)`, `r fmt(P$d + me, 2)`). We are 95% confident that the
+difference in mean daily sales (discount $-$ bundle) is between
+`r fmt(P$d - me, 2)` and `r fmt(P$d + me, 2)` units.
+:::
+
+::: {.callout-warning icon=false}
+## One-sided test, two-sided interval
+
+The one-sided test in (b) rejects $H_0$, but the 95% CI in (c) contains 0. This
+is not a contradiction: the CI matches a **two-sided** test, whose p-value
+(`r fmt(tt$p.value, 4)`) is twice the one-sided p-value.
+:::
+
+### Reading R Output
+
+```{r}
+#| label: r-pricing
+#| echo: !expr show_code
+var.test(discount, bundle)
+t.test(discount, bundle, var.equal = TRUE, alternative = "greater")
+t.test(discount, bundle, var.equal = TRUE)
+```
+
+With `var.equal = TRUE` R prints **Two Sample t-test** (pooled); without it R
+prints **Welch Two Sample t-test**. Check the title before reading the numbers.
+
+```{r}
+#| label: ex-3-5-welch
+hv <- var.test(online, physical)
+hw <- t.test(online, physical)
+```
+
+### Worked Example: Welch $t$ Test
+
+**Worked Example 3.5.2.** A consumer researcher records the price (baht) of the
+same model of headphones at `r length(online)` online stores and
+`r length(physical)` physical stores (hypothetical data). Is the mean price
+different?
+
+```{r}
+#| label: r-headphones
+#| echo: !expr show_code
+var.test(online, physical)
+t.test(online, physical)
+```
+
+::: {.callout-tip icon=false collapse=false}
+## Solution
+
+**Equal variances?** p-value of the $F$ test = `r fmt(hv$p.value, 4)` < 0.05,
+so we reject $H_0: \sigma_1^2 = \sigma_2^2$. Online prices vary much more.
+Use the **Welch** test (the second output).
+
+**Step 1: Hypotheses.** $H_0: \mu_{\text{online}} = \mu_{\text{physical}}$ $\quad H_1: \mu_{\text{online}} \ne \mu_{\text{physical}}$
+
+**Step 2: Level of significance.** $\alpha$ = 0.05
+
+**Step 3: Test statistic.** $t_{\text{cal}} = `r fmt(hw$statistic, 3)`$, df = `r fmt(hw$parameter, 2)`
+
+**Step 4: p-value.** p-value = `r format(signif(hw$p.value, 4))` (= `r format(round(hw$p.value, 6), scientific = FALSE)`), which is < 0.0001
+
+**Step 5: Decision and interpretation.** p-value < $\alpha$ = 0.05, so we reject
+$H_0$. That is, the mean price is different online and in physical stores at the
+0.05 level of significance; since $\bar{x}_{\text{online}}$ = `r big(mean(online))`
+< $\bar{x}_{\text{physical}}$ = `r big(mean(physical))`, it is lower online.
+
+We are 95% confident that the difference in mean price (online $-$ physical)
+is between `r big(hw$conf.int[1])` and `r big(hw$conf.int[2])` baht.
+:::
+
+```{r}
+#| label: yt-3-5
+set.seed(2757)
+uni_A <- round(rnorm(10, 24.5, 3.2), 1)
+uni_B <- round(rnorm(12, 22.3, 3.0), 1)
+ya_m <- round(mean(uni_A), 4); yb_m <- round(mean(uni_B), 4)
+ya_v <- round(var(uni_A), 4); yb_v <- round(var(uni_B), 4)
+YP <- pooled(ya_m, ya_v, 10, yb_m, yb_v, 12)
+yv <- var.test(uni_A, uni_B); yt <- t.test(uni_A, uni_B, var.equal = TRUE)
+```
 
 ### Your Turn
 
 ::: {.callout-note icon=false}
 ## Your Turn 3.5.1
 
-*Problem to be added.*
+The starting monthly salaries (thousand baht) of 10 economics graduates from
+University A and 12 from University B are compared (hypothetical data):
+$\bar{x}_A$ = `r num(ya_m)`, $s_A^2$ = `r num(ya_v)`, $\bar{x}_B$ = `r num(yb_m)`,
+$s_B^2$ = `r num(yb_v)`.
+
+(a) Use the first output to decide which $t$ test to use.
+(b) Calculate $t_{\text{cal}}$ by hand.
+(c) Use the R output to test whether the mean starting salaries are different at $\alpha$ = 0.05.
 :::
 
-::: {.workspace steps="none"}
+```{r}
+#| label: r-yt-3-5
+#| echo: !expr show_code
+var.test(uni_A, uni_B)
+t.test(uni_A, uni_B, var.equal = TRUE)
+```
+
+::: {.workspace lines="16"}
 :::
 
 ::: {.answer title="Your Turn 3.5.1"}
-*Solution to be added.*
+**(a)** $F$ test p-value = `r fmt(yv$p.value, 4)` $\ge$ 0.05: accept equal
+variances, so use the pooled $t$ test.
+
+**(b)** $s_p^2 = \dfrac{9(`r num(ya_v)`) + 11(`r num(yb_v)`)}{20} = `r num(YP$sp2)`$,
+SE $= \sqrt{`r num(YP$sp2)`(1/10 + 1/12)} = `r num(YP$se)`$,
+$t_{\text{cal}} = (`r num(ya_m)` - `r num(yb_m)`)/`r num(YP$se)` = `r fmt(YP$t, 3)`$.
+
+**(c)**
+
+**Step 1.** $H_0: \mu_A = \mu_B \quad H_1: \mu_A \ne \mu_B$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $t_{\text{cal}} = `r fmt(yt$statistic, 3)`$, df = `r yt$parameter`
+
+**Step 4.** p-value = `r fmt(yt$p.value, 4)`
+
+**Step 5.** p-value = `r fmt(yt$p.value, 4)` $\ge$ $\alpha$ = 0.05, so we accept
+$H_0$. That is, the mean starting salaries of graduates from the two
+universities are equal at the 0.05 level of significance.
 :::
-
-### Reading R Output
-
-*To be added.*
 
 ### Formula Summary
 
-*To be added.*
+| Situation | Method | R |
+|:---|:---|:---|
+| Paired data | paired $t$ on $d$ (Section 3.3) | `t.test(x1, x2, paired = TRUE)` |
+| Independent, equal variances | pooled $t$: $s_p^2 = \dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}$, $t_{\text{cal}} = \dfrac{\bar{x}_1-\bar{x}_2}{\sqrt{s_p^2(1/n_1+1/n_2)}}$, df $= n_1+n_2-2$ | `t.test(x1, x2, var.equal = TRUE)` |
+| Independent, unequal variances | Welch $t$ | `t.test(x1, x2)` |
+| CI (pooled) | $(\bar{x}_1-\bar{x}_2) \pm t_{1-\alpha/2,\,n_1+n_2-2}\,\text{SE}$ | two-sided output |
+
+```{r}
+#| label: ex-3-5-exercises
+set.seed(2758)
+north <- round(rnorm(14, 9.2, 2.6), 1)
+south <- round(rnorm(16, 7.4, 0.9), 1)
+ev <- var.test(north, south)
+ep <- t.test(north, south, var.equal = TRUE, alternative = "greater")
+ew <- t.test(north, south, alternative = "greater")
+```
 
 ### Exercises
 
-*To be added.*
+**3.5.1** An economist compares the monthly inflation expectations (%) reported
+by `r length(north)` firms in the North and `r length(south)` firms in the South
+(hypothetical data). She wants to know whether expectations are higher in the
+North. Three outputs are shown.
+
+```{r}
+#| label: r-ex-3-5
+#| echo: !expr show_code
+cat("Output 1\n"); var.test(north, south)
+cat("Output 2\n"); t.test(north, south, var.equal = TRUE, alternative = "greater")
+cat("Output 3\n"); t.test(north, south, alternative = "greater")
+```
+
+(a) Which of Output 2 and Output 3 should she use? Explain.
+(b) Write the decision and interpretation at $\alpha$ = 0.05.
+
+::: {.answer title="Exercise 3.5.1"}
+(a) In Output 1 the p-value = `r fmt(ev$p.value, 4)` < 0.05, so the variances are
+not equal. Use the Welch test, Output 3. (Output 2 assumes equal variances.)
+
+(b) $H_0: \mu_N = \mu_S \quad H_1: \mu_N > \mu_S$. From Output 3,
+$t_{\text{cal}} = `r fmt(ew$statistic, 3)`$, df = `r fmt(ew$parameter, 2)`,
+p-value = `r fmt(ew$p.value, 4)` < $\alpha$ = 0.05, so we reject $H_0$. That is,
+mean inflation expectations are higher in the North than in the South at the
+0.05 level of significance.
+:::
+
+**3.5.2** For each study, say whether you would use the paired $t$ test or a
+two-sample (pooled or Welch) $t$ test.
+
+(a) The rice yield of 15 farms is recorded before and after an irrigation project.
+(b) The household income of 60 randomly chosen households in Chiang Mai is compared with that of 60 randomly chosen households in Bangkok.
+(c) For each of 12 provinces, the unemployment rate of men is compared with that of women.
+
+::: {.answer title="Exercise 3.5.2"}
+(a) Paired (same farms twice). (b) Two-sample: two independent samples; check
+the variances with the $F$ test to choose pooled or Welch. (c) Paired (men and
+women are matched within each province).
+:::
 
 ::: {.solutions-here}
 :::

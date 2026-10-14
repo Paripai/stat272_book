@@ -4,50 +4,285 @@
 #| label: setup-4-3
 #| include: false
 source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
+rb <- read.csv(data_path("pricing_rcbd.csv"))
+rb$strategy <- factor(rb$strategy, levels = c("Regular", "Discount", "Bundle"))
+rb$province <- factor(rb$province, levels = unique(rb$province))
+loans <- read.csv(data_path("loan_rates.csv"))
+loans$product <- factor(loans$product, levels = c("Personal", "Car", "Home"))
+loans$bank <- factor(loans$bank, levels = unique(loans$bank))
+model_rcbd <- aov(sales ~ strategy + province, data = rb)
+model_loan <- aov(rate ~ product + bank, data = loans)
 ```
 
 ### Learning Objectives
 
-*To be added.*
+1. Explain what a block is and why blocking makes a comparison more precise.
+2. Describe a randomized complete block design (RCBD).
+3. Calculate the RCBD ANOVA table and read `summary(aov(y ~ trt + block))`.
+4. Follow a significant result with `TukeyHSD(model, "trt")`.
 
 ### Concept
 
-*To be added.*
+Suppose the retail chain from Section 4.1 has stores in five provinces. Sales in
+Chiang Mai are much higher than in Nan, whatever the pricing strategy. In a CRD
+this province-to-province variation ends up in the error term, makes MSE large
+and hides the differences between strategies.
+
+A **block** is a group of similar experimental units. In a **randomized
+complete block design (RCBD)**:
+
+- every treatment appears **once in every block** (the design is "complete");
+- within each block, the treatments are assigned to units **at random**.
+
+Here each province is a block: in each province, three stores are randomly
+assigned to the three strategies. Comparing strategies **within** each province
+removes the province effect, and ANOVA separates the variation into three parts:
+treatments, blocks and error.
+
+```{r}
+#| label: fig-rcbd
+#| fig-cap: "Weekly sales by strategy in each province. Provinces differ a lot, but within every province the Discount strategy sells most."
+#| fig-height: 3
+#| fig-width: 6.5
+#| fig-align: center
+ggplot(rb, aes(province, sales, group = strategy, shape = strategy, linetype = strategy)) +
+  geom_point(size = 2.5) + geom_line() +
+  labs(x = "Province (block)", y = "Weekly sales", shape = "Strategy", linetype = "Strategy")
+```
 
 ### Formulas and Conditions
 
-*To be added.*
+**Assumptions:** within each block the treatments are assigned at random; the
+errors are independent and normal with constant variance; no interaction
+between treatments and blocks.
+
+With $t$ treatments, $b$ blocks, $N = tb$, treatment totals $T_i$, block totals
+$B_j$ and grand total $G$:
+
+| Quantity | Formula |
+|:---|:---|
+| Correction factor | $\text{CF} = G^2/N$ |
+| Total SS | $\text{SST} = \sum y^2 - \text{CF}$ |
+| Treatment SS | $\text{SSTr} = \dfrac{\sum T_i^2}{b} - \text{CF}$ |
+| Block SS | $\text{SSB} = \dfrac{\sum B_j^2}{t} - \text{CF}$ |
+| Error SS | $\text{SSE} = \text{SST} - \text{SSTr} - \text{SSB}$ |
+
+| Source | df | SS | MS | $F$ |
+|:---|:---:|:---:|:---:|:---:|
+| Treatments | $t-1$ | SSTr | MSTr | MSTr/MSE |
+| Blocks | $b-1$ | SSB | MSB | MSB/MSE |
+| Error | $(t-1)(b-1)$ | SSE | MSE | |
+| Total | $tb-1$ | SST | | |
+
+**Test for treatments:** $H_0: \mu_1 = \cdots = \mu_t$; reject $H_0$ if
+$F_{\text{cal}} > F_{1-\alpha,\,t-1,\,(t-1)(b-1)}$. The block row is printed by
+R, but our question is about the treatments.
+
+**In R:** `summary(aov(y ~ trt + block))`, then `TukeyHSD(model, "trt")` to
+compare the treatments only.
+
+```{r}
+#| label: ex-4-3
+tt <- nlevels(rb$strategy); bb <- nlevels(rb$province); N <- tt * bb
+Ti <- tapply(rb$sales, rb$strategy, sum); Bj <- tapply(rb$sales, rb$province, sum)
+G <- sum(rb$sales); Syy <- sum(rb$sales^2)
+CF <- round(G^2 / N, 4); SST <- round(Syy - CF, 4)
+SSTr <- round(sum(Ti^2) / bb - CF, 4); SSB <- round(sum(Bj^2) / tt - CF, 4)
+SSE <- round(SST - SSTr - SSB, 4)
+dfE <- (tt - 1) * (bb - 1)
+MSTr <- round(SSTr / (tt - 1), 4); MSB <- round(SSB / (bb - 1), 4); MSE <- round(SSE / dfE, 4)
+F_tr <- round(MSTr / MSE, 3); F_b <- round(MSB / MSE, 3)
+Fc <- crit_F(.95, tt - 1, dfE)
+orb <- summary(model_rcbd)[[1]]
+tkr <- TukeyHSD(model_rcbd, "strategy")$strategy
+ocrd <- summary(aov(sales ~ strategy, data = rb))[[1]]
+```
 
 ### Worked Example
 
-*To be added.*
+**Worked Example 4.3.1.** In each of five provinces, three stores are randomly
+assigned to the Regular, Discount and Bundle pricing strategies. Weekly sales
+(hundred units) are recorded (hypothetical data):
+
+```{r}
+#| label: tbl-rcbd
+#| tbl-cap: "Weekly sales (hundred units): strategies (rows) in five provinces (blocks)"
+w <- tapply(rb$sales, list(rb$strategy, rb$province), sum)
+w <- cbind(w, Total = Ti)
+w <- rbind(w, Total = c(Bj, G))
+knitr::kable(w)
+```
+
+At $\alpha$ = 0.05, test whether the mean weekly sales differ among the strategies.
+If they do, find which strategies differ.
+
+::: {.callout-tip icon=false collapse=false}
+## Solution
+
+$t$ = `r tt`, $b$ = `r bb`, $N$ = `r N`, $G$ = `r G`, $\sum y^2$ = `r big(Syy, 0)`.
+
+$$
+\text{CF} = \frac{`r G`^2}{`r N`} = `r num(CF)`, \qquad
+\text{SST} = `r big(Syy, 0)` - `r num(CF)` = `r num(SST)`
+$$
+$$
+\text{SSTr} = \frac{`r paste0(Ti, "^2", collapse = " + ")`}{`r bb`} - `r num(CF)` = `r num(SSTr)`
+$$
+$$
+\text{SSB} = \frac{`r paste0(Bj, "^2", collapse = " + ")`}{`r tt`} - `r num(CF)` = `r num(SSB)`
+$$
+$$
+\text{SSE} = `r num(SST)` - `r num(SSTr)` - `r num(SSB)` = `r num(SSE)`
+$$
+
+| Source | df | SS | MS | $F$ |
+|:---|:---:|:---:|:---:|:---:|
+| Strategy | `r tt - 1` | `r num(SSTr)` | `r num(MSTr)` | `r fmt(F_tr, 3)` |
+| Province | `r bb - 1` | `r num(SSB)` | `r num(MSB)` | `r fmt(F_b, 3)` |
+| Error | `r dfE` | `r num(SSE)` | `r num(MSE)` | |
+| Total | `r N - 1` | `r num(SST)` | | |
+
+**Step 1: Hypotheses.** $H_0: \mu_R = \mu_D = \mu_B$ $\quad H_1:$ at least one mean is different
+
+**Step 2: Level of significance.** $\alpha$ = 0.05
+
+**Step 3: Test statistic.** $F_{\text{cal}} = `r num(MSTr)`/`r num(MSE)` = `r fmt(F_tr, 3)`$, df = (`r tt - 1`, `r dfE`)
+
+**Step 4: p-value.** From the R output below, p-value = `r fmt(orb[1, "Pr(>F)"], 4)`.
+(With the table: $F_{0.95,\,`r tt - 1`,\,`r dfE`} = `r Fc`$.)
+
+**Step 5: Decision and interpretation.** p-value = `r fmt(orb[1, "Pr(>F)"], 4)` <
+$\alpha$ = 0.05, so we reject $H_0$. That is, the mean weekly sales are not all
+equal across the three pricing strategies at the 0.05 level of significance.
+
+**Which strategies differ?** From `TukeyHSD(model, "strategy")` below:
+Discount $-$ Regular (p adj = `r fmt(tkr[1, "p adj"], 4)`) and Bundle $-$ Discount
+(p adj = `r fmt(tkr[3, "p adj"], 4)`) are significant; Bundle $-$ Regular
+(p adj = `r fmt(tkr[2, "p adj"], 4)`) is not. At the 0.05 level of significance the
+Discount strategy has higher mean sales than both the Regular and the Bundle
+strategies, and the Regular and Bundle strategies have equal mean sales.
+:::
+
+### Reading R Output
+
+```{r}
+#| label: r-rcbd
+#| echo: !expr show_code
+model <- aov(sales ~ strategy + province, data = rb)
+summary(model)
+TukeyHSD(model, "strategy")
+```
+
+The `strategy` row is the treatment test; the `province` row shows that the
+blocks differ a lot, which is why blocking helps.
+
+::: {.callout-tip icon=false}
+## What if we ignore the blocks?
+
+Analysing the same data as a CRD, `summary(aov(sales ~ strategy))`, puts the
+province variation into the error term:
+:::
+
+```{r}
+#| label: r-rcbd-as-crd
+#| echo: !expr show_code
+summary(aov(sales ~ strategy, data = rb))
+```
+
+The treatment SS is the same (`r num(SSTr)`), but the error SS grows from
+`r num(SSE)` to `r num(ocrd[2, "Sum Sq"])`, the p-value becomes
+`r fmt(ocrd[1, "Pr(>F)"], 4)` and the difference between the strategies is no
+longer detected. The design and the analysis must match.
+
+```{r}
+#| label: yt-4-3
+ol <- summary(model_loan)[[1]]
+tkl <- TukeyHSD(model_loan, "product")$product
+```
 
 ### Your Turn
 
 ::: {.callout-note icon=false}
 ## Your Turn 4.3.1
 
-*Problem to be added.*
+A regulator records the interest rate (%) of three loan products (Personal,
+Car, Home) at six banks (hypothetical data). Each bank offers all three products,
+so the banks are blocks.
+
+```{r}
+#| label: tbl-loans
+knitr::kable(tapply(loans$rate, list(loans$product, loans$bank), sum))
+```
+
+(a) At $\alpha$ = 0.05, test whether the mean interest rates of the three products differ.
+(b) If they do, find which products differ.
 :::
 
-::: {.workspace steps="none"}
+```{r}
+#| label: r-yt-4-3
+#| echo: !expr show_code
+model_loan <- aov(rate ~ product + bank, data = loans)
+summary(model_loan)
+TukeyHSD(model_loan, "product")
+```
+
+::: {.workspace lines="16"}
 :::
 
 ::: {.answer title="Your Turn 4.3.1"}
-*Solution to be added.*
+**(a)**
+
+**Step 1.** $H_0: \mu_P = \mu_C = \mu_H \quad H_1:$ at least one mean is different
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $F_{\text{cal}} = `r fmt(ol[1, "F value"], 3)`$, df = (`r ol[1, "Df"]`, `r ol[3, "Df"]`)
+
+**Step 4.** p-value = `r fmt(ol[1, "Pr(>F)"], 4)`
+
+**Step 5.** p-value = `r fmt(ol[1, "Pr(>F)"], 4)` < $\alpha$ = 0.05, so we reject
+$H_0$. That is, the mean interest rates are not all equal across the three loan
+products at the 0.05 level of significance.
+
+**(b)** Car $-$ Personal (p adj = `r fmt(tkl[1, "p adj"], 4)`) and Home $-$ Personal
+(p adj = `r fmt(tkl[2, "p adj"], 4)`) are significant; Home $-$ Car
+(p adj = `r fmt(tkl[3, "p adj"], 4)`) is not. At the 0.05 level of significance,
+personal loans have a higher mean interest rate than car loans and home loans,
+and car and home loans have equal mean rates.
 :::
-
-### Reading R Output
-
-*To be added.*
 
 ### Formula Summary
 
-*To be added.*
+| | Formula |
+|:---|:---|
+| Sums of squares | $\text{SSTr} = \sum T_i^2/b - \text{CF}$; $\text{SSB} = \sum B_j^2/t - \text{CF}$; $\text{SSE} = \text{SST} - \text{SSTr} - \text{SSB}$ |
+| df | treatments $t-1$; blocks $b-1$; error $(t-1)(b-1)$; total $tb-1$ |
+| Test for treatments | $F_{\text{cal}} = \text{MSTr}/\text{MSE}$, df $= (t-1,\ (t-1)(b-1))$ |
+| R | `summary(aov(y ~ trt + block))`; `TukeyHSD(model, "trt")` |
 
 ### Exercises
 
-*To be added.*
+**4.3.1** For each study, say whether it is a CRD or an RCBD, and name the
+treatments and (if any) the blocks.
+
+(a) Twenty shops are randomly assigned to four store layouts, five shops each.
+(b) Four store layouts are each tried once in each of five shopping malls, with the layout randomly assigned to shops within each mall.
+
+::: {.answer title="Exercise 4.3.1"}
+(a) CRD; treatments: the four layouts; no blocks.
+(b) RCBD; treatments: the four layouts; blocks: the five malls.
+:::
+
+**4.3.2** An RCBD has 4 treatments and 6 blocks, with SST = 120, SSTr = 36 and
+SSB = 54. Complete the ANOVA table and test the treatments at $\alpha$ = 0.05.
+
+::: {.answer title="Exercise 4.3.2"}
+SSE = 120 $-$ 36 $-$ 54 = 30; df: treatments 3, blocks 5, error 15, total 23.
+MSTr = 36/3 = 12, MSB = 54/5 = 10.8, MSE = 30/15 = 2.
+$F_{\text{cal}}$ = 12/2 = 6.000 for treatments. $F_{0.95,\,3,\,15} = `r crit_F(.95, 3, 15)`$;
+$6.000 > `r crit_F(.95, 3, 15)`$, so $F_{\text{cal}}$ falls in the critical region and
+we reject $H_0$: the treatment means are not all equal at the 0.05 level of significance.
+:::
 
 ::: {.solutions-here}
 :::

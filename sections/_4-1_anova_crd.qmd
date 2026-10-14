@@ -4,50 +4,278 @@
 #| label: setup-4-1
 #| include: false
 source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
+crd <- read.csv(data_path("pricing_crd.csv"))
+crd$strategy <- factor(crd$strategy, levels = c("Regular", "Discount", "Bundle"))
+sav <- read.csv(data_path("saving_rate.csv"))
+sav$region <- factor(sav$region, levels = c("North", "Northeast", "Central", "South"))
+
+# One-way ANOVA by the correction-factor method, rounded as in the book
+anova_hand <- function(y, g) {
+  N <- length(y); k <- nlevels(g); Ti <- tapply(y, g, sum); ni <- tapply(y, g, length)
+  G <- sum(y); CF <- round(G^2 / N, 4); Syy <- sum(y^2)
+  SST <- round(Syy - CF, 4); SSTr <- round(sum(Ti^2 / ni) - CF, 4); SSE <- round(SST - SSTr, 4)
+  MSTr <- round(SSTr / (k - 1), 4); MSE <- round(SSE / (N - k), 4)
+  list(N = N, k = k, Ti = Ti, ni = ni, G = G, CF = CF, Syy = Syy, SST = SST, SSTr = SSTr,
+       SSE = SSE, MSTr = MSTr, MSE = MSE, F = round(MSTr / MSE, 3),
+       sumTi2n = sum(Ti^2 / ni))
+}
 ```
 
 ### Learning Objectives
 
-*To be added.*
+1. Explain why we use ANOVA, not many $t$ tests, to compare three or more means.
+2. Describe a completely randomized design (CRD) and the assumptions of one-way ANOVA.
+3. Calculate the ANOVA table by hand for a small data set.
+4. Read the output of `summary(aov(y ~ trt))` in R and write the conclusion.
 
 ### Concept
 
-*To be added.*
+A retail chain wants to compare **three** pricing strategies. Testing each pair
+with a $t$ test needs three tests; with five strategies it needs ten. Each test
+has a 5% chance of a Type I error, so the chance of at least one false
+"significant" result grows quickly. **Analysis of variance (ANOVA)** tests all
+the means at once:
+$$
+H_0: \mu_1 = \mu_2 = \cdots = \mu_k \qquad
+H_1: \text{at least one } \mu_i \text{ is different}
+$$
+
+In a **completely randomized design (CRD)** the treatments (here, pricing
+strategies) are assigned to experimental units (stores) completely at random.
+
+The idea of ANOVA is to split the total variation in the data into two parts:
+
+- variation **between** the treatment means (treatment sum of squares, SSTr)
+- variation **within** the treatments (error sum of squares, SSE)
+
+If the treatment means are really equal, the between-treatment variation is only
+random noise, about the same size as the within-treatment variation. The ratio
+of the two mean squares is an $F$ statistic, as in Section 3.4.
+
+```{r}
+#| label: fig-crd-dots
+#| fig-cap: "Weekly sales (hundred units) of 15 stores under three pricing strategies; lines show treatment means"
+#| fig-height: 2.8
+#| fig-width: 6
+#| fig-align: center
+means <- aggregate(sales ~ strategy, crd, mean)
+ggplot(crd, aes(strategy, sales)) +
+  geom_point(size = 2.5, alpha = 0.7, position = position_jitter(width = 0.06, height = 0, seed = 1)) +
+  geom_errorbar(data = means, aes(ymin = sales, ymax = sales), width = 0.35, linewidth = 0.8,
+                colour = "firebrick") +
+  labs(x = "Pricing strategy", y = "Weekly sales")
+```
 
 ### Formulas and Conditions
 
-*To be added.*
+**Assumptions:** independent random samples (units assigned at random); each
+population is normal; all populations have the same variance $\sigma^2$.
+
+With $k$ treatments, $n_i$ observations in treatment $i$, $N = \sum n_i$,
+treatment totals $T_i$ and grand total $G$:
+
+| Quantity | Formula |
+|:---|:---|
+| Correction factor | $\text{CF} = G^2/N$ |
+| Total SS | $\text{SST} = \sum y^2 - \text{CF}$ |
+| Treatment SS | $\text{SSTr} = \sum \dfrac{T_i^2}{n_i} - \text{CF}$ |
+| Error SS | $\text{SSE} = \text{SST} - \text{SSTr}$ |
+
+**ANOVA table**
+
+| Source | df | SS | MS | $F$ |
+|:---|:---:|:---:|:---:|:---:|
+| Treatments | $k-1$ | SSTr | $\text{MSTr} = \dfrac{\text{SSTr}}{k-1}$ | $F_{\text{cal}} = \dfrac{\text{MSTr}}{\text{MSE}}$ |
+| Error | $N-k$ | SSE | $\text{MSE} = \dfrac{\text{SSE}}{N-k}$ | |
+| Total | $N-1$ | SST | | |
+
+**Critical region:** $F_{\text{cal}} > F_{1-\alpha,\,k-1,\,N-k}$. The ANOVA $F$
+test is always **right-sided**: only a large between-treatment variation is
+evidence against $H_0$.
+
+**In R:** `summary(aov(y ~ trt))`. The row named after the treatment is the
+treatment row and `Residuals` is the error row.
+
+```{r}
+#| label: ex-4-1
+A <- anova_hand(crd$sales, crd$strategy)
+Fc <- crit_F(.95, A$k - 1, A$N - A$k)
+oa <- summary(aov(sales ~ strategy, data = crd))[[1]]
+```
 
 ### Worked Example
 
-*To be added.*
+**Worked Example 4.1.1.** A retail chain randomly assigns three pricing
+strategies (Regular, Discount, Bundle) to 15 similar stores, 5 stores each, and
+records weekly sales in hundreds of units (hypothetical data):
+
+```{r}
+#| label: tbl-crd
+#| tbl-cap: "Weekly sales (hundred units) under three pricing strategies"
+wide <- data.frame(Strategy = levels(crd$strategy),
+                   Sales = sapply(levels(crd$strategy), function(l) paste(crd$sales[crd$strategy == l], collapse = ", ")),
+                   Total = as.vector(A$Ti), Mean = as.vector(A$Ti / A$ni))
+knitr::kable(wide, row.names = FALSE, align = "llcc")
+```
+
+At $\alpha$ = 0.05, test whether the mean weekly sales differ among the three strategies.
+
+::: {.callout-tip icon=false collapse=false}
+## Solution
+
+$k$ = `r A$k`, $N$ = `r A$N`, $G$ = `r A$G`, $\sum y^2$ = `r big(A$Syy, 0)`.
+
+$$
+\text{CF} = \frac{`r A$G`^2}{`r A$N`} = `r num(A$CF)`
+$$
+$$
+\text{SST} = `r big(A$Syy, 0)` - `r num(A$CF)` = `r num(A$SST)`
+$$
+$$
+\text{SSTr} = \frac{`r A$Ti[1]`^2 + `r A$Ti[2]`^2 + `r A$Ti[3]`^2}{5} - `r num(A$CF)` = `r num(A$sumTi2n)` - `r num(A$CF)` = `r num(A$SSTr)`
+$$
+$$
+\text{SSE} = `r num(A$SST)` - `r num(A$SSTr)` = `r num(A$SSE)`
+$$
+
+| Source | df | SS | MS | $F$ |
+|:---|:---:|:---:|:---:|:---:|
+| Strategy | `r A$k - 1` | `r num(A$SSTr)` | `r num(A$MSTr)` | `r fmt(A$F, 3)` |
+| Error | `r A$N - A$k` | `r num(A$SSE)` | `r num(A$MSE)` | |
+| Total | `r A$N - 1` | `r num(A$SST)` | | |
+
+**Step 1: Hypotheses.** $H_0: \mu_R = \mu_D = \mu_B$ $\quad H_1:$ at least one mean is different
+
+**Step 2: Level of significance.** $\alpha$ = 0.05
+
+**Step 3: Test statistic.** $F_{\text{cal}} = \dfrac{`r num(A$MSTr)`}{`r num(A$MSE)`} = `r fmt(A$F, 3)`$, df = (`r A$k - 1`, `r A$N - A$k`)
+
+**Step 4: p-value.** From the R output below, p-value = `r fmt(oa[1, "Pr(>F)"], 4)`.
+(With the table: $F_{0.95,\,`r A$k - 1`,\,`r A$N - A$k`} = `r Fc`$, critical region $F_{\text{cal}} > `r Fc`$.)
+
+**Step 5: Decision and interpretation.** p-value = `r fmt(oa[1, "Pr(>F)"], 4)` <
+$\alpha$ = 0.05, so we reject $H_0$. That is, the mean weekly sales are not all
+equal across the three pricing strategies at the 0.05 level of significance.
+Section 4.2 shows how to find which strategies differ.
+:::
+
+### Reading R Output
+
+```{r}
+#| label: r-crd
+#| echo: !expr show_code
+summary(aov(sales ~ strategy, data = crd))
+```
+
+| Output | Meaning |
+|:---|:---|
+| `strategy` row | treatment: df $= k-1$, SSTr, MSTr, $F_{\text{cal}}$, p-value |
+| `Residuals` row | error: df $= N-k$, SSE, MSE |
+| `Pr(>F)` | p-value |
+| `***`, `**`, `*` | significance codes; we use the p-value itself |
+
+R does not print the Total row; add the other two rows to get it
+(df = `r A$N - 1`, SS = `r num(A$SST)`).
+
+```{r}
+#| label: yt-4-1
+B <- anova_hand(sav$saving, sav$region)
+Bc <- crit_F(.95, B$k - 1, B$N - B$k)
+ob <- summary(aov(saving ~ region, data = sav))[[1]]
+```
 
 ### Your Turn
 
 ::: {.callout-note icon=false}
 ## Your Turn 4.1.1
 
-*Problem to be added.*
+The household saving rate (% of income) of 4 randomly selected households in
+each of four regions is recorded (hypothetical data):
+
+```{r}
+#| label: tbl-sav
+knitr::kable(data.frame(Region = levels(sav$region),
+                        `Saving rate` = sapply(levels(sav$region), function(l) paste(sav$saving[sav$region == l], collapse = ", ")),
+                        Total = as.vector(B$Ti), check.names = FALSE), row.names = FALSE)
+```
+
+$\sum y^2$ = `r big(B$Syy, 0)`. (a) Complete the ANOVA table by hand.
+(b) At $\alpha$ = 0.05, test whether the mean saving rate differs among the
+regions, and check your table against the R output.
 :::
 
-::: {.workspace steps="none"}
+```{r}
+#| label: r-yt-4-1
+#| echo: !expr show_code
+summary(aov(saving ~ region, data = sav))
+```
+
+::: {.workspace lines="16"}
 :::
 
 ::: {.answer title="Your Turn 4.1.1"}
-*Solution to be added.*
+**(a)** $G$ = `r B$G`, CF $= `r B$G`^2/`r B$N` = `r num(B$CF)`$,
+SST $= `r B$Syy` - `r num(B$CF)` = `r num(B$SST)`$,
+SSTr $= (`r paste(B$Ti, collapse = "^2 + ")`^2)/4 - `r num(B$CF)` = `r num(B$SSTr)`$,
+SSE $= `r num(B$SSE)`$.
+
+| Source | df | SS | MS | $F$ |
+|:---|:---:|:---:|:---:|:---:|
+| Region | `r B$k - 1` | `r num(B$SSTr)` | `r num(B$MSTr)` | `r fmt(B$F, 3)` |
+| Error | `r B$N - B$k` | `r num(B$SSE)` | `r num(B$MSE)` | |
+| Total | `r B$N - 1` | `r num(B$SST)` | | |
+
+**(b)**
+
+**Step 1.** $H_0: \mu_N = \mu_{NE} = \mu_C = \mu_S \quad H_1:$ at least one mean is different
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $F_{\text{cal}} = `r num(B$MSTr)`/`r num(B$MSE)` = `r fmt(B$F, 3)`$, df = (`r B$k - 1`, `r B$N - B$k`)
+
+**Step 4.** p-value = `r fmt(ob[1, "Pr(>F)"], 4)` (table: $F_{0.95,\,3,\,12} = `r Bc`$)
+
+**Step 5.** p-value = `r fmt(ob[1, "Pr(>F)"], 4)` < $\alpha$ = 0.05, so we reject
+$H_0$. That is, the mean saving rates are not all equal across the four regions
+at the 0.05 level of significance.
 :::
-
-### Reading R Output
-
-*To be added.*
 
 ### Formula Summary
 
-*To be added.*
+| | Formula |
+|:---|:---|
+| Hypotheses | $H_0: \mu_1 = \cdots = \mu_k$; $H_1$: at least one $\mu_i$ different |
+| Sums of squares | $\text{CF} = G^2/N$; $\text{SST} = \sum y^2 - \text{CF}$; $\text{SSTr} = \sum T_i^2/n_i - \text{CF}$; $\text{SSE} = \text{SST} - \text{SSTr}$ |
+| df | treatments $k-1$; error $N-k$; total $N-1$ |
+| Test statistic | $F_{\text{cal}} = \text{MSTr}/\text{MSE}$; reject $H_0$ if $F_{\text{cal}} > F_{1-\alpha,\,k-1,\,N-k}$ |
+| R | `summary(aov(y ~ trt))` |
 
 ### Exercises
 
-*To be added.*
+**4.1.1** Complete the ANOVA table for a CRD with 4 treatments and 6 units per
+treatment, and state the decision at $\alpha$ = 0.05.
+
+| Source | df | SS | MS | $F$ |
+|:---|:---:|:---:|:---:|:---:|
+| Treatments | (a) | 54.0 | (c) | (e) |
+| Error | (b) | 80.0 | (d) | |
+| Total | 23 | 134.0 | | |
+
+::: {.answer title="Exercise 4.1.1"}
+(a) $k - 1 = 3$; (b) $N - k = 24 - 4 = 20$; (c) $54.0/3 = 18$; (d) $80.0/20 = 4$;
+(e) $F_{\text{cal}} = 18/4 = 4.500$. $F_{0.95,\,3,\,20} = `r crit_F(.95, 3, 20)`$;
+$4.500 > `r crit_F(.95, 3, 20)`$, so $F_{\text{cal}}$ falls in the critical region
+and we reject $H_0$: the treatment means are not all equal at the 0.05 level of significance.
+:::
+
+**4.1.2** Explain why a researcher comparing five investment funds should use
+ANOVA rather than ten separate two-sample $t$ tests.
+
+::: {.answer title="Exercise 4.1.2"}
+Each $t$ test has a 5% chance of a Type I error. With ten tests the chance of
+at least one false significant result is much larger than 5%. ANOVA tests all
+five means in one test at $\alpha$ = 0.05.
+:::
 
 ::: {.solutions-here}
 :::

@@ -8,42 +8,224 @@ source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
 
 ### Learning Objectives
 
-*To be added.*
+1. Check the conditions for the normal approximation to $\hat{p}$.
+2. Construct and interpret a confidence interval for a population proportion $p$.
+3. Carry out a $z$ test for $p$ in five steps.
+4. Explain why the CI uses $\hat{p}$ in the standard error but the test uses $p_0$.
 
 ### Concept
 
-*To be added.*
+Many economic questions are about proportions: the share of households in debt,
+the labour force participation rate, the share of firms that raised prices, or
+the share of people who used a stimulus measure. Each person or firm either has
+the characteristic ("success") or not.
+
+With $x$ successes in a sample of $n$, the sample proportion is $\hat{p} = x/n$.
+From Chapter 1, $\hat{p}$ is approximately normal with mean $p$ and standard error
+$\sqrt{p(1-p)/n}$ when the sample is large enough.
+
+::: {.callout-important icon=false}
+## Which proportion goes in the standard error?
+
+The standard error contains the unknown $p$, so we must put in a value:
+
+- **Confidence interval:** we do not assume any value of $p$, so we use our best
+  estimate $\hat{p}$.
+- **Hypothesis test:** we assume $H_0$ is true, so we use $p_0$.
+:::
 
 ### Formulas and Conditions
 
-*To be added.*
+**$(1-\alpha)100\%$ confidence interval for $p$**
+$$
+\hat{p} \pm z_{1-\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
+\qquad \text{condition: } n\hat{p} \ge 5 \text{ and } n(1-\hat{p}) \ge 5
+$$
+
+**Test statistic** for $H_0: p = p_0$
+$$
+z_{\text{cal}} = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}}
+\qquad \text{condition: } np_0 \ge 5 \text{ and } n(1-p_0) \ge 5
+$$
+
+The critical regions are the same as for the $z$ test of a mean.
+
+```{r}
+#| label: ex-2-3
+a_n <- 400; a_x <- 148; a_p0 <- 0.30
+a_ph <- a_x / a_n
+a_se_ci <- round(sqrt(a_ph * (1 - a_ph) / a_n), 4)
+a_me <- crit_z(.975) * a_se_ci
+a_se0 <- round(sqrt(a_p0 * (1 - a_p0) / a_n), 4)
+a_z <- round((a_ph - a_p0) / a_se0, 3)
+```
 
 ### Worked Example
 
-*To be added.*
+**Worked Example 2.3.1.** The government ran a co-payment scheme in which it
+paid part of the price of goods bought at small shops. An economist claims that
+more than 30% of households in Chiang Mai used the scheme. In a random sample of
+`r a_n` households, `r a_x` used it (hypothetical figures).
+
+(a) Construct a 95% confidence interval for the proportion of households that used the scheme.
+(b) At $\alpha$ = 0.05, test the economist's claim.
+
+::: {.callout-tip icon=false collapse=false}
+## Solution
+
+$\hat{p} = `r a_x`/`r a_n` = `r num(a_ph)`$
+
+**(a)** Check: $n\hat{p} = `r a_x` \ge 5$ and $n(1-\hat{p}) = `r a_n - a_x` \ge 5$.
+$$
+\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} = \sqrt{\frac{`r num(a_ph)`(`r num(1 - a_ph)`)}{`r a_n`}} = `r num(a_se_ci)`
+$$
+$$
+`r num(a_ph)` \pm `r fmt(crit_z(.975), 3)`(`r num(a_se_ci)`) = `r num(a_ph)` \pm `r num(a_me)`
+$$
+95% CI: (`r fmt(a_ph - a_me, 4)`, `r fmt(a_ph + a_me, 4)`)
+
+We are 95% confident that the proportion of households in Chiang Mai that used
+the scheme is between `r fmt(a_ph - a_me, 4)` and `r fmt(a_ph + a_me, 4)`.
+
+**(b)**
+
+**Step 1: Hypotheses.** $H_0: p = `r fmt(a_p0, 2)`$ $\quad H_1: p > `r fmt(a_p0, 2)`$
+
+**Step 2: Level of significance.** $\alpha$ = 0.05
+
+**Step 3: Test statistic.** Check: $np_0 = `r a_n * a_p0` \ge 5$ and $n(1-p_0) = `r a_n * (1 - a_p0)` \ge 5$.
+$$
+\sqrt{\frac{p_0(1-p_0)}{n}} = \sqrt{\frac{`r fmt(a_p0, 2)`(`r fmt(1 - a_p0, 2)`)}{`r a_n`}} = `r num(a_se0)`
+$$
+$$
+z_{\text{cal}} = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{`r num(a_ph)` - `r fmt(a_p0, 2)`}{`r num(a_se0)`} = `r fmt(a_z, 3)`
+$$
+
+**Step 4: Critical value and critical region.** $z_{0.95} = `r fmt(crit_z(.95), 3)`$.
+Critical region: $z_{\text{cal}} > `r fmt(crit_z(.95), 3)`$.
+
+**Step 5: Decision and interpretation.**
+$z_{\text{cal}} = `r fmt(a_z, 3)`$ falls in the critical region
+($`r fmt(a_z, 3)` > `r fmt(crit_z(.95), 3)`$), so we reject $H_0$.
+That is, the proportion of households in Chiang Mai that used the scheme is more
+than `r fmt(a_p0, 2)` at the 0.05 level of significance.
+:::
+
+```{r}
+#| label: yt-2-3
+b_n <- 250; b_x <- 160; b_p0 <- 0.70
+b_ph <- b_x / b_n
+b_se_ci <- round(sqrt(b_ph * (1 - b_ph) / b_n), 4); b_me <- crit_z(.975) * b_se_ci
+b_se0 <- round(sqrt(b_p0 * (1 - b_p0) / b_n), 4)
+b_z <- round((b_ph - b_p0) / b_se0, 3)
+```
 
 ### Your Turn
 
 ::: {.callout-note icon=false}
 ## Your Turn 2.3.1
 
-*Problem to be added.*
+A university reports that 70% of its economics graduates find a job within six
+months. A survey of `r b_n` recent graduates finds that `r b_x` found a job
+within six months (hypothetical figures).
+
+(a) Construct a 95% confidence interval for the proportion of graduates who find a job within six months.
+(b) At $\alpha$ = 0.05, test whether the proportion is different from 0.70.
+:::
+
+::: {.workspace lines="4"}
 :::
 
 ::: {.workspace steps="names"}
 :::
 
 ::: {.answer title="Your Turn 2.3.1"}
-*Solution to be added.*
+$\hat{p} = `r b_x`/`r b_n` = `r num(b_ph)`$
+
+**(a)** $\sqrt{`r num(b_ph)`(`r num(1 - b_ph)`)/`r b_n`} = `r num(b_se_ci)`$;
+$`r num(b_ph)` \pm `r fmt(crit_z(.975), 3)`(`r num(b_se_ci)`) = `r num(b_ph)` \pm `r num(b_me)`$.
+95% CI: (`r fmt(b_ph - b_me, 4)`, `r fmt(b_ph + b_me, 4)`). We are 95% confident
+that the proportion of graduates who find a job within six months is between
+`r fmt(b_ph - b_me, 4)` and `r fmt(b_ph + b_me, 4)`.
+
+**(b)**
+
+**Step 1.** $H_0: p = `r fmt(b_p0, 2)` \quad H_1: p \ne `r fmt(b_p0, 2)`$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $\sqrt{`r fmt(b_p0, 2)`(`r fmt(1 - b_p0, 2)`)/`r b_n`} = `r num(b_se0)`$;
+$z_{\text{cal}} = (`r num(b_ph)` - `r fmt(b_p0, 2)`)/`r num(b_se0)` = `r fmt(b_z, 3)`$
+
+**Step 4.** Critical region: $z_{\text{cal}} < `r fmt(-crit_z(.975), 3)`$ or $z_{\text{cal}} > `r fmt(crit_z(.975), 3)`$.
+
+**Step 5.** $z_{\text{cal}} = `r fmt(b_z, 3)`$ falls in the critical region
+($`r fmt(b_z, 3)` < `r fmt(-crit_z(.975), 3)`$), so we reject $H_0$.
+That is, the proportion of graduates who find a job within six months is
+different from 0.70 at the 0.05 level of significance; since $\hat{p}$ =
+`r num(b_ph)`, the proportion is lower than 0.70.
 :::
 
 ### Formula Summary
 
-*To be added.*
+| | Confidence interval | Hypothesis test |
+|:---|:---|:---|
+| Standard error | $\sqrt{\hat{p}(1-\hat{p})/n}$ | $\sqrt{p_0(1-p_0)/n}$ |
+| Condition | $n\hat{p} \ge 5$, $n(1-\hat{p}) \ge 5$ | $np_0 \ge 5$, $n(1-p_0) \ge 5$ |
+| Formula | $\hat{p} \pm z_{1-\alpha/2}\sqrt{\hat{p}(1-\hat{p})/n}$ | $z_{\text{cal}} = \dfrac{\hat{p}-p_0}{\sqrt{p_0(1-p_0)/n}}$ |
+
+```{r}
+#| label: ex-2-3-exercises
+e1_n <- 500; e1_x <- 95; e1_ph <- e1_x / e1_n
+e1_se <- round(sqrt(e1_ph * (1 - e1_ph) / e1_n), 4); e1_me <- crit_z(.995) * e1_se
+e2_n <- 300; e2_x <- 66; e2_p0 <- 0.25; e2_ph <- e2_x / e2_n
+e2_se <- round(sqrt(e2_p0 * (1 - e2_p0) / e2_n), 4); e2_z <- round((e2_ph - e2_p0) / e2_se, 3)
+```
 
 ### Exercises
 
-*To be added.*
+**2.3.1** In a survey of `r e1_n` small businesses, `r e1_x` had borrowed from
+an informal lender in the past year (hypothetical figures). Construct a 99%
+confidence interval for the proportion of small businesses that borrowed from
+an informal lender.
+
+::: {.answer title="Exercise 2.3.1"}
+$\hat{p} = `r num(e1_ph)`$; $\sqrt{`r num(e1_ph)`(`r num(1 - e1_ph)`)/`r e1_n`} = `r num(e1_se)`$;
+$z_{0.995} = `r fmt(crit_z(.995), 3)`$;
+$`r num(e1_ph)` \pm `r fmt(crit_z(.995), 3)`(`r num(e1_se)`) = `r num(e1_ph)` \pm `r num(e1_me)`$.
+99% CI: (`r fmt(e1_ph - e1_me, 4)`, `r fmt(e1_ph + e1_me, 4)`). We are 99% confident
+that the proportion of small businesses that borrowed from an informal lender is
+between `r fmt(e1_ph - e1_me, 4)` and `r fmt(e1_ph + e1_me, 4)`.
+:::
+
+**2.3.2** A bank believes that less than 25% of its credit-card holders pay
+only the minimum amount each month. In a sample of `r e2_n` card holders,
+`r e2_x` paid only the minimum (hypothetical figures). Test the bank's belief at
+$\alpha$ = 0.05.
+
+::: {.answer title="Exercise 2.3.2"}
+**Step 1.** $H_0: p = `r fmt(e2_p0, 2)` \quad H_1: p < `r fmt(e2_p0, 2)`$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $\hat{p} = `r num(e2_ph)`$; $\sqrt{`r fmt(e2_p0, 2)`(`r fmt(1 - e2_p0, 2)`)/`r e2_n`} = `r num(e2_se)`$;
+$z_{\text{cal}} = (`r num(e2_ph)` - `r fmt(e2_p0, 2)`)/`r num(e2_se)` = `r fmt(e2_z, 3)`$
+
+**Step 4.** $z_{0.05} = `r fmt(-crit_z(.95), 3)`$. Critical region: $z_{\text{cal}} < `r fmt(-crit_z(.95), 3)`$.
+
+**Step 5.** $z_{\text{cal}} = `r fmt(e2_z, 3)`$ does not fall in the critical region
+($`r fmt(e2_z, 3)` > `r fmt(-crit_z(.95), 3)`$), so we accept $H_0$.
+That is, the proportion of card holders who pay only the minimum is equal to
+`r fmt(e2_p0, 2)` at the 0.05 level of significance.
+:::
+
+**2.3.3** A researcher wants to test $H_0: p = 0.05$ for the unemployment rate in
+a district using a sample of 60 people. Is the $z$ test appropriate? Explain.
+
+::: {.answer title="Exercise 2.3.3"}
+No. $np_0 = 60(0.05) = 3 < 5$, so the normal approximation is not reliable. A
+larger sample (at least 100 people) is needed.
+:::
 
 ::: {.solutions-here}
 :::

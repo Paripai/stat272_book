@@ -1,16 +1,333 @@
 # Summary: Choosing a Method {.unnumbered}
 
+```{r}
+#| label: setup-summary
+#| include: false
+source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
+```
+
 ## Which Method? A Flowchart {.unnumbered}
 
-*To be added.*
+Every problem in this book answers the same three questions:
+
+1. **Which parameter?** A mean, a proportion or a variance.
+2. **How many groups?** One, two, or three or more.
+3. **What is special about the data?** Is $\sigma$ known? Are the samples paired?
+   Are the variances equal? Are there blocks?
+
+```{r}
+#| label: fig-flowchart
+#| fig-cap: "Choosing a method. Numbers in brackets are the sections."
+#| fig-height: 5.4
+#| fig-width: 7.5
+leaf <- data.frame(y = 11:1, label = c(
+  "σ known: z test (2.1)", "σ unknown: t test (2.2)",
+  "Paired: paired t test (3.3)", "Independent, equal variances: pooled t (3.5)",
+  "Independent, unequal variances: Welch t (3.5)",
+  "No blocks: one-way ANOVA, CRD (4.1)", "Blocks: ANOVA, RCBD (4.3)",
+  "z test for p (2.3)", "z test for p1 − p2 (3.1)",
+  "Chi-square test for σ² (2.4)", "F test for σ1²/σ2² (3.4)"))
+grp <- data.frame(label = c("One group", "Two groups", "Three or more", "One group",
+                            "Two groups", "One group", "Two groups"),
+                  y = c(10.5, 8, 5.5, 4, 3, 2, 1))
+grp_leaves <- list(c(11, 10), c(9, 8, 7), c(6, 5), 4, 3, 2, 1)
+par_ <- data.frame(label = c("Mean", "Proportion", "Variance"), y = c(8, 3.5, 1.5))
+par_groups <- list(1:3, 4:5, 6:7)
+xs <- c(0, 1.5, 3.1)
+seg <- data.frame()
+for (i in 1:3) for (j in par_groups[[i]])
+  seg <- rbind(seg, data.frame(x = xs[1] + 0.45, xend = xs[2] - 0.6, y = par_$y[i], yend = grp$y[j]))
+for (j in 1:7) for (l in grp_leaves[[j]])
+  seg <- rbind(seg, data.frame(x = xs[2] + 0.6, xend = xs[3] - 0.05, y = grp$y[j], yend = l))
+ggplot() +
+  geom_segment(data = seg, aes(x, y, xend = xend, yend = yend), colour = "grey55", linewidth = 0.4) +
+  geom_label(data = par_, aes(xs[1], y, label = label), fontface = "bold", size = 3.6, fill = "grey92") +
+  geom_label(data = grp, aes(xs[2], y, label = label), size = 3.3) +
+  geom_label(data = leaf, aes(xs[3], y, label = label), hjust = 0, size = 3.2, fill = "#eef4fb") +
+  annotate("text", x = xs[3], y = 0.2, hjust = 0, size = 3, fontface = "italic",
+           label = "After ANOVA rejects H0: Tukey (4.2)") +
+  scale_x_continuous(limits = c(-0.5, 6.4)) + scale_y_continuous(limits = c(0, 11.5)) +
+  theme_void()
+```
+
+| Method | Test statistic | Distribution | R |
+|:---|:---|:---|:---|
+| Mean, $\sigma$ known | $z = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}$ | $z$ | -- |
+| Mean, $\sigma$ unknown | $t = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}}$ | $t$, $n-1$ | `t.test(x, mu = )` |
+| Proportion | $z = \dfrac{\hat{p}-p_0}{\sqrt{p_0(1-p_0)/n}}$ | $z$ | -- |
+| Variance | $\chi^2 = \dfrac{(n-1)s^2}{\sigma_0^2}$ | $\chi^2$, $n-1$ | -- |
+| Two proportions | $z = \dfrac{\hat{p}_1-\hat{p}_2}{\sqrt{\bar{p}(1-\bar{p})(1/n_1+1/n_2)}}$ | $z$ | -- |
+| Paired means | $t = \dfrac{\bar{d}}{s_d/\sqrt{n}}$ | $t$, $n-1$ | `t.test(x1, x2, paired = TRUE)` |
+| Two variances | $F = s_1^2/s_2^2$ | $F$, $(n_1-1, n_2-1)$ | `var.test(x1, x2)` |
+| Two means, pooled | $t = \dfrac{\bar{x}_1-\bar{x}_2}{\sqrt{s_p^2(1/n_1+1/n_2)}}$ | $t$, $n_1+n_2-2$ | `t.test(x1, x2, var.equal = TRUE)` |
+| Two means, Welch | -- | $t$ | `t.test(x1, x2)` |
+| ANOVA (CRD) | $F = \text{MSTr}/\text{MSE}$ | $F$, $(k-1, N-k)$ | `summary(aov(y ~ trt))` |
+| ANOVA (RCBD) | $F = \text{MSTr}/\text{MSE}$ | $F$, $(t-1, (t-1)(b-1))$ | `summary(aov(y ~ trt + block))` |
+| Tukey | -- | -- | `TukeyHSD(model)` |
+
+## Which Method? Practice {.unnumbered}
+
+For each study, name the parameter(s), the method and the section.
+
+(a) The Bank of Thailand wants to know whether the share of households with
+credit-card debt has risen above 35%.
+(b) A researcher compares the mean wage of 40 workers in Chiang Mai with the
+mean wage of 35 workers in Khon Kaen.
+(c) The same 25 firms report their profits before and after a tax change.
+(d) An analyst asks whether the daily returns of a stock index have become more
+volatile than a standard deviation of 1.2%.
+(e) Four fertilizer subsidy schemes are each tried in five districts, with the
+scheme randomly assigned to villages within each district.
+(f) A survey compares the proportion of men and of women who own a business.
+
+::: {.answer title="Which Method? Practice"}
+(a) One proportion, $z$ test for $p$ (2.3), $H_1: p > 0.35$.
+
+(b) Two independent means: $F$ test for the variances first, then pooled or Welch $t$ (3.4, 3.5).
+
+(c) Paired means: paired $t$ test on the differences (3.3).
+
+(d) One variance: chi-square test, $H_1: \sigma^2 > 1.44$ (2.4).
+
+(e) Four means with blocks (districts): RCBD ANOVA (4.3), then Tukey if $H_0$ is rejected.
+
+(f) Two proportions: $z$ test for $p_1 - p_2$ (3.1).
+:::
+
+```{r}
+#| label: mixed
+m2 <- list(n1 = 9, x1 = 52.4, s1 = 6.1, n2 = 13, x2 = 47.8, s2 = 5.4)
+m2$v1 <- round(m2$s1^2, 4); m2$v2 <- round(m2$s2^2, 4)
+m2$F <- round(m2$v1 / m2$v2, 3)
+m2$Fhi <- crit_F(.975, 8, 12); m2$Flo <- crit_F(.025, 8, 12)
+m2$sp2 <- round((8 * m2$v1 + 12 * m2$v2) / 20, 4)
+m2$se <- round(sqrt(m2$sp2 * (1 / 9 + 1 / 13)), 4)
+m2$t <- round((m2$x1 - m2$x2) / m2$se, 3); m2$tc <- crit_t(.975, 20)
+
+m3_chi <- round(14 * 0.8^2 / 1, 3); m3_c <- crit_chisq(.05, 14)
+
+set.seed(2771)
+bill_before <- round(rnorm(8, 2400, 450), -1)
+bill_after <- bill_before - round(rnorm(8, 380, 260), -1)
+m4 <- t.test(bill_after, bill_before, paired = TRUE, alternative = "less")
+
+set.seed(2772)
+ads <- data.frame(channel = factor(rep(c("TV", "Online", "Radio", "Print"), each = 5),
+                                   levels = c("TV", "Online", "Radio", "Print")),
+                  sales = round(c(rnorm(5, 52, 4), rnorm(5, 58, 4), rnorm(5, 47, 4), rnorm(5, 46, 4)), 1))
+model_ads <- aov(sales ~ channel, data = ads)
+m5 <- summary(model_ads)[[1]]
+m5t <- TukeyHSD(model_ads)$channel
+
+m6 <- list(n = 20, xbar = 3.42, s = 0.58)
+m6$se <- round(m6$s / sqrt(m6$n), 4); m6$tc <- crit_t(.975, 19); m6$me <- m6$tc * m6$se
+```
 
 ## Mixed Problems {.unnumbered}
 
-*To be added.*
+All figures are hypothetical. Use $\alpha$ = 0.05 and the five steps.
+
+**M1.** In a survey of 500 workers, 210 have a second job. Test whether more
+than 40% of workers have a second job. Use the critical region.
+
+::: {.workspace lines="12"}
+:::
+
+::: {.answer title="M1"}
+One proportion (2.3). $\hat{p} = 210/500 = 0.42$.
+
+**Step 1.** $H_0: p = 0.40 \quad H_1: p > 0.40$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $\sqrt{0.40(0.60)/500} = `r num(round(sqrt(.24/500), 4))`$;
+$z_{\text{cal}} = (0.42 - 0.40)/`r num(round(sqrt(.24/500), 4))` = `r fmt(round(0.02/round(sqrt(.24/500), 4), 3), 3)`$
+
+**Step 4.** Critical region: $z_{\text{cal}} > `r fmt(crit_z(.95), 3)`$.
+
+**Step 5.** $z_{\text{cal}} = `r fmt(round(0.02/round(sqrt(.24/500), 4), 3), 3)`$ does not fall in the
+critical region ($`r fmt(round(0.02/round(sqrt(.24/500), 4), 3), 3)` < `r fmt(crit_z(.95), 3)`$), so we
+accept $H_0$. That is, the proportion of workers with a second job is equal to
+0.40 at the 0.05 level of significance.
+:::
+
+**M2.** The monthly profit (thousand baht) of `r m2$n1` cafés in the old city has
+$\bar{x}$ = `r m2$x1`, $s$ = `r m2$s1`; that of `r m2$n2` cafés near the
+university has $\bar{x}$ = `r m2$x2`, $s$ = `r m2$s2`. (a) Use the $F$ test with the
+critical region to check the variances. (b) Test whether the mean profits are
+different, using the critical region.
+
+::: {.workspace lines="16"}
+:::
+
+::: {.answer title="M2"}
+**(a)** $H_0: \sigma_1^2 = \sigma_2^2$ vs $H_1: \sigma_1^2 \ne \sigma_2^2$.
+$F_{\text{cal}} = `r num(m2$v1)`/`r num(m2$v2)` = `r fmt(m2$F, 3)`$, df = (8, 12).
+Critical region: $F_{\text{cal}} < 1/F_{0.975,\,12,\,8} = `r num(m2$Flo)`$ or
+$F_{\text{cal}} > F_{0.975,\,8,\,12} = `r m2$Fhi`$. $F_{\text{cal}}$ does not fall
+in the critical region, so we accept $H_0$: the variances are equal. Use the pooled $t$ test.
+
+**(b)**
+
+**Step 1.** $H_0: \mu_1 = \mu_2 \quad H_1: \mu_1 \ne \mu_2$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $s_p^2 = [8(`r num(m2$v1)`) + 12(`r num(m2$v2)`)]/20 = `r num(m2$sp2)`$;
+SE $= \sqrt{`r num(m2$sp2)`(1/9 + 1/13)} = `r num(m2$se)`$;
+$t_{\text{cal}} = (`r m2$x1` - `r m2$x2`)/`r num(m2$se)` = `r fmt(m2$t, 3)`$, df = 20
+
+**Step 4.** Critical region: $t_{\text{cal}} < `r fmt(-m2$tc, 3)`$ or $t_{\text{cal}} > `r fmt(m2$tc, 3)`$.
+
+**Step 5.** $t_{\text{cal}} = `r fmt(m2$t, 3)`$ does not fall in the critical region
+($`r fmt(-m2$tc, 3)` < `r fmt(m2$t, 3)` < `r fmt(m2$tc, 3)`$), so we accept $H_0$.
+That is, the mean monthly profits of cafés in the two areas are equal at the
+0.05 level of significance.
+:::
+
+**M3.** A central bank wants the standard deviation of the monthly inflation rate
+to be less than 1 percentage point. Over 15 months, $s$ = 0.8. Assume normality
+and test whether the target is met, using the critical region.
+
+::: {.workspace lines="12"}
+:::
+
+::: {.answer title="M3"}
+One variance (2.4).
+
+**Step 1.** $H_0: \sigma^2 = 1 \quad H_1: \sigma^2 < 1$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $\chi^2_{\text{cal}} = 14(0.64)/1 = `r fmt(m3_chi, 3)`$, df = 14
+
+**Step 4.** $\chi^2_{0.05,\,14} = `r m3_c`$. Critical region: $\chi^2_{\text{cal}} < `r m3_c`$.
+
+**Step 5.** $\chi^2_{\text{cal}} = `r fmt(m3_chi, 3)`$ does not fall in the critical region
+($`r fmt(m3_chi, 3)` > `r m3_c`$), so we accept $H_0$. That is, the standard
+deviation of monthly inflation is equal to 1 percentage point at the 0.05 level
+of significance; the data do not show that the target is met.
+:::
+
+**M4.** Eight households installed solar panels. Their monthly electricity
+bills (baht) before and after installation were recorded. Did the mean bill
+decrease?
+
+```{r}
+#| label: r-m4
+#| echo: !expr show_code
+t.test(bill_after, bill_before, paired = TRUE, alternative = "less")
+```
+
+::: {.workspace lines="10"}
+:::
+
+::: {.answer title="M4"}
+Paired means (3.3), $d$ = after $-$ before.
+
+**Step 1.** $H_0: \mu_d = 0 \quad H_1: \mu_d < 0$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $t_{\text{cal}} = `r fmt(m4$statistic, 3)`$, df = `r m4$parameter`
+
+**Step 4.** p-value = `r fmt(m4$p.value, 4)`
+
+**Step 5.** p-value = `r fmt(m4$p.value, 4)` < $\alpha$ = 0.05, so we reject $H_0$.
+That is, the mean monthly electricity bill decreased after installing solar
+panels at the 0.05 level of significance.
+:::
+
+**M5.** Twenty stores are randomly assigned to four advertising channels (TV,
+Online, Radio, Print), five stores each, and weekly sales are recorded.
+(a) Test whether mean sales differ among the channels. (b) If they do, which
+channels differ?
+
+```{r}
+#| label: r-m5
+#| echo: !expr show_code
+model_ads <- aov(sales ~ channel, data = ads)
+summary(model_ads)
+TukeyHSD(model_ads)
+```
+
+::: {.workspace lines="14"}
+:::
+
+::: {.answer title="M5"}
+**(a)** One-way ANOVA, CRD (4.1).
+
+**Step 1.** $H_0: \mu_{TV} = \mu_{O} = \mu_{R} = \mu_{P} \quad H_1:$ at least one mean is different
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $F_{\text{cal}} = `r fmt(m5[1, "F value"], 3)`$, df = (`r m5[1, "Df"]`, `r m5[2, "Df"]`)
+
+**Step 4.** p-value = `r fmt(m5[1, "Pr(>F)"], 4)`
+
+**Step 5.** p-value = `r fmt(m5[1, "Pr(>F)"], 4)` < $\alpha$ = 0.05, so we reject
+$H_0$. That is, mean weekly sales are not all equal across the four channels at
+the 0.05 level of significance.
+
+**(b)** Pairs with p adj < 0.05: `r paste(gsub("-", " $-$ ", rownames(m5t)[m5t[, "p adj"] < 0.05]), collapse = ", ")`.
+TV and Online have equal mean sales, Radio and Print have equal mean sales, and
+both TV and Online have higher mean sales than both Radio and Print.
+:::
+
+**M6.** The mean household size in a district is estimated from 20 households:
+$\bar{x}$ = `r m6$xbar`, $s$ = `r m6$s`. Construct a 95% confidence interval for
+the mean household size.
+
+::: {.workspace lines="6"}
+:::
+
+::: {.answer title="M6"}
+One mean, $\sigma$ unknown (2.2). $t_{0.975,\,19} = `r fmt(m6$tc, 3)`$,
+$s/\sqrt{n} = `r num(m6$se)`$; $`r m6$xbar` \pm `r fmt(m6$tc, 3)`(`r num(m6$se)`) = `r m6$xbar` \pm `r num(m6$me)`$.
+We are 95% confident that the mean household size is between
+`r fmt(m6$xbar - m6$me, 2)` and `r fmt(m6$xbar + m6$me, 2)` persons.
+:::
 
 ## Writing a Full Conclusion {.unnumbered}
 
-*To be added.*
+A full conclusion has a **decision** and an **interpretation** in the words of
+the problem:
+
+> **Decision.** [statistic or p-value] ... so we [reject / accept] $H_0$.
+> **Interpretation.** That is, ... at the 0.05 level of significance.
+
+Checklist:
+
+- If you reject $H_0$, write $H_1$ as a sentence; if you accept $H_0$, write $H_0$ as a sentence.
+- Name the population and the variable (not just "the mean").
+- For a two-sided test that rejects $H_0$, add the direction from the sample statistics.
+- For ANOVA, "not all equal"; then use Tukey to say which ones differ.
+
+Write the decision and the interpretation for each result.
+
+(a) $H_0: \mu = 15000$, $H_1: \mu \ne 15000$ for the mean monthly rent (baht) in a
+district; $t_{\text{cal}} = -2.514$, critical region $|t_{\text{cal}}| > 2.064$, $\bar{x}$ = 13,850.
+(b) $H_0: p_1 = p_2$, $H_1: p_1 > p_2$ for the proportions of urban (1) and rural (2)
+households using mobile banking; p-value = 0.0832.
+(c) One-way ANOVA comparing mean loan sizes at three types of lender; p-value = 0.0007.
+
+::: {.workspace lines="12"}
+:::
+
+::: {.answer title="Writing a Full Conclusion"}
+(a) $t_{\text{cal}} = -2.514$ falls in the critical region ($-2.514 < -2.064$),
+so we reject $H_0$. That is, the mean monthly rent in the district is different
+from 15,000 baht at the 0.05 level of significance; since $\bar{x}$ = 13,850, it is
+lower than 15,000 baht.
+
+(b) p-value = 0.0832 $\ge$ $\alpha$ = 0.05, so we accept $H_0$. That is, the
+proportions of urban and rural households using mobile banking are equal at the
+0.05 level of significance.
+
+(c) p-value = 0.0007 < $\alpha$ = 0.05, so we reject $H_0$. That is, the mean loan
+sizes are not all equal across the three types of lender at the 0.05 level of
+significance. (Use Tukey's method to find which types differ.)
+:::
 
 ::: {.solutions-here level="2"}
 :::

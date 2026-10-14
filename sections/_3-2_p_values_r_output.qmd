@@ -4,50 +4,296 @@
 #| label: setup-3-2
 #| include: false
 source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
+riders <- read.csv(data_path("rider_earnings.csv"))
+bills <- read.csv(data_path("electricity_bills.csv"))
+earnings <- riders$earnings
+bill <- bills$bill
 ```
 
 ### Learning Objectives
 
-*To be added.*
+1. Explain what a p-value is and use it to make the decision of a test.
+2. Read the output of `t.test()` in R: test statistic, df, p-value, CI and estimate.
+3. Check that R output agrees with a calculation by hand.
+4. Choose the R output whose alternative hypothesis matches the research question.
 
 ### Concept
 
-*To be added.*
+So far we have decided by comparing the test statistic with a **critical
+value**. Statistical software gives a second, equivalent way: the **p-value**.
 
-### Formulas and Conditions
+::: {.callout-important icon=false}
+## p-value
 
-*To be added.*
+The **p-value** is the probability, assuming $H_0$ is true, of getting a test
+statistic at least as extreme as the one we observed, in the direction(s) of $H_1$.
+
+A small p-value means our sample would be unusual if $H_0$ were true.
+
+**Decision rule:** reject $H_0$ if p-value $< \alpha$; accept $H_0$ if p-value $\ge \alpha$.
+:::
+
+```{r}
+#| label: p-calc
+r_t <- round(unname(t.test(earnings, mu = 600, alternative = "greater")$statistic), 3)
+r_p1 <- round(pt(r_t, 24, lower.tail = FALSE), 4)
+```
+
+**Example.** In Worked Example 2.2.2 (rider earnings, $H_1: \mu > 600$),
+$t_{\text{cal}} = `r fmt(r_t, 3)`$ with df = 24. The p-value is the area to the
+**right** of `r fmt(r_t, 3)` under the $t$ curve, because $H_1$ points to the right.
+It is about `r fmt(r_p1, 4)`.
+
+```{r}
+#| label: fig-pval-areas
+#| layout-ncol: 2
+#| fig-cap: "The p-value as an area under the t curve with df = 24"
+#| fig-subcap:
+#|   - "Right-sided H1: area to the right of t_cal"
+#|   - "Two-sided H1: both tails, twice the one-tail area"
+#| fig-height: 2.2
+#| fig-width: 4.5
+pval_plot(r_t, "right", df1 = 24)
+pval_plot(r_t, "two", df1 = 24)
+```
+
+| $H_1$ | p-value |
+|:---:|:---|
+| $>$ | area to the **right** of the test statistic |
+| $<$ | area to the **left** of the test statistic |
+| $\ne$ | **twice** the area beyond the test statistic, in both tails |
+
+The critical-value method and the p-value method always give the **same
+decision**. The critical region is the set of test statistics whose p-value is
+less than $\alpha$. The printed tables do not give exact p-values for $t$,
+$\chi^2$ or $F$, so we read p-values from software.
+
+::: {.callout-warning icon=false}
+## What the p-value is not
+
+The p-value is **not** the probability that $H_0$ is true. It is calculated
+assuming $H_0$ is true.
+:::
+
+### Reading R Output
+
+R is free statistical software. In this course you do not need to write R code,
+but you must be able to **read** its output. The function `t.test()` carries out
+the $t$ test for one mean. For the riders in Worked Example 2.2.2 we use
+`t.test(earnings, mu = 600, alternative = "greater")`:
+
+```{r}
+#| label: r-riders-greater
+#| echo: !expr show_code
+t.test(earnings, mu = 600, alternative = "greater")
+```
+
+```{r}
+#| label: r-riders-vals
+o <- t.test(earnings, mu = 600, alternative = "greater")
+```
+
+| Line in the output | Meaning | Hand calculation (2.2.2) |
+|:---|:---|:---|
+| `t = ` | test statistic $t_{\text{cal}}$ | `r fmt(r_t, 3)` |
+| `df = ` | degrees of freedom $n-1$ | 24 |
+| `p-value = ` | p-value | (from the table: $t_{\text{cal}}$ in the critical region) |
+| `alternative hypothesis:` | $H_1$ used by R | $H_1: \mu > 600$ |
+| `mean of x` | $\bar{x}$ | 644.96 |
+
+The numbers match the hand calculation. Now the decision can be written with the p-value:
+
+> p-value = `r fmt(o$p.value, 4)` < $\alpha$ = 0.05, so we reject $H_0$. That is,
+> the mean daily earnings of riders in Chiang Mai are more than 600 baht at the
+> 0.05 level of significance.
+
+::: {.callout-warning icon=false}
+## The confidence interval in one-sided output
+
+With `alternative = "greater"` or `"less"`, R prints a **one-sided** interval
+with `Inf` or `-Inf`. In this course we use the **two-sided** CI, which R
+prints with the default two-sided test:
+:::
+
+```{r}
+#| label: r-riders-two
+#| echo: !expr show_code
+t.test(earnings, mu = 600)
+```
+
+```{r}
+#| label: r-riders-two-vals
+o2 <- t.test(earnings, mu = 600)
+```
+
+The 95% CI (`r fmt(o2$conf.int[1], 2)`, `r fmt(o2$conf.int[2], 2)`) is the same
+as in Worked Example 2.2.2. The test statistic does not change, but the
+two-sided p-value (`r fmt(o2$p.value, 4)`) is twice the one-sided p-value.
+
+::: {.callout-tip icon=false}
+## Reading numbers in R
+
+- R may print `p-value = 2.1e-05`. This means $2.1 \times 10^{-5}$ = 0.000021.
+- `p-value < 2.2e-16` means the p-value is smaller than any number R can print; report it as p-value < 0.0001.
+- In this book we round the test statistic to 3 decimals and the p-value to 4 decimals.
+:::
+
+### The Five Steps with a p-value
+
+From this section on, Step 4 is the p-value instead of the critical value:
+
+1. **Hypotheses**
+2. **Level of significance**
+3. **Test statistic** (from the output, or calculated by hand)
+4. **p-value** (from the output)
+5. **Decision and interpretation**: p-value = ... [<, $\ge$] $\alpha$ = 0.05, so we [reject / accept] $H_0$. That is, ...
+
+```{r}
+#| label: ex-3-2
+ob <- t.test(bill, mu = 1200)
+```
 
 ### Worked Example
 
-*To be added.*
+**Worked Example 3.2.1.** An energy agency records the monthly electricity bill
+(baht) of `r length(bill)` randomly selected households (hypothetical data). It
+wants to know whether the mean bill is different from 1,200 baht. R gives:
+
+```{r}
+#| label: r-bills
+#| echo: !expr show_code
+t.test(bill, mu = 1200)
+```
+
+Use the output to (a) write the 95% CI and (b) test the hypothesis at $\alpha$ = 0.05.
+
+::: {.callout-tip icon=false collapse=false}
+## Solution
+
+**(a)** We are 95% confident that the mean monthly electricity bill is between
+`r big(ob$conf.int[1])` and `r big(ob$conf.int[2])` baht.
+
+**(b)**
+
+**Step 1: Hypotheses.** $H_0: \mu = 1200$ $\quad H_1: \mu \ne 1200$
+
+**Step 2: Level of significance.** $\alpha$ = 0.05
+
+**Step 3: Test statistic.** $t_{\text{cal}} = `r fmt(ob$statistic, 3)`$, df = `r ob$parameter`
+
+**Step 4: p-value.** p-value = `r fmt(ob$p.value, 4)`
+
+**Step 5: Decision and interpretation.** p-value = `r fmt(ob$p.value, 4)`
+$\ge$ $\alpha$ = 0.05, so we accept $H_0$. That is, the mean monthly electricity
+bill is equal to 1,200 baht at the 0.05 level of significance.
+
+The CI contains 1,200, which agrees with accepting $H_0$ in a two-sided test.
+:::
+
+```{r}
+#| label: yt-3-2
+oy <- t.test(earnings, mu = 620)
+```
 
 ### Your Turn
 
 ::: {.callout-note icon=false}
 ## Your Turn 3.2.1
 
-*Problem to be added.*
+For the rider earnings data, a labour researcher tests whether the mean daily
+earnings are different from 620 baht. Use the output below to test the
+hypothesis at $\alpha$ = 0.05 in five steps.
 :::
 
-::: {.workspace steps="none"}
+```{r}
+#| label: r-yt-3-2
+#| echo: !expr show_code
+t.test(earnings, mu = 620)
+```
+
+::: {.workspace lines="12"}
 :::
 
 ::: {.answer title="Your Turn 3.2.1"}
-*Solution to be added.*
+**Step 1.** $H_0: \mu = 620 \quad H_1: \mu \ne 620$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $t_{\text{cal}} = `r fmt(oy$statistic, 3)`$, df = `r oy$parameter`
+
+**Step 4.** p-value = `r fmt(oy$p.value, 4)`
+
+**Step 5.** p-value = `r fmt(oy$p.value, 4)` $\ge$ $\alpha$ = 0.05, so we accept $H_0$.
+That is, the mean daily earnings of riders are equal to 620 baht at the 0.05
+level of significance. (This agrees with Section 2.2: 620 is inside the 95% CI.)
 :::
-
-### Reading R Output
-
-*To be added.*
 
 ### Formula Summary
 
-*To be added.*
+| | |
+|:---|:---|
+| p-value | probability, assuming $H_0$ is true, of a test statistic at least as extreme as observed, in the direction of $H_1$ |
+| Decision | reject $H_0$ if p-value $< \alpha$; accept $H_0$ if p-value $\ge \alpha$ |
+| One mean in R | `t.test(x, mu = mu0, alternative = "two.sided" / "less" / "greater")` |
+| CI in R | read from the two-sided output |
+
+```{r}
+#| label: ex-3-2-exercises
+ex <- list(
+  A = t.test(bill, mu = 1200),
+  B = t.test(bill, mu = 1200, alternative = "greater"),
+  C = t.test(bill, mu = 1200, alternative = "less"),
+  D = t.test(bill, mu = 1250, alternative = "greater")
+)
+```
 
 ### Exercises
 
-*To be added.*
+**3.2.1** The electricity agency in Worked Example 3.2.1 now asks whether the
+mean bill is **more than** 1,200 baht. Four outputs are shown below.
+
+```{r}
+#| label: r-ex-3-2-outputs
+#| echo: !expr show_code
+cat("Output A\n"); t.test(bill, mu = 1200)
+cat("Output B\n"); t.test(bill, mu = 1200, alternative = "greater")
+cat("Output C\n"); t.test(bill, mu = 1200, alternative = "less")
+cat("Output D\n"); t.test(bill, mu = 1250, alternative = "greater")
+```
+
+(a) Which output matches the agency's question? Explain.
+(b) Write the decision and interpretation at $\alpha$ = 0.05.
+(c) Why is the test statistic the same in Outputs A, B and C, but not in D?
+
+::: {.answer title="Exercise 3.2.1"}
+(a) Output B: $\mu_0$ = 1200 and the alternative hypothesis is "greater than 1200", which matches $H_1: \mu > 1200$.
+
+(b) p-value = `r fmt(ex$B$p.value, 4)` $\ge$ $\alpha$ = 0.05, so we accept $H_0$.
+That is, the mean monthly electricity bill is equal to 1,200 baht at the 0.05
+level of significance.
+
+(c) The test statistic depends on $\mu_0$ but not on $H_1$. A, B and C all use
+$\mu_0$ = 1200; D uses $\mu_0$ = 1250. Only the p-value depends on $H_1$.
+:::
+
+**3.2.2** For each p-value, write the decision at $\alpha$ = 0.05:
+(a) 0.0312, (b) 0.0500, (c) 0.1847, (d) `5.4e-04`.
+
+::: {.answer title="Exercise 3.2.2"}
+(a) 0.0312 < 0.05: reject $H_0$.
+(b) 0.0500 $\ge$ 0.05: accept $H_0$.
+(c) 0.1847 $\ge$ 0.05: accept $H_0$.
+(d) `5.4e-04` = 0.00054 < 0.05: reject $H_0$.
+:::
+
+**3.2.3** A student says: "The p-value is 0.03, so there is a 3% chance that
+$H_0$ is true." Explain what is wrong.
+
+::: {.answer title="Exercise 3.2.3"}
+The p-value is calculated assuming $H_0$ is true. It is the probability of a
+result at least as extreme as the sample result if $H_0$ were true, not the
+probability that $H_0$ is true.
+:::
 
 ::: {.solutions-here}
 :::

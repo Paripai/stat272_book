@@ -33,10 +33,10 @@ format:
     number-depth: 2
     fig-width: 8
     fig-height: 5
-    # R code is folded on the web; the output is always shown
+    # R code is hidden by default. Chunks that show R output for students set
+    # echo: !expr show_code, and their code is folded on the web.
     code-fold: true
     code-summary: "Show R code"
-    echo: true
   pdf:
     pdf-engine: xelatex
     documentclass: scrreprt

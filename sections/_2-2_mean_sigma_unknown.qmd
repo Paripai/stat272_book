@@ -4,46 +4,347 @@
 #| label: setup-2-2
 #| include: false
 source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
+riders <- read.csv(data_path("rider_earnings.csv"))
 ```
 
 ### Learning Objectives
 
-*To be added.*
+1. Use the $t$ distribution when $\sigma$ is unknown and read the $t$ table (Table 5).
+2. Construct and interpret a confidence interval for $\mu$ using $s$.
+3. Carry out a $t$ test for $\mu$ in five steps.
+4. Use a confidence interval to reach the decision of a two-sided test.
 
 ### Concept
 
-*To be added.*
+In practice $\sigma$ is almost never known. We replace it by the sample
+standard deviation $s$. Because $s$ itself varies from sample to sample, the
+statistic
+$$
+t = \frac{\bar{x} - \mu}{s/\sqrt{n}}
+$$
+is more spread out than $z$. It follows a **$t$ distribution** with
+$\text{df} = n - 1$ degrees of freedom, provided the population is normal.
+For moderate or large $n$ the method still works well when the population is
+not exactly normal.
+
+```{r}
+#| label: fig-t-vs-z
+#| fig-cap: "The t distribution has heavier tails than z; with more df it gets closer to z"
+#| fig-height: 2.8
+#| fig-width: 6
+#| fig-align: center
+tz <- data.frame(x = rep(seq(-4, 4, length.out = 400), 3))
+tz$curve <- rep(c("t, df = 3", "t, df = 15", "z"), each = 400)
+tz$y <- with(tz, ifelse(curve == "z", dnorm(x),
+                        dt(x, ifelse(curve == "t, df = 3", 3, 15))))
+ggplot(tz, aes(x, y, linetype = curve)) + geom_line(linewidth = 0.7) +
+  labs(x = NULL, y = NULL, linetype = NULL) +
+  theme(axis.text.y = element_blank(), legend.position = "right")
+```
 
 ### Formulas and Conditions
 
-*To be added.*
+**Conditions:** $\sigma$ unknown; a random sample; the population is
+approximately normal (less important when $n$ is large).
 
-### Worked Example
+**$(1-\alpha)100\%$ confidence interval for $\mu$**
+$$
+\bar{x} \pm t_{1-\alpha/2,\,n-1}\,\frac{s}{\sqrt{n}}
+$$
 
-*To be added.*
+**Test statistic** for $H_0: \mu = \mu_0$, with $\text{df} = n-1$
+$$
+t_{\text{cal}} = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}
+$$
 
-### Your Turn
+| $H_1$ | Critical region |
+|:---:|:---|
+| $\mu \ne \mu_0$ | $t_{\text{cal}} < t_{\alpha/2,\,n-1}$ or $t_{\text{cal}} > t_{1-\alpha/2,\,n-1}$ |
+| $\mu < \mu_0$ | $t_{\text{cal}} < t_{\alpha,\,n-1}$ |
+| $\mu > \mu_0$ | $t_{\text{cal}} > t_{1-\alpha,\,n-1}$ |
+
+### Reading the $t$ Table
+
+Table 5 gives $t$ values with a stated **area to the left** (columns) for each
+df (rows). Like $z$, the $t$ curve is symmetric, so the table lists only the
+right half: $t_{0.05,\,\text{df}} = -t_{0.95,\,\text{df}}$.
+
+::: {.callout-warning icon=false}
+## Not every df is in the table
+
+After df = 30 the table jumps to 40, 50, 60, 80, 100, 200, 500 and $\infty$.
+All examples in this book use df that appear in the table.
+:::
+
+**Worked Example 2.2.1.** Find (a) $t_{0.975,\,24}$, (b) $t_{0.05,\,15}$, (c) $t_{0.995,\,40}$.
+
+::: {.callout-tip icon=false collapse=false}
+## Solution
+
+(a) Row df = 24, column 0.975: $t_{0.975,\,24} = `r fmt(crit_t(.975, 24), 3)`$.
+
+(b) Area 0.05 is in the left tail. By symmetry,
+$t_{0.05,\,15} = -t_{0.95,\,15} = `r fmt(-crit_t(.95, 15), 3)`$.
+
+(c) Row df = 40, column 0.995: $t_{0.995,\,40} = `r fmt(crit_t(.995, 40), 3)`$.
+:::
 
 ::: {.callout-note icon=false}
 ## Your Turn 2.2.1
 
-*Problem to be added.*
+Shade the area to the left on each curve, then find
+(a) $t_{0.975,\,15}$, (b) $t_{0.01,\,20}$, (c) $t_{0.95,\,60}$.
+:::
+
+```{r}
+#| label: fig-yt-2-2-1
+#| layout-ncol: 3
+#| fig-cap: "Shade the area to the left before reading Table 5"
+#| fig-subcap: ["", "", ""]
+#| fig-height: 1.8
+#| fig-width: 3.2
+blank_curve("t", df1 = 15); blank_curve("t", df1 = 20); blank_curve("t", df1 = 60)
+```
+
+::: {.workspace lines="3"}
+:::
+
+::: {.answer title="Your Turn 2.2.1"}
+(a) $t_{0.975,\,15} = `r fmt(crit_t(.975, 15), 3)`$
+
+(b) $t_{0.01,\,20} = -t_{0.99,\,20} = `r fmt(-crit_t(.99, 20), 3)`$
+
+(c) $t_{0.95,\,60} = `r fmt(crit_t(.95, 60), 3)`$
+:::
+
+```{r}
+#| label: ex-2-2
+r_n <- nrow(riders); r_df <- r_n - 1
+r_xbar <- round(mean(riders$earnings), 2)
+r_s <- round(sd(riders$earnings), 4)
+r_se <- round(r_s / sqrt(r_n), 4)
+r_mu0 <- 600
+r_t <- round((r_xbar - r_mu0) / r_se, 3)
+r_t975 <- crit_t(.975, r_df); r_t95 <- crit_t(.95, r_df)
+r_me <- r_t975 * r_se
+r_lo <- r_xbar - r_me; r_hi <- r_xbar + r_me
+```
+
+### Worked Example
+
+**Worked Example 2.2.2.** A food-delivery platform claims that its riders in
+Chiang Mai earn more than `r r_mu0` baht per day on average. A researcher
+records the daily earnings (baht) of `r r_n` randomly selected riders
+(hypothetical data):
+
+```{r}
+#| label: tbl-riders
+#| tbl-cap: "Daily earnings (baht) of 25 riders"
+knitr::kable(matrix(riders$earnings, nrow = 5, byrow = TRUE), col.names = NULL)
+```
+
+The sample gives $\bar{x}$ = `r fmt(r_xbar, 2)` and $s$ = `r num(r_s)` baht.
+
+(a) Construct a 95% confidence interval for the mean daily earnings.
+(b) At $\alpha$ = 0.05, test the platform's claim.
+
+::: {.callout-tip icon=false collapse=false}
+## Solution
+
+**(a)** $\text{df} = `r r_n` - 1 = `r r_df`$ and $t_{0.975,\,`r r_df`} = `r fmt(r_t975, 3)`$.
+$$
+\frac{s}{\sqrt{n}} = \frac{`r num(r_s)`}{\sqrt{`r r_n`}} = `r num(r_se)`
+$$
+$$
+\bar{x} \pm t_{0.975,\,`r r_df`}\frac{s}{\sqrt{n}}
+= `r fmt(r_xbar, 2)` \pm `r fmt(r_t975, 3)`(`r num(r_se)`)
+= `r fmt(r_xbar, 2)` \pm `r num(r_me)`
+$$
+95% CI: (`r fmt(r_lo, 2)`, `r fmt(r_hi, 2)`)
+
+We are 95% confident that the mean daily earnings of riders in Chiang Mai are
+between `r fmt(r_lo, 2)` and `r fmt(r_hi, 2)` baht.
+
+**(b)**
+
+**Step 1: Hypotheses.** $H_0: \mu = `r r_mu0`$ $\quad H_1: \mu > `r r_mu0`$
+
+**Step 2: Level of significance.** $\alpha$ = 0.05
+
+**Step 3: Test statistic.**
+$$
+t_{\text{cal}} = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}
+= \frac{`r fmt(r_xbar, 2)` - `r r_mu0`}{`r num(r_se)`} = `r fmt(r_t, 3)`
+$$
+
+**Step 4: Critical value and critical region.** Right-sided test with
+df = `r r_df`: $t_{0.95,\,`r r_df`} = `r fmt(r_t95, 3)`$.
+Critical region: $t_{\text{cal}} > `r fmt(r_t95, 3)`$.
+
+```{r}
+#| label: fig-ex-2-2
+#| fig-cap: "Critical region for Worked Example 2.2.2"
+#| fig-height: 2
+#| fig-width: 5
+#| fig-align: center
+crit_plot("t", "right", df1 = r_df)
+```
+
+**Step 5: Decision and interpretation.**
+$t_{\text{cal}} = `r fmt(r_t, 3)`$ falls in the critical region
+($`r fmt(r_t, 3)` > `r fmt(r_t95, 3)`$), so we reject $H_0$.
+That is, the mean daily earnings of riders in Chiang Mai are more than
+`r r_mu0` baht at the 0.05 level of significance.
+:::
+
+### Confidence Intervals and Two-Sided Tests
+
+A $(1-\alpha)100\%$ CI and a **two-sided** test at level $\alpha$ always agree:
+
+- if $\mu_0$ is **outside** the CI, a two-sided test rejects $H_0: \mu = \mu_0$;
+- if $\mu_0$ is **inside** the CI, the test accepts $H_0$.
+
+For the riders, the 95% CI (`r fmt(r_lo, 2)`, `r fmt(r_hi, 2)`) does not
+contain `r r_mu0`, so a two-sided test of $H_0: \mu = `r r_mu0`$ at
+$\alpha$ = 0.05 would reject $H_0$. It does contain 620, so the same test of
+$H_0: \mu = 620$ would accept $H_0$.
+
+::: {.callout-warning icon=false}
+## Only for two-sided tests
+
+This shortcut matches a two-sided test with the same $\alpha$ as the
+confidence level ($\alpha$ = 0.05 with a 95% CI). For a one-sided test, carry
+out the five steps.
+:::
+
+```{r}
+#| label: yt-2-2
+c_n <- 16; c_df <- c_n - 1; c_xbar <- 9420; c_s <- 784; c_mu0 <- 9000
+c_se <- round(c_s / sqrt(c_n), 4)
+c_t <- round((c_xbar - c_mu0) / c_se, 3)
+c_t975 <- crit_t(.975, c_df)
+c_me <- c_t975 * c_se; c_lo <- c_xbar - c_me; c_hi <- c_xbar + c_me
+```
+
+### Your Turn
+
+::: {.callout-note icon=false}
+## Your Turn 2.2.2
+
+A property agent records the monthly rent of `r c_n` one-bedroom condominium
+units near Nimmanhaemin Road, Chiang Mai. The sample mean is
+`r big(c_xbar, 0)` baht and the standard deviation is `r c_s` baht
+(hypothetical figures). Assume rents are normally distributed.
+
+(a) Construct a 95% confidence interval for the mean rent.
+(b) At $\alpha$ = 0.05, test whether the mean rent is different from `r big(c_mu0, 0)` baht.
+(c) Does the CI in (a) agree with your decision in (b)?
+:::
+
+::: {.workspace lines="4"}
 :::
 
 ::: {.workspace steps="full"}
 :::
 
-::: {.answer title="Your Turn 2.2.1"}
-*Solution to be added.*
+::: {.answer title="Your Turn 2.2.2"}
+**(a)** df = `r c_df`, $t_{0.975,\,`r c_df`} = `r fmt(c_t975, 3)`$;
+$s/\sqrt{n} = `r c_s`/\sqrt{`r c_n`} = `r num(c_se)`$;
+$`r c_xbar` \pm `r fmt(c_t975, 3)`(`r num(c_se)`) = `r c_xbar` \pm `r num(c_me)`$.
+95% CI: (`r big(c_lo)`, `r big(c_hi)`). We are 95% confident that the mean
+monthly rent is between `r big(c_lo)` and `r big(c_hi)` baht.
+
+**(b)**
+
+**Step 1.** $H_0: \mu = `r c_mu0` \quad H_1: \mu \ne `r c_mu0`$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $t_{\text{cal}} = \dfrac{`r c_xbar` - `r c_mu0`}{`r num(c_se)`} = `r fmt(c_t, 3)`$
+
+**Step 4.** df = `r c_df`: $t_{0.025,\,`r c_df`} = `r fmt(-c_t975, 3)`$, $t_{0.975,\,`r c_df`} = `r fmt(c_t975, 3)`$.
+Critical region: $t_{\text{cal}} < `r fmt(-c_t975, 3)`$ or $t_{\text{cal}} > `r fmt(c_t975, 3)`$.
+
+**Step 5.** $t_{\text{cal}} = `r fmt(c_t, 3)`$ falls in the critical region
+($`r fmt(c_t, 3)` > `r fmt(c_t975, 3)`$), so we reject $H_0$.
+That is, the mean monthly rent is different from `r big(c_mu0, 0)` baht at the
+0.05 level of significance; since $\bar{x}$ = `r big(c_xbar, 0)`, the mean rent
+is higher than `r big(c_mu0, 0)` baht.
+
+**(c)** Yes. The 95% CI does not contain `r big(c_mu0, 0)`, so the two-sided
+test at $\alpha$ = 0.05 rejects $H_0$.
 :::
 
 ### Formula Summary
 
-*To be added.*
+| | Formula |
+|:---|:---|
+| Conditions | $\sigma$ unknown; population approximately normal |
+| $(1-\alpha)100\%$ CI for $\mu$ | $\bar{x} \pm t_{1-\alpha/2,\,n-1}\,s/\sqrt{n}$ |
+| Test statistic | $t_{\text{cal}} = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}}$, df $= n-1$ |
+| Critical region | $\ne$: $t_{\text{cal}} < t_{\alpha/2,\,n-1}$ or $t_{\text{cal}} > t_{1-\alpha/2,\,n-1}$; $<$: $t_{\text{cal}} < t_{\alpha,\,n-1}$; $>$: $t_{\text{cal}} > t_{1-\alpha,\,n-1}$ |
+| CI and test | two-sided test at $\alpha$ rejects $H_0$ $\iff$ $\mu_0$ is outside the $(1-\alpha)100\%$ CI |
+
+```{r}
+#| label: ex-2-2-exercises
+d_n <- 20; d_df <- 19; d_xbar <- 184500; d_s <- 41200; d_mu0 <- 170000
+d_se <- round(d_s / sqrt(d_n), 4); d_t <- round((d_xbar - d_mu0) / d_se, 3)
+d_t95 <- crit_t(.95, d_df)
+g_n <- 30; g_df <- 29; g_xbar <- 47.3; g_s <- 8.4
+g_se <- round(g_s / sqrt(g_n), 4); g_t <- crit_t(.995, g_df); g_me <- g_t * g_se
+```
 
 ### Exercises
 
-*To be added.*
+**2.2.1** A survey of `r d_n` households in a district finds a mean household
+debt of `r big(d_xbar, 0)` baht with a standard deviation of
+`r big(d_s, 0)` baht (hypothetical figures). At $\alpha$ = 0.05, test whether
+the mean household debt is more than `r big(d_mu0, 0)` baht.
+
+::: {.answer title="Exercise 2.2.1"}
+**Step 1.** $H_0: \mu = `r d_mu0` \quad H_1: \mu > `r d_mu0`$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $s/\sqrt{n} = `r d_s`/\sqrt{`r d_n`} = `r num(d_se)`$;
+$t_{\text{cal}} = (`r d_xbar` - `r d_mu0`)/`r num(d_se)` = `r fmt(d_t, 3)`$
+
+**Step 4.** df = `r d_df`: $t_{0.95,\,`r d_df`} = `r fmt(d_t95, 3)`$. Critical region: $t_{\text{cal}} > `r fmt(d_t95, 3)`$.
+
+**Step 5.** $t_{\text{cal}} = `r fmt(d_t, 3)`$ does not fall in the critical region
+($`r fmt(d_t, 3)` < `r fmt(d_t95, 3)`$), so we accept $H_0$.
+That is, the mean household debt in the district is equal to `r big(d_mu0, 0)`
+baht at the 0.05 level of significance.
+:::
+
+**2.2.2** A sample of `r g_n` gig workers reports a mean of `r g_xbar` working
+hours per week with a standard deviation of `r g_s` hours (hypothetical
+figures). Construct a 99% confidence interval for the mean weekly working hours.
+
+::: {.answer title="Exercise 2.2.2"}
+df = `r g_df`, $t_{0.995,\,`r g_df`} = `r fmt(g_t, 3)`$;
+$s/\sqrt{n} = `r g_s`/\sqrt{`r g_n`} = `r num(g_se)`$;
+$`r g_xbar` \pm `r fmt(g_t, 3)`(`r num(g_se)`) = `r g_xbar` \pm `r num(g_me)`$.
+99% CI: (`r fmt(g_xbar - g_me, 2)`, `r fmt(g_xbar + g_me, 2)`). We are 99% confident
+that the mean weekly working hours of gig workers are between
+`r fmt(g_xbar - g_me, 2)` and `r fmt(g_xbar + g_me, 2)` hours.
+:::
+
+**2.2.3** A 95% confidence interval for the mean monthly interest rate charged
+by informal lenders is (12.4%, 15.8%) (hypothetical figures). Without further
+calculation, what is the decision of a two-sided test at $\alpha$ = 0.05 for
+(a) $H_0: \mu = 16$, (b) $H_0: \mu = 15$?
+
+::: {.answer title="Exercise 2.2.3"}
+(a) 16 is outside the CI, so we reject $H_0$.
+(b) 15 is inside the CI, so we accept $H_0$.
+:::
+
+**2.2.4** Find (a) $t_{0.90,\,12}$, (b) $t_{0.025,\,8}$, (c) $t_{0.99,\,100}$.
+
+::: {.answer title="Exercise 2.2.4"}
+(a) `r fmt(crit_t(.90, 12), 3)` (b) $-t_{0.975,\,8} = `r fmt(-crit_t(.975, 8), 3)`$ (c) `r fmt(crit_t(.99, 100), 3)`
+:::
 
 ::: {.solutions-here}
 :::

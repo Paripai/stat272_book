@@ -8,42 +8,298 @@ source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
 
 ### Learning Objectives
 
-*To be added.*
+1. Explain why the variance matters in economics (risk, volatility, price stability).
+2. Read the chi-square table (Table 6).
+3. Construct and interpret a confidence interval for $\sigma^2$ and $\sigma$.
+4. Carry out a chi-square test for $\sigma^2$ in five steps.
 
 ### Concept
 
-*To be added.*
+The mean tells us the typical value; the variance tells us how much values
+**vary**. In finance the standard deviation of returns is the most common
+measure of **risk** (volatility). A central bank cares about the stability of
+prices, and a firm cares about the stability of its sales.
 
-### Formulas and Conditions
+To make inferences about $\sigma^2$ we use the sample variance $s^2$. If the
+population is normal,
+$$
+\chi^2 = \frac{(n-1)s^2}{\sigma^2}
+$$
+follows a **chi-square distribution** with $n-1$ degrees of freedom. The
+chi-square distribution takes only positive values and is skewed to the right.
 
-*To be added.*
+```{r}
+#| label: fig-chisq-shape
+#| fig-cap: "Chi-square distributions are skewed to the right; the skew decreases as df increases"
+#| fig-height: 2.6
+#| fig-width: 6
+#| fig-align: center
+cs <- data.frame(x = rep(seq(0.01, 40, length.out = 400), 3),
+                 df = rep(c("df = 4", "df = 10", "df = 20"), each = 400))
+cs$y <- dchisq(cs$x, as.numeric(sub("df = ", "", cs$df)))
+cs$df <- factor(cs$df, levels = c("df = 4", "df = 10", "df = 20"))
+ggplot(cs, aes(x, y, linetype = df)) + geom_line(linewidth = 0.7) +
+  labs(x = NULL, y = NULL, linetype = NULL) + theme(axis.text.y = element_blank())
+```
 
-### Worked Example
+::: {.callout-warning icon=false}
+## The population must be normal
 
-*To be added.*
+The chi-square methods for a variance are sensitive to non-normality, even for
+large samples. Use them only when the data are approximately normal.
+:::
 
-### Your Turn
+### Reading the Chi-Square Table
+
+Table 6 gives $\chi^2$ values with a stated area to the left, for df = 1 to 100.
+The curve is **not symmetric**, so for a two-sided test or a CI we read two
+different values from the table; we cannot use a minus sign.
+
+**Worked Example 2.4.1.** For df = 23, find $\chi^2_{0.025,\,23}$, $\chi^2_{0.975,\,23}$ and $\chi^2_{0.95,\,23}$.
+
+::: {.callout-tip icon=false collapse=false}
+## Solution
+
+Row df = 23: $\chi^2_{0.025,\,23} = `r crit_chisq(.025, 23)`$,
+$\chi^2_{0.975,\,23} = `r crit_chisq(.975, 23)`$ and
+$\chi^2_{0.95,\,23} = `r crit_chisq(.95, 23)`$.
+
+```{r}
+#| label: fig-chisq-23
+#| fig-cap: "Areas 0.025 in each tail of the chi-square distribution with df = 23"
+#| fig-height: 2
+#| fig-width: 5
+#| fig-align: center
+crit_plot("chisq", "two", df1 = 23)
+```
+:::
 
 ::: {.callout-note icon=false}
 ## Your Turn 2.4.1
 
-*Problem to be added.*
+Shade the area to the left on each curve, then find
+(a) $\chi^2_{0.05,\,19}$, (b) $\chi^2_{0.995,\,10}$, (c) $\chi^2_{0.025,\,30}$.
+:::
+
+```{r}
+#| label: fig-yt-2-4-1
+#| layout-ncol: 3
+#| fig-cap: "Shade the area to the left before reading Table 6"
+#| fig-subcap: ["", "", ""]
+#| fig-height: 1.8
+#| fig-width: 3.2
+blank_curve("chisq", df1 = 19); blank_curve("chisq", df1 = 10); blank_curve("chisq", df1 = 30)
+```
+
+::: {.workspace lines="3"}
+:::
+
+::: {.answer title="Your Turn 2.4.1"}
+(a) $\chi^2_{0.05,\,19} = `r crit_chisq(.05, 19)`$
+
+(b) $\chi^2_{0.995,\,10} = `r crit_chisq(.995, 10)`$
+
+(c) $\chi^2_{0.025,\,30} = `r crit_chisq(.025, 30)`$
+:::
+
+### Formulas and Conditions
+
+**Condition:** a random sample from a normal population.
+
+**$(1-\alpha)100\%$ confidence interval for $\sigma^2$**
+$$
+\left(\frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}},\;
+      \frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}}\right)
+$$
+Take the square root of both limits to get a CI for $\sigma$. The larger
+chi-square value gives the **lower** limit. The interval is not symmetric
+about $s^2$.
+
+**Test statistic** for $H_0: \sigma^2 = \sigma_0^2$, with df $= n-1$
+$$
+\chi^2_{\text{cal}} = \frac{(n-1)s^2}{\sigma_0^2}
+$$
+
+| $H_1$ | Critical region |
+|:---:|:---|
+| $\sigma^2 \ne \sigma_0^2$ | $\chi^2_{\text{cal}} < \chi^2_{\alpha/2,\,n-1}$ or $\chi^2_{\text{cal}} > \chi^2_{1-\alpha/2,\,n-1}$ |
+| $\sigma^2 < \sigma_0^2$ | $\chi^2_{\text{cal}} < \chi^2_{\alpha,\,n-1}$ |
+| $\sigma^2 > \sigma_0^2$ | $\chi^2_{\text{cal}} > \chi^2_{1-\alpha,\,n-1}$ |
+
+A claim about $\sigma$ is tested as the same claim about $\sigma^2$: for
+example $\sigma > 2$ is $\sigma^2 > 4$.
+
+```{r}
+#| label: ex-2-4
+a_n <- 24; a_df <- a_n - 1; a_s <- 2.6; a_sig0 <- 2
+a_ss <- a_df * a_s^2
+a_chi <- round(a_ss / a_sig0^2, 3)
+a_lo_c <- crit_chisq(.025, a_df); a_hi_c <- crit_chisq(.975, a_df); a_95 <- crit_chisq(.95, a_df)
+a_v_lo <- round(a_ss / a_hi_c, 4); a_v_hi <- round(a_ss / a_lo_c, 4)
+```
+
+### Worked Example
+
+**Worked Example 2.4.2.** A fund manager states that the standard deviation of
+the fund's monthly return is 2%. An investor suspects the fund is riskier. Over
+the last `r a_n` months the standard deviation of the monthly return was
+$s$ = `r a_s`% (hypothetical figures). Assume monthly returns are normally distributed.
+
+(a) Construct a 95% confidence interval for the variance and the standard deviation of the monthly return.
+(b) At $\alpha$ = 0.05, test whether the standard deviation is more than 2%.
+
+::: {.callout-tip icon=false collapse=false}
+## Solution
+
+$s^2 = `r a_s`^2 = `r num(a_s^2)`$, df = `r a_df`, $(n-1)s^2 = `r a_df`(`r num(a_s^2)`) = `r num(a_ss)`$.
+
+**(a)** $\chi^2_{0.025,\,`r a_df`} = `r a_lo_c`$ and $\chi^2_{0.975,\,`r a_df`} = `r a_hi_c`$.
+$$
+\left(\frac{`r num(a_ss)`}{`r a_hi_c`},\; \frac{`r num(a_ss)`}{`r a_lo_c`}\right)
+= (`r fmt(a_v_lo, 4)`,\; `r fmt(a_v_hi, 4)`)
+$$
+For $\sigma$: $(\sqrt{`r fmt(a_v_lo, 4)`},\ \sqrt{`r fmt(a_v_hi, 4)`}) = (`r fmt(sqrt(a_v_lo), 4)`,\ `r fmt(sqrt(a_v_hi), 4)`)$
+
+We are 95% confident that the standard deviation of the fund's monthly return
+is between `r fmt(sqrt(a_v_lo), 4)`% and `r fmt(sqrt(a_v_hi), 4)`%.
+Note that $s$ = `r a_s` is not in the middle of the interval.
+
+**(b)**
+
+**Step 1: Hypotheses.** $H_0: \sigma^2 = `r a_sig0^2`$ $\quad H_1: \sigma^2 > `r a_sig0^2`$ (that is, $\sigma > `r a_sig0`$)
+
+**Step 2: Level of significance.** $\alpha$ = 0.05
+
+**Step 3: Test statistic.**
+$$
+\chi^2_{\text{cal}} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{`r num(a_ss)`}{`r a_sig0^2`} = `r fmt(a_chi, 3)`
+$$
+
+**Step 4: Critical value and critical region.** df = `r a_df`:
+$\chi^2_{0.95,\,`r a_df`} = `r a_95`$. Critical region: $\chi^2_{\text{cal}} > `r a_95`$.
+
+**Step 5: Decision and interpretation.**
+$\chi^2_{\text{cal}} = `r fmt(a_chi, 3)`$ falls in the critical region
+($`r fmt(a_chi, 3)` > `r a_95`$), so we reject $H_0$.
+That is, the standard deviation of the fund's monthly return is more than 2% at
+the 0.05 level of significance.
+:::
+
+```{r}
+#| label: yt-2-4
+b_n <- 20; b_df <- b_n - 1; b_s <- 4.5; b_sig0 <- 3
+b_ss <- b_df * b_s^2; b_chi <- round(b_ss / b_sig0^2, 3)
+b_lo_c <- crit_chisq(.025, b_df); b_hi_c <- crit_chisq(.975, b_df)
+b_v_lo <- round(b_ss / b_hi_c, 4); b_v_hi <- round(b_ss / b_lo_c, 4)
+```
+
+### Your Turn
+
+::: {.callout-note icon=false}
+## Your Turn 2.4.2
+
+A price-stabilization policy aims to keep the standard deviation of the weekly
+retail price of pork at 3 baht per kg. Over `r b_n` weeks the standard deviation
+was $s$ = `r b_s` baht (hypothetical figures). Assume prices are normally distributed.
+
+(a) Construct a 95% confidence interval for $\sigma$.
+(b) At $\alpha$ = 0.05, test whether the standard deviation is different from 3 baht.
+:::
+
+::: {.workspace lines="4"}
 :::
 
 ::: {.workspace steps="names"}
 :::
 
-::: {.answer title="Your Turn 2.4.1"}
-*Solution to be added.*
+::: {.answer title="Your Turn 2.4.2"}
+$s^2 = `r num(b_s^2)`$, df = `r b_df`, $(n-1)s^2 = `r num(b_ss)`$;
+$\chi^2_{0.025,\,`r b_df`} = `r b_lo_c`$, $\chi^2_{0.975,\,`r b_df`} = `r b_hi_c`$.
+
+**(a)** CI for $\sigma^2$: $(`r num(b_ss)`/`r b_hi_c`,\ `r num(b_ss)`/`r b_lo_c`) = (`r fmt(b_v_lo, 4)`,\ `r fmt(b_v_hi, 4)`)$.
+CI for $\sigma$: (`r fmt(sqrt(b_v_lo), 4)`, `r fmt(sqrt(b_v_hi), 4)`). We are 95%
+confident that the standard deviation of the weekly pork price is between
+`r fmt(sqrt(b_v_lo), 4)` and `r fmt(sqrt(b_v_hi), 4)` baht.
+
+**(b)**
+
+**Step 1.** $H_0: \sigma^2 = `r b_sig0^2` \quad H_1: \sigma^2 \ne `r b_sig0^2`$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $\chi^2_{\text{cal}} = `r num(b_ss)`/`r b_sig0^2` = `r fmt(b_chi, 3)`$
+
+**Step 4.** Critical region: $\chi^2_{\text{cal}} < `r b_lo_c`$ or $\chi^2_{\text{cal}} > `r b_hi_c`$.
+
+**Step 5.** $\chi^2_{\text{cal}} = `r fmt(b_chi, 3)`$ falls in the critical region
+($`r fmt(b_chi, 3)` > `r b_hi_c`$), so we reject $H_0$.
+That is, the standard deviation of the weekly pork price is different from 3
+baht at the 0.05 level of significance; since $s$ = `r b_s`, it is higher than
+3 baht, so the policy target was not met.
 :::
 
 ### Formula Summary
 
-*To be added.*
+| | Formula |
+|:---|:---|
+| Condition | population normal |
+| $(1-\alpha)100\%$ CI for $\sigma^2$ | $\left(\dfrac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}},\ \dfrac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}}\right)$; square root for $\sigma$ |
+| Test statistic | $\chi^2_{\text{cal}} = \dfrac{(n-1)s^2}{\sigma_0^2}$, df $= n-1$ |
+| Critical region | $\ne$: $\chi^2_{\text{cal}} < \chi^2_{\alpha/2}$ or $> \chi^2_{1-\alpha/2}$; $<$: $\chi^2_{\text{cal}} < \chi^2_{\alpha}$; $>$: $\chi^2_{\text{cal}} > \chi^2_{1-\alpha}$ |
+
+```{r}
+#| label: ex-2-4-exercises
+e1_n <- 16; e1_df <- 15; e1_s <- 7.2; e1_sig0 <- 10
+e1_ss <- e1_df * e1_s^2; e1_chi <- round(e1_ss / e1_sig0^2, 3); e1_c <- crit_chisq(.05, e1_df)
+e2_n <- 25; e2_df <- 24; e2_s <- 0.35
+e2_ss <- e2_df * e2_s^2; e2_lo_c <- crit_chisq(.05, e2_df); e2_hi_c <- crit_chisq(.95, e2_df)
+e2_v_lo <- round(e2_ss / e2_hi_c, 4); e2_v_hi <- round(e2_ss / e2_lo_c, 4)
+```
 
 ### Exercises
 
-*To be added.*
+**2.4.1** Before a new ordering system, the standard deviation of a shop's daily
+sales was 10 units. After the system was introduced, `r e1_n` days of sales had
+a standard deviation of `r e1_s` units (hypothetical figures). At
+$\alpha$ = 0.05, test whether the standard deviation is now less than 10 units.
+Assume normality.
+
+::: {.answer title="Exercise 2.4.1"}
+**Step 1.** $H_0: \sigma^2 = 100 \quad H_1: \sigma^2 < 100$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $\chi^2_{\text{cal}} = `r e1_df`(`r num(e1_s^2)`)/100 = `r fmt(e1_chi, 3)`$
+
+**Step 4.** $\chi^2_{0.05,\,`r e1_df`} = `r e1_c`$. Critical region: $\chi^2_{\text{cal}} < `r e1_c`$.
+
+**Step 5.** $\chi^2_{\text{cal}} = `r fmt(e1_chi, 3)`$ does not fall in the critical
+region ($`r fmt(e1_chi, 3)` > `r e1_c`$), so we accept $H_0$.
+That is, the standard deviation of daily sales is equal to 10 units at the 0.05
+level of significance.
+:::
+
+**2.4.2** The daily change in an exchange rate over `r e2_n` trading days has a
+standard deviation of `r e2_s` baht (hypothetical figures). Assuming normality,
+construct a 90% confidence interval for the standard deviation of the daily change.
+
+::: {.answer title="Exercise 2.4.2"}
+$(n-1)s^2 = `r e2_df`(`r num(e2_s^2)`) = `r num(e2_ss)`$;
+$\chi^2_{0.05,\,`r e2_df`} = `r e2_lo_c`$, $\chi^2_{0.95,\,`r e2_df`} = `r e2_hi_c`$.
+CI for $\sigma^2$: (`r fmt(e2_v_lo, 4)`, `r fmt(e2_v_hi, 4)`); CI for $\sigma$:
+(`r fmt(sqrt(e2_v_lo), 4)`, `r fmt(sqrt(e2_v_hi), 4)`). We are 90% confident that
+the standard deviation of the daily change is between `r fmt(sqrt(e2_v_lo), 4)`
+and `r fmt(sqrt(e2_v_hi), 4)` baht.
+:::
+
+**2.4.3** Explain why the confidence interval for $\sigma^2$ is not of the form
+"estimate $\pm$ margin of error".
+
+::: {.answer title="Exercise 2.4.3"}
+The chi-square distribution is skewed to the right, so the two critical values
+are not the same distance from the centre. Dividing $(n-1)s^2$ by them gives
+limits that are not equally far from $s^2$.
+:::
 
 ::: {.solutions-here}
 :::

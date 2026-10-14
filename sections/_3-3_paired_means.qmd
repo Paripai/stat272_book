@@ -4,50 +4,253 @@
 #| label: setup-3-3
 #| include: false
 source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
+stim <- read.csv(data_path("stimulus_spending.csv"))
+train <- read.csv(data_path("training_wage.csv"))
+before <- stim$before; after <- stim$after
 ```
 
 ### Learning Objectives
 
-*To be added.*
+1. Recognize paired data from the way the data were collected.
+2. Reduce paired data to differences $d$ and use the one-sample $t$ method on them.
+3. Construct a CI and carry out a test for the mean difference $\mu_d$, by hand and from R.
 
 ### Concept
 
-*To be added.*
+Data are **paired** when each observation in one group is matched with one
+observation in the other group. Common designs:
+
+- **Before and after:** the same households are measured before and after a policy.
+- **Matched units:** the same products are priced at two shops; twin regions are compared.
+
+Each pair gives one **difference** $d = x_1 - x_2$ (for example, after $-$ before).
+The pairing removes the variation between units (rich and poor households
+differ a lot, but each is compared with itself), so we analyse the
+differences only. A paired test is a **one-sample $t$ test on $d$**
+(Section 2.2) with $H_0: \mu_d = 0$.
+
+::: {.callout-important icon=false}
+## Paired or independent?
+
+Decide from **how the data were collected**, not from the numbers:
+
+- the same units measured twice, or units matched one-to-one → **paired**
+- two separate random samples, with no link between a unit in one group and a unit in the other → **independent** (Section 3.5)
+
+Paired samples always have the same size. Equal sample sizes alone do not make
+the data paired.
+:::
 
 ### Formulas and Conditions
 
-*To be added.*
+**Conditions:** pairs are a random sample; the differences are approximately normal.
+
+With $n$ pairs, $\bar{d}$ the mean and $s_d$ the standard deviation of the differences:
+
+**$(1-\alpha)100\%$ confidence interval for $\mu_d$**
+$$
+\bar{d} \pm t_{1-\alpha/2,\,n-1}\,\frac{s_d}{\sqrt{n}}
+$$
+
+**Test statistic** for $H_0: \mu_d = 0$, with df $= n-1$
+$$
+t_{\text{cal}} = \frac{\bar{d}}{s_d/\sqrt{n}}
+$$
+
+**In R:** `t.test(after, before, paired = TRUE, alternative = ...)` uses
+$d$ = after $-$ before (first argument minus second).
+
+```{r}
+#| label: ex-3-3
+d <- after - before
+n <- length(d); df_ <- n - 1
+dbar <- mean(d); sd_ <- round(sd(d), 4)
+se <- round(sd_ / sqrt(n), 4)
+t_cal <- round(dbar / se, 3)
+t975 <- crit_t(.975, df_); me <- t975 * se
+og <- t.test(after, before, paired = TRUE, alternative = "greater")
+o2 <- t.test(after, before, paired = TRUE)
+```
 
 ### Worked Example
 
-*To be added.*
+**Worked Example 3.3.1.** The government gave a cash transfer to low-income
+households. A researcher recorded the monthly spending (baht) of `r n`
+households in the month before and the month after the transfer
+(hypothetical data). Did mean spending increase?
+
+```{r}
+#| label: tbl-stim
+#| tbl-cap: "Monthly spending (baht) before and after the transfer, and the difference d = after - before"
+knitr::kable(data.frame(Household = stim$household, Before = big(before, 0),
+                        After = big(after, 0), d = big(d, 0)), align = "crrr")
+```
+
+(a) Construct a 95% confidence interval for the mean change in spending.
+(b) At $\alpha$ = 0.05, test whether mean spending increased after the transfer.
+
+::: {.callout-tip icon=false collapse=false}
+## Solution
+
+The same households are measured twice, so the data are paired. From the
+differences: $n$ = `r n`, $\bar{d}$ = `r num(dbar)`, $s_d$ = `r num(sd_)`.
+$$
+\frac{s_d}{\sqrt{n}} = \frac{`r num(sd_)`}{\sqrt{`r n`}} = `r num(se)`
+$$
+
+**(a)** $t_{0.975,\,`r df_`} = `r fmt(t975, 3)`$:
+$$
+`r num(dbar)` \pm `r fmt(t975, 3)`(`r num(se)`) = `r num(dbar)` \pm `r num(me)`
+$$
+95% CI: (`r big(dbar - me)`, `r big(dbar + me)`)
+
+We are 95% confident that the mean increase in monthly spending is between
+`r big(dbar - me)` and `r big(dbar + me)` baht.
+
+**(b)**
+
+**Step 1: Hypotheses.** $H_0: \mu_d = 0$ $\quad H_1: \mu_d > 0$ (where $d$ = after $-$ before)
+
+**Step 2: Level of significance.** $\alpha$ = 0.05
+
+**Step 3: Test statistic.**
+$$
+t_{\text{cal}} = \frac{\bar{d}}{s_d/\sqrt{n}} = \frac{`r num(dbar)`}{`r num(se)`} = `r fmt(t_cal, 3)`
+$$
+
+**Step 4: p-value.** From the R output below, p-value = `r fmt(og$p.value, 4)`.
+
+**Step 5: Decision and interpretation.** p-value = `r fmt(og$p.value, 4)` <
+$\alpha$ = 0.05, so we reject $H_0$. That is, mean monthly spending increased
+after the cash transfer at the 0.05 level of significance.
+:::
+
+### Reading R Output
+
+```{r}
+#| label: r-stim-greater
+#| echo: !expr show_code
+t.test(after, before, paired = TRUE, alternative = "greater")
+```
+
+`t = ` `r fmt(og$statistic, 3)` and `df = ` `r og$parameter` match the hand
+calculation, and `mean difference` is $\bar{d}$ = `r num(dbar)`. For the 95% CI
+we use the two-sided output:
+
+```{r}
+#| label: r-stim-two
+#| echo: !expr show_code
+t.test(after, before, paired = TRUE)
+```
+
+R gives (`r big(o2$conf.int[1])`, `r big(o2$conf.int[2])`). The hand
+calculation gave (`r big(dbar - me)`, `r big(dbar + me)`). The small difference
+comes from rounding: the table gives $t_{0.975,\,9}$ = `r fmt(t975, 3)`, while R uses
+`r format(qt(.975, 9), digits = 7)`.
+
+```{r}
+#| label: yt-3-3
+w_d <- train$after - train$before
+w_n <- length(w_d); w_dbar <- round(mean(w_d), 4); w_sd <- round(sd(w_d), 4)
+w_se <- round(w_sd / sqrt(w_n), 4); w_t <- round(w_dbar / w_se, 3)
+wo <- t.test(train$after, train$before, paired = TRUE)
+wage_after <- train$after; wage_before <- train$before
+```
 
 ### Your Turn
 
 ::: {.callout-note icon=false}
 ## Your Turn 3.3.1
 
-*Problem to be added.*
+The daily wage (baht) of `r w_n` workers was recorded before and after a
+training course (hypothetical data). For $d$ = after $-$ before,
+$\bar{d}$ = `r num(w_dbar)` and $s_d$ = `r num(w_sd)`.
+
+```{r}
+#| label: tbl-train
+knitr::kable(data.frame(Worker = train$worker, Before = train$before, After = train$after,
+                        d = w_d), align = "cccc")
+```
+
+(a) Calculate $t_{\text{cal}}$ by hand.
+(b) Use the R output to test whether the training changed the mean daily wage at $\alpha$ = 0.05.
 :::
 
-::: {.workspace steps="none"}
+```{r}
+#| label: r-yt-3-3
+#| echo: !expr show_code
+t.test(wage_after, wage_before, paired = TRUE)
+```
+
+::: {.workspace lines="14"}
 :::
 
 ::: {.answer title="Your Turn 3.3.1"}
-*Solution to be added.*
+**(a)** $s_d/\sqrt{n} = `r num(w_sd)`/\sqrt{`r w_n`} = `r num(w_se)`$;
+$t_{\text{cal}} = `r num(w_dbar)`/`r num(w_se)` = `r fmt(w_t, 3)`$ (R: `r fmt(wo$statistic, 3)`).
+
+**(b)**
+
+**Step 1.** $H_0: \mu_d = 0 \quad H_1: \mu_d \ne 0$
+
+**Step 2.** $\alpha$ = 0.05
+
+**Step 3.** $t_{\text{cal}} = `r fmt(wo$statistic, 3)`$, df = `r wo$parameter`
+
+**Step 4.** p-value = `r fmt(wo$p.value, 4)`
+
+**Step 5.** p-value = `r fmt(wo$p.value, 4)` $\ge$ $\alpha$ = 0.05, so we accept $H_0$.
+That is, the training did not change the mean daily wage (the mean difference
+is equal to 0) at the 0.05 level of significance.
 :::
-
-### Reading R Output
-
-*To be added.*
 
 ### Formula Summary
 
-*To be added.*
+| | Formula |
+|:---|:---|
+| Differences | $d$ = first $-$ second for each pair; $\bar{d}$, $s_d$, $n$ pairs |
+| $(1-\alpha)100\%$ CI for $\mu_d$ | $\bar{d} \pm t_{1-\alpha/2,\,n-1}\,s_d/\sqrt{n}$ |
+| Test statistic | $t_{\text{cal}} = \dfrac{\bar{d}}{s_d/\sqrt{n}}$, df $= n-1$ |
+| R | `t.test(x1, x2, paired = TRUE, alternative = ...)`, $d$ = `x1` $-$ `x2` |
+
+```{r}
+#| label: ex-3-3-exercises
+shopA <- c(42, 118, 65, 89, 27, 154, 73, 36)
+shopB <- c(45, 121, 64, 94, 29, 159, 77, 38)
+eo <- t.test(shopA, shopB, paired = TRUE, alternative = "less")
+```
 
 ### Exercises
 
-*To be added.*
+**3.3.1** Paired or independent?
+
+(a) The household income of 50 families is recorded in 2024 and again in 2025.
+(b) The wages of 40 randomly chosen workers in Chiang Mai are compared with the wages of 40 randomly chosen workers in Lampang.
+(c) The same 20 products are priced at a supermarket and at a fresh market.
+(d) 30 firms that adopted a new technology are compared with 30 other firms that did not.
+
+::: {.answer title="Exercise 3.3.1"}
+(a) Paired (same families twice). (b) Independent (two separate samples).
+(c) Paired (same products at two places). (d) Independent (different firms).
+:::
+
+**3.3.2** A consumer group priced the same `r length(shopA)` products at Shop A and
+Shop B (hypothetical data). It wants to know whether prices at Shop A are lower
+on average. Use the output to write the decision and interpretation at
+$\alpha$ = 0.05.
+
+```{r}
+#| label: r-ex-3-3
+#| echo: !expr show_code
+t.test(shopA, shopB, paired = TRUE, alternative = "less")
+```
+
+::: {.answer title="Exercise 3.3.2"}
+$H_0: \mu_d = 0 \quad H_1: \mu_d < 0$ ($d$ = Shop A $-$ Shop B).
+$t_{\text{cal}} = `r fmt(eo$statistic, 3)`$, df = `r eo$parameter`, p-value = `r fmt(eo$p.value, 4)`.
+p-value = `r fmt(eo$p.value, 4)` < $\alpha$ = 0.05, so we reject $H_0$. That is,
+prices at Shop A are lower than at Shop B on average at the 0.05 level of significance.
+:::
 
 ::: {.solutions-here}
 :::
