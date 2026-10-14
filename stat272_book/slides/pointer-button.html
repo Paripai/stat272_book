@@ -1,0 +1,55 @@
+<script>
+// Adds a clickable laser-pointer button and a clear-this-slide button
+// next to the chalkboard buttons.
+// It sends the same "q" key press that the pointer plugin listens for.
+(function () {
+  function pressQ() {
+    var ev = new KeyboardEvent("keydown", { key: "q", bubbles: true });
+    Object.defineProperty(ev, "keyCode", { get: function () { return 81; } });
+    Object.defineProperty(ev, "which",   { get: function () { return 81; } });
+    document.dispatchEvent(ev);
+  }
+  // Clear button: sends the DEL key, which the chalkboard plugin uses for
+  // "clear drawings on this slide" (or on the board, when the board is open).
+  // It never touches other slides, unlike BACKSPACE.
+  function pressDel() {
+    var ev = new KeyboardEvent("keydown", { key: "Delete", bubbles: true });
+    Object.defineProperty(ev, "keyCode", { get: function () { return 46; } });
+    Object.defineProperty(ev, "which",   { get: function () { return 46; } });
+    document.dispatchEvent(ev);
+  }
+  function addButton() {
+    var bar = document.querySelector(".slide-chalkboard-buttons");
+    if (!bar || document.querySelector(".slide-pointer-button")) return;
+    var btn = document.createElement("span");
+    btn.className = "slide-pointer-button";
+    btn.title = "Toggle laser pointer (q)";
+    btn.innerHTML = '<span class="dot"></span>';
+    btn.addEventListener("click", function (e) {
+      e.preventDefault(); e.stopPropagation(); pressQ();
+    });
+    bar.appendChild(btn);
+
+    var clr = document.createElement("span");
+    clr.className = "slide-clear-button";
+    clr.title = "Clear the drawing on this slide (Delete)";
+    clr.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">' +
+      '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6" ' +
+      'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    clr.addEventListener("click", function (e) {
+      e.preventDefault(); e.stopPropagation(); pressDel();
+    });
+    bar.appendChild(clr);
+  }
+  // keep the button's look in step with the pointer, however it was toggled
+  document.addEventListener("keydown", function (e) {
+    if (e.keyCode === 81 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      var b = document.querySelector(".slide-pointer-button");
+      if (b) b.classList.toggle("active");
+    }
+  });
+  if (window.Reveal && Reveal.isReady && Reveal.isReady()) addButton();
+  else if (window.Reveal) Reveal.on("ready", addButton);
+  window.addEventListener("load", addButton);
+})();
+</script>

@@ -1,0 +1,75 @@
+name: Render and Deploy Quarto Book
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.4.0'
+          use-public-rspm: true
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libcurl4-openssl-dev libssl-dev libxml2-dev \
+            libfontconfig1-dev libharfbuzz-dev libfribidi-dev \
+            libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
+
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ hashFiles('**/*.qmd', 'R/*.R') }}
+          restore-keys: ${{ runner.os }}-r-
+
+      - name: Install R packages
+        shell: Rscript {0}
+        run: |
+          install.packages(c(
+            "knitr", "rmarkdown", "kableExtra",
+            "ggplot2", "dplyr", "patchwork", "ragg"
+          ))
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Install TinyTeX
+        run: quarto install tinytex --update-path
+
+      # Book first (HTML + PDF), then the slides as a separate project.
+      - name: Render book
+        run: quarto render
+
+      - name: Render slides
+        run: quarto render slides
+
+      # Put the slides inside the book output so both deploy together:
+      # https://paripai.github.io/stat272_book/slides/ch01.html
+      - name: Copy slides into book output
+        run: |
+          mkdir -p _book/slides
+          cp -r slides/_site/* _book/slides/
+
+      - name: Publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+          render: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

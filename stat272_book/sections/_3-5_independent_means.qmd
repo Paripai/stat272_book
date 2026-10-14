@@ -1,0 +1,56 @@
+## Two Independent Means {#sec-independent-means}
+
+```{r}
+#| label: setup-3-5
+#| include: false
+source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
+```
+
+### Learning Objectives
+
+*To be added.*
+
+### Concept
+
+*To be added.*
+
+### Formulas and Conditions
+
+*To be added.*
+
+### Worked Example
+
+*To be added.*
+
+### Your Turn
+
+::: {.callout-note icon=false}
+## Your Turn 3.5.1
+
+*Problem to be added.*
+:::
+
+::: {.workspace steps="none"}
+:::
+
+::: {.answer title="Your Turn 3.5.1"}
+*Solution to be added.*
+:::
+
+### Reading R Output
+
+*To be added.*
+
+### Formula Summary
+
+*To be added.*
+
+### Exercises
+
+*To be added.*
+
+::: {.solutions-here}
+:::
+
+::: {.quiz session="9"}
+:::

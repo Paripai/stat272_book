@@ -1,0 +1,9 @@
+# One-Sample Inference
+
+{{< include sections/_2-1_mean_sigma_known.qmd >}}
+
+{{< include sections/_2-2_mean_sigma_unknown.qmd >}}
+
+{{< include sections/_2-3_proportion.qmd >}}
+
+{{< include sections/_2-4_variance.qmd >}}
