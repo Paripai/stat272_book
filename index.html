@@ -182,23 +182,6 @@ window.Quarto = {
  <span class="menu-text">Summary: Choosing a Method</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./appendix_tables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Statistical Tables</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -215,7 +198,6 @@ window.Quarto = {
   <li><a href="#notation-for-critical-values" id="toc-notation-for-critical-values" class="nav-link" data-scroll-target="#notation-for-critical-values">Notation for critical values</a></li>
   <li><a href="#the-five-steps-of-a-hypothesis-test" id="toc-the-five-steps-of-a-hypothesis-test" class="nav-link" data-scroll-target="#the-five-steps-of-a-hypothesis-test">The five steps of a hypothesis test</a></li>
   <li><a href="#writing-the-conclusion" id="toc-writing-the-conclusion" class="nav-link" data-scroll-target="#writing-the-conclusion">Writing the conclusion</a></li>
-  <li><a href="#rounding" id="toc-rounding" class="nav-link" data-scroll-target="#rounding">Rounding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -371,6 +353,43 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
+<p>The statistical tables for this course give the same left-tail areas:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Distribution</th>
+<th style="text-align: left;">Table</th>
+<th style="text-align: left;">Left-tail areas in the table</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Standard normal (<span class="math inline">\(z\)</span>)</td>
+<td style="text-align: left;">Table 4</td>
+<td style="text-align: left;"><span class="math inline">\(z\)</span> from 0.00 to 3.49</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(t\)</span></td>
+<td style="text-align: left;">Table 5</td>
+<td style="text-align: left;">0.60, 0.70, 0.80, 0.90, 0.95, 0.975, 0.99, 0.995, 0.999, 0.9995</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chi-square (<span class="math inline">\(\chi^2\)</span>)</td>
+<td style="text-align: left;">Table 6</td>
+<td style="text-align: left;">0.0005 to 0.9995</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(F\)</span></td>
+<td style="text-align: left;">Table 7</td>
+<td style="text-align: left;">0.90, 0.95, 0.975, 0.99, 0.995</td>
+</tr>
+</tbody>
+</table>
 <p>A value calculated from the sample has the subscript “cal”, for example <span class="math inline">\(z_{\text{cal}}\)</span>, <span class="math inline">\(t_{\text{cal}}\)</span>, <span class="math inline">\(\chi^2_{\text{cal}}\)</span> and <span class="math inline">\(F_{\text{cal}}\)</span>.</p>
 </section>
 <section id="the-five-steps-of-a-hypothesis-test" class="level2 unnumbered">
@@ -387,11 +406,11 @@ window.Quarto = {
 <h2 class="unnumbered anchored" data-anchor-id="writing-the-conclusion">Writing the conclusion</h2>
 <p><strong>Decision using the critical region</strong> (Chapters 1–2 and Section 3.1)</p>
 <blockquote class="blockquote">
-<p><span class="math inline">\(t_{\text{cal}}\)</span> = … [falls / does not fall] in the critical region (<span class="math inline">\(t_{\text{cal}}\)</span> [&lt;, &gt;] …), so we [reject / do not reject] <span class="math inline">\(H_0\)</span>.</p>
+<p><span class="math inline">\(t_{\text{cal}}\)</span> = … [falls / does not fall] in the critical region (<span class="math inline">\(t_{\text{cal}}\)</span> [&lt;, &gt;] …), so we [reject / accept] <span class="math inline">\(H_0\)</span>.</p>
 </blockquote>
 <p><strong>Decision using the p-value</strong> (from Section 3.2 onward)</p>
 <blockquote class="blockquote">
-<p>p-value = … [&lt;, <span class="math inline">\(\ge\)</span>] <span class="math inline">\(\alpha\)</span> = 0.05, so we [reject / do not reject] <span class="math inline">\(H_0\)</span>.</p>
+<p>p-value = … [&lt;, <span class="math inline">\(\ge\)</span>] <span class="math inline">\(\alpha\)</span> = 0.05, so we [reject / accept] <span class="math inline">\(H_0\)</span>.</p>
 </blockquote>
 <p><strong>Interpretation</strong></p>
 <blockquote class="blockquote">
@@ -399,17 +418,13 @@ window.Quarto = {
 </blockquote>
 <ul>
 <li>If we reject <span class="math inline">\(H_0\)</span>, write <span class="math inline">\(H_1\)</span> as a sentence.</li>
-<li>If we do not reject <span class="math inline">\(H_0\)</span>, write <span class="math inline">\(H_0\)</span> as a sentence.</li>
+<li>If we accept <span class="math inline">\(H_0\)</span>, write <span class="math inline">\(H_0\)</span> as a sentence.</li>
 <li>For a two-sided test that rejects <span class="math inline">\(H_0\)</span>, also state the direction, using the sample statistic.</li>
 </ul>
 <p><strong>Confidence interval</strong></p>
 <blockquote class="blockquote">
 <p>We are 95% confident that … is between … and ….</p>
 </blockquote>
-</section>
-<section id="rounding" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="rounding">Rounding</h2>
-<p><em>To be added.</em></p>
 
 
 </section>

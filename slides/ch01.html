@@ -153,55 +153,764 @@ Asst. Prof.&nbsp;Dr.&nbsp;Parichart Pattarapanitchai
 <h2>Course Rules</h2>
 <p><em>To be added.</em></p>
 </section>
-<section id="learning-objectives" class="slide level2 unnumbered">
+<section id="learning-objectives" class="slide level2 unnumbered scrollable">
 <h2>Learning Objectives</h2>
-<p><em>To be added.</em></p>
-</section>
-<section id="sampling-distributions-of-barx-and-hatp" class="slide level2">
-<h2>Sampling Distributions of <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\hat{p}\)</span></h2>
-<p><em>To be added.</em></p>
-</section>
-<section id="standard-error-and-the-central-limit-theorem" class="slide level2">
-<h2>Standard Error and the Central Limit Theorem</h2>
-<p><em>To be added.</em></p>
-</section>
-<section id="the-idea-of-a-confidence-interval" class="slide level2">
-<h2>The Idea of a Confidence Interval</h2>
-<p><em>To be added.</em></p>
-</section>
-<section id="the-logic-of-hypothesis-testing" class="slide level2">
-<h2>The Logic of Hypothesis Testing</h2>
-<p><em>To be added.</em></p>
-</section>
-<section id="type-i-and-type-ii-errors" class="slide level2">
-<h2>Type I and Type II Errors</h2>
-<p><em>To be added.</em></p>
-</section>
-<section id="reading-statistical-tables" class="slide level2">
-<h2>Reading Statistical Tables</h2>
-<p><em>To be added.</em> Shade the area to the left of the value before you read the table.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-blank-curve-demo" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-blank-curve-demo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="ch01_files/figure-revealjs/fig-blank-curve-demo-1.png" class="quarto-figure quarto-figure-center" width="480">
+<p>After this chapter you should be able to:</p>
+<ol type="1">
+<li>Distinguish a <strong>parameter</strong> from a <strong>statistic</strong>.</li>
+<li>Describe the sampling distribution of <span class="math inline">\(\bar{x}\)</span> and of <span class="math inline">\(\hat{p}\)</span>: its mean, its standard error and its shape.</li>
+<li>Use the Central Limit Theorem to find probabilities about <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\hat{p}\)</span>.</li>
+<li>Explain what a 95% confidence interval means.</li>
+<li>Write the null and alternative hypotheses for a research question, and tell a one-sided test from a two-sided test.</li>
+<li>Find critical values and the critical region from the <span class="math inline">\(z\)</span> table (Table 4).</li>
+<li>Explain Type I and Type II errors in an economic setting.</li>
+</ol>
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Why Does This Matter?</strong></p>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blank-curve-demo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Blank curve: shade the area to the left of <span class="math inline">\(t_{0.975,\,24}\)</span> (layout demo)
+<div class="callout-content">
+<p>Economists rarely see a whole population. The Ministry of Labour cannot ask every worker in Chiang Mai about their wage, and the Bank of Thailand cannot survey every household about its debt. Instead we take a <strong>sample</strong> and use it to say something about the <strong>population</strong>.</p>
+<p>Two samples from the same population give different answers. Statistical inference tells us how much a sample result can vary, and so how far we can trust it. This chapter builds the ideas used in every later chapter.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="parameters-statistics-and-sampling-distributions" class="slide level2 scrollable">
+<h2>Parameters, Statistics and Sampling Distributions</h2>
+<p>A <strong>parameter</strong> describes a population. It is a fixed number, but usually unknown. A <strong>statistic</strong> describes a sample. We can calculate it, but it changes from sample to sample.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Population (parameter)</th>
+<th style="text-align: center;">Sample (statistic)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean</td>
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\bar{x}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Standard deviation</td>
+<td style="text-align: center;"><span class="math inline">\(\sigma\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(s\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Variance</td>
+<td style="text-align: center;"><span class="math inline">\(\sigma^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(s^2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Proportion</td>
+<td style="text-align: center;"><span class="math inline">\(p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\hat{p}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Size</td>
+<td style="text-align: center;"><span class="math inline">\(N\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(n\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>sampling distribution</strong> of a statistic is the distribution of its values over all possible samples of the same size <span class="math inline">\(n\)</span>.</p>
+<p><strong>Example.</strong> <a href="#/fig-income-sampling" class="quarto-xref">Figure&nbsp;1</a> uses a hypothetical population of 100,000 households. Monthly household income is skewed to the right: most households earn a moderate amount and a few earn a great deal. The population mean is <span class="math inline">\(\mu\)</span> = 27,054 baht and the standard deviation is <span class="math inline">\(\sigma\)</span> = 19,543 baht. The other panels show the means of 5,000 random samples of size 5, 30 and 100.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-income-sampling" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-income-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch01_files/figure-revealjs/fig-income-sampling-1.png" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-income-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Household income in a hypothetical population (top left) and the sampling distribution of the sample mean for n = 5, 30 and 100
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>Three things happen as <span class="math inline">\(n\)</span> grows:</p>
+<ol type="1">
+<li>The sample means are centred on the population mean <span class="math inline">\(\mu\)</span> (dashed line).</li>
+<li>The spread of the sample means gets <strong>smaller</strong>.</li>
+<li>The shape gets closer to a <strong>normal</strong> curve, even though the population is skewed.</li>
+</ol>
+</section>
+<section id="standard-error-and-the-central-limit-theorem" class="slide level2">
+<h2>Standard Error and the Central Limit Theorem</h2>
+<p>The standard deviation of a sampling distribution is called the <strong>standard error (SE)</strong>. It measures how much a statistic varies from sample to sample.</p>
+</section>
+<section id="sampling-distribution-of-barx" class="slide level2">
+<h2>Sampling distribution of <span class="math inline">\(\bar{x}\)</span></h2>
+<ul>
+<li>Mean: <span class="math inline">\(\mu_{\bar{x}} = \mu\)</span></li>
+<li>Standard error: <span class="math inline">\(\displaystyle \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}\)</span></li>
+<li>Shape:
+<ul>
+<li>if the population is normal, <span class="math inline">\(\bar{x}\)</span> is normal for any <span class="math inline">\(n\)</span>;</li>
+<li>if not, <span class="math inline">\(\bar{x}\)</span> is <strong>approximately normal</strong> when <span class="math inline">\(n\)</span> is large (<span class="math inline">\(n \ge 30\)</span>). This is the <strong>Central Limit Theorem (CLT)</strong>.</li>
+</ul></li>
+</ul>
+<p>So we can standardize <span class="math inline">\(\bar{x}\)</span> and use the <span class="math inline">\(z\)</span> table: <span class="math display">\[
+z = \frac{\bar{x} - \mu}{\sigma / \sqrt{n}}
+\]</span></p>
+</section>
+<section id="sampling-distribution-of-hatp" class="slide level2">
+<h2>Sampling distribution of <span class="math inline">\(\hat{p}\)</span></h2>
+<p>The sample proportion <span class="math inline">\(\hat{p} = x/n\)</span>, where <span class="math inline">\(x\)</span> is the number of “successes”.</p>
+<ul>
+<li>Mean: <span class="math inline">\(\mu_{\hat{p}} = p\)</span></li>
+<li>Standard error: <span class="math inline">\(\displaystyle \sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}\)</span></li>
+<li>Shape: approximately normal when <span class="math inline">\(np \ge 5\)</span> and <span class="math inline">\(n(1-p) \ge 5\)</span>.</li>
+</ul>
+<p><span class="math display">\[
+z = \frac{\hat{p} - p}{\sqrt{p(1-p)/n}}
+\]</span></p>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Larger samples, smaller error</strong></p>
+</div>
+<div class="callout-content">
+<p>Because <span class="math inline">\(\sqrt{n}\)</span> is in the denominator, a sample four times as large halves the standard error.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="worked-example-1.1-daily-wage" class="slide level2 scrollable">
+<h2>Worked Example 1.1: daily wage</h2>
+<p>Suppose the daily wage of construction workers in Chiang Mai has mean <span class="math inline">\(\mu\)</span> = 380 baht and standard deviation <span class="math inline">\(\sigma\)</span> = 60 baht (hypothetical figures). A random sample of <span class="math inline">\(n\)</span> = 36 workers is taken.</p>
+<ol type="a">
+<li>Describe the sampling distribution of <span class="math inline">\(\bar{x}\)</span>.</li>
+<li>Find the probability that the sample mean wage is more than 400 baht.</li>
+</ol>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Solution</strong></p>
+</div>
+<div class="callout-content">
+<ol type="a">
+<li><p>Since <span class="math inline">\(n\)</span> = 36 <span class="math inline">\(\ge 30\)</span>, by the CLT <span class="math inline">\(\bar{x}\)</span> is approximately normal with <span class="math display">\[
+\mu_{\bar{x}} = 380, \qquad
+\sigma_{\bar{x}} = \frac{60}{\sqrt{36}} = 10 \text{ baht.}
+\]</span></p></li>
+<li><p><span class="math display">\[
+z = \frac{400 - 380}{10} = 2.00
+\]</span> From Table 4, <span class="math inline">\(P(Z \le 2.00) = 0.9772\)</span>, so <span class="math display">\[
+P(\bar{x} &gt; 400) = P(Z &gt; 2.00) = 1 - 0.9772 = 0.0228.
+\]</span></p></li>
+</ol>
+<p>About 2.3% of samples of 36 workers would have a mean wage above 400 baht.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="worked-example-1.2-household-debt" class="slide level2">
+<h2>Worked Example 1.2: household debt</h2>
+<p>Suppose 65% of households in a region have outstanding debt (hypothetical figure). A survey samples <span class="math inline">\(n\)</span> = 400 households. Find the probability that less than 60% of the sampled households have debt.</p>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Solution</strong></p>
+</div>
+<div class="callout-content">
+<p>Check the conditions: <span class="math inline">\(np = 260 \ge 5\)</span> and <span class="math inline">\(n(1-p) = 140 \ge 5\)</span>, so <span class="math inline">\(\hat{p}\)</span> is approximately normal. <span class="math display">\[
+\sigma_{\hat{p}} = \sqrt{\frac{0.65(1-0.65)}{400}} = 0.0238
+\]</span> <span class="math display">\[
+z = \frac{0.60 - 0.65}{0.0238} = -2.10
+\]</span> Table 4 gives only positive <span class="math inline">\(z\)</span>. By symmetry, <span class="math display">\[
+P(\hat{p} &lt; 0.60) = P(Z &lt; -2.10) = P(Z &gt; 2.10)
+= 1 - 0.9821 = 0.0179.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="your-turn" class="slide level2 scrollable">
+<h2>Your Turn</h2>
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Your Turn 1.1</strong></p>
+</div>
+<div class="callout-content">
+<p>The monthly rent of rooms near a university has mean 4,500 baht and standard deviation 900 baht (hypothetical figures). A random sample of 81 rooms is taken. Find</p>
+<ol type="a">
+<li>the standard error of <span class="math inline">\(\bar{x}\)</span>, and</li>
+<li>the probability that the sample mean rent is less than 4,320 baht.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Your Turn 1.1</h2>
+<ol type="a">
+<li><p><span class="math inline">\(\sigma_{\bar{x}} = 900 / \sqrt{81} = 100\)</span> baht.</p></li>
+<li><p><span class="math inline">\(z = (4320 - 4500) / 100 = -1.80\)</span>, so <span class="math inline">\(P(\bar{x} &lt; 4320) = P(Z &gt; 1.80) = 1 - 0.9641 = 0.0359\)</span>.</p></li>
+</ol>
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Your Turn 1.2</strong></p>
+</div>
+<div class="callout-content">
+<p>In a province, 40% of workers are in the informal sector (hypothetical figure). A labour force survey samples 600 workers. Find the probability that more than 45% of the sample work in the informal sector.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 deck">
+<h2>Solution: Your Turn 1.2</h2>
+<p><span class="math inline">\(np = 240\)</span> and <span class="math inline">\(n(1-p) = 360\)</span> are both at least 5. <span class="math inline">\(\sigma_{\hat{p}} = \sqrt{0.4(0.6)/600} = 0.0200\)</span>, <span class="math inline">\(z = (0.45 - 0.4)/0.0200 = 2.50\)</span>, so <span class="math inline">\(P(\hat{p} &gt; 0.45) = 1 - 0.9938 = 0.0062\)</span>.</p>
+</section>
+<section id="the-idea-of-a-confidence-interval" class="slide level2">
+<h2>The Idea of a Confidence Interval</h2>
+<p>A single number such as <span class="math inline">\(\bar{x}\)</span> is a <strong>point estimate</strong>. It is almost never exactly equal to <span class="math inline">\(\mu\)</span>. A <strong>confidence interval (CI)</strong> gives a range of plausible values instead: <span class="math display">\[
+\text{point estimate} \;\pm\; (\text{critical value}) \times \text{SE}
+\]</span></p>
+<p>The <strong>confidence level</strong> (for example 95%) describes the method, not one interval: if we took many samples and built a 95% CI from each, about 95% of the intervals would contain the true parameter.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ci-sim" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-ci-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch01_files/figure-revealjs/fig-ci-sim-1.png" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ci-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Forty 95% confidence intervals for the mean daily wage, each from a different sample of 36 workers (hypothetical population with mean 380 baht). Red intervals miss the true mean.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In <a href="#/fig-ci-sim" class="quarto-xref">Figure&nbsp;2</a>, 37 of the 40 intervals contain <span class="math inline">\(\mu\)</span> = 380 and 3 do not. For a single interval we write:</p>
+<blockquote>
+<p>We are 95% confident that the mean daily wage is between … and … baht.</p>
+</blockquote>
+<div class="callout callout-warning no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>A common mistake</strong></p>
+</div>
+<div class="callout-content">
+<p>Do not say “there is a 95% probability that <span class="math inline">\(\mu\)</span> is in this interval”. Once the interval is calculated, <span class="math inline">\(\mu\)</span> is either in it or not. The 95% refers to how often the method works.</p>
+</div>
+</div>
+</div>
+<p>Chapters 2 and 3 give the formula of the CI for each parameter.</p>
+</section>
+<section id="the-logic-of-hypothesis-testing" class="slide level2">
+<h2>The Logic of Hypothesis Testing</h2>
+<p>A hypothesis test uses sample data to decide between two statements about a population parameter.</p>
+<ul>
+<li>The <strong>null hypothesis</strong> <span class="math inline">\(H_0\)</span> is the statement of “no change” or “no difference”. It always contains the equals sign.</li>
+<li>The <strong>alternative hypothesis</strong> <span class="math inline">\(H_1\)</span> is what the researcher wants to show. It contains <span class="math inline">\(\ne\)</span>, <span class="math inline">\(&lt;\)</span> or <span class="math inline">\(&gt;\)</span>.</li>
+</ul>
+<p>We assume <span class="math inline">\(H_0\)</span> is true and ask whether the sample result is unusual under that assumption. If it is, we reject <span class="math inline">\(H_0\)</span>.</p>
+<p><strong>Example.</strong> The Ministry of Labour reports that the mean daily wage of construction workers is 380 baht. A labour union believes the mean is lower. <span class="math display">\[
+H_0: \mu = 380 \qquad H_1: \mu &lt; 380
+\]</span></p>
+<p>The direction in <span class="math inline">\(H_1\)</span> comes from the <strong>research question</strong>, never from the data.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 29%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Research question</th>
+<th style="text-align: center;"><span class="math inline">\(H_1\)</span></th>
+<th style="text-align: left;">Test</th>
+<th style="text-align: left;">Critical region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Is it different from <span class="math inline">\(\mu_0\)</span>?</td>
+<td style="text-align: center;"><span class="math inline">\(\mu \ne \mu_0\)</span></td>
+<td style="text-align: left;">two-sided</td>
+<td style="text-align: left;">both tails, area <span class="math inline">\(\alpha/2\)</span> each</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Is it less than <span class="math inline">\(\mu_0\)</span>?</td>
+<td style="text-align: center;"><span class="math inline">\(\mu &lt; \mu_0\)</span></td>
+<td style="text-align: left;">one-sided (left)</td>
+<td style="text-align: left;">left tail, area <span class="math inline">\(\alpha\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Is it greater than <span class="math inline">\(\mu_0\)</span>?</td>
+<td style="text-align: center;"><span class="math inline">\(\mu &gt; \mu_0\)</span></td>
+<td style="text-align: left;">one-sided (right)</td>
+<td style="text-align: left;">right tail, area <span class="math inline">\(\alpha\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="test-statistic-critical-value-and-critical-region" class="slide level2">
+<h2>Test statistic, critical value and critical region</h2>
+<ul>
+<li>The <strong>test statistic</strong> measures how far the sample result is from <span class="math inline">\(H_0\)</span>, in standard errors. For example <span class="math inline">\(z_{\text{cal}} = (\bar{x} - \mu_0)/(\sigma/\sqrt{n})\)</span>.</li>
+<li>The <strong>level of significance</strong> <span class="math inline">\(\alpha\)</span> is the probability of rejecting <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is true. We usually use <span class="math inline">\(\alpha\)</span> = 0.05.</li>
+<li>The <strong>critical value</strong> separates the values of the test statistic that lead to rejecting <span class="math inline">\(H_0\)</span> from those that do not.</li>
+<li>The <strong>critical region</strong> is the set of values that lead to rejecting <span class="math inline">\(H_0\)</span>.</li>
+</ul>
+<div id="fig-regions" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-regions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-regions" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-regions-1" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-regions-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch01_files/figure-revealjs/fig-regions-1.png" data-ref-parent="fig-regions" width="316">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-regions-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Two-sided
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-regions" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-regions-2" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-regions-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch01_files/figure-revealjs/fig-regions-2.png" data-ref-parent="fig-regions" width="316">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-regions-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Left-sided
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-regions" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-regions-3" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-regions-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch01_files/figure-revealjs/fig-regions-3.png" data-ref-parent="fig-regions" width="316">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-regions-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Right-sided
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Critical regions for a z test at alpha = 0.05
+</figcaption>
+</figure>
+</div>
+<p><strong>Decision rule.</strong> If <span class="math inline">\(z_{\text{cal}}\)</span> falls in the critical region, we reject <span class="math inline">\(H_0\)</span>. Otherwise we accept <span class="math inline">\(H_0\)</span>.</p>
+</section>
+<section id="writing-the-hypotheses" class="slide level2 scrollable">
+<h2>Writing the hypotheses</h2>
+<p><strong>Worked Example 1.3.</strong> Write <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span>.</p>
+<ol type="a">
+<li>A price-monitoring agency checks whether the mean price of a 5-kg bag of rice has changed from 210 baht.</li>
+<li>An economist claims that more than 30% of households in Chiang Mai have used a government stimulus measure.</li>
+<li>A bank claims that the mean monthly loan payment of its customers is less than 8,000 baht.</li>
+</ol>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Solution</strong></p>
+</div>
+<div class="callout-content">
+<ol type="a">
+<li><span class="math inline">\(H_0: \mu = 210 \quad H_1: \mu \ne 210\)</span> (two-sided: “changed” has no direction)</li>
+<li><span class="math inline">\(H_0: p = 0.30 \quad H_1: p &gt; 0.30\)</span> (right-sided)</li>
+<li><span class="math inline">\(H_0: \mu = 8000 \quad H_1: \mu &lt; 8000\)</span> (left-sided)</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Your Turn 1.3</strong></p>
+</div>
+<div class="callout-content">
+<p>Write <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span>, and say whether each test is two-sided, left-sided or right-sided.</p>
+<ol type="a">
+<li>A researcher tests whether the mean household debt in a district is higher than 200,000 baht.</li>
+<li>An analyst tests whether the proportion of firms that raised prices last quarter is different from 0.50.</li>
+<li>A manager tests whether a new pricing strategy has reduced the mean number of days a product stays in stock below 14 days.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Your Turn 1.3</h2>
+<ol type="a">
+<li><span class="math inline">\(H_0: \mu = 200000 \quad H_1: \mu &gt; 200000\)</span> (right-sided)</li>
+<li><span class="math inline">\(H_0: p = 0.50 \quad H_1: p \ne 0.50\)</span> (two-sided)</li>
+<li><span class="math inline">\(H_0: \mu = 14 \quad H_1: \mu &lt; 14\)</span> (left-sided)</li>
+</ol>
+</section>
+<section id="type-i-and-type-ii-errors" class="slide level2">
+<h2>Type I and Type II Errors</h2>
+<p>The decision is based on a sample, so it can be wrong.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 35%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><span class="math inline">\(H_0\)</span> is true</th>
+<th style="text-align: center;"><span class="math inline">\(H_0\)</span> is false</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Reject <span class="math inline">\(H_0\)</span></strong></td>
+<td style="text-align: center;">Type I error (probability <span class="math inline">\(\alpha\)</span>)</td>
+<td style="text-align: center;">Correct decision</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Accept <span class="math inline">\(H_0\)</span></strong></td>
+<td style="text-align: center;">Correct decision</td>
+<td style="text-align: center;">Type II error (probability <span class="math inline">\(\beta\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example.</strong> The government tests whether a stimulus measure increased mean household spending. <span class="math inline">\(H_0\)</span>: the measure had no effect; <span class="math inline">\(H_1\)</span>: the measure increased spending.</p>
+<ul>
+<li><strong>Type I error:</strong> concluding that the measure worked when it did not. The government may continue an expensive policy that has no effect.</li>
+<li><strong>Type II error:</strong> concluding that the measure did not work when it did. The government may stop a useful policy.</li>
+</ul>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Choosing <span class="math inline">\(\alpha\)</span></strong></p>
+</div>
+<div class="callout-content">
+<p>A smaller <span class="math inline">\(\alpha\)</span> makes a Type I error less likely but a Type II error more likely, for the same sample size. A larger sample reduces both.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-statistical-tables" class="slide level2 scrollable">
+<h2>Reading Statistical Tables</h2>
+<p>All the tables used in this course (Tables 4–7) give the <strong>area to the left</strong> of a value. The subscript in our notation is that area: <span class="math inline">\(z_{0.975}\)</span> is the value with area 0.975 to its left.</p>
+<div class="callout callout-important no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Two steps for every critical value</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li>Draw the curve and <strong>shade the area to the left</strong> of the value you need.</li>
+<li>Read the table at that left-tail area.</li>
+</ol>
+</div>
+</div>
+</div>
+<p>The <span class="math inline">\(z\)</span> table (Table 4) gives <span class="math inline">\(P(Z \le z)\)</span> for <span class="math inline">\(z\)</span> from 0.00 to 3.49. The bottom row also lists the most common values:</p>
+<div class="cell">
+<div id="tbl-z-bottom" class="cell quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-z-bottom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Common critical values of z (bottom row of Table 4)
+</figcaption>
+<div aria-describedby="tbl-z-bottom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Area to the left</th>
+<th style="text-align: center;">z</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0.900</td>
+<td style="text-align: center;">1.282</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0.950</td>
+<td style="text-align: center;">1.645</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0.975</td>
+<td style="text-align: center;">1.960</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0.990</td>
+<td style="text-align: center;">2.326</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0.995</td>
+<td style="text-align: center;">2.576</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Table 4 has only positive <span class="math inline">\(z\)</span>. Because the normal curve is symmetric, <span class="math inline">\(z_{0.05} = -z_{0.95}\)</span> and <span class="math inline">\(z_{0.025} = -z_{0.975}\)</span>.</p>
+<p><strong>Worked Example 1.4.</strong> Find the critical value(s) and critical region for a <span class="math inline">\(z\)</span> test with <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Solution</strong></p>
+</div>
+<div class="callout-content">
+<table class="caption-top">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 22%">
+<col style="width: 27%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(H_1\)</span></th>
+<th style="text-align: left;">Area to the left</th>
+<th style="text-align: center;">Critical value(s)</th>
+<th style="text-align: left;">Critical region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\ne\)</span></td>
+<td style="text-align: left;">0.025 and 0.975</td>
+<td style="text-align: center;"><span class="math inline">\(z_{0.025} = -1.960\)</span>, <span class="math inline">\(z_{0.975} = 1.960\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} &lt; -1.960\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; 1.960\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(&lt;\)</span></td>
+<td style="text-align: left;">0.05</td>
+<td style="text-align: center;"><span class="math inline">\(z_{0.05} = -1.645\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} &lt; -1.645\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(&gt;\)</span></td>
+<td style="text-align: left;">0.95</td>
+<td style="text-align: center;"><span class="math inline">\(z_{0.95} = 1.645\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} &gt; 1.645\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Your Turn 1.4</strong></p>
+</div>
+<div class="callout-content">
+<p>For each test, shade the area to the left on the curve first, then find the critical value(s) and write the critical region.</p>
+<ol type="a">
+<li><span class="math inline">\(H_1: \mu \ne \mu_0\)</span>, <span class="math inline">\(\alpha\)</span> = 0.01</li>
+<li><span class="math inline">\(H_1: \mu &gt; \mu_0\)</span>, <span class="math inline">\(\alpha\)</span> = 0.01</li>
+<li><span class="math inline">\(H_1: p &lt; p_0\)</span>, <span class="math inline">\(\alpha\)</span> = 0.10</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="fig-yt-1-4" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-yt-1-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-1-4" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-yt-1-4-1" class="quarto-float quarto-figure quarto-figure-center" width="307.2">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-yt-1-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch01_files/figure-revealjs/fig-yt-1-4-1.png" id="fig-yt-1-4-1" data-ref-parent="fig-yt-1-4" width="307">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-1-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-1-4" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-yt-1-4-2" class="quarto-float quarto-figure quarto-figure-center" width="307.2">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-yt-1-4-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch01_files/figure-revealjs/fig-yt-1-4-2.png" id="fig-yt-1-4-2" data-ref-parent="fig-yt-1-4" width="307">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-1-4-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-1-4" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-yt-1-4-3" class="quarto-float quarto-figure quarto-figure-center" width="307.2">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-yt-1-4-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch01_files/figure-revealjs/fig-yt-1-4-3.png" id="fig-yt-1-4-3" data-ref-parent="fig-yt-1-4" width="307">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-1-4-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-yt-1-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Shade the area to the left before reading Table 4
+</figcaption>
+</figure>
+</div>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Your Turn 1.4</h2>
+<ol type="a">
+<li><p>Areas 0.005 and 0.995: <span class="math inline">\(z_{0.995} = 2.576\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &lt; -2.576\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; 2.576\)</span>.</p></li>
+<li><p>Area 0.99: <span class="math inline">\(z_{0.99} = 2.326\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &gt; 2.326\)</span>.</p></li>
+<li><p>Area 0.10: <span class="math inline">\(z_{0.10} = -z_{0.90} = -1.282\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &lt; -1.282\)</span>.</p></li>
+</ol>
 </section>
 <section id="formula-summary" class="slide level2 unnumbered">
 <h2>Formula Summary</h2>
-<p><em>To be added.</em></p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 17%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Statistic</th>
+<th style="text-align: center;">Mean</th>
+<th style="text-align: center;">Standard error</th>
+<th style="text-align: left;">Normal when</th>
+<th style="text-align: center;"><span class="math inline">\(z\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\bar{x}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{\sigma}{\sqrt{n}}\)</span></td>
+<td style="text-align: left;">population normal, or <span class="math inline">\(n \ge 30\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{\bar{x}-\mu}{\sigma/\sqrt{n}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\hat{p}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt{\dfrac{p(1-p)}{n}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(np \ge 5\)</span> and <span class="math inline">\(n(1-p) \ge 5\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{\hat{p}-p}{\sqrt{p(1-p)/n}}\)</span></td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 55%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(H_1\)</span></th>
+<th style="text-align: left;">Critical region (<span class="math inline">\(z\)</span> test)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\ne\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} &lt; z_{\alpha/2}\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; z_{1-\alpha/2}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(&lt;\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} &lt; z_{\alpha}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(&gt;\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} &gt; z_{1-\alpha}\)</span></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="exercises" class="slide level2 unnumbered">
+<section id="exercises" class="slide level2 unnumbered scrollable">
 <h2>Exercises</h2>
-<p><em>To be added.</em></p>
+<p><strong>1.1</strong> The price of a kilogram of pork at fresh markets has mean 45 baht and standard deviation 4 baht (hypothetical figures). A random sample of 64 markets is taken.</p>
+<ol type="a">
+<li>Find the standard error of <span class="math inline">\(\bar{x}\)</span>.</li>
+<li>Find <span class="math inline">\(P(\bar{x} &lt; 44.2)\)</span>.</li>
+<li>Find <span class="math inline">\(P(44.2 &lt; \bar{x} &lt; 46)\)</span>.</li>
+</ol>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Exercise 1.1</h2>
+<ol type="a">
+<li><p><span class="math inline">\(\sigma_{\bar{x}} = 4/\sqrt{64} = 0.5\)</span> baht.</p></li>
+<li><p><span class="math inline">\(z = (44.2 - 45)/0.5 = -1.60\)</span>; <span class="math inline">\(P(\bar{x} &lt; 44.2) = 1 - 0.9452 = 0.0548\)</span>.</p></li>
+<li><p><span class="math inline">\(z = (46 - 45)/0.5 = 2.00\)</span>; <span class="math inline">\(P(44.2 &lt; \bar{x} &lt; 46) = 0.9772 - 0.0548 = 0.9224\)</span>.</p></li>
+</ol>
+<p><strong>1.2</strong> Write <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span>.</p>
+<ol type="a">
+<li>The Bank of Thailand tests whether mean headline inflation over the past year was above its 3% upper target.</li>
+<li>A researcher tests whether the proportion of graduates who find a job within six months differs from 0.70.</li>
+<li>A firm tests whether a discount campaign reduced the mean time to sell a product below 20 days.</li>
+</ol>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Exercise 1.2</h2>
+<ol type="a">
+<li><span class="math inline">\(H_0: \mu = 3 \quad H_1: \mu &gt; 3\)</span></li>
+<li><span class="math inline">\(H_0: p = 0.70 \quad H_1: p \ne 0.70\)</span></li>
+<li><span class="math inline">\(H_0: \mu = 20 \quad H_1: \mu &lt; 20\)</span></li>
+</ol>
+<p><strong>1.3</strong> Find the critical value(s) and the critical region of a <span class="math inline">\(z\)</span> test.</p>
+<ol type="a">
+<li><span class="math inline">\(H_1: \mu \ne \mu_0\)</span>, <span class="math inline">\(\alpha\)</span> = 0.10</li>
+<li><span class="math inline">\(H_1: \mu &lt; \mu_0\)</span>, <span class="math inline">\(\alpha\)</span> = 0.01</li>
+<li><span class="math inline">\(H_1: p &gt; p_0\)</span>, <span class="math inline">\(\alpha\)</span> = 0.05</li>
+</ol>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Exercise 1.3</h2>
+<ol type="a">
+<li><span class="math inline">\(z_{0.95} = 1.645\)</span>: reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(z_{\text{cal}} &lt; -1.645\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; 1.645\)</span>.</li>
+<li><span class="math inline">\(z_{0.01} = -z_{0.99} = -2.326\)</span>: reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(z_{\text{cal}} &lt; -2.326\)</span>.</li>
+<li><span class="math inline">\(z_{0.95} = 1.645\)</span>: reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(z_{\text{cal}} &gt; 1.645\)</span>.</li>
+</ol>
+<p><strong>1.4</strong> A provincial office tests whether a job-training programme raised the mean monthly income of participants. <span class="math inline">\(H_0\)</span>: the programme has no effect on mean income; <span class="math inline">\(H_1\)</span>: the programme raises mean income. Describe a Type I error and a Type II error in this context, and give one consequence of each.</p>
+</section>
+<section class="slide level2 deck">
+<h2>Solution: Exercise 1.4</h2>
+<p>Type I error: concluding that the programme raises income when it does not. Budget may continue to be spent on a programme that does not work. Type II error: concluding that the programme has no effect when it does raise income. A useful programme may be cut.</p>
+<p><strong>1.5</strong> The unemployment rate in a province is 5% (hypothetical figure). Can the normal approximation be used for <span class="math inline">\(\hat{p}\)</span> when (a) <span class="math inline">\(n\)</span> = 80, (b) <span class="math inline">\(n\)</span> = 200? Explain.</p>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Exercise 1.5</h2>
+<ol type="a">
+<li><span class="math inline">\(np = 80(0.05) = 4 &lt; 5\)</span>, so the normal approximation should not be used.</li>
+<li><span class="math inline">\(np = 200(0.05) = 10\)</span> and <span class="math inline">\(n(1-p) = 190\)</span> are both at least 5, so it can be used.</li>
+</ol>
+<p><strong>1.6</strong> A 95% CI for the mean monthly electricity bill of households in a city is 1,120 to 1,280 baht. Which statements are correct?</p>
+<ol type="a">
+<li>We are 95% confident that the mean monthly electricity bill of all households in the city is between 1,120 and 1,280 baht.</li>
+<li>95% of households in the city pay between 1,120 and 1,280 baht per month.</li>
+<li>If we took many samples and built a 95% CI from each, about 95% of the intervals would contain the population mean.</li>
+</ol>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Exercise 1.6</h2>
+<ol type="a">
+<li>and (c) are correct. (b) is wrong: the interval is about the population mean, not about individual households.</li>
+</ol>
 </section>
 <section class="slide level2 deck">
 <h2>Quiz: Session 1</h2>

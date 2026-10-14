@@ -24,7 +24,7 @@
     "href": "index.html#notation-for-critical-values",
     "title": "Elementary Statistics for Social Sciences II",
     "section": "Notation for critical values",
-    "text": "Notation for critical values\nThe subscript of a critical value is the area to its left. This is the same convention as the R functions qnorm(), qt(), qchisq() and qf().\n\n\n\n\n\n\n\n\nNotation\nMeaning\nR\n\n\n\n\n\\(z_{0.975}\\)\nthe \\(z\\) value with area 0.975 to its left\nqnorm(0.975)\n\n\n\\(t_{0.975,\\,24}\\)\nthe \\(t\\) value with 24 df and area 0.975 to its left\nqt(0.975, 24)\n\n\n\\(\\chi^2_{0.025,\\,10}\\)\nthe \\(\\chi^2\\) value with 10 df and area 0.025 to its left\nqchisq(0.025, 10)\n\n\n\\(F_{0.975,\\,5,\\,8}\\)\nthe \\(F\\) value with (5, 8) df and area 0.975 to its left\nqf(0.975, 5, 8)\n\n\n\nA value calculated from the sample has the subscript “cal”, for example \\(z_{\\text{cal}}\\), \\(t_{\\text{cal}}\\), \\(\\chi^2_{\\text{cal}}\\) and \\(F_{\\text{cal}}\\).",
+    "text": "Notation for critical values\nThe subscript of a critical value is the area to its left. This is the same convention as the R functions qnorm(), qt(), qchisq() and qf().\n\n\n\n\n\n\n\n\nNotation\nMeaning\nR\n\n\n\n\n\\(z_{0.975}\\)\nthe \\(z\\) value with area 0.975 to its left\nqnorm(0.975)\n\n\n\\(t_{0.975,\\,24}\\)\nthe \\(t\\) value with 24 df and area 0.975 to its left\nqt(0.975, 24)\n\n\n\\(\\chi^2_{0.025,\\,10}\\)\nthe \\(\\chi^2\\) value with 10 df and area 0.025 to its left\nqchisq(0.025, 10)\n\n\n\\(F_{0.975,\\,5,\\,8}\\)\nthe \\(F\\) value with (5, 8) df and area 0.975 to its left\nqf(0.975, 5, 8)\n\n\n\nThe statistical tables for this course give the same left-tail areas:\n\n\n\n\n\n\n\n\nDistribution\nTable\nLeft-tail areas in the table\n\n\n\n\nStandard normal (\\(z\\))\nTable 4\n\\(z\\) from 0.00 to 3.49\n\n\n\\(t\\)\nTable 5\n0.60, 0.70, 0.80, 0.90, 0.95, 0.975, 0.99, 0.995, 0.999, 0.9995\n\n\nChi-square (\\(\\chi^2\\))\nTable 6\n0.0005 to 0.9995\n\n\n\\(F\\)\nTable 7\n0.90, 0.95, 0.975, 0.99, 0.995\n\n\n\nA value calculated from the sample has the subscript “cal”, for example \\(z_{\\text{cal}}\\), \\(t_{\\text{cal}}\\), \\(\\chi^2_{\\text{cal}}\\) and \\(F_{\\text{cal}}\\).",
     "crumbs": [
       "Preface"
     ]
@@ -44,17 +44,7 @@
     "href": "index.html#writing-the-conclusion",
     "title": "Elementary Statistics for Social Sciences II",
     "section": "Writing the conclusion",
-    "text": "Writing the conclusion\nDecision using the critical region (Chapters 1–2 and Section 3.1)\n\n\\(t_{\\text{cal}}\\) = … [falls / does not fall] in the critical region (\\(t_{\\text{cal}}\\) [&lt;, &gt;] …), so we [reject / do not reject] \\(H_0\\).\n\nDecision using the p-value (from Section 3.2 onward)\n\np-value = … [&lt;, \\(\\ge\\)] \\(\\alpha\\) = 0.05, so we [reject / do not reject] \\(H_0\\).\n\nInterpretation\n\nThat is, … at the 0.05 level of significance.\n\n\nIf we reject \\(H_0\\), write \\(H_1\\) as a sentence.\nIf we do not reject \\(H_0\\), write \\(H_0\\) as a sentence.\nFor a two-sided test that rejects \\(H_0\\), also state the direction, using the sample statistic.\n\nConfidence interval\n\nWe are 95% confident that … is between … and ….",
-    "crumbs": [
-      "Preface"
-    ]
-  },
-  {
-    "objectID": "index.html#rounding",
-    "href": "index.html#rounding",
-    "title": "Elementary Statistics for Social Sciences II",
-    "section": "Rounding",
-    "text": "Rounding\nTo be added.",
+    "text": "Writing the conclusion\nDecision using the critical region (Chapters 1–2 and Section 3.1)\n\n\\(t_{\\text{cal}}\\) = … [falls / does not fall] in the critical region (\\(t_{\\text{cal}}\\) [&lt;, &gt;] …), so we [reject / accept] \\(H_0\\).\n\nDecision using the p-value (from Section 3.2 onward)\n\np-value = … [&lt;, \\(\\ge\\)] \\(\\alpha\\) = 0.05, so we [reject / accept] \\(H_0\\).\n\nInterpretation\n\nThat is, … at the 0.05 level of significance.\n\n\nIf we reject \\(H_0\\), write \\(H_1\\) as a sentence.\nIf we accept \\(H_0\\), write \\(H_0\\) as a sentence.\nFor a two-sided test that rejects \\(H_0\\), also state the direction, using the sample statistic.\n\nConfidence interval\n\nWe are 95% confident that … is between … and ….",
     "crumbs": [
       "Preface"
     ]
@@ -64,17 +54,27 @@
     "href": "chapter01_principles.html",
     "title": "1  Basic Principles of Statistical Inference",
     "section": "",
-    "text": "Learning Objectives\nTo be added.",
+    "text": "Learning Objectives\nAfter this chapter you should be able to:",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
     ]
   },
   {
-    "objectID": "chapter01_principles.html#sampling-distributions-of-barx-and-hatp",
-    "href": "chapter01_principles.html#sampling-distributions-of-barx-and-hatp",
+    "objectID": "chapter01_principles.html#learning-objectives",
+    "href": "chapter01_principles.html#learning-objectives",
     "title": "1  Basic Principles of Statistical Inference",
-    "section": "1.1 Sampling Distributions of \\(\\bar{x}\\) and \\(\\hat{p}\\)",
-    "text": "1.1 Sampling Distributions of \\(\\bar{x}\\) and \\(\\hat{p}\\)\nTo be added.",
+    "section": "",
+    "text": "Distinguish a parameter from a statistic.\nDescribe the sampling distribution of \\(\\bar{x}\\) and of \\(\\hat{p}\\): its mean, its standard error and its shape.\nUse the Central Limit Theorem to find probabilities about \\(\\bar{x}\\) and \\(\\hat{p}\\).\nExplain what a 95% confidence interval means.\nWrite the null and alternative hypotheses for a research question, and tell a one-sided test from a two-sided test.\nFind critical values and the critical region from the \\(z\\) table (Table 4).\nExplain Type I and Type II errors in an economic setting.\n\n\n\n\n\n\n\nNoteWhy Does This Matter?\n\n\n\nEconomists rarely see a whole population. The Ministry of Labour cannot ask every worker in Chiang Mai about their wage, and the Bank of Thailand cannot survey every household about its debt. Instead we take a sample and use it to say something about the population.\nTwo samples from the same population give different answers. Statistical inference tells us how much a sample result can vary, and so how far we can trust it. This chapter builds the ideas used in every later chapter.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter01_principles.html#parameters-statistics-and-sampling-distributions",
+    "href": "chapter01_principles.html#parameters-statistics-and-sampling-distributions",
+    "title": "1  Basic Principles of Statistical Inference",
+    "section": "1.1 Parameters, Statistics and Sampling Distributions",
+    "text": "1.1 Parameters, Statistics and Sampling Distributions\nA parameter describes a population. It is a fixed number, but usually unknown. A statistic describes a sample. We can calculate it, but it changes from sample to sample.\n\n\n\n\nPopulation (parameter)\nSample (statistic)\n\n\n\n\nMean\n\\(\\mu\\)\n\\(\\bar{x}\\)\n\n\nStandard deviation\n\\(\\sigma\\)\n\\(s\\)\n\n\nVariance\n\\(\\sigma^2\\)\n\\(s^2\\)\n\n\nProportion\n\\(p\\)\n\\(\\hat{p}\\)\n\n\nSize\n\\(N\\)\n\\(n\\)\n\n\n\nThe sampling distribution of a statistic is the distribution of its values over all possible samples of the same size \\(n\\).\n\n\nShow R code\nset.seed(272)\nincome_pop &lt;- rlnorm(100000, meanlog = log(22000), sdlog = 0.65)\nmu_inc &lt;- mean(income_pop)\nsd_inc &lt;- sd(income_pop)\n\nsim_means &lt;- function(n, reps = 5000) {\n  replicate(reps, mean(sample(income_pop, n)))\n}\nsamp &lt;- rbind(\n  data.frame(panel = \"Population\", value = income_pop),\n  data.frame(panel = \"Means, n = 5\", value = sim_means(5)),\n  data.frame(panel = \"Means, n = 30\", value = sim_means(30)),\n  data.frame(panel = \"Means, n = 100\", value = sim_means(100))\n)\nsamp$panel &lt;- factor(samp$panel, levels = c(\"Population\", \"Means, n = 5\",\n                                            \"Means, n = 30\", \"Means, n = 100\"))\n\n\nExample. Figure 1.1 uses a hypothetical population of 100,000 households. Monthly household income is skewed to the right: most households earn a moderate amount and a few earn a great deal. The population mean is \\(\\mu\\) = 27,054 baht and the standard deviation is \\(\\sigma\\) = 19,543 baht. The other panels show the means of 5,000 random samples of size 5, 30 and 100.\n\n\nShow R code\nggplot(samp, aes(value / 1000)) +\n  geom_histogram(bins = 50, fill = \"steelblue\", colour = \"white\", linewidth = 0.1) +\n  facet_wrap(~ panel, scales = \"free\") +\n  geom_vline(xintercept = mu_inc / 1000, linetype = \"dashed\") +\n  labs(x = \"Monthly income (thousand baht)\", y = NULL) +\n  theme(axis.text.y = element_blank(), panel.grid.minor = element_blank())\n\n\n\n\n\n\n\n\nFigure 1.1: Household income in a hypothetical population (top left) and the sampling distribution of the sample mean for n = 5, 30 and 100\n\n\n\n\n\nThree things happen as \\(n\\) grows:\n\nThe sample means are centred on the population mean \\(\\mu\\) (dashed line).\nThe spread of the sample means gets smaller.\nThe shape gets closer to a normal curve, even though the population is skewed.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
     ]
@@ -84,7 +84,7 @@
     "href": "chapter01_principles.html#standard-error-and-the-central-limit-theorem",
     "title": "1  Basic Principles of Statistical Inference",
     "section": "1.2 Standard Error and the Central Limit Theorem",
-    "text": "1.2 Standard Error and the Central Limit Theorem\nTo be added.",
+    "text": "1.2 Standard Error and the Central Limit Theorem\nThe standard deviation of a sampling distribution is called the standard error (SE). It measures how much a statistic varies from sample to sample.\n\nSampling distribution of \\(\\bar{x}\\)\n\nMean: \\(\\mu_{\\bar{x}} = \\mu\\)\nStandard error: \\(\\displaystyle \\sigma_{\\bar{x}} = \\frac{\\sigma}{\\sqrt{n}}\\)\nShape:\n\nif the population is normal, \\(\\bar{x}\\) is normal for any \\(n\\);\nif not, \\(\\bar{x}\\) is approximately normal when \\(n\\) is large (\\(n \\ge 30\\)). This is the Central Limit Theorem (CLT).\n\n\nSo we can standardize \\(\\bar{x}\\) and use the \\(z\\) table: \\[\nz = \\frac{\\bar{x} - \\mu}{\\sigma / \\sqrt{n}}\n\\]\n\n\nSampling distribution of \\(\\hat{p}\\)\nThe sample proportion \\(\\hat{p} = x/n\\), where \\(x\\) is the number of “successes”.\n\nMean: \\(\\mu_{\\hat{p}} = p\\)\nStandard error: \\(\\displaystyle \\sigma_{\\hat{p}} = \\sqrt{\\frac{p(1-p)}{n}}\\)\nShape: approximately normal when \\(np \\ge 5\\) and \\(n(1-p) \\ge 5\\).\n\n\\[\nz = \\frac{\\hat{p} - p}{\\sqrt{p(1-p)/n}}\n\\]\n\n\n\n\n\n\nTipLarger samples, smaller error\n\n\n\nBecause \\(\\sqrt{n}\\) is in the denominator, a sample four times as large halves the standard error.\n\n\n\n\nShow R code\nw_mu &lt;- 380; w_sigma &lt;- 60; w_n &lt;- 36\nw_se &lt;- w_sigma / sqrt(w_n)\nw_z  &lt;- (400 - w_mu) / w_se\nw_F  &lt;- round(pnorm(w_z), 4)\n\nd_p &lt;- 0.65; d_n &lt;- 400\nd_se &lt;- round(sqrt(d_p * (1 - d_p) / d_n), 4)\nd_z  &lt;- round((0.60 - d_p) / d_se, 2)\nd_F  &lt;- round(pnorm(abs(d_z)), 4)\n\n\n\n\nWorked Example 1.1: daily wage\nSuppose the daily wage of construction workers in Chiang Mai has mean \\(\\mu\\) = 380 baht and standard deviation \\(\\sigma\\) = 60 baht (hypothetical figures). A random sample of \\(n\\) = 36 workers is taken.\n\nDescribe the sampling distribution of \\(\\bar{x}\\).\nFind the probability that the sample mean wage is more than 400 baht.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\nSince \\(n\\) = 36 \\(\\ge 30\\), by the CLT \\(\\bar{x}\\) is approximately normal with \\[\n\\mu_{\\bar{x}} = 380, \\qquad\n\\sigma_{\\bar{x}} = \\frac{60}{\\sqrt{36}} = 10 \\text{ baht.}\n\\]\n\\[\nz = \\frac{400 - 380}{10} = 2.00\n\\] From Table 4, \\(P(Z \\le 2.00) = 0.9772\\), so \\[\nP(\\bar{x} &gt; 400) = P(Z &gt; 2.00) = 1 - 0.9772 = 0.0228.\n\\]\n\nAbout 2.3% of samples of 36 workers would have a mean wage above 400 baht.\n\n\n\n\n\nWorked Example 1.2: household debt\nSuppose 65% of households in a region have outstanding debt (hypothetical figure). A survey samples \\(n\\) = 400 households. Find the probability that less than 60% of the sampled households have debt.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nCheck the conditions: \\(np = 260 \\ge 5\\) and \\(n(1-p) = 140 \\ge 5\\), so \\(\\hat{p}\\) is approximately normal. \\[\n\\sigma_{\\hat{p}} = \\sqrt{\\frac{0.65(1-0.65)}{400}} = 0.0238\n\\] \\[\nz = \\frac{0.60 - 0.65}{0.0238} = -2.10\n\\] Table 4 gives only positive \\(z\\). By symmetry, \\[\nP(\\hat{p} &lt; 0.60) = P(Z &lt; -2.10) = P(Z &gt; 2.10)\n= 1 - 0.9821 = 0.0179.\n\\]\n\n\n\n\n\nShow R code\ny_mu &lt;- 4500; y_sigma &lt;- 900; y_n &lt;- 81\ny_se &lt;- y_sigma / sqrt(y_n)\ny_z  &lt;- (4320 - y_mu) / y_se\ny_F  &lt;- round(pnorm(abs(y_z)), 4)\n\nv_p &lt;- 0.40; v_n &lt;- 600\nv_se &lt;- round(sqrt(v_p * (1 - v_p) / v_n), 4)\nv_z  &lt;- round((0.45 - v_p) / v_se, 2)\nv_F  &lt;- round(pnorm(v_z), 4)\n\n\n\n\nYour Turn\n\n\n\n\n\n\nNoteYour Turn 1.1\n\n\n\nThe monthly rent of rooms near a university has mean 4,500 baht and standard deviation 900 baht (hypothetical figures). A random sample of 81 rooms is taken. Find\n\nthe standard error of \\(\\bar{x}\\), and\nthe probability that the sample mean rent is less than 4,320 baht.\n\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 1.1\n\n\n\n\n\n\n\\(\\sigma_{\\bar{x}} = 900 / \\sqrt{81} = 100\\) baht.\n\\(z = (4320 - 4500) / 100 = -1.80\\), so \\(P(\\bar{x} &lt; 4320) = P(Z &gt; 1.80) = 1 - 0.9641 = 0.0359\\).\n\n\n\n\n\n\n\n\n\n\nNoteYour Turn 1.2\n\n\n\nIn a province, 40% of workers are in the informal sector (hypothetical figure). A labour force survey samples 600 workers. Find the probability that more than 45% of the sample work in the informal sector.\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 1.2\n\n\n\n\n\n\\(np = 240\\) and \\(n(1-p) = 360\\) are both at least 5. \\(\\sigma_{\\hat{p}} = \\sqrt{0.4(0.6)/600} = 0.0200\\), \\(z = (0.45 - 0.4)/0.0200 = 2.50\\), so \\(P(\\hat{p} &gt; 0.45) = 1 - 0.9938 = 0.0062\\).",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
     ]
@@ -94,7 +94,7 @@
     "href": "chapter01_principles.html#the-idea-of-a-confidence-interval",
     "title": "1  Basic Principles of Statistical Inference",
     "section": "1.3 The Idea of a Confidence Interval",
-    "text": "1.3 The Idea of a Confidence Interval\nTo be added.",
+    "text": "1.3 The Idea of a Confidence Interval\nA single number such as \\(\\bar{x}\\) is a point estimate. It is almost never exactly equal to \\(\\mu\\). A confidence interval (CI) gives a range of plausible values instead: \\[\n\\text{point estimate} \\;\\pm\\; (\\text{critical value}) \\times \\text{SE}\n\\]\nThe confidence level (for example 95%) describes the method, not one interval: if we took many samples and built a 95% CI from each, about 95% of the intervals would contain the true parameter.\n\n\nShow R code\nset.seed(2721)\nz975 &lt;- crit_z(0.975)\ncis &lt;- data.frame(sample = 1:40,\n                  xbar = replicate(40, mean(rnorm(w_n, w_mu, w_sigma))))\ncis$lower &lt;- cis$xbar - z975 * w_se\ncis$upper &lt;- cis$xbar + z975 * w_se\ncis$covers &lt;- cis$lower &lt;= w_mu & cis$upper &gt;= w_mu\nn_miss &lt;- sum(!cis$covers)\nggplot(cis, aes(y = sample, xmin = lower, xmax = upper, colour = covers)) +\n  geom_errorbarh(height = 0) +\n  geom_point(aes(x = xbar), size = 1) +\n  geom_vline(xintercept = w_mu, linetype = \"dashed\") +\n  scale_colour_manual(values = c(`TRUE` = \"grey30\", `FALSE` = \"firebrick\"), guide = \"none\") +\n  labs(x = \"Daily wage (baht)\", y = \"Sample\")\n\n\n\n\n\n\n\n\nFigure 1.2: Forty 95% confidence intervals for the mean daily wage, each from a different sample of 36 workers (hypothetical population with mean 380 baht). Red intervals miss the true mean.\n\n\n\n\n\nIn Figure 1.2, 37 of the 40 intervals contain \\(\\mu\\) = 380 and 3 do not. For a single interval we write:\n\nWe are 95% confident that the mean daily wage is between … and … baht.\n\n\n\n\n\n\n\nWarningA common mistake\n\n\n\nDo not say “there is a 95% probability that \\(\\mu\\) is in this interval”. Once the interval is calculated, \\(\\mu\\) is either in it or not. The 95% refers to how often the method works.\n\n\nChapters 2 and 3 give the formula of the CI for each parameter.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
     ]
@@ -104,7 +104,7 @@
     "href": "chapter01_principles.html#the-logic-of-hypothesis-testing",
     "title": "1  Basic Principles of Statistical Inference",
     "section": "1.4 The Logic of Hypothesis Testing",
-    "text": "1.4 The Logic of Hypothesis Testing\nTo be added.",
+    "text": "1.4 The Logic of Hypothesis Testing\nA hypothesis test uses sample data to decide between two statements about a population parameter.\n\nThe null hypothesis \\(H_0\\) is the statement of “no change” or “no difference”. It always contains the equals sign.\nThe alternative hypothesis \\(H_1\\) is what the researcher wants to show. It contains \\(\\ne\\), \\(&lt;\\) or \\(&gt;\\).\n\nWe assume \\(H_0\\) is true and ask whether the sample result is unusual under that assumption. If it is, we reject \\(H_0\\).\nExample. The Ministry of Labour reports that the mean daily wage of construction workers is 380 baht. A labour union believes the mean is lower. \\[\nH_0: \\mu = 380 \\qquad H_1: \\mu &lt; 380\n\\]\nThe direction in \\(H_1\\) comes from the research question, never from the data.\n\n\n\n\n\n\n\n\n\nResearch question\n\\(H_1\\)\nTest\nCritical region\n\n\n\n\nIs it different from \\(\\mu_0\\)?\n\\(\\mu \\ne \\mu_0\\)\ntwo-sided\nboth tails, area \\(\\alpha/2\\) each\n\n\nIs it less than \\(\\mu_0\\)?\n\\(\\mu &lt; \\mu_0\\)\none-sided (left)\nleft tail, area \\(\\alpha\\)\n\n\nIs it greater than \\(\\mu_0\\)?\n\\(\\mu &gt; \\mu_0\\)\none-sided (right)\nright tail, area \\(\\alpha\\)\n\n\n\n\nTest statistic, critical value and critical region\n\nThe test statistic measures how far the sample result is from \\(H_0\\), in standard errors. For example \\(z_{\\text{cal}} = (\\bar{x} - \\mu_0)/(\\sigma/\\sqrt{n})\\).\nThe level of significance \\(\\alpha\\) is the probability of rejecting \\(H_0\\) when \\(H_0\\) is true. We usually use \\(\\alpha\\) = 0.05.\nThe critical value separates the values of the test statistic that lead to rejecting \\(H_0\\) from those that do not.\nThe critical region is the set of values that lead to rejecting \\(H_0\\).\n\n\nShow R code\ncrit_plot(\"z\", \"two\")\ncrit_plot(\"z\", \"left\")\ncrit_plot(\"z\", \"right\")\n\n\n\n\n\n\n\n\n\n\n\n\n(a) Two-sided\n\n\n\n\n\n\n\n\n\n\n\n(b) Left-sided\n\n\n\n\n\n\n\n\n\n\n\n(c) Right-sided\n\n\n\n\n\n\n\nFigure 1.3: Critical regions for a z test at alpha = 0.05\n\n\n\nDecision rule. If \\(z_{\\text{cal}}\\) falls in the critical region, we reject \\(H_0\\). Otherwise we accept \\(H_0\\).\n\n\nWriting the hypotheses\nWorked Example 1.3. Write \\(H_0\\) and \\(H_1\\).\n\nA price-monitoring agency checks whether the mean price of a 5-kg bag of rice has changed from 210 baht.\nAn economist claims that more than 30% of households in Chiang Mai have used a government stimulus measure.\nA bank claims that the mean monthly loan payment of its customers is less than 8,000 baht.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\n\\(H_0: \\mu = 210 \\quad H_1: \\mu \\ne 210\\) (two-sided: “changed” has no direction)\n\\(H_0: p = 0.30 \\quad H_1: p &gt; 0.30\\) (right-sided)\n\\(H_0: \\mu = 8000 \\quad H_1: \\mu &lt; 8000\\) (left-sided)\n\n\n\n\n\n\n\n\n\n\nNoteYour Turn 1.3\n\n\n\nWrite \\(H_0\\) and \\(H_1\\), and say whether each test is two-sided, left-sided or right-sided.\n\nA researcher tests whether the mean household debt in a district is higher than 200,000 baht.\nAn analyst tests whether the proportion of firms that raised prices last quarter is different from 0.50.\nA manager tests whether a new pricing strategy has reduced the mean number of days a product stays in stock below 14 days.\n\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 1.3\n\n\n\n\n\n\n\\(H_0: \\mu = 200000 \\quad H_1: \\mu &gt; 200000\\) (right-sided)\n\\(H_0: p = 0.50 \\quad H_1: p \\ne 0.50\\) (two-sided)\n\\(H_0: \\mu = 14 \\quad H_1: \\mu &lt; 14\\) (left-sided)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
     ]
@@ -114,7 +114,7 @@
     "href": "chapter01_principles.html#type-i-and-type-ii-errors",
     "title": "1  Basic Principles of Statistical Inference",
     "section": "1.5 Type I and Type II Errors",
-    "text": "1.5 Type I and Type II Errors\nTo be added.",
+    "text": "1.5 Type I and Type II Errors\nThe decision is based on a sample, so it can be wrong.\n\n\n\n\n\n\n\n\n\n\\(H_0\\) is true\n\\(H_0\\) is false\n\n\n\n\nReject \\(H_0\\)\nType I error (probability \\(\\alpha\\))\nCorrect decision\n\n\nAccept \\(H_0\\)\nCorrect decision\nType II error (probability \\(\\beta\\))\n\n\n\nExample. The government tests whether a stimulus measure increased mean household spending. \\(H_0\\): the measure had no effect; \\(H_1\\): the measure increased spending.\n\nType I error: concluding that the measure worked when it did not. The government may continue an expensive policy that has no effect.\nType II error: concluding that the measure did not work when it did. The government may stop a useful policy.\n\n\n\n\n\n\n\nTipChoosing \\(\\alpha\\)\n\n\n\nA smaller \\(\\alpha\\) makes a Type I error less likely but a Type II error more likely, for the same sample size. A larger sample reduces both.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
     ]
@@ -124,7 +124,7 @@
     "href": "chapter01_principles.html#reading-statistical-tables",
     "title": "1  Basic Principles of Statistical Inference",
     "section": "1.6 Reading Statistical Tables",
-    "text": "1.6 Reading Statistical Tables\nTo be added. Shade the area to the left of the value before you read the table.\n\n\nShow R code\nblank_curve(\"t\", df1 = 24)\n\n\n\n\n\n\n\n\nFigure 1.1: Blank curve: shade the area to the left of \\(t_{0.975,\\,24}\\) (layout demo)",
+    "text": "1.6 Reading Statistical Tables\nAll the tables used in this course (Tables 4–7) give the area to the left of a value. The subscript in our notation is that area: \\(z_{0.975}\\) is the value with area 0.975 to its left.\n\n\n\n\n\n\nImportantTwo steps for every critical value\n\n\n\n\nDraw the curve and shade the area to the left of the value you need.\nRead the table at that left-tail area.\n\n\n\nThe \\(z\\) table (Table 4) gives \\(P(Z \\le z)\\) for \\(z\\) from 0.00 to 3.49. The bottom row also lists the most common values:\n\n\nShow R code\nzp &lt;- c(0.90, 0.95, 0.975, 0.99, 0.995)\nknitr::kable(data.frame(`Area to the left` = fmt(zp, 3),\n                        z = fmt(sapply(zp, crit_z), 3), check.names = FALSE),\n             align = \"cc\")\n\n\n\n\nTable 1.1: Common critical values of z (bottom row of Table 4)\n\n\n\n\n\n\nArea to the left\nz\n\n\n\n\n0.900\n1.282\n\n\n0.950\n1.645\n\n\n0.975\n1.960\n\n\n0.990\n2.326\n\n\n0.995\n2.576\n\n\n\n\n\n\n\n\nTable 4 has only positive \\(z\\). Because the normal curve is symmetric, \\(z_{0.05} = -z_{0.95}\\) and \\(z_{0.025} = -z_{0.975}\\).\nWorked Example 1.4. Find the critical value(s) and critical region for a \\(z\\) test with \\(\\alpha\\) = 0.05.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(H_1\\)\nArea to the left\nCritical value(s)\nCritical region\n\n\n\n\n\\(\\ne\\)\n0.025 and 0.975\n\\(z_{0.025} = -1.960\\), \\(z_{0.975} = 1.960\\)\n\\(z_{\\text{cal}} &lt; -1.960\\) or \\(z_{\\text{cal}} &gt; 1.960\\)\n\n\n\\(&lt;\\)\n0.05\n\\(z_{0.05} = -1.645\\)\n\\(z_{\\text{cal}} &lt; -1.645\\)\n\n\n\\(&gt;\\)\n0.95\n\\(z_{0.95} = 1.645\\)\n\\(z_{\\text{cal}} &gt; 1.645\\)\n\n\n\n\n\n\n\n\n\n\n\n\nNoteYour Turn 1.4\n\n\n\nFor each test, shade the area to the left on the curve first, then find the critical value(s) and write the critical region.\n\n\\(H_1: \\mu \\ne \\mu_0\\), \\(\\alpha\\) = 0.01\n\\(H_1: \\mu &gt; \\mu_0\\), \\(\\alpha\\) = 0.01\n\\(H_1: p &lt; p_0\\), \\(\\alpha\\) = 0.10\n\n\n\n\nShow R code\nblank_curve(\"z\"); blank_curve(\"z\"); blank_curve(\"z\")\n\n\n\n\n\n\n\n\n\n\n\n\n(a)\n\n\n\n\n\n\n\n\n\n\n\n(b)\n\n\n\n\n\n\n\n\n\n\n\n(c)\n\n\n\n\n\n\n\nFigure 1.4: Shade the area to the left before reading Table 4\n\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 1.4\n\n\n\n\n\n\nAreas 0.005 and 0.995: \\(z_{0.995} = 2.576\\). Critical region: \\(z_{\\text{cal}} &lt; -2.576\\) or \\(z_{\\text{cal}} &gt; 2.576\\).\nArea 0.99: \\(z_{0.99} = 2.326\\). Critical region: \\(z_{\\text{cal}} &gt; 2.326\\).\nArea 0.10: \\(z_{0.10} = -z_{0.90} = -1.282\\). Critical region: \\(z_{\\text{cal}} &lt; -1.282\\).",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
     ]
@@ -134,7 +134,7 @@
     "href": "chapter01_principles.html#formula-summary",
     "title": "1  Basic Principles of Statistical Inference",
     "section": "Formula Summary",
-    "text": "Formula Summary\nTo be added.",
+    "text": "Formula Summary\n\n\n\n\n\n\n\n\n\n\nStatistic\nMean\nStandard error\nNormal when\n\\(z\\)\n\n\n\n\n\\(\\bar{x}\\)\n\\(\\mu\\)\n\\(\\dfrac{\\sigma}{\\sqrt{n}}\\)\npopulation normal, or \\(n \\ge 30\\)\n\\(\\dfrac{\\bar{x}-\\mu}{\\sigma/\\sqrt{n}}\\)\n\n\n\\(\\hat{p}\\)\n\\(p\\)\n\\(\\sqrt{\\dfrac{p(1-p)}{n}}\\)\n\\(np \\ge 5\\) and \\(n(1-p) \\ge 5\\)\n\\(\\dfrac{\\hat{p}-p}{\\sqrt{p(1-p)/n}}\\)\n\n\n\n\n\n\n\n\n\n\n\\(H_1\\)\nCritical region (\\(z\\) test)\n\n\n\n\n\\(\\ne\\)\n\\(z_{\\text{cal}} &lt; z_{\\alpha/2}\\) or \\(z_{\\text{cal}} &gt; z_{1-\\alpha/2}\\)\n\n\n\\(&lt;\\)\n\\(z_{\\text{cal}} &lt; z_{\\alpha}\\)\n\n\n\\(&gt;\\)\n\\(z_{\\text{cal}} &gt; z_{1-\\alpha}\\)\n\n\n\n\n\nShow R code\ne1_mu &lt;- 45; e1_sigma &lt;- 4; e1_n &lt;- 64\ne1_se &lt;- e1_sigma / sqrt(e1_n)\ne1_z1 &lt;- (44.2 - e1_mu) / e1_se; e1_F1 &lt;- round(pnorm(abs(e1_z1)), 4)\ne1_z2 &lt;- (46 - e1_mu) / e1_se;   e1_F2 &lt;- round(pnorm(e1_z2), 4)\ne5_p &lt;- 0.05",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
     ]
@@ -144,7 +144,7 @@
     "href": "chapter01_principles.html#exercises",
     "title": "1  Basic Principles of Statistical Inference",
     "section": "Exercises",
-    "text": "Exercises\nTo be added.",
+    "text": "Exercises\n1.1 The price of a kilogram of pork at fresh markets has mean 45 baht and standard deviation 4 baht (hypothetical figures). A random sample of 64 markets is taken.\n\nFind the standard error of \\(\\bar{x}\\).\nFind \\(P(\\bar{x} &lt; 44.2)\\).\nFind \\(P(44.2 &lt; \\bar{x} &lt; 46)\\).\n\n\n\n\n\n\n\nTipSolution: Exercise 1.1\n\n\n\n\n\n\n\\(\\sigma_{\\bar{x}} = 4/\\sqrt{64} = 0.5\\) baht.\n\\(z = (44.2 - 45)/0.5 = -1.60\\); \\(P(\\bar{x} &lt; 44.2) = 1 - 0.9452 = 0.0548\\).\n\\(z = (46 - 45)/0.5 = 2.00\\); \\(P(44.2 &lt; \\bar{x} &lt; 46) = 0.9772 - 0.0548 = 0.9224\\).\n\n\n\n\n1.2 Write \\(H_0\\) and \\(H_1\\).\n\nThe Bank of Thailand tests whether mean headline inflation over the past year was above its 3% upper target.\nA researcher tests whether the proportion of graduates who find a job within six months differs from 0.70.\nA firm tests whether a discount campaign reduced the mean time to sell a product below 20 days.\n\n\n\n\n\n\n\nTipSolution: Exercise 1.2\n\n\n\n\n\n\n\\(H_0: \\mu = 3 \\quad H_1: \\mu &gt; 3\\)\n\\(H_0: p = 0.70 \\quad H_1: p \\ne 0.70\\)\n\\(H_0: \\mu = 20 \\quad H_1: \\mu &lt; 20\\)\n\n\n\n\n1.3 Find the critical value(s) and the critical region of a \\(z\\) test.\n\n\\(H_1: \\mu \\ne \\mu_0\\), \\(\\alpha\\) = 0.10\n\\(H_1: \\mu &lt; \\mu_0\\), \\(\\alpha\\) = 0.01\n\\(H_1: p &gt; p_0\\), \\(\\alpha\\) = 0.05\n\n\n\n\n\n\n\nTipSolution: Exercise 1.3\n\n\n\n\n\n\n\\(z_{0.95} = 1.645\\): reject \\(H_0\\) if \\(z_{\\text{cal}} &lt; -1.645\\) or \\(z_{\\text{cal}} &gt; 1.645\\).\n\\(z_{0.01} = -z_{0.99} = -2.326\\): reject \\(H_0\\) if \\(z_{\\text{cal}} &lt; -2.326\\).\n\\(z_{0.95} = 1.645\\): reject \\(H_0\\) if \\(z_{\\text{cal}} &gt; 1.645\\).\n\n\n\n\n1.4 A provincial office tests whether a job-training programme raised the mean monthly income of participants. \\(H_0\\): the programme has no effect on mean income; \\(H_1\\): the programme raises mean income. Describe a Type I error and a Type II error in this context, and give one consequence of each.\n\n\n\n\n\n\nTipSolution: Exercise 1.4\n\n\n\n\n\nType I error: concluding that the programme raises income when it does not. Budget may continue to be spent on a programme that does not work. Type II error: concluding that the programme has no effect when it does raise income. A useful programme may be cut.\n\n\n\n1.5 The unemployment rate in a province is 5% (hypothetical figure). Can the normal approximation be used for \\(\\hat{p}\\) when (a) \\(n\\) = 80, (b) \\(n\\) = 200? Explain.\n\n\n\n\n\n\nTipSolution: Exercise 1.5\n\n\n\n\n\n\n\\(np = 80(0.05) = 4 &lt; 5\\), so the normal approximation should not be used.\n\\(np = 200(0.05) = 10\\) and \\(n(1-p) = 190\\) are both at least 5, so it can be used.\n\n\n\n\n1.6 A 95% CI for the mean monthly electricity bill of households in a city is 1,120 to 1,280 baht. Which statements are correct?\n\nWe are 95% confident that the mean monthly electricity bill of all households in the city is between 1,120 and 1,280 baht.\n95% of households in the city pay between 1,120 and 1,280 baht per month.\nIf we took many samples and built a 95% CI from each, about 95% of the intervals would contain the population mean.\n\n\n\n\n\n\n\nTipSolution: Exercise 1.6\n\n\n\n\n\n\nand (c) are correct. (b) is wrong: the interval is about the population mean, not about individual households.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
     ]
@@ -327,50 +327,6 @@
     "text": "Writing a Full Conclusion\nTo be added.",
     "crumbs": [
       "Summary: Choosing a Method"
-    ]
-  },
-  {
-    "objectID": "appendix_tables.html",
-    "href": "appendix_tables.html",
-    "title": "Appendix A — Statistical Tables",
-    "section": "",
-    "text": "A.1 Standard Normal Distribution\nAll tables give the value with the stated area to its left.\nTo be added.",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Statistical Tables</span>"
-    ]
-  },
-  {
-    "objectID": "appendix_tables.html#t-distribution",
-    "href": "appendix_tables.html#t-distribution",
-    "title": "Appendix A — Statistical Tables",
-    "section": "A.2 \\(t\\) Distribution",
-    "text": "A.2 \\(t\\) Distribution\nTo be added.",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Statistical Tables</span>"
-    ]
-  },
-  {
-    "objectID": "appendix_tables.html#chi-square-distribution",
-    "href": "appendix_tables.html#chi-square-distribution",
-    "title": "Appendix A — Statistical Tables",
-    "section": "A.3 Chi-Square Distribution",
-    "text": "A.3 Chi-Square Distribution\nTo be added.",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Statistical Tables</span>"
-    ]
-  },
-  {
-    "objectID": "appendix_tables.html#f-distribution",
-    "href": "appendix_tables.html#f-distribution",
-    "title": "Appendix A — Statistical Tables",
-    "section": "A.4 \\(F\\) Distribution",
-    "text": "A.4 \\(F\\) Distribution\nTo be added.",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Statistical Tables</span>"
     ]
   }
 ]
