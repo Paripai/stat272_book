@@ -206,7 +206,9 @@ window.Quarto = {
   <li><a href="#learning-objectives-1" id="toc-learning-objectives-1" class="nav-link" data-scroll-target="#learning-objectives-1">Learning Objectives</a></li>
   <li><a href="#concept-1" id="toc-concept-1" class="nav-link" data-scroll-target="#concept-1">Concept</a></li>
   <li><a href="#formulas-and-conditions-1" id="toc-formulas-and-conditions-1" class="nav-link" data-scroll-target="#formulas-and-conditions-1">Formulas and Conditions</a></li>
+  <li><a href="#reading-the-t-table" id="toc-reading-the-t-table" class="nav-link" data-scroll-target="#reading-the-t-table">Reading the <span class="math inline">\(t\)</span> Table</a></li>
   <li><a href="#worked-example-1" id="toc-worked-example-1" class="nav-link" data-scroll-target="#worked-example-1">Worked Example</a></li>
+  <li><a href="#confidence-intervals-and-two-sided-tests" id="toc-confidence-intervals-and-two-sided-tests" class="nav-link" data-scroll-target="#confidence-intervals-and-two-sided-tests">Confidence Intervals and Two-Sided Tests</a></li>
   <li><a href="#your-turn-1" id="toc-your-turn-1" class="nav-link" data-scroll-target="#your-turn-1">Your Turn</a></li>
   <li><a href="#formula-summary-1" id="toc-formula-summary-1" class="nav-link" data-scroll-target="#formula-summary-1">Formula Summary</a></li>
   <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1">Exercises</a></li>
@@ -225,6 +227,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#learning-objectives-3" id="toc-learning-objectives-3" class="nav-link" data-scroll-target="#learning-objectives-3">Learning Objectives</a></li>
   <li><a href="#concept-3" id="toc-concept-3" class="nav-link" data-scroll-target="#concept-3">Concept</a></li>
+  <li><a href="#reading-the-chi-square-table" id="toc-reading-the-chi-square-table" class="nav-link" data-scroll-target="#reading-the-chi-square-table">Reading the Chi-Square Table</a></li>
   <li><a href="#formulas-and-conditions-3" id="toc-formulas-and-conditions-3" class="nav-link" data-scroll-target="#formulas-and-conditions-3">Formulas and Conditions</a></li>
   <li><a href="#worked-example-3" id="toc-worked-example-3" class="nav-link" data-scroll-target="#worked-example-3">Worked Example</a></li>
   <li><a href="#your-turn-3" id="toc-your-turn-3" class="nav-link" data-scroll-target="#your-turn-3">Your Turn</a></li>
@@ -260,19 +263,108 @@ window.Quarto = {
 <h2 data-number="2.1" class="anchored" data-anchor-id="sec-mean-sigma-known"><span class="header-section-number">2.1</span> Mean, <span class="math inline">\(\sigma\)</span> Known</h2>
 <section id="learning-objectives" class="level3">
 <h3 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h3>
-<p><em>To be added.</em></p>
+<ol type="1">
+<li>Recognize when the <span class="math inline">\(z\)</span> method for one mean applies.</li>
+<li>Construct and interpret a confidence interval for <span class="math inline">\(\mu\)</span> when <span class="math inline">\(\sigma\)</span> is known.</li>
+<li>Carry out a <span class="math inline">\(z\)</span> test for <span class="math inline">\(\mu\)</span> in five steps and write the conclusion.</li>
+</ol>
 </section>
 <section id="concept" class="level3">
 <h3 class="anchored" data-anchor-id="concept">Concept</h3>
-<p><em>To be added.</em></p>
+<p>Sometimes the population standard deviation <span class="math inline">\(\sigma\)</span> is known from a large source, such as a census or many years of administrative records, while the mean may have changed. For example, the spread of daily wages in an industry is fairly stable, but the mean wage changes with prices and minimum-wage policy.</p>
+<p>When <span class="math inline">\(\sigma\)</span> is known, Chapter 1 tells us that <span class="math display">\[
+z = \frac{\bar{x} - \mu}{\sigma/\sqrt{n}}
+\]</span> follows the standard normal distribution, provided the population is normal or <span class="math inline">\(n \ge 30\)</span>. Both the confidence interval and the test use this result.</p>
 </section>
 <section id="formulas-and-conditions" class="level3">
 <h3 class="anchored" data-anchor-id="formulas-and-conditions">Formulas and Conditions</h3>
-<p><em>To be added.</em></p>
+<p><strong>Conditions:</strong> <span class="math inline">\(\sigma\)</span> is known; a random sample; the population is normal or <span class="math inline">\(n \ge 30\)</span>.</p>
+<p><strong><span class="math inline">\((1-\alpha)100\%\)</span> confidence interval for <span class="math inline">\(\mu\)</span></strong> <span class="math display">\[
+\bar{x} \pm z_{1-\alpha/2}\,\frac{\sigma}{\sqrt{n}}
+\]</span> For a 95% CI, <span class="math inline">\(z_{0.975} = 1.960\)</span>; for a 99% CI, <span class="math inline">\(z_{0.995} = 2.576\)</span>.</p>
+<p><strong>Test statistic</strong> for <span class="math inline">\(H_0: \mu = \mu_0\)</span> <span class="math display">\[
+z_{\text{cal}} = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}}
+\]</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 55%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(H_1\)</span></th>
+<th style="text-align: left;">Critical region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\mu \ne \mu_0\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} &lt; z_{\alpha/2}\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; z_{1-\alpha/2}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\mu &lt; \mu_0\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} &lt; z_{\alpha}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\mu &gt; \mu_0\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} &gt; z_{1-\alpha}\)</span></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="worked-example" class="level3">
 <h3 class="anchored" data-anchor-id="worked-example">Worked Example</h3>
-<p><em>To be added.</em></p>
+<p><strong>Worked Example 2.1.1.</strong> From many years of Labour Force Survey records, the standard deviation of the daily wage of construction workers in Chiang Mai is <span class="math inline">\(\sigma\)</span> = 60 baht. A labour union surveys 36 workers and finds a mean daily wage of <span class="math inline">\(\bar{x}\)</span> = 358.4 baht (hypothetical figures). The Ministry of Labour reports a mean of 380 baht; the union believes the true mean is lower.</p>
+<ol type="a">
+<li>Construct a 95% confidence interval for the mean daily wage.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the mean daily wage is less than 380 baht.</li>
+</ol>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><strong>(a)</strong> <span class="math inline">\(n = 36 \ge 30\)</span>, so the CLT applies. <span class="math display">\[
+\frac{\sigma}{\sqrt{n}} = \frac{60}{\sqrt{36}} = 10
+\]</span> <span class="math display">\[
+\bar{x} \pm z_{0.975}\frac{\sigma}{\sqrt{n}}
+= 358.4 \pm 1.960(10)
+= 358.4 \pm 19.6
+\]</span> 95% CI: (338.80, 378.00)</p>
+<p>We are 95% confident that the mean daily wage of construction workers in Chiang Mai is between 338.80 and 378.00 baht.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: \mu = 380\)</span> <span class="math inline">\(\quad H_1: \mu &lt; 380\)</span></p>
+<p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3: Test statistic.</strong> <span class="math display">\[
+z_{\text{cal}} = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}}
+= \frac{358.4 - 380}{10} = -2.160
+\]</span></p>
+<p><strong>Step 4: Critical value and critical region.</strong> Left-sided test, area 0.05 to the left: <span class="math inline">\(z_{0.05} = -z_{0.95} = -1.645\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &lt; -1.645\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-ex-2-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ex-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter02_one_sample_files/figure-html/fig-ex-2-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ex-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Critical region for Worked Example 2.1.1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Step 5: Decision and interpretation.</strong> <span class="math inline">\(z_{\text{cal}} = -2.160\)</span> falls in the critical region (<span class="math inline">\(-2.160 &lt; -1.645\)</span>), so we reject <span class="math inline">\(H_0\)</span>. That is, the mean daily wage of construction workers in Chiang Mai is less than 380 baht at the 0.05 level of significance.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="your-turn" class="level3">
 <h3 class="anchored" data-anchor-id="your-turn">Your Turn</h3>
@@ -286,11 +378,15 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>Problem to be added.</em></p>
+<p>The standard deviation of the price of a 5-kg bag of jasmine rice across shops is known to be <span class="math inline">\(\sigma\)</span> = 12 baht. A price-monitoring agency checks 49 shops and finds a mean price of <span class="math inline">\(\bar{x}\)</span> = 214.6 baht (hypothetical figures).</p>
+<ol type="a">
+<li>Construct a 95% confidence interval for the mean price.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the mean price is different from 210 baht.</li>
+</ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -299,42 +395,220 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><em>Solution to be added.</em></p>
+<p><strong>(a)</strong> <span class="math inline">\(\sigma/\sqrt{n} = 12/\sqrt{49} = 1.7143\)</span>; <span class="math inline">\(214.6 \pm 1.960(1.7143) = 214.6 \pm 3.36\)</span>. 95% CI: (211.24, 217.96). We are 95% confident that the mean price of a 5-kg bag of jasmine rice is between 211.24 and 217.96 baht.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu = 210 \quad H_1: \mu \ne 210\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(z_{\text{cal}} = \dfrac{214.6 - 210}{1.7143} = 2.683\)</span></p>
+<p><strong>Step 4.</strong> <span class="math inline">\(z_{0.025} = -1.960\)</span>, <span class="math inline">\(z_{0.975} = 1.960\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &lt; -1.960\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; 1.960\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(z_{\text{cal}} = 2.683\)</span> falls in the critical region (<span class="math inline">\(2.683 &gt; 1.960\)</span>), so we reject <span class="math inline">\(H_0\)</span>. That is, the mean price of a 5-kg bag of jasmine rice is different from 210 baht at the 0.05 level of significance; since <span class="math inline">\(\bar{x}\)</span> = 214.6, the mean price is higher than 210 baht.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="formula-summary" class="level3">
 <h3 class="anchored" data-anchor-id="formula-summary">Formula Summary</h3>
-<p><em>To be added.</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Conditions</td>
+<td style="text-align: left;"><span class="math inline">\(\sigma\)</span> known; population normal or <span class="math inline">\(n \ge 30\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\((1-\alpha)100\%\)</span> CI for <span class="math inline">\(\mu\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\bar{x} \pm z_{1-\alpha/2}\,\sigma/\sqrt{n}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Test statistic</td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Critical region</td>
+<td style="text-align: left;"><span class="math inline">\(\ne\)</span>: <span class="math inline">\(z_{\text{cal}} &lt; z_{\alpha/2}\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; z_{1-\alpha/2}\)</span>; <span class="math inline">\(&lt;\)</span>: <span class="math inline">\(z_{\text{cal}} &lt; z_{\alpha}\)</span>; <span class="math inline">\(&gt;\)</span>: <span class="math inline">\(z_{\text{cal}} &gt; z_{1-\alpha}\)</span></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="exercises" class="level3">
 <h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
-<p><em>To be added.</em></p>
+<p><strong>2.1.1</strong> Utility records show that the standard deviation of the monthly electricity bill of households in a city is 320 baht. A sample of 64 households has a mean bill of 1,240 baht (hypothetical figures). Construct a 99% confidence interval for the mean monthly bill.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 2.1.1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\sigma/\sqrt{n} = 320/\sqrt{64} = 40\)</span>; <span class="math inline">\(z_{0.995} = 2.576\)</span>. <span class="math inline">\(1240 \pm 2.576(40) = 1240 \pm 103.04\)</span>. 99% CI: (1,136.96, 1,343.04). We are 99% confident that the mean monthly electricity bill is between 1,136.96 and 1,343.04 baht.</p>
+</div>
+</div>
+</div>
+<p><strong>2.1.2</strong> A company claims that the mean monthly sales per salesperson are more than 150 thousand baht. The standard deviation is known to be 24 thousand baht. A sample of 40 salespeople has a mean of 156.2 thousand baht (hypothetical figures). Test the claim at <span class="math inline">\(\alpha\)</span> = 0.01.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 2.1.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu = 150 \quad H_1: \mu &gt; 150\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.01</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(\sigma/\sqrt{n} = 24/\sqrt{40} = 3.7947\)</span>; <span class="math inline">\(z_{\text{cal}} = (156.2 - 150)/3.7947 = 1.634\)</span></p>
+<p><strong>Step 4.</strong> <span class="math inline">\(z_{0.99} = 2.326\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &gt; 2.326\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(z_{\text{cal}} = 1.634\)</span> does not fall in the critical region (<span class="math inline">\(1.634 &lt; 2.326\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the mean monthly sales per salesperson are equal to 150 thousand baht at the 0.01 level of significance.</p>
+</div>
+</div>
+</div>
+<p><strong>2.1.3</strong> The standard deviation of savings deposits at a bank is known to be 12,000 baht. A sample of 100 accounts has a mean balance of 52,100 baht (hypothetical figures).</p>
+<ol type="a">
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the mean balance is different from 50,000 baht.</li>
+<li>Construct a 95% CI for the mean balance. Does it agree with (a)?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 2.1.3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: \mu = 5\times 10^{4} \quad H_1: \mu \ne 5\times 10^{4}\)</span>; <span class="math inline">\(\alpha\)</span> = 0.05. <span class="math inline">\(\sigma/\sqrt{n} = 1200\)</span>; <span class="math inline">\(z_{\text{cal}} = (5.21\times 10^{4} - 5\times 10^{4})/1200 = 1.750\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &lt; -1.960\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; 1.960\)</span>. <span class="math inline">\(z_{\text{cal}}\)</span> does not fall in the critical region (<span class="math inline">\(-1.960 &lt; 1.750 &lt; 1.960\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the mean balance is equal to 50,000 baht at the 0.05 level of significance.</p>
+<p><strong>(b)</strong> <span class="math inline">\(5.21\times 10^{4} \pm 1.960(1200)\)</span>: 95% CI (49,748.00, 54,452.00). The interval contains 50,000, which agrees with accepting <span class="math inline">\(H_0\)</span> in (a).</p>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="sec-mean-sigma-unknown" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-mean-sigma-unknown"><span class="header-section-number">2.2</span> Mean, <span class="math inline">\(\sigma\)</span> Unknown</h2>
 <section id="learning-objectives-1" class="level3">
 <h3 class="anchored" data-anchor-id="learning-objectives-1">Learning Objectives</h3>
-<p><em>To be added.</em></p>
+<ol type="1">
+<li>Use the <span class="math inline">\(t\)</span> distribution when <span class="math inline">\(\sigma\)</span> is unknown and read the <span class="math inline">\(t\)</span> table (Table 5).</li>
+<li>Construct and interpret a confidence interval for <span class="math inline">\(\mu\)</span> using <span class="math inline">\(s\)</span>.</li>
+<li>Carry out a <span class="math inline">\(t\)</span> test for <span class="math inline">\(\mu\)</span> in five steps.</li>
+<li>Use a confidence interval to reach the decision of a two-sided test.</li>
+</ol>
 </section>
 <section id="concept-1" class="level3">
 <h3 class="anchored" data-anchor-id="concept-1">Concept</h3>
-<p><em>To be added.</em></p>
+<p>In practice <span class="math inline">\(\sigma\)</span> is almost never known. We replace it by the sample standard deviation <span class="math inline">\(s\)</span>. Because <span class="math inline">\(s\)</span> itself varies from sample to sample, the statistic <span class="math display">\[
+t = \frac{\bar{x} - \mu}{s/\sqrt{n}}
+\]</span> is more spread out than <span class="math inline">\(z\)</span>. It follows a <strong><span class="math inline">\(t\)</span> distribution</strong> with <span class="math inline">\(\text{df} = n - 1\)</span> degrees of freedom, provided the population is normal. For moderate or large <span class="math inline">\(n\)</span> the method still works well when the population is not exactly normal.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-t-vs-z" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-t-vs-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter02_one_sample_files/figure-html/fig-t-vs-z-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-vs-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: The t distribution has heavier tails than z; with more df it gets closer to z
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="formulas-and-conditions-1" class="level3">
 <h3 class="anchored" data-anchor-id="formulas-and-conditions-1">Formulas and Conditions</h3>
-<p><em>To be added.</em></p>
+<p><strong>Conditions:</strong> <span class="math inline">\(\sigma\)</span> unknown; a random sample; the population is approximately normal (less important when <span class="math inline">\(n\)</span> is large).</p>
+<p><strong><span class="math inline">\((1-\alpha)100\%\)</span> confidence interval for <span class="math inline">\(\mu\)</span></strong> <span class="math display">\[
+\bar{x} \pm t_{1-\alpha/2,\,n-1}\,\frac{s}{\sqrt{n}}
+\]</span></p>
+<p><strong>Test statistic</strong> for <span class="math inline">\(H_0: \mu = \mu_0\)</span>, with <span class="math inline">\(\text{df} = n-1\)</span> <span class="math display">\[
+t_{\text{cal}} = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}
+\]</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 55%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(H_1\)</span></th>
+<th style="text-align: left;">Critical region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\mu \ne \mu_0\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(t_{\text{cal}} &lt; t_{\alpha/2,\,n-1}\)</span> or <span class="math inline">\(t_{\text{cal}} &gt; t_{1-\alpha/2,\,n-1}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\mu &lt; \mu_0\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(t_{\text{cal}} &lt; t_{\alpha,\,n-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\mu &gt; \mu_0\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(t_{\text{cal}} &gt; t_{1-\alpha,\,n-1}\)</span></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="worked-example-1" class="level3">
-<h3 class="anchored" data-anchor-id="worked-example-1">Worked Example</h3>
-<p><em>To be added.</em></p>
-</section>
-<section id="your-turn-1" class="level3">
-<h3 class="anchored" data-anchor-id="your-turn-1">Your Turn</h3>
+<section id="reading-the-t-table" class="level3">
+<h3 class="anchored" data-anchor-id="reading-the-t-table">Reading the <span class="math inline">\(t\)</span> Table</h3>
+<p>Table 5 gives <span class="math inline">\(t\)</span> values with a stated <strong>area to the left</strong> (columns) for each df (rows). Like <span class="math inline">\(z\)</span>, the <span class="math inline">\(t\)</span> curve is symmetric, so the table lists only the right half: <span class="math inline">\(t_{0.05,\,\text{df}} = -t_{0.95,\,\text{df}}\)</span>.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Not every df is in the table
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>After df = 30 the table jumps to 40, 50, 60, 80, 100, 200, 500 and <span class="math inline">\(\infty\)</span>. All examples in this book use df that appear in the table.</p>
+</div>
+</div>
+<p><strong>Worked Example 2.2.1.</strong> Find (a) <span class="math inline">\(t_{0.975,\,24}\)</span>, (b) <span class="math inline">\(t_{0.05,\,15}\)</span>, (c) <span class="math inline">\(t_{0.995,\,40}\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Row df = 24, column 0.975: <span class="math inline">\(t_{0.975,\,24} = 2.064\)</span>.</p></li>
+<li><p>Area 0.05 is in the left tail. By symmetry, <span class="math inline">\(t_{0.05,\,15} = -t_{0.95,\,15} = -1.753\)</span>.</p></li>
+<li><p>Row df = 40, column 0.995: <span class="math inline">\(t_{0.995,\,40} = 2.704\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -345,11 +619,58 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>Problem to be added.</em></p>
+<p>Shade the area to the left on each curve, then find (a) <span class="math inline">\(t_{0.975,\,15}\)</span>, (b) <span class="math inline">\(t_{0.01,\,20}\)</span>, (c) <span class="math inline">\(t_{0.95,\,60}\)</span>.</p>
 </div>
+</div>
+<div id="fig-yt-2-2-1" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-yt-2-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-2-2-1" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-yt-2-2-1-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="307.2">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-yt-2-2-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter02_one_sample_files/figure-html/fig-yt-2-2-1-1.png" id="fig-yt-2-2-1-1" class="img-fluid figure-img" data-ref-parent="fig-yt-2-2-1" width="307">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-2-2-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-2-2-1" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-yt-2-2-1-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="307.2">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-yt-2-2-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter02_one_sample_files/figure-html/fig-yt-2-2-1-2.png" id="fig-yt-2-2-1-2" class="img-fluid figure-img" data-ref-parent="fig-yt-2-2-1" width="307">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-2-2-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-2-2-1" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-yt-2-2-1-3" class="quarto-float quarto-figure quarto-figure-center anchored" width="307.2">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-yt-2-2-1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter02_one_sample_files/figure-html/fig-yt-2-2-1-3.png" id="fig-yt-2-2-1-3" class="img-fluid figure-img" data-ref-parent="fig-yt-2-2-1" width="307">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-2-2-1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-yt-2-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Shade the area to the left before reading Table 5
+</figcaption>
+</figure>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -358,39 +679,392 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><em>Solution to be added.</em></p>
+<ol type="a">
+<li><p><span class="math inline">\(t_{0.975,\,15} = 2.131\)</span></p></li>
+<li><p><span class="math inline">\(t_{0.01,\,20} = -t_{0.99,\,20} = -2.528\)</span></p></li>
+<li><p><span class="math inline">\(t_{0.95,\,60} = 1.671\)</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="worked-example-1" class="level3">
+<h3 class="anchored" data-anchor-id="worked-example-1">Worked Example</h3>
+<p><strong>Worked Example 2.2.2.</strong> A food-delivery platform claims that its riders in Chiang Mai earn more than 600 baht per day on average. A researcher records the daily earnings (baht) of 25 randomly selected riders (hypothetical data):</p>
+<div class="cell">
+<div id="tbl-riders" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-riders-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: Daily earnings (baht) of 25 riders
+</figcaption>
+<div aria-describedby="tbl-riders-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">724</td>
+<td style="text-align: right;">756</td>
+<td style="text-align: right;">588</td>
+<td style="text-align: right;">693</td>
+<td style="text-align: right;">777</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">657</td>
+<td style="text-align: right;">631</td>
+<td style="text-align: right;">777</td>
+<td style="text-align: right;">549</td>
+<td style="text-align: right;">444</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">511</td>
+<td style="text-align: right;">614</td>
+<td style="text-align: right;">754</td>
+<td style="text-align: right;">593</td>
+<td style="text-align: right;">698</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">541</td>
+<td style="text-align: right;">616</td>
+<td style="text-align: right;">793</td>
+<td style="text-align: right;">670</td>
+<td style="text-align: right;">698</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">555</td>
+<td style="text-align: right;">668</td>
+<td style="text-align: right;">510</td>
+<td style="text-align: right;">740</td>
+<td style="text-align: right;">567</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The sample gives <span class="math inline">\(\bar{x}\)</span> = 644.96 and <span class="math inline">\(s\)</span> = 96.6499 baht.</p>
+<ol type="a">
+<li>Construct a 95% confidence interval for the mean daily earnings.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test the platform’s claim.</li>
+</ol>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><strong>(a)</strong> <span class="math inline">\(\text{df} = 25 - 1 = 24\)</span> and <span class="math inline">\(t_{0.975,\,24} = 2.064\)</span>. <span class="math display">\[
+\frac{s}{\sqrt{n}} = \frac{96.6499}{\sqrt{25}} = 19.33
+\]</span> <span class="math display">\[
+\bar{x} \pm t_{0.975,\,24}\frac{s}{\sqrt{n}}
+= 644.96 \pm 2.064(19.33)
+= 644.96 \pm 39.8971
+\]</span> 95% CI: (605.06, 684.86)</p>
+<p>We are 95% confident that the mean daily earnings of riders in Chiang Mai are between 605.06 and 684.86 baht.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: \mu = 600\)</span> <span class="math inline">\(\quad H_1: \mu &gt; 600\)</span></p>
+<p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3: Test statistic.</strong> <span class="math display">\[
+t_{\text{cal}} = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}
+= \frac{644.96 - 600}{19.33} = 2.326
+\]</span></p>
+<p><strong>Step 4: Critical value and critical region.</strong> Right-sided test with df = 24: <span class="math inline">\(t_{0.95,\,24} = 1.711\)</span>. Critical region: <span class="math inline">\(t_{\text{cal}} &gt; 1.711\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-ex-2-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ex-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter02_one_sample_files/figure-html/fig-ex-2-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ex-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: Critical region for Worked Example 2.2.2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Step 5: Decision and interpretation.</strong> <span class="math inline">\(t_{\text{cal}} = 2.326\)</span> falls in the critical region (<span class="math inline">\(2.326 &gt; 1.711\)</span>), so we reject <span class="math inline">\(H_0\)</span>. That is, the mean daily earnings of riders in Chiang Mai are more than 600 baht at the 0.05 level of significance.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="confidence-intervals-and-two-sided-tests" class="level3">
+<h3 class="anchored" data-anchor-id="confidence-intervals-and-two-sided-tests">Confidence Intervals and Two-Sided Tests</h3>
+<p>A <span class="math inline">\((1-\alpha)100\%\)</span> CI and a <strong>two-sided</strong> test at level <span class="math inline">\(\alpha\)</span> always agree:</p>
+<ul>
+<li>if <span class="math inline">\(\mu_0\)</span> is <strong>outside</strong> the CI, a two-sided test rejects <span class="math inline">\(H_0: \mu = \mu_0\)</span>;</li>
+<li>if <span class="math inline">\(\mu_0\)</span> is <strong>inside</strong> the CI, the test accepts <span class="math inline">\(H_0\)</span>.</li>
+</ul>
+<p>For the riders, the 95% CI (605.06, 684.86) does not contain 600, so a two-sided test of <span class="math inline">\(H_0: \mu = 600\)</span> at <span class="math inline">\(\alpha\)</span> = 0.05 would reject <span class="math inline">\(H_0\)</span>. It does contain 620, so the same test of <span class="math inline">\(H_0: \mu = 620\)</span> would accept <span class="math inline">\(H_0\)</span>.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Only for two-sided tests
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This shortcut matches a two-sided test with the same <span class="math inline">\(\alpha\)</span> as the confidence level (<span class="math inline">\(\alpha\)</span> = 0.05 with a 95% CI). For a one-sided test, carry out the five steps.</p>
+</div>
+</div>
+</section>
+<section id="your-turn-1" class="level3">
+<h3 class="anchored" data-anchor-id="your-turn-1">Your Turn</h3>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Your Turn 2.2.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A property agent records the monthly rent of 16 one-bedroom condominium units near Nimmanhaemin Road, Chiang Mai. The sample mean is 9,420 baht and the standard deviation is 784 baht (hypothetical figures). Assume rents are normally distributed.</p>
+<ol type="a">
+<li>Construct a 95% confidence interval for the mean rent.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the mean rent is different from 9,000 baht.</li>
+<li>Does the CI in (a) agree with your decision in (b)?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Your Turn 2.2.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>(a)</strong> df = 15, <span class="math inline">\(t_{0.975,\,15} = 2.131\)</span>; <span class="math inline">\(s/\sqrt{n} = 784/\sqrt{16} = 196\)</span>; <span class="math inline">\(9420 \pm 2.131(196) = 9420 \pm 417.676\)</span>. 95% CI: (9,002.32, 9,837.68). We are 95% confident that the mean monthly rent is between 9,002.32 and 9,837.68 baht.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu = 9000 \quad H_1: \mu \ne 9000\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(t_{\text{cal}} = \dfrac{9420 - 9000}{196} = 2.143\)</span></p>
+<p><strong>Step 4.</strong> df = 15: <span class="math inline">\(t_{0.025,\,15} = -2.131\)</span>, <span class="math inline">\(t_{0.975,\,15} = 2.131\)</span>. Critical region: <span class="math inline">\(t_{\text{cal}} &lt; -2.131\)</span> or <span class="math inline">\(t_{\text{cal}} &gt; 2.131\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(t_{\text{cal}} = 2.143\)</span> falls in the critical region (<span class="math inline">\(2.143 &gt; 2.131\)</span>), so we reject <span class="math inline">\(H_0\)</span>. That is, the mean monthly rent is different from 9,000 baht at the 0.05 level of significance; since <span class="math inline">\(\bar{x}\)</span> = 9,420, the mean rent is higher than 9,000 baht.</p>
+<p><strong>(c)</strong> Yes. The 95% CI does not contain 9,000, so the two-sided test at <span class="math inline">\(\alpha\)</span> = 0.05 rejects <span class="math inline">\(H_0\)</span>.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="formula-summary-1" class="level3">
 <h3 class="anchored" data-anchor-id="formula-summary-1">Formula Summary</h3>
-<p><em>To be added.</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Conditions</td>
+<td style="text-align: left;"><span class="math inline">\(\sigma\)</span> unknown; population approximately normal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\((1-\alpha)100\%\)</span> CI for <span class="math inline">\(\mu\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\bar{x} \pm t_{1-\alpha/2,\,n-1}\,s/\sqrt{n}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Test statistic</td>
+<td style="text-align: left;"><span class="math inline">\(t_{\text{cal}} = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}}\)</span>, df <span class="math inline">\(= n-1\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Critical region</td>
+<td style="text-align: left;"><span class="math inline">\(\ne\)</span>: <span class="math inline">\(t_{\text{cal}} &lt; t_{\alpha/2,\,n-1}\)</span> or <span class="math inline">\(t_{\text{cal}} &gt; t_{1-\alpha/2,\,n-1}\)</span>; <span class="math inline">\(&lt;\)</span>: <span class="math inline">\(t_{\text{cal}} &lt; t_{\alpha,\,n-1}\)</span>; <span class="math inline">\(&gt;\)</span>: <span class="math inline">\(t_{\text{cal}} &gt; t_{1-\alpha,\,n-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CI and test</td>
+<td style="text-align: left;">two-sided test at <span class="math inline">\(\alpha\)</span> rejects <span class="math inline">\(H_0\)</span> <span class="math inline">\(\iff\)</span> <span class="math inline">\(\mu_0\)</span> is outside the <span class="math inline">\((1-\alpha)100\%\)</span> CI</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="exercises-1" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-1">Exercises</h3>
-<p><em>To be added.</em></p>
+<p><strong>2.2.1</strong> A survey of 20 households in a district finds a mean household debt of 184,500 baht with a standard deviation of 41,200 baht (hypothetical figures). At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the mean household debt is more than 170,000 baht.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 2.2.1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu = 1.7\times 10^{5} \quad H_1: \mu &gt; 1.7\times 10^{5}\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(s/\sqrt{n} = 4.12\times 10^{4}/\sqrt{20} = 9212.6001\)</span>; <span class="math inline">\(t_{\text{cal}} = (1.845\times 10^{5} - 1.7\times 10^{5})/9212.6001 = 1.574\)</span></p>
+<p><strong>Step 4.</strong> df = 19: <span class="math inline">\(t_{0.95,\,19} = 1.729\)</span>. Critical region: <span class="math inline">\(t_{\text{cal}} &gt; 1.729\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(t_{\text{cal}} = 1.574\)</span> does not fall in the critical region (<span class="math inline">\(1.574 &lt; 1.729\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the mean household debt in the district is equal to 170,000 baht at the 0.05 level of significance.</p>
+</div>
+</div>
+</div>
+<p><strong>2.2.2</strong> A sample of 30 gig workers reports a mean of 47.3 working hours per week with a standard deviation of 8.4 hours (hypothetical figures). Construct a 99% confidence interval for the mean weekly working hours.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 2.2.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>df = 29, <span class="math inline">\(t_{0.995,\,29} = 2.756\)</span>; <span class="math inline">\(s/\sqrt{n} = 8.4/\sqrt{30} = 1.5336\)</span>; <span class="math inline">\(47.3 \pm 2.756(1.5336) = 47.3 \pm 4.2266\)</span>. 99% CI: (43.07, 51.53). We are 99% confident that the mean weekly working hours of gig workers are between 43.07 and 51.53 hours.</p>
+</div>
+</div>
+</div>
+<p><strong>2.2.3</strong> A 95% confidence interval for the mean monthly interest rate charged by informal lenders is (12.4%, 15.8%) (hypothetical figures). Without further calculation, what is the decision of a two-sided test at <span class="math inline">\(\alpha\)</span> = 0.05 for (a) <span class="math inline">\(H_0: \mu = 16\)</span>, (b) <span class="math inline">\(H_0: \mu = 15\)</span>?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 2.2.3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>16 is outside the CI, so we reject <span class="math inline">\(H_0\)</span>.</li>
+<li>15 is inside the CI, so we accept <span class="math inline">\(H_0\)</span>.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>2.2.4</strong> Find (a) <span class="math inline">\(t_{0.90,\,12}\)</span>, (b) <span class="math inline">\(t_{0.025,\,8}\)</span>, (c) <span class="math inline">\(t_{0.99,\,100}\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 2.2.4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>1.356 (b) <span class="math inline">\(-t_{0.975,\,8} = -2.306\)</span> (c) 2.364</li>
+</ol>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="sec-proportion" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="sec-proportion"><span class="header-section-number">2.3</span> Proportion</h2>
 <section id="learning-objectives-2" class="level3">
 <h3 class="anchored" data-anchor-id="learning-objectives-2">Learning Objectives</h3>
-<p><em>To be added.</em></p>
+<ol type="1">
+<li>Check the conditions for the normal approximation to <span class="math inline">\(\hat{p}\)</span>.</li>
+<li>Construct and interpret a confidence interval for a population proportion <span class="math inline">\(p\)</span>.</li>
+<li>Carry out a <span class="math inline">\(z\)</span> test for <span class="math inline">\(p\)</span> in five steps.</li>
+<li>Explain why the CI uses <span class="math inline">\(\hat{p}\)</span> in the standard error but the test uses <span class="math inline">\(p_0\)</span>.</li>
+</ol>
 </section>
 <section id="concept-2" class="level3">
 <h3 class="anchored" data-anchor-id="concept-2">Concept</h3>
-<p><em>To be added.</em></p>
+<p>Many economic questions are about proportions: the share of households in debt, the labour force participation rate, the share of firms that raised prices, or the share of people who used a stimulus measure. Each person or firm either has the characteristic (“success”) or not.</p>
+<p>With <span class="math inline">\(x\)</span> successes in a sample of <span class="math inline">\(n\)</span>, the sample proportion is <span class="math inline">\(\hat{p} = x/n\)</span>. From Chapter 1, <span class="math inline">\(\hat{p}\)</span> is approximately normal with mean <span class="math inline">\(p\)</span> and standard error <span class="math inline">\(\sqrt{p(1-p)/n}\)</span> when the sample is large enough.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Which proportion goes in the standard error?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The standard error contains the unknown <span class="math inline">\(p\)</span>, so we must put in a value:</p>
+<ul>
+<li><strong>Confidence interval:</strong> we do not assume any value of <span class="math inline">\(p\)</span>, so we use our best estimate <span class="math inline">\(\hat{p}\)</span>.</li>
+<li><strong>Hypothesis test:</strong> we assume <span class="math inline">\(H_0\)</span> is true, so we use <span class="math inline">\(p_0\)</span>.</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="formulas-and-conditions-2" class="level3">
 <h3 class="anchored" data-anchor-id="formulas-and-conditions-2">Formulas and Conditions</h3>
-<p><em>To be added.</em></p>
+<p><strong><span class="math inline">\((1-\alpha)100\%\)</span> confidence interval for <span class="math inline">\(p\)</span></strong> <span class="math display">\[
+\hat{p} \pm z_{1-\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
+\qquad \text{condition: } n\hat{p} \ge 5 \text{ and } n(1-\hat{p}) \ge 5
+\]</span></p>
+<p><strong>Test statistic</strong> for <span class="math inline">\(H_0: p = p_0\)</span> <span class="math display">\[
+z_{\text{cal}} = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}}
+\qquad \text{condition: } np_0 \ge 5 \text{ and } n(1-p_0) \ge 5
+\]</span></p>
+<p>The critical regions are the same as for the <span class="math inline">\(z\)</span> test of a mean.</p>
 </section>
 <section id="worked-example-2" class="level3">
 <h3 class="anchored" data-anchor-id="worked-example-2">Worked Example</h3>
-<p><em>To be added.</em></p>
+<p><strong>Worked Example 2.3.1.</strong> The government ran a co-payment scheme in which it paid part of the price of goods bought at small shops. An economist claims that more than 30% of households in Chiang Mai used the scheme. In a random sample of 400 households, 148 used it (hypothetical figures).</p>
+<ol type="a">
+<li>Construct a 95% confidence interval for the proportion of households that used the scheme.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test the economist’s claim.</li>
+</ol>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\hat{p} = 148/400 = 0.37\)</span></p>
+<p><strong>(a)</strong> Check: <span class="math inline">\(n\hat{p} = 148 \ge 5\)</span> and <span class="math inline">\(n(1-\hat{p}) = 252 \ge 5\)</span>. <span class="math display">\[
+\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} = \sqrt{\frac{0.37(0.63)}{400}} = 0.0241
+\]</span> <span class="math display">\[
+0.37 \pm 1.960(0.0241) = 0.37 \pm 0.0472
+\]</span> 95% CI: (0.3228, 0.4172)</p>
+<p>We are 95% confident that the proportion of households in Chiang Mai that used the scheme is between 0.3228 and 0.4172.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: p = 0.30\)</span> <span class="math inline">\(\quad H_1: p &gt; 0.30\)</span></p>
+<p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3: Test statistic.</strong> Check: <span class="math inline">\(np_0 = 120 \ge 5\)</span> and <span class="math inline">\(n(1-p_0) = 280 \ge 5\)</span>. <span class="math display">\[
+\sqrt{\frac{p_0(1-p_0)}{n}} = \sqrt{\frac{0.30(0.70)}{400}} = 0.0229
+\]</span> <span class="math display">\[
+z_{\text{cal}} = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.37 - 0.30}{0.0229} = 3.057
+\]</span></p>
+<p><strong>Step 4: Critical value and critical region.</strong> <span class="math inline">\(z_{0.95} = 1.645\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &gt; 1.645\)</span>.</p>
+<p><strong>Step 5: Decision and interpretation.</strong> <span class="math inline">\(z_{\text{cal}} = 3.057\)</span> falls in the critical region (<span class="math inline">\(3.057 &gt; 1.645\)</span>), so we reject <span class="math inline">\(H_0\)</span>. That is, the proportion of households in Chiang Mai that used the scheme is more than 0.30 at the 0.05 level of significance.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="your-turn-2" class="level3">
 <h3 class="anchored" data-anchor-id="your-turn-2">Your Turn</h3>
@@ -404,11 +1078,15 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>Problem to be added.</em></p>
+<p>A university reports that 70% of its economics graduates find a job within six months. A survey of 250 recent graduates finds that 160 found a job within six months (hypothetical figures).</p>
+<ol type="a">
+<li>Construct a 95% confidence interval for the proportion of graduates who find a job within six months.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the proportion is different from 0.70.</li>
+</ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -417,42 +1095,192 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><em>Solution to be added.</em></p>
+<p><span class="math inline">\(\hat{p} = 160/250 = 0.64\)</span></p>
+<p><strong>(a)</strong> <span class="math inline">\(\sqrt{0.64(0.36)/250} = 0.0304\)</span>; <span class="math inline">\(0.64 \pm 1.960(0.0304) = 0.64 \pm 0.0596\)</span>. 95% CI: (0.5804, 0.6996). We are 95% confident that the proportion of graduates who find a job within six months is between 0.5804 and 0.6996.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: p = 0.70 \quad H_1: p \ne 0.70\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(\sqrt{0.70(0.30)/250} = 0.029\)</span>; <span class="math inline">\(z_{\text{cal}} = (0.64 - 0.70)/0.029 = -2.069\)</span></p>
+<p><strong>Step 4.</strong> Critical region: <span class="math inline">\(z_{\text{cal}} &lt; -1.960\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; 1.960\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(z_{\text{cal}} = -2.069\)</span> falls in the critical region (<span class="math inline">\(-2.069 &lt; -1.960\)</span>), so we reject <span class="math inline">\(H_0\)</span>. That is, the proportion of graduates who find a job within six months is different from 0.70 at the 0.05 level of significance; since <span class="math inline">\(\hat{p}\)</span> = 0.64, the proportion is lower than 0.70.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="formula-summary-2" class="level3">
 <h3 class="anchored" data-anchor-id="formula-summary-2">Formula Summary</h3>
-<p><em>To be added.</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Confidence interval</th>
+<th style="text-align: left;">Hypothesis test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Standard error</td>
+<td style="text-align: left;"><span class="math inline">\(\sqrt{\hat{p}(1-\hat{p})/n}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\sqrt{p_0(1-p_0)/n}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Condition</td>
+<td style="text-align: left;"><span class="math inline">\(n\hat{p} \ge 5\)</span>, <span class="math inline">\(n(1-\hat{p}) \ge 5\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(np_0 \ge 5\)</span>, <span class="math inline">\(n(1-p_0) \ge 5\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Formula</td>
+<td style="text-align: left;"><span class="math inline">\(\hat{p} \pm z_{1-\alpha/2}\sqrt{\hat{p}(1-\hat{p})/n}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} = \dfrac{\hat{p}-p_0}{\sqrt{p_0(1-p_0)/n}}\)</span></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="exercises-2" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-2">Exercises</h3>
-<p><em>To be added.</em></p>
+<p><strong>2.3.1</strong> In a survey of 500 small businesses, 95 had borrowed from an informal lender in the past year (hypothetical figures). Construct a 99% confidence interval for the proportion of small businesses that borrowed from an informal lender.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 2.3.1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\hat{p} = 0.19\)</span>; <span class="math inline">\(\sqrt{0.19(0.81)/500} = 0.0175\)</span>; <span class="math inline">\(z_{0.995} = 2.576\)</span>; <span class="math inline">\(0.19 \pm 2.576(0.0175) = 0.19 \pm 0.0451\)</span>. 99% CI: (0.1449, 0.2351). We are 99% confident that the proportion of small businesses that borrowed from an informal lender is between 0.1449 and 0.2351.</p>
+</div>
+</div>
+</div>
+<p><strong>2.3.2</strong> A bank believes that less than 25% of its credit-card holders pay only the minimum amount each month. In a sample of 300 card holders, 66 paid only the minimum (hypothetical figures). Test the bank’s belief at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 2.3.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: p = 0.25 \quad H_1: p &lt; 0.25\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(\hat{p} = 0.22\)</span>; <span class="math inline">\(\sqrt{0.25(0.75)/300} = 0.025\)</span>; <span class="math inline">\(z_{\text{cal}} = (0.22 - 0.25)/0.025 = -1.200\)</span></p>
+<p><strong>Step 4.</strong> <span class="math inline">\(z_{0.05} = -1.645\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &lt; -1.645\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(z_{\text{cal}} = -1.200\)</span> does not fall in the critical region (<span class="math inline">\(-1.200 &gt; -1.645\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the proportion of card holders who pay only the minimum is equal to 0.25 at the 0.05 level of significance.</p>
+</div>
+</div>
+</div>
+<p><strong>2.3.3</strong> A researcher wants to test <span class="math inline">\(H_0: p = 0.05\)</span> for the unemployment rate in a district using a sample of 60 people. Is the <span class="math inline">\(z\)</span> test appropriate? Explain.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 2.3.3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No.&nbsp;<span class="math inline">\(np_0 = 60(0.05) = 3 &lt; 5\)</span>, so the normal approximation is not reliable. A larger sample (at least 100 people) is needed.</p>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="sec-variance" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="sec-variance"><span class="header-section-number">2.4</span> Variance</h2>
 <section id="learning-objectives-3" class="level3">
 <h3 class="anchored" data-anchor-id="learning-objectives-3">Learning Objectives</h3>
-<p><em>To be added.</em></p>
+<ol type="1">
+<li>Explain why the variance matters in economics (risk, volatility, price stability).</li>
+<li>Read the chi-square table (Table 6).</li>
+<li>Construct and interpret a confidence interval for <span class="math inline">\(\sigma^2\)</span> and <span class="math inline">\(\sigma\)</span>.</li>
+<li>Carry out a chi-square test for <span class="math inline">\(\sigma^2\)</span> in five steps.</li>
+</ol>
 </section>
 <section id="concept-3" class="level3">
 <h3 class="anchored" data-anchor-id="concept-3">Concept</h3>
-<p><em>To be added.</em></p>
+<p>The mean tells us the typical value; the variance tells us how much values <strong>vary</strong>. In finance the standard deviation of returns is the most common measure of <strong>risk</strong> (volatility). A central bank cares about the stability of prices, and a firm cares about the stability of its sales.</p>
+<p>To make inferences about <span class="math inline">\(\sigma^2\)</span> we use the sample variance <span class="math inline">\(s^2\)</span>. If the population is normal, <span class="math display">\[
+\chi^2 = \frac{(n-1)s^2}{\sigma^2}
+\]</span> follows a <strong>chi-square distribution</strong> with <span class="math inline">\(n-1\)</span> degrees of freedom. The chi-square distribution takes only positive values and is skewed to the right.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-chisq-shape" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chisq-shape-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter02_one_sample_files/figure-html/fig-chisq-shape-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chisq-shape-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.5: Chi-square distributions are skewed to the right; the skew decreases as df increases
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>The population must be normal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The chi-square methods for a variance are sensitive to non-normality, even for large samples. Use them only when the data are approximately normal.</p>
+</div>
+</div>
 </section>
-<section id="formulas-and-conditions-3" class="level3">
-<h3 class="anchored" data-anchor-id="formulas-and-conditions-3">Formulas and Conditions</h3>
-<p><em>To be added.</em></p>
-</section>
-<section id="worked-example-3" class="level3">
-<h3 class="anchored" data-anchor-id="worked-example-3">Worked Example</h3>
-<p><em>To be added.</em></p>
-</section>
-<section id="your-turn-3" class="level3">
-<h3 class="anchored" data-anchor-id="your-turn-3">Your Turn</h3>
+<section id="reading-the-chi-square-table" class="level3">
+<h3 class="anchored" data-anchor-id="reading-the-chi-square-table">Reading the Chi-Square Table</h3>
+<p>Table 6 gives <span class="math inline">\(\chi^2\)</span> values with a stated area to the left, for df = 1 to 100. The curve is <strong>not symmetric</strong>, so for a two-sided test or a CI we read two different values from the table; we cannot use a minus sign.</p>
+<p><strong>Worked Example 2.4.1.</strong> For df = 23, find <span class="math inline">\(\chi^2_{0.025,\,23}\)</span>, <span class="math inline">\(\chi^2_{0.975,\,23}\)</span> and <span class="math inline">\(\chi^2_{0.95,\,23}\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Row df = 23: <span class="math inline">\(\chi^2_{0.025,\,23} = 11.7\)</span>, <span class="math inline">\(\chi^2_{0.975,\,23} = 38.1\)</span> and <span class="math inline">\(\chi^2_{0.95,\,23} = 35.2\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-chisq-23" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chisq-23-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter02_one_sample_files/figure-html/fig-chisq-23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chisq-23-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.6: Areas 0.025 in each tail of the chi-square distribution with df = 23
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -463,11 +1291,58 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>Problem to be added.</em></p>
+<p>Shade the area to the left on each curve, then find (a) <span class="math inline">\(\chi^2_{0.05,\,19}\)</span>, (b) <span class="math inline">\(\chi^2_{0.995,\,10}\)</span>, (c) <span class="math inline">\(\chi^2_{0.025,\,30}\)</span>.</p>
 </div>
+</div>
+<div id="fig-yt-2-4-1" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-yt-2-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-2-4-1" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-yt-2-4-1-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="307.2">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-yt-2-4-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter02_one_sample_files/figure-html/fig-yt-2-4-1-1.png" id="fig-yt-2-4-1-1" class="img-fluid figure-img" data-ref-parent="fig-yt-2-4-1" width="307">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-2-4-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-2-4-1" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-yt-2-4-1-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="307.2">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-yt-2-4-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter02_one_sample_files/figure-html/fig-yt-2-4-1-2.png" id="fig-yt-2-4-1-2" class="img-fluid figure-img" data-ref-parent="fig-yt-2-4-1" width="307">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-2-4-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-2-4-1" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-yt-2-4-1-3" class="quarto-float quarto-figure quarto-figure-center anchored" width="307.2">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-yt-2-4-1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter02_one_sample_files/figure-html/fig-yt-2-4-1-3.png" id="fig-yt-2-4-1-3" class="img-fluid figure-img" data-ref-parent="fig-yt-2-4-1" width="307">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-2-4-1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-yt-2-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.7: Shade the area to the left before reading Table 6
+</figcaption>
+</figure>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -476,20 +1351,225 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><em>Solution to be added.</em></p>
+<ol type="a">
+<li><p><span class="math inline">\(\chi^2_{0.05,\,19} = 10.1\)</span></p></li>
+<li><p><span class="math inline">\(\chi^2_{0.995,\,10} = 25.2\)</span></p></li>
+<li><p><span class="math inline">\(\chi^2_{0.025,\,30} = 16.8\)</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="formulas-and-conditions-3" class="level3">
+<h3 class="anchored" data-anchor-id="formulas-and-conditions-3">Formulas and Conditions</h3>
+<p><strong>Condition:</strong> a random sample from a normal population.</p>
+<p><strong><span class="math inline">\((1-\alpha)100\%\)</span> confidence interval for <span class="math inline">\(\sigma^2\)</span></strong> <span class="math display">\[
+\left(\frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}},\;
+      \frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}}\right)
+\]</span> Take the square root of both limits to get a CI for <span class="math inline">\(\sigma\)</span>. The larger chi-square value gives the <strong>lower</strong> limit. The interval is not symmetric about <span class="math inline">\(s^2\)</span>.</p>
+<p><strong>Test statistic</strong> for <span class="math inline">\(H_0: \sigma^2 = \sigma_0^2\)</span>, with df <span class="math inline">\(= n-1\)</span> <span class="math display">\[
+\chi^2_{\text{cal}} = \frac{(n-1)s^2}{\sigma_0^2}
+\]</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 55%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(H_1\)</span></th>
+<th style="text-align: left;">Critical region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\sigma^2 \ne \sigma_0^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\chi^2_{\text{cal}} &lt; \chi^2_{\alpha/2,\,n-1}\)</span> or <span class="math inline">\(\chi^2_{\text{cal}} &gt; \chi^2_{1-\alpha/2,\,n-1}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\sigma^2 &lt; \sigma_0^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\chi^2_{\text{cal}} &lt; \chi^2_{\alpha,\,n-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\sigma^2 &gt; \sigma_0^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\chi^2_{\text{cal}} &gt; \chi^2_{1-\alpha,\,n-1}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>A claim about <span class="math inline">\(\sigma\)</span> is tested as the same claim about <span class="math inline">\(\sigma^2\)</span>: for example <span class="math inline">\(\sigma &gt; 2\)</span> is <span class="math inline">\(\sigma^2 &gt; 4\)</span>.</p>
+</section>
+<section id="worked-example-3" class="level3">
+<h3 class="anchored" data-anchor-id="worked-example-3">Worked Example</h3>
+<p><strong>Worked Example 2.4.2.</strong> A fund manager states that the standard deviation of the fund’s monthly return is 2%. An investor suspects the fund is riskier. Over the last 24 months the standard deviation of the monthly return was <span class="math inline">\(s\)</span> = 2.6% (hypothetical figures). Assume monthly returns are normally distributed.</p>
+<ol type="a">
+<li>Construct a 95% confidence interval for the variance and the standard deviation of the monthly return.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the standard deviation is more than 2%.</li>
+</ol>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-30" class="callout-30-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(s^2 = 2.6^2 = 6.76\)</span>, df = 23, <span class="math inline">\((n-1)s^2 = 23(6.76) = 155.48\)</span>.</p>
+<p><strong>(a)</strong> <span class="math inline">\(\chi^2_{0.025,\,23} = 11.7\)</span> and <span class="math inline">\(\chi^2_{0.975,\,23} = 38.1\)</span>. <span class="math display">\[
+\left(\frac{155.48}{38.1},\; \frac{155.48}{11.7}\right)
+= (4.0808,\; 13.2889)
+\]</span> For <span class="math inline">\(\sigma\)</span>: <span class="math inline">\((\sqrt{4.0808},\ \sqrt{13.2889}) = (2.0201,\ 3.6454)\)</span></p>
+<p>We are 95% confident that the standard deviation of the fund’s monthly return is between 2.0201% and 3.6454%. Note that <span class="math inline">\(s\)</span> = 2.6 is not in the middle of the interval.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: \sigma^2 = 4\)</span> <span class="math inline">\(\quad H_1: \sigma^2 &gt; 4\)</span> (that is, <span class="math inline">\(\sigma &gt; 2\)</span>)</p>
+<p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3: Test statistic.</strong> <span class="math display">\[
+\chi^2_{\text{cal}} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{155.48}{4} = 38.870
+\]</span></p>
+<p><strong>Step 4: Critical value and critical region.</strong> df = 23: <span class="math inline">\(\chi^2_{0.95,\,23} = 35.2\)</span>. Critical region: <span class="math inline">\(\chi^2_{\text{cal}} &gt; 35.2\)</span>.</p>
+<p><strong>Step 5: Decision and interpretation.</strong> <span class="math inline">\(\chi^2_{\text{cal}} = 38.870\)</span> falls in the critical region (<span class="math inline">\(38.870 &gt; 35.2\)</span>), so we reject <span class="math inline">\(H_0\)</span>. That is, the standard deviation of the fund’s monthly return is more than 2% at the 0.05 level of significance.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="your-turn-3" class="level3">
+<h3 class="anchored" data-anchor-id="your-turn-3">Your Turn</h3>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Your Turn 2.4.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A price-stabilization policy aims to keep the standard deviation of the weekly retail price of pork at 3 baht per kg. Over 20 weeks the standard deviation was <span class="math inline">\(s\)</span> = 4.5 baht (hypothetical figures). Assume prices are normally distributed.</p>
+<ol type="a">
+<li>Construct a 95% confidence interval for <span class="math inline">\(\sigma\)</span>.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the standard deviation is different from 3 baht.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Your Turn 2.4.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(s^2 = 20.25\)</span>, df = 19, <span class="math inline">\((n-1)s^2 = 384.75\)</span>; <span class="math inline">\(\chi^2_{0.025,\,19} = 8.91\)</span>, <span class="math inline">\(\chi^2_{0.975,\,19} = 32.9\)</span>.</p>
+<p><strong>(a)</strong> CI for <span class="math inline">\(\sigma^2\)</span>: <span class="math inline">\((384.75/32.9,\ 384.75/8.91) = (11.6945,\ 43.1818)\)</span>. CI for <span class="math inline">\(\sigma\)</span>: (3.4197, 6.5713). We are 95% confident that the standard deviation of the weekly pork price is between 3.4197 and 6.5713 baht.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \sigma^2 = 9 \quad H_1: \sigma^2 \ne 9\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(\chi^2_{\text{cal}} = 384.75/9 = 42.750\)</span></p>
+<p><strong>Step 4.</strong> Critical region: <span class="math inline">\(\chi^2_{\text{cal}} &lt; 8.91\)</span> or <span class="math inline">\(\chi^2_{\text{cal}} &gt; 32.9\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(\chi^2_{\text{cal}} = 42.750\)</span> falls in the critical region (<span class="math inline">\(42.750 &gt; 32.9\)</span>), so we reject <span class="math inline">\(H_0\)</span>. That is, the standard deviation of the weekly pork price is different from 3 baht at the 0.05 level of significance; since <span class="math inline">\(s\)</span> = 4.5, it is higher than 3 baht, so the policy target was not met.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="formula-summary-3" class="level3">
 <h3 class="anchored" data-anchor-id="formula-summary-3">Formula Summary</h3>
-<p><em>To be added.</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Condition</td>
+<td style="text-align: left;">population normal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\((1-\alpha)100\%\)</span> CI for <span class="math inline">\(\sigma^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left(\dfrac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}},\ \dfrac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}}\right)\)</span>; square root for <span class="math inline">\(\sigma\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Test statistic</td>
+<td style="text-align: left;"><span class="math inline">\(\chi^2_{\text{cal}} = \dfrac{(n-1)s^2}{\sigma_0^2}\)</span>, df <span class="math inline">\(= n-1\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Critical region</td>
+<td style="text-align: left;"><span class="math inline">\(\ne\)</span>: <span class="math inline">\(\chi^2_{\text{cal}} &lt; \chi^2_{\alpha/2}\)</span> or <span class="math inline">\(&gt; \chi^2_{1-\alpha/2}\)</span>; <span class="math inline">\(&lt;\)</span>: <span class="math inline">\(\chi^2_{\text{cal}} &lt; \chi^2_{\alpha}\)</span>; <span class="math inline">\(&gt;\)</span>: <span class="math inline">\(\chi^2_{\text{cal}} &gt; \chi^2_{1-\alpha}\)</span></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="exercises-3" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-3">Exercises</h3>
-<p><em>To be added.</em></p>
+<p><strong>2.4.1</strong> Before a new ordering system, the standard deviation of a shop’s daily sales was 10 units. After the system was introduced, 16 days of sales had a standard deviation of 7.2 units (hypothetical figures). At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the standard deviation is now less than 10 units. Assume normality.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 2.4.1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \sigma^2 = 100 \quad H_1: \sigma^2 &lt; 100\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(\chi^2_{\text{cal}} = 15(51.84)/100 = 7.776\)</span></p>
+<p><strong>Step 4.</strong> <span class="math inline">\(\chi^2_{0.05,\,15} = 7.26\)</span>. Critical region: <span class="math inline">\(\chi^2_{\text{cal}} &lt; 7.26\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(\chi^2_{\text{cal}} = 7.776\)</span> does not fall in the critical region (<span class="math inline">\(7.776 &gt; 7.26\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the standard deviation of daily sales is equal to 10 units at the 0.05 level of significance.</p>
+</div>
+</div>
+</div>
+<p><strong>2.4.2</strong> The daily change in an exchange rate over 25 trading days has a standard deviation of 0.35 baht (hypothetical figures). Assuming normality, construct a 90% confidence interval for the standard deviation of the daily change.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 2.4.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-34" class="callout-34-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\((n-1)s^2 = 24(0.1225) = 2.94\)</span>; <span class="math inline">\(\chi^2_{0.05,\,24} = 13.8\)</span>, <span class="math inline">\(\chi^2_{0.95,\,24} = 36.4\)</span>. CI for <span class="math inline">\(\sigma^2\)</span>: (0.0808, 0.2130); CI for <span class="math inline">\(\sigma\)</span>: (0.2843, 0.4615). We are 90% confident that the standard deviation of the daily change is between 0.2843 and 0.4615 baht.</p>
+</div>
+</div>
+</div>
+<p><strong>2.4.3</strong> Explain why the confidence interval for <span class="math inline">\(\sigma^2\)</span> is not of the form “estimate <span class="math inline">\(\pm\)</span> margin of error”.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 2.4.3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-35" class="callout-35-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The chi-square distribution is skewed to the right, so the two critical values are not the same distance from the centre. Dividing <span class="math inline">\((n-1)s^2\)</span> by them gives limits that are not equally far from <span class="math inline">\(s^2\)</span>.</p>
+</div>
+</div>
+</div>
 
 
 </section>

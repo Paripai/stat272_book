@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -75,6 +110,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -162,6 +226,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#which-method-a-flowchart" id="toc-which-method-a-flowchart" class="nav-link active" data-scroll-target="#which-method-a-flowchart">Which Method? A Flowchart</a></li>
+  <li><a href="#which-method-practice" id="toc-which-method-practice" class="nav-link" data-scroll-target="#which-method-practice">Which Method? Practice</a></li>
   <li><a href="#mixed-problems" id="toc-mixed-problems" class="nav-link" data-scroll-target="#mixed-problems">Mixed Problems</a></li>
   <li><a href="#writing-a-full-conclusion" id="toc-writing-a-full-conclusion" class="nav-link" data-scroll-target="#writing-a-full-conclusion">Writing a Full Conclusion</a></li>
   </ul>
@@ -191,15 +256,376 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="which-method-a-flowchart" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="which-method-a-flowchart">Which Method? A Flowchart</h2>
-<p><em>To be added.</em></p>
+<p>Every problem in this book answers the same three questions:</p>
+<ol type="1">
+<li><strong>Which parameter?</strong> A mean, a proportion or a variance.</li>
+<li><strong>How many groups?</strong> One, two, or three or more.</li>
+<li><strong>What is special about the data?</strong> Is <span class="math inline">\(\sigma\)</span> known? Are the samples paired? Are the variances equal? Are there blocks?</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-flowchart" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-flowchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="summary_choosing_method_files/figure-html/fig-flowchart-1.png" class="img-fluid figure-img" width="720">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flowchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Choosing a method. Numbers in brackets are the sections.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Test statistic</th>
+<th style="text-align: left;">Distribution</th>
+<th style="text-align: left;">R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean, <span class="math inline">\(\sigma\)</span> known</td>
+<td style="text-align: left;"><span class="math inline">\(z = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z\)</span></td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mean, <span class="math inline">\(\sigma\)</span> unknown</td>
+<td style="text-align: left;"><span class="math inline">\(t = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(t\)</span>, <span class="math inline">\(n-1\)</span></td>
+<td style="text-align: left;"><code>t.test(x, mu = )</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Proportion</td>
+<td style="text-align: left;"><span class="math inline">\(z = \dfrac{\hat{p}-p_0}{\sqrt{p_0(1-p_0)/n}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z\)</span></td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Variance</td>
+<td style="text-align: left;"><span class="math inline">\(\chi^2 = \dfrac{(n-1)s^2}{\sigma_0^2}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\chi^2\)</span>, <span class="math inline">\(n-1\)</span></td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Two proportions</td>
+<td style="text-align: left;"><span class="math inline">\(z = \dfrac{\hat{p}_1-\hat{p}_2}{\sqrt{\bar{p}(1-\bar{p})(1/n_1+1/n_2)}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z\)</span></td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Paired means</td>
+<td style="text-align: left;"><span class="math inline">\(t = \dfrac{\bar{d}}{s_d/\sqrt{n}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(t\)</span>, <span class="math inline">\(n-1\)</span></td>
+<td style="text-align: left;"><code>t.test(x1, x2, paired = TRUE)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Two variances</td>
+<td style="text-align: left;"><span class="math inline">\(F = s_1^2/s_2^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(F\)</span>, <span class="math inline">\((n_1-1, n_2-1)\)</span></td>
+<td style="text-align: left;"><code>var.test(x1, x2)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Two means, pooled</td>
+<td style="text-align: left;"><span class="math inline">\(t = \dfrac{\bar{x}_1-\bar{x}_2}{\sqrt{s_p^2(1/n_1+1/n_2)}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(t\)</span>, <span class="math inline">\(n_1+n_2-2\)</span></td>
+<td style="text-align: left;"><code>t.test(x1, x2, var.equal = TRUE)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Two means, Welch</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;"><span class="math inline">\(t\)</span></td>
+<td style="text-align: left;"><code>t.test(x1, x2)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ANOVA (CRD)</td>
+<td style="text-align: left;"><span class="math inline">\(F = \text{MSTr}/\text{MSE}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(F\)</span>, <span class="math inline">\((k-1, N-k)\)</span></td>
+<td style="text-align: left;"><code>summary(aov(y ~ trt))</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ANOVA (RCBD)</td>
+<td style="text-align: left;"><span class="math inline">\(F = \text{MSTr}/\text{MSE}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(F\)</span>, <span class="math inline">\((t-1, (t-1)(b-1))\)</span></td>
+<td style="text-align: left;"><code>summary(aov(y ~ trt + block))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tukey</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;"><code>TukeyHSD(model)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="which-method-practice" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="which-method-practice">Which Method? Practice</h2>
+<p>For each study, name the parameter(s), the method and the section.</p>
+<ol type="a">
+<li>The Bank of Thailand wants to know whether the share of households with credit-card debt has risen above 35%.</li>
+<li>A researcher compares the mean wage of 40 workers in Chiang Mai with the mean wage of 35 workers in Khon Kaen.</li>
+<li>The same 25 firms report their profits before and after a tax change.</li>
+<li>An analyst asks whether the daily returns of a stock index have become more volatile than a standard deviation of 1.2%.</li>
+<li>Four fertilizer subsidy schemes are each tried in five districts, with the scheme randomly assigned to villages within each district.</li>
+<li>A survey compares the proportion of men and of women who own a business.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Which Method? Practice
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>One proportion, <span class="math inline">\(z\)</span> test for <span class="math inline">\(p\)</span> (2.3), <span class="math inline">\(H_1: p &gt; 0.35\)</span>.</p></li>
+<li><p>Two independent means: <span class="math inline">\(F\)</span> test for the variances first, then pooled or Welch <span class="math inline">\(t\)</span> (3.4, 3.5).</p></li>
+<li><p>Paired means: paired <span class="math inline">\(t\)</span> test on the differences (3.3).</p></li>
+<li><p>One variance: chi-square test, <span class="math inline">\(H_1: \sigma^2 &gt; 1.44\)</span> (2.4).</p></li>
+<li><p>Four means with blocks (districts): RCBD ANOVA (4.3), then Tukey if <span class="math inline">\(H_0\)</span> is rejected.</p></li>
+<li><p>Two proportions: <span class="math inline">\(z\)</span> test for <span class="math inline">\(p_1 - p_2\)</span> (3.1).</p></li>
+</ol>
+</div>
+</div>
+</div>
 </section>
 <section id="mixed-problems" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="mixed-problems">Mixed Problems</h2>
-<p><em>To be added.</em></p>
+<p>All figures are hypothetical. Use <span class="math inline">\(\alpha\)</span> = 0.05 and the five steps.</p>
+<p><strong>M1.</strong> In a survey of 500 workers, 210 have a second job. Test whether more than 40% of workers have a second job. Use the critical region.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: M1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>One proportion (2.3). <span class="math inline">\(\hat{p} = 210/500 = 0.42\)</span>.</p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: p = 0.40 \quad H_1: p &gt; 0.40\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(\sqrt{0.40(0.60)/500} = 0.0219\)</span>; <span class="math inline">\(z_{\text{cal}} = (0.42 - 0.40)/0.0219 = 0.913\)</span></p>
+<p><strong>Step 4.</strong> Critical region: <span class="math inline">\(z_{\text{cal}} &gt; 1.645\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(z_{\text{cal}} = 0.913\)</span> does not fall in the critical region (<span class="math inline">\(0.913 &lt; 1.645\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the proportion of workers with a second job is equal to 0.40 at the 0.05 level of significance.</p>
+</div>
+</div>
+</div>
+<p><strong>M2.</strong> The monthly profit (thousand baht) of 9 cafés in the old city has <span class="math inline">\(\bar{x}\)</span> = 52.4, <span class="math inline">\(s\)</span> = 6.1; that of 13 cafés near the university has <span class="math inline">\(\bar{x}\)</span> = 47.8, <span class="math inline">\(s\)</span> = 5.4. (a) Use the <span class="math inline">\(F\)</span> test with the critical region to check the variances. (b) Test whether the mean profits are different, using the critical region.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: M2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> vs <span class="math inline">\(H_1: \sigma_1^2 \ne \sigma_2^2\)</span>. <span class="math inline">\(F_{\text{cal}} = 37.21/29.16 = 1.276\)</span>, df = (8, 12). Critical region: <span class="math inline">\(F_{\text{cal}} &lt; 1/F_{0.975,\,12,\,8} = 0.2381\)</span> or <span class="math inline">\(F_{\text{cal}} &gt; F_{0.975,\,8,\,12} = 3.51\)</span>. <span class="math inline">\(F_{\text{cal}}\)</span> does not fall in the critical region, so we accept <span class="math inline">\(H_0\)</span>: the variances are equal. Use the pooled <span class="math inline">\(t\)</span> test.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_1 = \mu_2 \quad H_1: \mu_1 \ne \mu_2\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(s_p^2 = [8(37.21) + 12(29.16)]/20 = 32.38\)</span>; SE <span class="math inline">\(= \sqrt{32.38(1/9 + 1/13)} = 2.4675\)</span>; <span class="math inline">\(t_{\text{cal}} = (52.4 - 47.8)/2.4675 = 1.864\)</span>, df = 20</p>
+<p><strong>Step 4.</strong> Critical region: <span class="math inline">\(t_{\text{cal}} &lt; -2.086\)</span> or <span class="math inline">\(t_{\text{cal}} &gt; 2.086\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(t_{\text{cal}} = 1.864\)</span> does not fall in the critical region (<span class="math inline">\(-2.086 &lt; 1.864 &lt; 2.086\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the mean monthly profits of cafés in the two areas are equal at the 0.05 level of significance.</p>
+</div>
+</div>
+</div>
+<p><strong>M3.</strong> A central bank wants the standard deviation of the monthly inflation rate to be less than 1 percentage point. Over 15 months, <span class="math inline">\(s\)</span> = 0.8. Assume normality and test whether the target is met, using the critical region.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: M3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>One variance (2.4).</p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \sigma^2 = 1 \quad H_1: \sigma^2 &lt; 1\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(\chi^2_{\text{cal}} = 14(0.64)/1 = 8.960\)</span>, df = 14</p>
+<p><strong>Step 4.</strong> <span class="math inline">\(\chi^2_{0.05,\,14} = 6.57\)</span>. Critical region: <span class="math inline">\(\chi^2_{\text{cal}} &lt; 6.57\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(\chi^2_{\text{cal}} = 8.960\)</span> does not fall in the critical region (<span class="math inline">\(8.960 &gt; 6.57\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the standard deviation of monthly inflation is equal to 1 percentage point at the 0.05 level of significance; the data do not show that the target is met.</p>
+</div>
+</div>
+</div>
+<p><strong>M4.</strong> Eight households installed solar panels. Their monthly electricity bills (baht) before and after installation were recorded. Did the mean bill decrease?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bill_after, bill_before, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">"less"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  bill_after and bill_before
+t = -4.4458, df = 7, p-value = 0.001493
+alternative hypothesis: true mean difference is less than 0
+95 percent confidence interval:
+      -Inf -216.6301
+sample estimates:
+mean difference 
+         -377.5 </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: M4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Paired means (3.3), <span class="math inline">\(d\)</span> = after <span class="math inline">\(-\)</span> before.</p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_d = 0 \quad H_1: \mu_d &lt; 0\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(t_{\text{cal}} = -4.446\)</span>, df = 7</p>
+<p><strong>Step 4.</strong> p-value = 0.0015</p>
+<p><strong>Step 5.</strong> p-value = 0.0015 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean monthly electricity bill decreased after installing solar panels at the 0.05 level of significance.</p>
+</div>
+</div>
+</div>
+<p><strong>M5.</strong> Twenty stores are randomly assigned to four advertising channels (TV, Online, Radio, Print), five stores each, and weekly sales are recorded. (a) Test whether mean sales differ among the channels. (b) If they do, which channels differ?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>model_ads <span class="ot">&lt;-</span> <span class="fu">aov</span>(sales <span class="sc">~</span> channel, <span class="at">data =</span> ads)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_ads)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+channel      3    466  155.33   13.08 0.000142 ***
+Residuals   16    190   11.87                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model_ads)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = sales ~ channel, data = ads)
+
+$channel
+               diff        lwr       upr     p adj
+Online-TV      1.52  -4.714923  7.754923 0.8965475
+Radio-TV      -9.02 -15.254923 -2.785077 0.0038601
+Print-TV      -8.64 -14.874923 -2.405077 0.0055055
+Radio-Online -10.54 -16.774923 -4.305077 0.0009438
+Print-Online -10.16 -16.394923 -3.925077 0.0013384
+Print-Radio    0.38  -5.854923  6.614923 0.9980348</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: M5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>(a)</strong> One-way ANOVA, CRD (4.1).</p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_{TV} = \mu_{O} = \mu_{R} = \mu_{P} \quad H_1:\)</span> at least one mean is different</p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(F_{\text{cal}} = 13.082\)</span>, df = (3, 16)</p>
+<p><strong>Step 4.</strong> p-value = 0.0001</p>
+<p><strong>Step 5.</strong> p-value = 0.0001 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, mean weekly sales are not all equal across the four channels at the 0.05 level of significance.</p>
+<p><strong>(b)</strong> Pairs with p adj &lt; 0.05: Radio <span class="math inline">\(-\)</span> TV, Print <span class="math inline">\(-\)</span> TV, Radio <span class="math inline">\(-\)</span> Online, Print <span class="math inline">\(-\)</span> Online. TV and Online have equal mean sales, Radio and Print have equal mean sales, and both TV and Online have higher mean sales than both Radio and Print.</p>
+</div>
+</div>
+</div>
+<p><strong>M6.</strong> The mean household size in a district is estimated from 20 households: <span class="math inline">\(\bar{x}\)</span> = 3.42, <span class="math inline">\(s\)</span> = 0.58. Construct a 95% confidence interval for the mean household size.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: M6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>One mean, <span class="math inline">\(\sigma\)</span> unknown (2.2). <span class="math inline">\(t_{0.975,\,19} = 2.093\)</span>, <span class="math inline">\(s/\sqrt{n} = 0.1297\)</span>; <span class="math inline">\(3.42 \pm 2.093(0.1297) = 3.42 \pm 0.2715\)</span>. We are 95% confident that the mean household size is between 3.15 and 3.69 persons.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="writing-a-full-conclusion" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="writing-a-full-conclusion">Writing a Full Conclusion</h2>
-<p><em>To be added.</em></p>
+<p>A full conclusion has a <strong>decision</strong> and an <strong>interpretation</strong> in the words of the problem:</p>
+<blockquote class="blockquote">
+<p><strong>Decision.</strong> [statistic or p-value] … so we [reject / accept] <span class="math inline">\(H_0\)</span>. <strong>Interpretation.</strong> That is, … at the 0.05 level of significance.</p>
+</blockquote>
+<p>Checklist:</p>
+<ul>
+<li>If you reject <span class="math inline">\(H_0\)</span>, write <span class="math inline">\(H_1\)</span> as a sentence; if you accept <span class="math inline">\(H_0\)</span>, write <span class="math inline">\(H_0\)</span> as a sentence.</li>
+<li>Name the population and the variable (not just “the mean”).</li>
+<li>For a two-sided test that rejects <span class="math inline">\(H_0\)</span>, add the direction from the sample statistics.</li>
+<li>For ANOVA, “not all equal”; then use Tukey to say which ones differ.</li>
+</ul>
+<p>Write the decision and the interpretation for each result.</p>
+<ol type="a">
+<li><span class="math inline">\(H_0: \mu = 15000\)</span>, <span class="math inline">\(H_1: \mu \ne 15000\)</span> for the mean monthly rent (baht) in a district; <span class="math inline">\(t_{\text{cal}} = -2.514\)</span>, critical region <span class="math inline">\(|t_{\text{cal}}| &gt; 2.064\)</span>, <span class="math inline">\(\bar{x}\)</span> = 13,850.</li>
+<li><span class="math inline">\(H_0: p_1 = p_2\)</span>, <span class="math inline">\(H_1: p_1 &gt; p_2\)</span> for the proportions of urban (1) and rural (2) households using mobile banking; p-value = 0.0832.</li>
+<li>One-way ANOVA comparing mean loan sizes at three types of lender; p-value = 0.0007.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Writing a Full Conclusion
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(t_{\text{cal}} = -2.514\)</span> falls in the critical region (<span class="math inline">\(-2.514 &lt; -2.064\)</span>), so we reject <span class="math inline">\(H_0\)</span>. That is, the mean monthly rent in the district is different from 15,000 baht at the 0.05 level of significance; since <span class="math inline">\(\bar{x}\)</span> = 13,850, it is lower than 15,000 baht.</p></li>
+<li><p>p-value = 0.0832 <span class="math inline">\(\ge\)</span> <span class="math inline">\(\alpha\)</span> = 0.05, so we accept <span class="math inline">\(H_0\)</span>. That is, the proportions of urban and rural households using mobile banking are equal at the 0.05 level of significance.</p></li>
+<li><p>p-value = 0.0007 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean loan sizes are not all equal across the three types of lender at the 0.05 level of significance. (Use Tukey’s method to find which types differ.)</p></li>
+</ol>
+</div>
+</div>
+</div>
 
 
 </section>

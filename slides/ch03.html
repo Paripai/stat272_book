@@ -154,23 +154,102 @@ Asst. Prof.&nbsp;Dr.&nbsp;Parichart Pattarapanitchai
 <h1>Two Proportions</h1>
 
 </section>
-<section id="learning-objectives" class="slide level2">
+<section id="learning-objectives" class="slide level2 scrollable">
 <h2>Learning Objectives</h2>
-<p><em>To be added.</em></p>
+<ol type="1">
+<li>Construct and interpret a confidence interval for the difference <span class="math inline">\(p_1 - p_2\)</span>.</li>
+<li>Carry out a <span class="math inline">\(z\)</span> test for <span class="math inline">\(H_0: p_1 = p_2\)</span> using the pooled proportion.</li>
+<li>Explain why the test pools the two samples but the CI does not.</li>
+</ol>
 </section>
 <section id="concept" class="slide level2">
 <h2>Concept</h2>
-<p><em>To be added.</em></p>
+<p>We often compare two groups: urban and rural households, men and women in the labour force, customers of two brands. The parameter of interest is the difference <span class="math inline">\(p_1 - p_2\)</span>, estimated by <span class="math inline">\(\hat{p}_1 - \hat{p}_2\)</span>. For two independent random samples that are large enough, <span class="math inline">\(\hat{p}_1 - \hat{p}_2\)</span> is approximately normal with standard error <span class="math display">\[
+\sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}}.
+\]</span></p>
+<p>The same idea as in Section 2.3 decides which values go into the standard error:</p>
+<ul>
+<li><strong>Confidence interval:</strong> use <span class="math inline">\(\hat{p}_1\)</span> and <span class="math inline">\(\hat{p}_2\)</span> separately.</li>
+<li><strong>Hypothesis test:</strong> <span class="math inline">\(H_0\)</span> says <span class="math inline">\(p_1 = p_2\)</span>, so both groups share one proportion. Our best estimate of it combines the two samples, the <strong>pooled proportion</strong> <span class="math display">\[
+\bar{p} = \frac{x_1 + x_2}{n_1 + n_2}.
+\]</span></li>
+</ul>
 </section>
 <section id="formulas-and-conditions" class="slide level2">
 <h2>Formulas and Conditions</h2>
-<p><em>To be added.</em></p>
+<p><strong>Conditions:</strong> two independent random samples; <span class="math inline">\(n\hat{p} \ge 5\)</span> and <span class="math inline">\(n(1-\hat{p}) \ge 5\)</span> in each sample.</p>
+<p><strong><span class="math inline">\((1-\alpha)100\%\)</span> confidence interval for <span class="math inline">\(p_1 - p_2\)</span></strong> <span class="math display">\[
+(\hat{p}_1 - \hat{p}_2) \pm z_{1-\alpha/2}
+\sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}
+\]</span></p>
+<p><strong>Test statistic</strong> for <span class="math inline">\(H_0: p_1 = p_2\)</span> <span class="math display">\[
+z_{\text{cal}} = \frac{\hat{p}_1 - \hat{p}_2}
+{\sqrt{\bar{p}(1-\bar{p})\left(\dfrac{1}{n_1} + \dfrac{1}{n_2}\right)}}
+\]</span></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 55%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(H_1\)</span></th>
+<th style="text-align: left;">Critical region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(p_1 \ne p_2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} &lt; z_{\alpha/2}\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; z_{1-\alpha/2}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(p_1 &lt; p_2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} &lt; z_{\alpha}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(p_1 &gt; p_2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} &gt; z_{1-\alpha}\)</span></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="worked-example" class="slide level2">
+<section id="worked-example" class="slide level2 scrollable">
 <h2>Worked Example</h2>
-<p><em>To be added.</em></p>
+<p><strong>Worked Example 3.1.1.</strong> A survey asks households whether they have any outstanding debt. In urban areas, 171 of 300 households have debt; in rural areas, 165 of 250 households have debt (hypothetical figures).</p>
+<ol type="a">
+<li>Construct a 95% confidence interval for the difference between the urban and rural proportions.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the proportion of households with debt is different in urban and rural areas.</li>
+</ol>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Solution</strong></p>
+</div>
+<div class="callout-content">
+<p>Let group 1 = urban and group 2 = rural. <span class="math inline">\(\hat{p}_1 = 171/300 = 0.57\)</span>, <span class="math inline">\(\hat{p}_2 = 165/250 = 0.66\)</span>, <span class="math inline">\(\hat{p}_1 - \hat{p}_2 = -0.09\)</span>.</p>
+<p><strong>(a)</strong> <span class="math display">\[
+\sqrt{\frac{0.57(0.43)}{300} + \frac{0.66(0.34)}{250}} = 0.0414
+\]</span> <span class="math display">\[
+-0.09 \pm 1.960(0.0414) = -0.09 \pm 0.0811
+\]</span> 95% CI: (-0.1711, -0.0089)</p>
+<p>We are 95% confident that the difference between the urban and rural proportions of households with debt is between -0.1711 and -0.0089. Both limits are negative, so the urban proportion is lower.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: p_1 = p_2\)</span> <span class="math inline">\(\quad H_1: p_1 \ne p_2\)</span></p>
+<p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3: Test statistic.</strong> <span class="math display">\[
+\bar{p} = \frac{171 + 165}{300 + 250} = 0.6109
+\]</span> <span class="math display">\[
+z_{\text{cal}} = \frac{-0.09}
+{\sqrt{0.6109(0.3891)\left(\frac{1}{300} + \frac{1}{250}\right)}}
+= \frac{-0.09}{0.0418} = -2.153
+\]</span></p>
+<p><strong>Step 4: Critical value and critical region.</strong> Critical region: <span class="math inline">\(z_{\text{cal}} &lt; -1.960\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; 1.960\)</span>.</p>
+<p><strong>Step 5: Decision and interpretation.</strong> <span class="math inline">\(z_{\text{cal}} = -2.153\)</span> falls in the critical region (<span class="math inline">\(-2.153 &lt; -1.960\)</span>), so we reject <span class="math inline">\(H_0\)</span>. That is, the proportion of households with debt is different in urban and rural areas at the 0.05 level of significance; since <span class="math inline">\(\hat{p}_1 &lt; \hat{p}_2\)</span>, the proportion is lower in urban areas.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="your-turn" class="slide level2">
+<section id="your-turn" class="slide level2 scrollable">
 <h2>Your Turn</h2>
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
@@ -178,22 +257,117 @@ Asst. Prof.&nbsp;Dr.&nbsp;Parichart Pattarapanitchai
 <p><strong>Your Turn 3.1.1</strong></p>
 </div>
 <div class="callout-content">
-<p><em>Problem to be added.</em></p>
+<p>Two brands of instant noodles raised their prices by the same amount. Of 200 regular customers of Brand A, 58 switched to another brand; of 180 regular customers of Brand B, 36 switched (hypothetical figures).</p>
+<ol type="a">
+<li>Construct a 95% confidence interval for <span class="math inline">\(p_A - p_B\)</span>.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the proportion of customers who switched is higher for Brand A.</li>
+</ol>
 </div>
 </div>
 </div>
 </section>
 <section class="slide level2 deck">
 <h2>Solution: Your Turn 3.1.1</h2>
-<p><em>Solution to be added.</em></p>
+<p><span class="math inline">\(\hat{p}_A = 0.29\)</span>, <span class="math inline">\(\hat{p}_B = 0.2\)</span>, <span class="math inline">\(\hat{p}_A - \hat{p}_B = 0.09\)</span>.</p>
+<p><strong>(a)</strong> SE <span class="math inline">\(= 0.0438\)</span>; <span class="math inline">\(0.09 \pm 1.960(0.0438) = 0.09 \pm 0.0858\)</span>. 95% CI: (0.0042, 0.1758). We are 95% confident that the difference between the proportions of Brand A and Brand B customers who switched is between 0.0042 and 0.1758.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: p_A = p_B \quad H_1: p_A &gt; p_B\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(\bar{p} = (58 + 36)/(200 + 180) = 0.2474\)</span>; <span class="math inline">\(z_{\text{cal}} = 0.09/0.0443 = 2.032\)</span></p>
+<p><strong>Step 4.</strong> <span class="math inline">\(z_{0.95} = 1.645\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &gt; 1.645\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(z_{\text{cal}} = 2.032\)</span> falls in the critical region (<span class="math inline">\(2.032 &gt; 1.645\)</span>), so we reject <span class="math inline">\(H_0\)</span>. That is, the proportion of customers who switched is higher for Brand A than for Brand B at the 0.05 level of significance.</p>
+</section>
+<section id="looking-back-methods-so-far" class="slide level2">
+<h2>Looking Back: Methods So Far</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">Estimate</th>
+<th style="text-align: left;">Distribution</th>
+<th style="text-align: center;">Section</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mu\)</span> (<span class="math inline">\(\sigma\)</span> known)</td>
+<td style="text-align: left;"><span class="math inline">\(\bar{x}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z\)</span></td>
+<td style="text-align: center;">2.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\mu\)</span> (<span class="math inline">\(\sigma\)</span> unknown)</td>
+<td style="text-align: left;"><span class="math inline">\(\bar{x}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(t\)</span>, df <span class="math inline">\(= n-1\)</span></td>
+<td style="text-align: center;">2.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(p\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\hat{p}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z\)</span></td>
+<td style="text-align: center;">2.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\sigma^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(s^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\chi^2\)</span>, df <span class="math inline">\(= n-1\)</span></td>
+<td style="text-align: center;">2.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(p_1 - p_2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\hat{p}_1 - \hat{p}_2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z\)</span></td>
+<td style="text-align: center;">3.1</td>
+</tr>
+</tbody>
+</table>
+<p>Every test so far followed the same five steps and made the decision with the critical region. Section 3.2 introduces a second way to make the decision, the p-value, and shows how to read the results from R.</p>
 </section>
 <section id="formula-summary" class="slide level2">
 <h2>Formula Summary</h2>
-<p><em>To be added.</em></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Confidence interval</th>
+<th style="text-align: left;">Hypothesis test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Standard error</td>
+<td style="text-align: left;"><span class="math inline">\(\sqrt{\dfrac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \dfrac{\hat{p}_2(1-\hat{p}_2)}{n_2}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\sqrt{\bar{p}(1-\bar{p})\left(\dfrac{1}{n_1}+\dfrac{1}{n_2}\right)}\)</span>, <span class="math inline">\(\bar{p} = \dfrac{x_1+x_2}{n_1+n_2}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Formula</td>
+<td style="text-align: left;"><span class="math inline">\((\hat{p}_1-\hat{p}_2) \pm z_{1-\alpha/2}\,\text{SE}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z_{\text{cal}} = \dfrac{\hat{p}_1-\hat{p}_2}{\text{SE}}\)</span></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="exercises" class="slide level2">
 <h2>Exercises</h2>
-<p><em>To be added.</em></p>
+<p><strong>3.1.1</strong> In a labour force survey, 45 of 150 women and 62 of 160 men aged 15–24 were not in employment, education or training (hypothetical figures). Construct a 90% confidence interval for <span class="math inline">\(p_{\text{women}} - p_{\text{men}}\)</span>.</p>
+</section>
+<section class="slide level2 deck">
+<h2>Solution: Exercise 3.1.1</h2>
+<p><span class="math inline">\(\hat{p}_1 = 0.3\)</span>, <span class="math inline">\(\hat{p}_2 = 0.3875\)</span>, difference <span class="math inline">\(= -0.0875\)</span>, SE <span class="math inline">\(= 0.0537\)</span>, <span class="math inline">\(z_{0.95} = 1.645\)</span>. <span class="math inline">\(-0.0875 \pm 0.0883\)</span>: 90% CI (-0.1758, 0.0008). We are 90% confident that the difference between the proportions of women and men not in employment, education or training is between -0.1758 and 0.0008. The interval contains 0.</p>
+<p><strong>3.1.2</strong> A shop tests two price displays. With display 1, 84 of 240 visitors bought the product; with display 2, 96 of 240 bought it (hypothetical figures). At <span class="math inline">\(\alpha\)</span> = 0.05, test whether display 1 has a lower purchase rate.</p>
+</section>
+<section class="slide level2 deck">
+<h2>Solution: Exercise 3.1.2</h2>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: p_1 = p_2 \quad H_1: p_1 &lt; p_2\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(\hat{p}_1 = 0.35\)</span>, <span class="math inline">\(\hat{p}_2 = 0.4\)</span>, <span class="math inline">\(\bar{p} = 0.375\)</span>; <span class="math inline">\(z_{\text{cal}} = -0.05/0.0442 = -1.131\)</span></p>
+<p><strong>Step 4.</strong> <span class="math inline">\(z_{0.05} = -1.645\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &lt; -1.645\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(z_{\text{cal}} = -1.131\)</span> does not fall in the critical region (<span class="math inline">\(-1.131 &gt; -1.645\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the purchase rates with the two displays are equal at the 0.05 level of significance.</p>
 </section>
 <section class="slide level2 deck">
 <h2>Quiz: Session 6</h2>
@@ -204,21 +378,251 @@ Asst. Prof.&nbsp;Dr.&nbsp;Parichart Pattarapanitchai
 <h1>P-values and R Output</h1>
 
 </section>
-<section id="learning-objectives-1" class="slide level2">
+<section id="learning-objectives-1" class="slide level2 scrollable">
 <h2>Learning Objectives</h2>
-<p><em>To be added.</em></p>
+<ol type="1">
+<li>Explain what a p-value is and use it to make the decision of a test.</li>
+<li>Read the output of <code>t.test()</code> in R: test statistic, df, p-value, CI and estimate.</li>
+<li>Check that R output agrees with a calculation by hand.</li>
+<li>Choose the R output whose alternative hypothesis matches the research question.</li>
+</ol>
 </section>
 <section id="concept-1" class="slide level2">
 <h2>Concept</h2>
-<p><em>To be added.</em></p>
+<p>So far we have decided by comparing the test statistic with a <strong>critical value</strong>. Statistical software gives a second, equivalent way: the <strong>p-value</strong>.</p>
+<div class="callout callout-important no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>p-value</strong></p>
+</div>
+<div class="callout-content">
+<p>The <strong>p-value</strong> is the probability, assuming <span class="math inline">\(H_0\)</span> is true, of getting a test statistic at least as extreme as the one we observed, in the direction(s) of <span class="math inline">\(H_1\)</span>.</p>
+<p>A small p-value means our sample would be unusual if <span class="math inline">\(H_0\)</span> were true.</p>
+<p><strong>Decision rule:</strong> reject <span class="math inline">\(H_0\)</span> if p-value <span class="math inline">\(&lt; \alpha\)</span>; accept <span class="math inline">\(H_0\)</span> if p-value <span class="math inline">\(\ge \alpha\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>Example.</strong> In Worked Example 2.2.2 (rider earnings, <span class="math inline">\(H_1: \mu &gt; 600\)</span>), <span class="math inline">\(t_{\text{cal}} = 2.326\)</span> with df = 24. The p-value is the area to the <strong>right</strong> of 2.326 under the <span class="math inline">\(t\)</span> curve, because <span class="math inline">\(H_1\)</span> points to the right. It is about 0.0144.</p>
+<div id="fig-pval-areas" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-pval-areas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-pval-areas" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-pval-areas-1" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-pval-areas-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch03_files/figure-revealjs/fig-pval-areas-1.png" data-ref-parent="fig-pval-areas" width="432">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pval-areas-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Right-sided H1: area to the right of t_cal
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-pval-areas" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-pval-areas-2" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-pval-areas-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch03_files/figure-revealjs/fig-pval-areas-2.png" data-ref-parent="fig-pval-areas" width="432">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pval-areas-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Two-sided H1: both tails, twice the one-tail area
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pval-areas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The p-value as an area under the t curve with df = 24
+</figcaption>
+</figure>
+</div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(H_1\)</span></th>
+<th style="text-align: left;">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(&gt;\)</span></td>
+<td style="text-align: left;">area to the <strong>right</strong> of the test statistic</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(&lt;\)</span></td>
+<td style="text-align: left;">area to the <strong>left</strong> of the test statistic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\ne\)</span></td>
+<td style="text-align: left;"><strong>twice</strong> the area beyond the test statistic, in both tails</td>
+</tr>
+</tbody>
+</table>
+<p>The critical-value method and the p-value method always give the <strong>same decision</strong>. The critical region is the set of test statistics whose p-value is less than <span class="math inline">\(\alpha\)</span>. The printed tables do not give exact p-values for <span class="math inline">\(t\)</span>, <span class="math inline">\(\chi^2\)</span> or <span class="math inline">\(F\)</span>, so we read p-values from software.</p>
+<div class="callout callout-warning no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>What the p-value is not</strong></p>
+</div>
+<div class="callout-content">
+<p>The p-value is <strong>not</strong> the probability that <span class="math inline">\(H_0\)</span> is true. It is calculated assuming <span class="math inline">\(H_0\)</span> is true.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="formulas-and-conditions-1" class="slide level2">
-<h2>Formulas and Conditions</h2>
-<p><em>To be added.</em></p>
+<section id="reading-r-output" class="slide level2">
+<h2>Reading R Output</h2>
+<p>R is free statistical software. In this course you do not need to write R code, but you must be able to <strong>read</strong> its output. The function <code>t.test()</code> carries out the <span class="math inline">\(t\)</span> test for one mean. For the riders in Worked Example 2.2.2 we use <code>t.test(earnings, mu = 600, alternative = "greater")</code>:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  earnings
+t = 2.3259, df = 24, p-value = 0.0144
+alternative hypothesis: true mean is greater than 600
+95 percent confidence interval:
+ 611.8887      Inf
+sample estimates:
+mean of x 
+   644.96 </code></pre>
+</div>
+</div>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Line in the output</th>
+<th style="text-align: left;">Meaning</th>
+<th style="text-align: left;">Hand calculation (2.2.2)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>t =</code></td>
+<td style="text-align: left;">test statistic <span class="math inline">\(t_{\text{cal}}\)</span></td>
+<td style="text-align: left;">2.326</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>df =</code></td>
+<td style="text-align: left;">degrees of freedom <span class="math inline">\(n-1\)</span></td>
+<td style="text-align: left;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>p-value =</code></td>
+<td style="text-align: left;">p-value</td>
+<td style="text-align: left;">(from the table: <span class="math inline">\(t_{\text{cal}}\)</span> in the critical region)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>alternative hypothesis:</code></td>
+<td style="text-align: left;"><span class="math inline">\(H_1\)</span> used by R</td>
+<td style="text-align: left;"><span class="math inline">\(H_1: \mu &gt; 600\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>mean of x</code></td>
+<td style="text-align: left;"><span class="math inline">\(\bar{x}\)</span></td>
+<td style="text-align: left;">644.96</td>
+</tr>
+</tbody>
+</table>
+<p>The numbers match the hand calculation. Now the decision can be written with the p-value:</p>
+<blockquote>
+<p>p-value = 0.0144 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean daily earnings of riders in Chiang Mai are more than 600 baht at the 0.05 level of significance.</p>
+</blockquote>
+<div class="callout callout-warning no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>The confidence interval in one-sided output</strong></p>
+</div>
+<div class="callout-content">
+<p>With <code>alternative = "greater"</code> or <code>"less"</code>, R prints a <strong>one-sided</strong> interval with <code>Inf</code> or <code>-Inf</code>. In this course we use the <strong>two-sided</strong> CI, which R prints with the default two-sided test:</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  earnings
+t = 2.3259, df = 24, p-value = 0.0288
+alternative hypothesis: true mean is not equal to 600
+95 percent confidence interval:
+ 605.0649 684.8551
+sample estimates:
+mean of x 
+   644.96 </code></pre>
+</div>
+</div>
+<p>The 95% CI (605.06, 684.86) is the same as in Worked Example 2.2.2. The test statistic does not change, but the two-sided p-value (0.0288) is twice the one-sided p-value.</p>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Reading numbers in R</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>R may print <code>p-value = 2.1e-05</code>. This means <span class="math inline">\(2.1 \times 10^{-5}\)</span> = 0.000021.</li>
+<li><code>p-value &lt; 2.2e-16</code> means the p-value is smaller than any number R can print; report it as p-value &lt; 0.0001.</li>
+<li>In this book we round the test statistic to 3 decimals and the p-value to 4 decimals.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="the-five-steps-with-a-p-value" class="slide level2 scrollable">
+<h2>The Five Steps with a p-value</h2>
+<p>From this section on, Step 4 is the p-value instead of the critical value:</p>
+<ol type="1">
+<li><strong>Hypotheses</strong></li>
+<li><strong>Level of significance</strong></li>
+<li><strong>Test statistic</strong> (from the output, or calculated by hand)</li>
+<li><strong>p-value</strong> (from the output)</li>
+<li><strong>Decision and interpretation</strong>: p-value = … [&lt;, <span class="math inline">\(\ge\)</span>] <span class="math inline">\(\alpha\)</span> = 0.05, so we [reject / accept] <span class="math inline">\(H_0\)</span>. That is, …</li>
+</ol>
 </section>
 <section id="worked-example-1" class="slide level2">
 <h2>Worked Example</h2>
-<p><em>To be added.</em></p>
+<p><strong>Worked Example 3.2.1.</strong> An energy agency records the monthly electricity bill (baht) of 30 randomly selected households (hypothetical data). It wants to know whether the mean bill is different from 1,200 baht. R gives:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  bill
+t = 1.6945, df = 29, p-value = 0.1009
+alternative hypothesis: true mean is not equal to 1200
+95 percent confidence interval:
+ 1187.180 1336.686
+sample estimates:
+mean of x 
+ 1261.933 </code></pre>
+</div>
+</div>
+<p>Use the output to (a) write the 95% CI and (b) test the hypothesis at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Solution</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>(a)</strong> We are 95% confident that the mean monthly electricity bill is between 1,187.18 and 1,336.69 baht.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: \mu = 1200\)</span> <span class="math inline">\(\quad H_1: \mu \ne 1200\)</span></p>
+<p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3: Test statistic.</strong> <span class="math inline">\(t_{\text{cal}} = 1.694\)</span>, df = 29</p>
+<p><strong>Step 4: p-value.</strong> p-value = 0.1009</p>
+<p><strong>Step 5: Decision and interpretation.</strong> p-value = 0.1009 <span class="math inline">\(\ge\)</span> <span class="math inline">\(\alpha\)</span> = 0.05, so we accept <span class="math inline">\(H_0\)</span>. That is, the mean monthly electricity bill is equal to 1,200 baht at the 0.05 level of significance.</p>
+<p>The CI contains 1,200, which agrees with accepting <span class="math inline">\(H_0\)</span> in a two-sided test.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="your-turn-1" class="slide level2">
 <h2>Your Turn</h2>
@@ -228,49 +632,361 @@ Asst. Prof.&nbsp;Dr.&nbsp;Parichart Pattarapanitchai
 <p><strong>Your Turn 3.2.1</strong></p>
 </div>
 <div class="callout-content">
-<p><em>Problem to be added.</em></p>
+<p>For the rider earnings data, a labour researcher tests whether the mean daily earnings are different from 620 baht. Use the output below to test the hypothesis at <span class="math inline">\(\alpha\)</span> = 0.05 in five steps.</p>
 </div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  earnings
+t = 1.2913, df = 24, p-value = 0.2089
+alternative hypothesis: true mean is not equal to 620
+95 percent confidence interval:
+ 605.0649 684.8551
+sample estimates:
+mean of x 
+   644.96 </code></pre>
 </div>
 </div>
 </section>
 <section class="slide level2 deck">
 <h2>Solution: Your Turn 3.2.1</h2>
-<p><em>Solution to be added.</em></p>
-</section>
-<section id="reading-r-output" class="slide level2">
-<h2>Reading R Output</h2>
-<p><em>To be added.</em></p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu = 620 \quad H_1: \mu \ne 620\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(t_{\text{cal}} = 1.291\)</span>, df = 24</p>
+<p><strong>Step 4.</strong> p-value = 0.2089</p>
+<p><strong>Step 5.</strong> p-value = 0.2089 <span class="math inline">\(\ge\)</span> <span class="math inline">\(\alpha\)</span> = 0.05, so we accept <span class="math inline">\(H_0\)</span>. That is, the mean daily earnings of riders are equal to 620 baht at the 0.05 level of significance. (This agrees with Section 2.2: 620 is inside the 95% CI.)</p>
 </section>
 <section id="formula-summary-1" class="slide level2">
 <h2>Formula Summary</h2>
-<p><em>To be added.</em></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">p-value</td>
+<td style="text-align: left;">probability, assuming <span class="math inline">\(H_0\)</span> is true, of a test statistic at least as extreme as observed, in the direction of <span class="math inline">\(H_1\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Decision</td>
+<td style="text-align: left;">reject <span class="math inline">\(H_0\)</span> if p-value <span class="math inline">\(&lt; \alpha\)</span>; accept <span class="math inline">\(H_0\)</span> if p-value <span class="math inline">\(\ge \alpha\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">One mean in R</td>
+<td style="text-align: left;"><code>t.test(x, mu = mu0, alternative = "two.sided" / "less" / "greater")</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CI in R</td>
+<td style="text-align: left;">read from the two-sided output</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="exercises-1" class="slide level2">
+<section id="exercises-1" class="slide level2 scrollable">
 <h2>Exercises</h2>
-<p><em>To be added.</em></p>
+<p><strong>3.2.1</strong> The electricity agency in Worked Example 3.2.1 now asks whether the mean bill is <strong>more than</strong> 1,200 baht. Four outputs are shown below.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Output A</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  bill
+t = 1.6945, df = 29, p-value = 0.1009
+alternative hypothesis: true mean is not equal to 1200
+95 percent confidence interval:
+ 1187.180 1336.686
+sample estimates:
+mean of x 
+ 1261.933 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Output B</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  bill
+t = 1.6945, df = 29, p-value = 0.05044
+alternative hypothesis: true mean is greater than 1200
+95 percent confidence interval:
+ 1199.83     Inf
+sample estimates:
+mean of x 
+ 1261.933 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Output C</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  bill
+t = 1.6945, df = 29, p-value = 0.9496
+alternative hypothesis: true mean is less than 1200
+95 percent confidence interval:
+     -Inf 1324.036
+sample estimates:
+mean of x 
+ 1261.933 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Output D</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  bill
+t = 0.32649, df = 29, p-value = 0.3732
+alternative hypothesis: true mean is greater than 1250
+95 percent confidence interval:
+ 1199.83     Inf
+sample estimates:
+mean of x 
+ 1261.933 </code></pre>
+</div>
+</div>
+<ol type="a">
+<li>Which output matches the agency’s question? Explain.</li>
+<li>Write the decision and interpretation at <span class="math inline">\(\alpha\)</span> = 0.05.</li>
+<li>Why is the test statistic the same in Outputs A, B and C, but not in D?</li>
+</ol>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Exercise 3.2.1</h2>
+<ol type="a">
+<li><p>Output B: <span class="math inline">\(\mu_0\)</span> = 1200 and the alternative hypothesis is “greater than 1200”, which matches <span class="math inline">\(H_1: \mu &gt; 1200\)</span>.</p></li>
+<li><p>p-value = 0.0504 <span class="math inline">\(\ge\)</span> <span class="math inline">\(\alpha\)</span> = 0.05, so we accept <span class="math inline">\(H_0\)</span>. That is, the mean monthly electricity bill is equal to 1,200 baht at the 0.05 level of significance.</p></li>
+<li><p>The test statistic depends on <span class="math inline">\(\mu_0\)</span> but not on <span class="math inline">\(H_1\)</span>. A, B and C all use <span class="math inline">\(\mu_0\)</span> = 1200; D uses <span class="math inline">\(\mu_0\)</span> = 1250. Only the p-value depends on <span class="math inline">\(H_1\)</span>.</p></li>
+</ol>
+<p><strong>3.2.2</strong> For each p-value, write the decision at <span class="math inline">\(\alpha\)</span> = 0.05: (a) 0.0312, (b) 0.0500, (c) 0.1847, (d) <code>5.4e-04</code>.</p>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Exercise 3.2.2</h2>
+<ol type="a">
+<li>0.0312 &lt; 0.05: reject <span class="math inline">\(H_0\)</span>.</li>
+<li>0.0500 <span class="math inline">\(\ge\)</span> 0.05: accept <span class="math inline">\(H_0\)</span>.</li>
+<li>0.1847 <span class="math inline">\(\ge\)</span> 0.05: accept <span class="math inline">\(H_0\)</span>.</li>
+<li><code>5.4e-04</code> = 0.00054 &lt; 0.05: reject <span class="math inline">\(H_0\)</span>.</li>
+</ol>
+<p><strong>3.2.3</strong> A student says: “The p-value is 0.03, so there is a 3% chance that <span class="math inline">\(H_0\)</span> is true.” Explain what is wrong.</p>
+</section>
+<section class="slide level2 deck">
+<h2>Solution: Exercise 3.2.3</h2>
+<p>The p-value is calculated assuming <span class="math inline">\(H_0\)</span> is true. It is the probability of a result at least as extreme as the sample result if <span class="math inline">\(H_0\)</span> were true, not the probability that <span class="math inline">\(H_0\)</span> is true.</p>
 </section></section>
 <section>
 <section id="sec-paired-means" class="title-slide slide level1 center">
 <h1>Paired Means</h1>
 
 </section>
-<section id="learning-objectives-2" class="slide level2">
+<section id="learning-objectives-2" class="slide level2 scrollable">
 <h2>Learning Objectives</h2>
-<p><em>To be added.</em></p>
+<ol type="1">
+<li>Recognize paired data from the way the data were collected.</li>
+<li>Reduce paired data to differences <span class="math inline">\(d\)</span> and use the one-sample <span class="math inline">\(t\)</span> method on them.</li>
+<li>Construct a CI and carry out a test for the mean difference <span class="math inline">\(\mu_d\)</span>, by hand and from R.</li>
+</ol>
 </section>
 <section id="concept-2" class="slide level2">
 <h2>Concept</h2>
-<p><em>To be added.</em></p>
+<p>Data are <strong>paired</strong> when each observation in one group is matched with one observation in the other group. Common designs:</p>
+<ul>
+<li><strong>Before and after:</strong> the same households are measured before and after a policy.</li>
+<li><strong>Matched units:</strong> the same products are priced at two shops; twin regions are compared.</li>
+</ul>
+<p>Each pair gives one <strong>difference</strong> <span class="math inline">\(d = x_1 - x_2\)</span> (for example, after <span class="math inline">\(-\)</span> before). The pairing removes the variation between units (rich and poor households differ a lot, but each is compared with itself), so we analyse the differences only. A paired test is a <strong>one-sample <span class="math inline">\(t\)</span> test on <span class="math inline">\(d\)</span></strong> (Section 2.2) with <span class="math inline">\(H_0: \mu_d = 0\)</span>.</p>
+<div class="callout callout-important no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Paired or independent?</strong></p>
+</div>
+<div class="callout-content">
+<p>Decide from <strong>how the data were collected</strong>, not from the numbers:</p>
+<ul>
+<li>the same units measured twice, or units matched one-to-one → <strong>paired</strong></li>
+<li>two separate random samples, with no link between a unit in one group and a unit in the other → <strong>independent</strong> (Section 3.5)</li>
+</ul>
+<p>Paired samples always have the same size. Equal sample sizes alone do not make the data paired.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="formulas-and-conditions-2" class="slide level2">
+<section id="formulas-and-conditions-1" class="slide level2">
 <h2>Formulas and Conditions</h2>
-<p><em>To be added.</em></p>
+<p><strong>Conditions:</strong> pairs are a random sample; the differences are approximately normal.</p>
+<p>With <span class="math inline">\(n\)</span> pairs, <span class="math inline">\(\bar{d}\)</span> the mean and <span class="math inline">\(s_d\)</span> the standard deviation of the differences:</p>
+<p><strong><span class="math inline">\((1-\alpha)100\%\)</span> confidence interval for <span class="math inline">\(\mu_d\)</span></strong> <span class="math display">\[
+\bar{d} \pm t_{1-\alpha/2,\,n-1}\,\frac{s_d}{\sqrt{n}}
+\]</span></p>
+<p><strong>Test statistic</strong> for <span class="math inline">\(H_0: \mu_d = 0\)</span>, with df <span class="math inline">\(= n-1\)</span> <span class="math display">\[
+t_{\text{cal}} = \frac{\bar{d}}{s_d/\sqrt{n}}
+\]</span></p>
+<p><strong>In R:</strong> <code>t.test(after, before, paired = TRUE, alternative = ...)</code> uses <span class="math inline">\(d\)</span> = after <span class="math inline">\(-\)</span> before (first argument minus second).</p>
 </section>
-<section id="worked-example-2" class="slide level2">
+<section id="worked-example-2" class="slide level2 scrollable">
 <h2>Worked Example</h2>
-<p><em>To be added.</em></p>
+<p><strong>Worked Example 3.3.1.</strong> The government gave a cash transfer to low-income households. A researcher recorded the monthly spending (baht) of 10 households in the month before and the month after the transfer (hypothetical data). Did mean spending increase?</p>
+<div class="cell">
+<div id="tbl-stim" class="cell quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Monthly spending (baht) before and after the transfer, and the difference d = after - before
+</figcaption>
+<div aria-describedby="tbl-stim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Household</th>
+<th style="text-align: right;">Before</th>
+<th style="text-align: right;">After</th>
+<th style="text-align: right;">d</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: right;">14,570</td>
+<td style="text-align: right;">16,140</td>
+<td style="text-align: right;">1,570</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: right;">12,550</td>
+<td style="text-align: right;">14,740</td>
+<td style="text-align: right;">2,190</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: right;">14,270</td>
+<td style="text-align: right;">14,840</td>
+<td style="text-align: right;">570</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: right;">12,370</td>
+<td style="text-align: right;">14,220</td>
+<td style="text-align: right;">1,850</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: right;">12,130</td>
+<td style="text-align: right;">12,960</td>
+<td style="text-align: right;">830</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: right;">12,420</td>
+<td style="text-align: right;">13,790</td>
+<td style="text-align: right;">1,370</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: right;">15,090</td>
+<td style="text-align: right;">16,590</td>
+<td style="text-align: right;">1,500</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: right;">16,280</td>
+<td style="text-align: right;">17,840</td>
+<td style="text-align: right;">1,560</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: right;">15,050</td>
+<td style="text-align: right;">14,380</td>
+<td style="text-align: right;">-670</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td style="text-align: right;">13,610</td>
+<td style="text-align: right;">13,280</td>
+<td style="text-align: right;">-330</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<ol type="a">
+<li>Construct a 95% confidence interval for the mean change in spending.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether mean spending increased after the transfer.</li>
+</ol>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Solution</strong></p>
+</div>
+<div class="callout-content">
+<p>The same households are measured twice, so the data are paired. From the differences: <span class="math inline">\(n\)</span> = 10, <span class="math inline">\(\bar{d}\)</span> = 1044, <span class="math inline">\(s_d\)</span> = 937.8604. <span class="math display">\[
+\frac{s_d}{\sqrt{n}} = \frac{937.8604}{\sqrt{10}} = 296.5775
+\]</span></p>
+<p><strong>(a)</strong> <span class="math inline">\(t_{0.975,\,9} = 2.262\)</span>: <span class="math display">\[
+1044 \pm 2.262(296.5775) = 1044 \pm 670.8583
+\]</span> 95% CI: (373.14, 1,714.86)</p>
+<p>We are 95% confident that the mean increase in monthly spending is between 373.14 and 1,714.86 baht.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: \mu_d = 0\)</span> <span class="math inline">\(\quad H_1: \mu_d &gt; 0\)</span> (where <span class="math inline">\(d\)</span> = after <span class="math inline">\(-\)</span> before)</p>
+<p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3: Test statistic.</strong> <span class="math display">\[
+t_{\text{cal}} = \frac{\bar{d}}{s_d/\sqrt{n}} = \frac{1044}{296.5775} = 3.520
+\]</span></p>
+<p><strong>Step 4: p-value.</strong> From the R output below, p-value = 0.0033.</p>
+<p><strong>Step 5: Decision and interpretation.</strong> p-value = 0.0033 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, mean monthly spending increased after the cash transfer at the 0.05 level of significance.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="your-turn-2" class="slide level2">
+<section id="reading-r-output-1" class="slide level2">
+<h2>Reading R Output</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  after and before
+t = 3.5202, df = 9, p-value = 0.003257
+alternative hypothesis: true mean difference is greater than 0
+95 percent confidence interval:
+ 500.3399      Inf
+sample estimates:
+mean difference 
+           1044 </code></pre>
+</div>
+</div>
+<p><code>t =</code> 3.520 and <code>df =</code> 9 match the hand calculation, and <code>mean difference</code> is <span class="math inline">\(\bar{d}\)</span> = 1044. For the 95% CI we use the two-sided output:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  after and before
+t = 3.5202, df = 9, p-value = 0.006514
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+  373.0951 1714.9049
+sample estimates:
+mean difference 
+           1044 </code></pre>
+</div>
+</div>
+<p>R gives (373.10, 1,714.90). The hand calculation gave (373.14, 1,714.86). The small difference comes from rounding: the table gives <span class="math inline">\(t_{0.975,\,9}\)</span> = 2.262, while R uses 2.262157.</p>
+</section>
+<section id="your-turn-2" class="slide level2 scrollable">
 <h2>Your Turn</h2>
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
@@ -278,26 +994,206 @@ Asst. Prof.&nbsp;Dr.&nbsp;Parichart Pattarapanitchai
 <p><strong>Your Turn 3.3.1</strong></p>
 </div>
 <div class="callout-content">
-<p><em>Problem to be added.</em></p>
+<p>The daily wage (baht) of 12 workers was recorded before and after a training course (hypothetical data). For <span class="math inline">\(d\)</span> = after <span class="math inline">\(-\)</span> before, <span class="math inline">\(\bar{d}\)</span> = 7.6667 and <span class="math inline">\(s_d\)</span> = 24.4776.</p>
+<div class="cell">
+<div id="tbl-train" class="cell quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2
+</figcaption>
+<div aria-describedby="tbl-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Worker</th>
+<th style="text-align: center;">Before</th>
+<th style="text-align: center;">After</th>
+<th style="text-align: center;">d</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">371</td>
+<td style="text-align: center;">388</td>
+<td style="text-align: center;">17</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">405</td>
+<td style="text-align: center;">460</td>
+<td style="text-align: center;">55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">409</td>
+<td style="text-align: center;">425</td>
+<td style="text-align: center;">16</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">538</td>
+<td style="text-align: center;">562</td>
+<td style="text-align: center;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">357</td>
+<td style="text-align: center;">315</td>
+<td style="text-align: center;">-42</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">351</td>
+<td style="text-align: center;">379</td>
+<td style="text-align: center;">28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">414</td>
+<td style="text-align: center;">413</td>
+<td style="text-align: center;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">416</td>
+<td style="text-align: center;">412</td>
+<td style="text-align: center;">-4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">390</td>
+<td style="text-align: center;">398</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">438</td>
+<td style="text-align: center;">418</td>
+<td style="text-align: center;">-20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">401</td>
+<td style="text-align: center;">401</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">428</td>
+<td style="text-align: center;">439</td>
+<td style="text-align: center;">11</td>
+</tr>
+</tbody>
+</table>
 </div>
+</div>
+</figure>
+</div>
+</div>
+<ol type="a">
+<li>Calculate <span class="math inline">\(t_{\text{cal}}\)</span> by hand.</li>
+<li>Use the R output to test whether the training changed the mean daily wage at <span class="math inline">\(\alpha\)</span> = 0.05.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  wage_after and wage_before
+t = 1.085, df = 11, p-value = 0.3011
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -7.88564 23.21897
+sample estimates:
+mean difference 
+       7.666667 </code></pre>
 </div>
 </div>
 </section>
 <section class="slide level2 deck">
 <h2>Solution: Your Turn 3.3.1</h2>
-<p><em>Solution to be added.</em></p>
-</section>
-<section id="reading-r-output-1" class="slide level2">
-<h2>Reading R Output</h2>
-<p><em>To be added.</em></p>
+<p><strong>(a)</strong> <span class="math inline">\(s_d/\sqrt{n} = 24.4776/\sqrt{12} = 7.0661\)</span>; <span class="math inline">\(t_{\text{cal}} = 7.6667/7.0661 = 1.085\)</span> (R: 1.085).</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_d = 0 \quad H_1: \mu_d \ne 0\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(t_{\text{cal}} = 1.085\)</span>, df = 11</p>
+<p><strong>Step 4.</strong> p-value = 0.3011</p>
+<p><strong>Step 5.</strong> p-value = 0.3011 <span class="math inline">\(\ge\)</span> <span class="math inline">\(\alpha\)</span> = 0.05, so we accept <span class="math inline">\(H_0\)</span>. That is, the training did not change the mean daily wage (the mean difference is equal to 0) at the 0.05 level of significance.</p>
 </section>
 <section id="formula-summary-2" class="slide level2">
 <h2>Formula Summary</h2>
-<p><em>To be added.</em></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Differences</td>
+<td style="text-align: left;"><span class="math inline">\(d\)</span> = first <span class="math inline">\(-\)</span> second for each pair; <span class="math inline">\(\bar{d}\)</span>, <span class="math inline">\(s_d\)</span>, <span class="math inline">\(n\)</span> pairs</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\((1-\alpha)100\%\)</span> CI for <span class="math inline">\(\mu_d\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\bar{d} \pm t_{1-\alpha/2,\,n-1}\,s_d/\sqrt{n}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Test statistic</td>
+<td style="text-align: left;"><span class="math inline">\(t_{\text{cal}} = \dfrac{\bar{d}}{s_d/\sqrt{n}}\)</span>, df <span class="math inline">\(= n-1\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R</td>
+<td style="text-align: left;"><code>t.test(x1, x2, paired = TRUE, alternative = ...)</code>, <span class="math inline">\(d\)</span> = <code>x1</code> <span class="math inline">\(-\)</span> <code>x2</code></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="exercises-2" class="slide level2">
+<section id="exercises-2" class="slide level2 scrollable">
 <h2>Exercises</h2>
-<p><em>To be added.</em></p>
+<p><strong>3.3.1</strong> Paired or independent?</p>
+<ol type="a">
+<li>The household income of 50 families is recorded in 2024 and again in 2025.</li>
+<li>The wages of 40 randomly chosen workers in Chiang Mai are compared with the wages of 40 randomly chosen workers in Lampang.</li>
+<li>The same 20 products are priced at a supermarket and at a fresh market.</li>
+<li>30 firms that adopted a new technology are compared with 30 other firms that did not.</li>
+</ol>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Exercise 3.3.1</h2>
+<ol type="a">
+<li>Paired (same families twice). (b) Independent (two separate samples).</li>
+<li>Paired (same products at two places). (d) Independent (different firms).</li>
+</ol>
+<p><strong>3.3.2</strong> A consumer group priced the same 8 products at Shop A and Shop B (hypothetical data). It wants to know whether prices at Shop A are lower on average. Use the output to write the decision and interpretation at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  shopA and shopB
+t = -4.1501, df = 7, p-value = 0.002147
+alternative hypothesis: true mean difference is less than 0
+95 percent confidence interval:
+     -Inf -1.56252
+sample estimates:
+mean difference 
+         -2.875 </code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2 deck">
+<h2>Solution: Exercise 3.3.2</h2>
+<p><span class="math inline">\(H_0: \mu_d = 0 \quad H_1: \mu_d &lt; 0\)</span> (<span class="math inline">\(d\)</span> = Shop A <span class="math inline">\(-\)</span> Shop B). <span class="math inline">\(t_{\text{cal}} = -4.150\)</span>, df = 7, p-value = 0.0021. p-value = 0.0021 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, prices at Shop A are lower than at Shop B on average at the 0.05 level of significance.</p>
 </section>
 <section class="slide level2 deck">
 <h2>Quiz: Session 7</h2>
@@ -308,50 +1204,329 @@ Asst. Prof.&nbsp;Dr.&nbsp;Parichart Pattarapanitchai
 <h1>Two Variances</h1>
 
 </section>
-<section id="learning-objectives-3" class="slide level2">
+<section id="learning-objectives-3" class="slide level2 scrollable">
 <h2>Learning Objectives</h2>
-<p><em>To be added.</em></p>
+<ol type="1">
+<li>Read the <span class="math inline">\(F\)</span> table (Table 7), including lower-tail values from the reciprocal rule.</li>
+<li>Construct and interpret a confidence interval for the ratio <span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span>.</li>
+<li>Test whether two population variances are equal, by hand and with <code>var.test()</code> in R.</li>
+</ol>
 </section>
 <section id="concept-3" class="slide level2">
 <h2>Concept</h2>
-<p><em>To be added.</em></p>
+<p>Is one investment riskier than another? Are prices more stable in one market than in another? These questions compare two variances. We compare them with a <strong>ratio</strong>, not a difference: <span class="math display">\[
+F = \frac{s_1^2}{s_2^2}.
+\]</span> If the two populations are normal with equal variances, this ratio follows an <strong><span class="math inline">\(F\)</span> distribution</strong> with two degrees of freedom: <span class="math inline">\(\text{df}_1 = n_1 - 1\)</span> (numerator) and <span class="math inline">\(\text{df}_2 = n_2 - 1\)</span> (denominator). Like <span class="math inline">\(\chi^2\)</span>, the <span class="math inline">\(F\)</span> distribution is positive and skewed to the right.</p>
+<p>The <span class="math inline">\(F\)</span> test is also the starting point for the next two topics: Section 3.5 uses it to choose between two <span class="math inline">\(t\)</span> tests, and Chapter 4 (ANOVA) is built on an <span class="math inline">\(F\)</span> ratio.</p>
 </section>
-<section id="formulas-and-conditions-3" class="slide level2">
-<h2>Formulas and Conditions</h2>
-<p><em>To be added.</em></p>
-</section>
-<section id="worked-example-3" class="slide level2">
-<h2>Worked Example</h2>
-<p><em>To be added.</em></p>
-</section>
-<section id="your-turn-3" class="slide level2">
-<h2>Your Turn</h2>
+<section id="reading-the-f-table" class="slide level2 scrollable">
+<h2>Reading the <span class="math inline">\(F\)</span> Table</h2>
+<p>Table 7 gives <span class="math inline">\(F\)</span> values with area <strong>0.90, 0.95, 0.975, 0.99 or 0.995</strong> to the left, one page for each area. Columns are <span class="math inline">\(\text{df}_1\)</span> (numerator) and rows are <span class="math inline">\(\text{df}_2\)</span> (denominator). The order of the df matters.</p>
+<p>Areas such as 0.025 and 0.05 are not printed. Use the <strong>reciprocal rule</strong>, which swaps the two df: <span class="math display">\[
+F_{\alpha,\,\text{df}_1,\,\text{df}_2} = \frac{1}{F_{1-\alpha,\,\text{df}_2,\,\text{df}_1}}
+\]</span></p>
+<p><strong>Worked Example 3.4.1.</strong> Find (a) <span class="math inline">\(F_{0.95,\,4,\,10}\)</span>, (b) <span class="math inline">\(F_{0.975,\,12,\,15}\)</span>, (c) <span class="math inline">\(F_{0.025,\,12,\,15}\)</span>.</p>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Solution</strong></p>
+</div>
+<div class="callout-content">
+<ol type="a">
+<li><p>Page for 0.95, column 4, row 10: <span class="math inline">\(F_{0.95,\,4,\,10} = 3.48\)</span>.</p></li>
+<li><p>Page for 0.975, column 12, row 15: <span class="math inline">\(F_{0.975,\,12,\,15} = 2.96\)</span>.</p></li>
+<li><p>Swap the df and use the 0.975 page: <span class="math inline">\(F_{0.025,\,12,\,15} = \dfrac{1}{F_{0.975,\,15,\,12}} = \dfrac{1}{3.18} = 0.3145\)</span>.</p></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-f-12-15" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-f-12-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch03_files/figure-revealjs/fig-f-12-15-1.png" class="quarto-figure quarto-figure-center" width="480">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-12-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Areas 0.025 in each tail of the F distribution with df = (12, 15)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <p><strong>Your Turn 3.4.1</strong></p>
 </div>
 <div class="callout-content">
-<p><em>Problem to be added.</em></p>
+<p>Shade the area to the left on each curve, then find (a) <span class="math inline">\(F_{0.95,\,3,\,20}\)</span>, (b) <span class="math inline">\(F_{0.975,\,8,\,10}\)</span>, (c) <span class="math inline">\(F_{0.025,\,8,\,10}\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="fig-yt-3-4-1" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-yt-3-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-3-4-1" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-yt-3-4-1-1" class="quarto-float quarto-figure quarto-figure-center" width="307.2">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-yt-3-4-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch03_files/figure-revealjs/fig-yt-3-4-1-1.png" id="fig-yt-3-4-1-1" data-ref-parent="fig-yt-3-4-1" width="307">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-3-4-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-3-4-1" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-yt-3-4-1-2" class="quarto-float quarto-figure quarto-figure-center" width="307.2">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-yt-3-4-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch03_files/figure-revealjs/fig-yt-3-4-1-2.png" id="fig-yt-3-4-1-2" data-ref-parent="fig-yt-3-4-1" width="307">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-3-4-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-3-4-1" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-yt-3-4-1-3" class="quarto-float quarto-figure quarto-figure-center" width="307.2">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-yt-3-4-1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="ch03_files/figure-revealjs/fig-yt-3-4-1-3.png" id="fig-yt-3-4-1-3" data-ref-parent="fig-yt-3-4-1" width="307">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-3-4-1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-yt-3-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Shade the area to the left before reading Table 7
+</figcaption>
+</figure>
+</div>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Your Turn 3.4.1</h2>
+<ol type="a">
+<li><p><span class="math inline">\(F_{0.95,\,3,\,20} = 3.1\)</span></p></li>
+<li><p><span class="math inline">\(F_{0.975,\,8,\,10} = 3.85\)</span></p></li>
+<li><p><span class="math inline">\(F_{0.025,\,8,\,10} = 1/F_{0.975,\,10,\,8} = 1/4.3 = 0.2326\)</span></p></li>
+</ol>
+</section>
+<section id="formulas-and-conditions-2" class="slide level2">
+<h2>Formulas and Conditions</h2>
+<p><strong>Conditions:</strong> two independent random samples from <strong>normal</strong> populations.</p>
+<p><strong><span class="math inline">\((1-\alpha)100\%\)</span> confidence interval for <span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span></strong> <span class="math display">\[
+\left(\frac{s_1^2/s_2^2}{F_{1-\alpha/2,\,\text{df}_1,\,\text{df}_2}},\;
+      \frac{s_1^2/s_2^2}{F_{\alpha/2,\,\text{df}_1,\,\text{df}_2}}\right)
+= \left(\frac{s_1^2/s_2^2}{F_{1-\alpha/2,\,\text{df}_1,\,\text{df}_2}},\;
+      \frac{s_1^2}{s_2^2}\,F_{1-\alpha/2,\,\text{df}_2,\,\text{df}_1}\right)
+\]</span> If the interval contains 1, the data are consistent with equal variances.</p>
+<p><strong>Test statistic</strong> for <span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span>, with df <span class="math inline">\(= (n_1-1,\ n_2-1)\)</span> <span class="math display">\[
+F_{\text{cal}} = \frac{s_1^2}{s_2^2}
+\]</span></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 55%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(H_1\)</span></th>
+<th style="text-align: left;">Critical region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\sigma_1^2 \ne \sigma_2^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(F_{\text{cal}} &lt; F_{\alpha/2,\,\text{df}_1,\,\text{df}_2}\)</span> or <span class="math inline">\(F_{\text{cal}} &gt; F_{1-\alpha/2,\,\text{df}_1,\,\text{df}_2}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\sigma_1^2 &lt; \sigma_2^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(F_{\text{cal}} &lt; F_{\alpha,\,\text{df}_1,\,\text{df}_2}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\sigma_1^2 &gt; \sigma_2^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(F_{\text{cal}} &gt; F_{1-\alpha,\,\text{df}_1,\,\text{df}_2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>In R:</strong> <code>var.test(x1, x2, alternative = ...)</code> uses <span class="math inline">\(F = s_1^2/s_2^2\)</span> with <code>x1</code> in the numerator.</p>
+</section>
+<section id="worked-example-3" class="slide level2 scrollable">
+<h2>Worked Example</h2>
+<p><strong>Worked Example 3.4.2.</strong> An investor compares the risk of two mutual funds using their monthly returns (%): 13 months for Fund A and 16 months for Fund B (hypothetical data). The sample variances are <span class="math inline">\(s_A^2\)</span> = 6.3586 and <span class="math inline">\(s_B^2\)</span> = 1.2101. Assume returns are normally distributed.</p>
+<ol type="a">
+<li>Construct a 95% confidence interval for <span class="math inline">\(\sigma_A^2/\sigma_B^2\)</span>.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the two funds have different variances (risk).</li>
+</ol>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Solution</strong></p>
+</div>
+<div class="callout-content">
+<p><span class="math inline">\(\text{df}_1 = 13 - 1 = 12\)</span>, <span class="math inline">\(\text{df}_2 = 16 - 1 = 15\)</span>, <span class="math inline">\(s_A^2/s_B^2 = 6.3586/1.2101 = 5.255\)</span>.</p>
+<p><strong>(a)</strong> <span class="math inline">\(F_{0.975,\,12,\,15} = 2.96\)</span> and <span class="math inline">\(F_{0.975,\,15,\,12} = 3.18\)</span>: <span class="math display">\[
+\left(\frac{5.255}{2.96},\; 5.255 \times 3.18\right)
+= (1.7753,\; 16.7109)
+\]</span> We are 95% confident that the ratio <span class="math inline">\(\sigma_A^2/\sigma_B^2\)</span> is between 1.7753 and 16.7109. The interval does not contain 1.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: \sigma_A^2 = \sigma_B^2\)</span> <span class="math inline">\(\quad H_1: \sigma_A^2 \ne \sigma_B^2\)</span></p>
+<p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3: Test statistic.</strong> <span class="math display">\[
+F_{\text{cal}} = \frac{s_A^2}{s_B^2} = \frac{6.3586}{1.2101} = 5.255,
+\qquad \text{df} = (12,\ 15)
+\]</span></p>
+<p><strong>Step 4: p-value.</strong> From the R output below, p-value = 0.0034. (With the table: critical region <span class="math inline">\(F_{\text{cal}} &lt; 0.3145\)</span> or <span class="math inline">\(F_{\text{cal}} &gt; 2.96\)</span>.)</p>
+<p><strong>Step 5: Decision and interpretation.</strong> p-value = 0.0034 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the variances of the monthly returns of the two funds are different at the 0.05 level of significance; since <span class="math inline">\(s_A^2 &gt; s_B^2\)</span>, Fund A is riskier.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-r-output-2" class="slide level2">
+<h2>Reading R Output</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  fund_A and fund_B
+F = 5.2548, num df = 12, denom df = 15, p-value = 0.003424
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+  1.773311 16.695624
+sample estimates:
+ratio of variances 
+          5.254821 </code></pre>
+</div>
+</div>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Output</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>F =</code></td>
+<td style="text-align: left;"><span class="math inline">\(F_{\text{cal}} = s_1^2/s_2^2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>num df</code>, <code>denom df</code></td>
+<td style="text-align: left;"><span class="math inline">\(\text{df}_1 = n_1 - 1\)</span>, <span class="math inline">\(\text{df}_2 = n_2 - 1\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>95 percent confidence interval</code></td>
+<td style="text-align: left;">CI for <span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ratio of variances</code></td>
+<td style="text-align: left;"><span class="math inline">\(s_1^2/s_2^2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>R’s CI (1.7733, 16.6956) differs a little from the hand calculation because R uses unrounded <span class="math inline">\(F\)</span> values.</p>
+</section>
+<section id="your-turn-3" class="slide level2">
+<h2>Your Turn</h2>
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Your Turn 3.4.2</strong></p>
+</div>
+<div class="callout-content">
+<p>An analyst compares the daily price changes (%) of two stocks. For Stock X, <span class="math inline">\(n\)</span> = 11 days and <span class="math inline">\(s\)</span> = 2.8; for Stock Y, <span class="math inline">\(n\)</span> = 21 days and <span class="math inline">\(s\)</span> = 1.9 (hypothetical figures). Assume normality. At <span class="math inline">\(\alpha\)</span> = 0.05, test whether Stock X is more volatile (has a larger variance) than Stock Y, using the critical region from Table 7.</p>
 </div>
 </div>
 </div>
 </section>
 <section class="slide level2 deck">
-<h2>Solution: Your Turn 3.4.1</h2>
-<p><em>Solution to be added.</em></p>
-</section>
-<section id="reading-r-output-2" class="slide level2">
-<h2>Reading R Output</h2>
-<p><em>To be added.</em></p>
+<h2>Solution: Your Turn 3.4.2</h2>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \sigma_X^2 = \sigma_Y^2 \quad H_1: \sigma_X^2 &gt; \sigma_Y^2\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(F_{\text{cal}} = 2.8^2/1.9^2 = 7.84/3.61 = 2.172\)</span>, df = (10, 20)</p>
+<p><strong>Step 4.</strong> <span class="math inline">\(F_{0.95,\,10,\,20} = 2.35\)</span>. Critical region: <span class="math inline">\(F_{\text{cal}} &gt; 2.35\)</span>.</p>
+<p><strong>Step 5.</strong> <span class="math inline">\(F_{\text{cal}} = 2.172\)</span> does not fall in the critical region (<span class="math inline">\(2.172 &lt; 2.35\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the variances of the daily price changes of the two stocks are equal at the 0.05 level of significance.</p>
 </section>
 <section id="formula-summary-3" class="slide level2">
 <h2>Formula Summary</h2>
-<p><em>To be added.</em></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Conditions</td>
+<td style="text-align: left;">independent samples; both populations normal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Reciprocal rule</td>
+<td style="text-align: left;"><span class="math inline">\(F_{\alpha,\,\text{df}_1,\,\text{df}_2} = 1/F_{1-\alpha,\,\text{df}_2,\,\text{df}_1}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\((1-\alpha)100\%\)</span> CI for <span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left(\dfrac{s_1^2/s_2^2}{F_{1-\alpha/2,\,\text{df}_1,\,\text{df}_2}},\ \dfrac{s_1^2}{s_2^2}F_{1-\alpha/2,\,\text{df}_2,\,\text{df}_1}\right)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Test statistic</td>
+<td style="text-align: left;"><span class="math inline">\(F_{\text{cal}} = s_1^2/s_2^2\)</span>, df <span class="math inline">\(= (n_1-1,\ n_2-1)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R</td>
+<td style="text-align: left;"><code>var.test(x1, x2, alternative = ...)</code></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="exercises-3" class="slide level2">
 <h2>Exercises</h2>
-<p><em>To be added.</em></p>
+<p><strong>3.4.1</strong> Find (a) <span class="math inline">\(F_{0.99,\,5,\,12}\)</span>, (b) <span class="math inline">\(F_{0.05,\,6,\,20}\)</span>, (c) <span class="math inline">\(F_{0.975,\,24,\,30}\)</span>.</p>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Exercise 3.4.1</h2>
+<ol type="a">
+<li>5.06 (b) <span class="math inline">\(1/F_{0.95,\,20,\,6} = 1/3.87 = 0.2584\)</span> (c) 2.14</li>
+</ol>
+<p><strong>3.4.2</strong> A regulator compares the interest rates (%) on personal loans from two groups of lenders: 16 loans from group A and 21 from group B (hypothetical data). It wants to know whether rates vary more in group A. Use the output to write the decision and interpretation at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  rate_bankA and rate_bankB
+F = 3.5292, num df = 15, denom df = 20, p-value = 0.004783
+alternative hypothesis: true ratio of variances is greater than 1
+95 percent confidence interval:
+ 1.6018    Inf
+sample estimates:
+ratio of variances 
+          3.529204 </code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2 deck">
+<h2>Solution: Exercise 3.4.2</h2>
+<p><span class="math inline">\(H_0: \sigma_A^2 = \sigma_B^2 \quad H_1: \sigma_A^2 &gt; \sigma_B^2\)</span>. <span class="math inline">\(F_{\text{cal}} = 3.529\)</span>, df = (15, 20), p-value = 0.0048 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, interest rates vary more in group A than in group B at the 0.05 level of significance.</p>
 </section>
 <section class="slide level2 deck">
 <h2>Quiz: Session 8</h2>
@@ -362,23 +1537,265 @@ Asst. Prof.&nbsp;Dr.&nbsp;Parichart Pattarapanitchai
 <h1>Two Independent Means</h1>
 
 </section>
-<section id="learning-objectives-4" class="slide level2">
+<section id="learning-objectives-4" class="slide level2 scrollable">
 <h2>Learning Objectives</h2>
-<p><em>To be added.</em></p>
+<ol type="1">
+<li>Tell independent samples from paired samples by how the data were collected.</li>
+<li>Use the <span class="math inline">\(F\)</span> test to choose between the pooled <span class="math inline">\(t\)</span> test and the Welch <span class="math inline">\(t\)</span> test.</li>
+<li>Carry out the pooled <span class="math inline">\(t\)</span> test and CI by hand, and read both tests from R.</li>
+</ol>
 </section>
-<section id="concept-4" class="slide level2">
+<section id="concept-4" class="slide level2 scrollable">
 <h2>Concept</h2>
-<p><em>To be added.</em></p>
+<p>Two <strong>independent</strong> random samples are drawn from two populations, for example stores using two pricing strategies, or graduates of two universities. We estimate <span class="math inline">\(\mu_1 - \mu_2\)</span> by <span class="math inline">\(\bar{x}_1 - \bar{x}_2\)</span>. Its standard error depends on whether the two population variances are equal:</p>
+<ul>
+<li><strong>Equal variances</strong> (<span class="math inline">\(\sigma_1^2 = \sigma_2^2\)</span>): combine the two sample variances into one <strong>pooled variance</strong> <span class="math inline">\(s_p^2\)</span> and use the <strong>pooled <span class="math inline">\(t\)</span> test</strong> with df <span class="math inline">\(= n_1 + n_2 - 2\)</span>. This is calculated by hand.</li>
+<li><strong>Unequal variances</strong>: use the <strong>Welch <span class="math inline">\(t\)</span> test</strong>. Its df is not a whole number, so we read it from R.</li>
+</ul>
+<p>So the method has a first step: compare the variances with the <span class="math inline">\(F\)</span> test of Section 3.4.</p>
+<div class="callout callout-important no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Choosing the method</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li>Paired or independent? (Section 3.3) If paired, use the paired <span class="math inline">\(t\)</span> test.</li>
+<li>If independent, test <span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> (two-sided, <span class="math inline">\(\alpha\)</span> = 0.05).
+<ul>
+<li>accept <span class="math inline">\(H_0\)</span> → <strong>pooled <span class="math inline">\(t\)</span> test</strong>: <code>t.test(x1, x2, var.equal = TRUE)</code></li>
+<li>reject <span class="math inline">\(H_0\)</span> → <strong>Welch <span class="math inline">\(t\)</span> test</strong>: <code>t.test(x1, x2)</code></li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
 </section>
-<section id="formulas-and-conditions-4" class="slide level2">
+<section id="formulas-and-conditions-3" class="slide level2">
 <h2>Formulas and Conditions</h2>
-<p><em>To be added.</em></p>
+<p><strong>Conditions:</strong> two independent random samples; both populations approximately normal.</p>
+<p><strong>Pooled method</strong> (equal variances), df <span class="math inline">\(= n_1 + n_2 - 2\)</span> <span class="math display">\[
+s_p^2 = \frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2},
+\qquad
+\text{SE} = \sqrt{s_p^2\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}
+\]</span> <span class="math display">\[
+\text{CI: } (\bar{x}_1 - \bar{x}_2) \pm t_{1-\alpha/2,\,n_1+n_2-2}\,\text{SE}
+\qquad
+t_{\text{cal}} = \frac{\bar{x}_1 - \bar{x}_2}{\text{SE}}
+\]</span></p>
+<p><strong>Welch method</strong> (unequal variances): read <span class="math inline">\(t_{\text{cal}}\)</span>, df, p-value and CI from <code>t.test(x1, x2)</code>.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 55%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(H_1\)</span></th>
+<th style="text-align: left;">Critical region (pooled)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\mu_1 \ne \mu_2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(t_{\text{cal}} &lt; t_{\alpha/2,\,\text{df}}\)</span> or <span class="math inline">\(t_{\text{cal}} &gt; t_{1-\alpha/2,\,\text{df}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\mu_1 &lt; \mu_2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(t_{\text{cal}} &lt; t_{\alpha,\,\text{df}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\mu_1 &gt; \mu_2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(t_{\text{cal}} &gt; t_{1-\alpha,\,\text{df}}\)</span></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="worked-example-4" class="slide level2">
-<h2>Worked Example</h2>
-<p><em>To be added.</em></p>
+<section id="worked-example-pooled-t-test" class="slide level2 scrollable">
+<h2>Worked Example: Pooled <span class="math inline">\(t\)</span> Test</h2>
+<p><strong>Worked Example 3.5.1.</strong> A retail chain tries two pricing strategies. 12 stores use a <strong>discount</strong> strategy and 10 other stores use a <strong>bundle</strong> strategy. Daily sales (units) are recorded (hypothetical data):</p>
+<div class="cell">
+<div id="tbl-pricing" class="cell quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pricing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Daily sales (units) under two pricing strategies
+</figcaption>
+<div aria-describedby="tbl-pricing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 67%">
+<col style="width: 3%">
+<col style="width: 8%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Strategy</th>
+<th style="text-align: left;">Sales</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: left;">Mean</th>
+<th style="text-align: left;">Variance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Discount</td>
+<td style="text-align: left;">128, 148, 102, 121, 116, 116, 108, 142, 138, 128, 102, 136</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">123.75</td>
+<td style="text-align: left;">239.2955</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bundle</td>
+<td style="text-align: left;">119, 124, 109, 133, 91, 113, 106, 105, 112, 104</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">111.6</td>
+<td style="text-align: left;">136.9333</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<ol type="a">
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, check whether the variances are equal.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether mean sales are higher with the discount strategy.</li>
+<li>Construct a 95% confidence interval for <span class="math inline">\(\mu_D - \mu_B\)</span>.</li>
+</ol>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Solution</strong></p>
+</div>
+<div class="callout-content">
+<p>The stores are different stores, so the samples are independent.</p>
+<p><strong>(a)</strong> <span class="math inline">\(H_0: \sigma_D^2 = \sigma_B^2\)</span> vs <span class="math inline">\(H_1: \sigma_D^2 \ne \sigma_B^2\)</span>. <span class="math inline">\(F_{\text{cal}} = 239.2955/136.9333 = 1.748\)</span>; from <code>var.test()</code> below, p-value = 0.4110 <span class="math inline">\(\ge\)</span> 0.05, so we accept <span class="math inline">\(H_0\)</span>: the variances are equal. Use the <strong>pooled</strong> method.</p>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: \mu_D = \mu_B\)</span> <span class="math inline">\(\quad H_1: \mu_D &gt; \mu_B\)</span></p>
+<p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3: Test statistic.</strong> <span class="math display">\[
+s_p^2 = \frac{11(239.2955) + 9(136.9333)}{12 + 10 - 2} = 193.2325
+\]</span> <span class="math display">\[
+\text{SE} = \sqrt{193.2325\left(\frac{1}{12} + \frac{1}{10}\right)} = 5.952
+\]</span> <span class="math display">\[
+t_{\text{cal}} = \frac{123.75 - 111.6}{5.952} = 2.041,
+\qquad \text{df} = 20
+\]</span></p>
+<p><strong>Step 4: p-value.</strong> From the R output, p-value = 0.0273. (With the table: <span class="math inline">\(t_{0.95,\,20} = 1.725\)</span>, critical region <span class="math inline">\(t_{\text{cal}} &gt; 1.725\)</span>.)</p>
+<p><strong>Step 5: Decision and interpretation.</strong> p-value = 0.0273 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, mean daily sales are higher with the discount strategy than with the bundle strategy at the 0.05 level of significance.</p>
+<p><strong>(c)</strong> <span class="math inline">\(t_{0.975,\,20} = 2.086\)</span>: <span class="math inline">\(12.15 \pm 2.086(5.952) = 12.15 \pm 12.4159\)</span>. 95% CI: (-0.27, 24.57). We are 95% confident that the difference in mean daily sales (discount <span class="math inline">\(-\)</span> bundle) is between -0.27 and 24.57 units.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-warning no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>One-sided test, two-sided interval</strong></p>
+</div>
+<div class="callout-content">
+<p>The one-sided test in (b) rejects <span class="math inline">\(H_0\)</span>, but the 95% CI in (c) contains 0. This is not a contradiction: the CI matches a <strong>two-sided</strong> test, whose p-value (0.0546) is twice the one-sided p-value.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="your-turn-4" class="slide level2">
+<section id="reading-r-output-3" class="slide level2">
+<h2>Reading R Output</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  discount and bundle
+F = 1.7475, num df = 11, denom df = 9, p-value = 0.411
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.4467023 6.2699696
+sample estimates:
+ratio of variances 
+          1.747533 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  discount and bundle
+t = 2.0413, df = 20, p-value = 0.02732
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ 1.884527      Inf
+sample estimates:
+mean of x mean of y 
+   123.75    111.60 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  discount and bundle
+t = 2.0413, df = 20, p-value = 0.05463
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.2655939 24.5655939
+sample estimates:
+mean of x mean of y 
+   123.75    111.60 </code></pre>
+</div>
+</div>
+<p>With <code>var.equal = TRUE</code> R prints <strong>Two Sample t-test</strong> (pooled); without it R prints <strong>Welch Two Sample t-test</strong>. Check the title before reading the numbers.</p>
+</section>
+<section id="worked-example-welch-t-test" class="slide level2">
+<h2>Worked Example: Welch <span class="math inline">\(t\)</span> Test</h2>
+<p><strong>Worked Example 3.5.2.</strong> A consumer researcher records the price (baht) of the same model of headphones at 15 online stores and 12 physical stores (hypothetical data). Is the mean price different?</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  online and physical
+F = 7.2367, num df = 14, denom df = 11, p-value = 0.002223
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+  2.154537 22.394556
+sample estimates:
+ratio of variances 
+           7.23668 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  online and physical
+t = -5.5038, df = 18.55, p-value = 2.843e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -309.7842 -138.8825
+sample estimates:
+mean of x mean of y 
+ 1860.667  2085.000 </code></pre>
+</div>
+</div>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Solution</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Equal variances?</strong> p-value of the <span class="math inline">\(F\)</span> test = 0.0022 &lt; 0.05, so we reject <span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span>. Online prices vary much more. Use the <strong>Welch</strong> test (the second output).</p>
+<p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: \mu_{\text{online}} = \mu_{\text{physical}}\)</span> <span class="math inline">\(\quad H_1: \mu_{\text{online}} \ne \mu_{\text{physical}}\)</span></p>
+<p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3: Test statistic.</strong> <span class="math inline">\(t_{\text{cal}} = -5.504\)</span>, df = 18.55</p>
+<p><strong>Step 4: p-value.</strong> p-value = 2.843e-05 (= 0.000028), which is &lt; 0.0001</p>
+<p><strong>Step 5: Decision and interpretation.</strong> p-value &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean price is different online and in physical stores at the 0.05 level of significance; since <span class="math inline">\(\bar{x}_{\text{online}}\)</span> = 1,860.67 &lt; <span class="math inline">\(\bar{x}_{\text{physical}}\)</span> = 2,085.00, it is lower online.</p>
+<p>We are 95% confident that the difference in mean price (online <span class="math inline">\(-\)</span> physical) is between -309.78 and -138.88 baht.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="your-turn-4" class="slide level2 scrollable">
 <h2>Your Turn</h2>
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
@@ -386,26 +1803,170 @@ Asst. Prof.&nbsp;Dr.&nbsp;Parichart Pattarapanitchai
 <p><strong>Your Turn 3.5.1</strong></p>
 </div>
 <div class="callout-content">
-<p><em>Problem to be added.</em></p>
+<p>The starting monthly salaries (thousand baht) of 10 economics graduates from University A and 12 from University B are compared (hypothetical data): <span class="math inline">\(\bar{x}_A\)</span> = 24.01, <span class="math inline">\(s_A^2\)</span> = 12.8677, <span class="math inline">\(\bar{x}_B\)</span> = 21.6083, <span class="math inline">\(s_B^2\)</span> = 6.8936.</p>
+<ol type="a">
+<li>Use the first output to decide which <span class="math inline">\(t\)</span> test to use.</li>
+<li>Calculate <span class="math inline">\(t_{\text{cal}}\)</span> by hand.</li>
+<li>Use the R output to test whether the mean starting salaries are different at <span class="math inline">\(\alpha\)</span> = 0.05.</li>
+</ol>
 </div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  uni_A and uni_B
+F = 1.8666, num df = 9, denom df = 11, p-value = 0.3264
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.5202547 7.3023613
+sample estimates:
+ratio of variances 
+          1.866621 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  uni_A and uni_B
+t = 1.812, df = 20, p-value = 0.08502
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.3630677  5.1664011
+sample estimates:
+mean of x mean of y 
+ 24.01000  21.60833 </code></pre>
 </div>
 </div>
 </section>
 <section class="slide level2 deck">
 <h2>Solution: Your Turn 3.5.1</h2>
-<p><em>Solution to be added.</em></p>
-</section>
-<section id="reading-r-output-3" class="slide level2">
-<h2>Reading R Output</h2>
-<p><em>To be added.</em></p>
+<p><strong>(a)</strong> <span class="math inline">\(F\)</span> test p-value = 0.3264 <span class="math inline">\(\ge\)</span> 0.05: accept equal variances, so use the pooled <span class="math inline">\(t\)</span> test.</p>
+<p><strong>(b)</strong> <span class="math inline">\(s_p^2 = \dfrac{9(12.8677) + 11(6.8936)}{20} = 9.5819\)</span>, SE <span class="math inline">\(= \sqrt{9.5819(1/10 + 1/12)} = 1.3254\)</span>, <span class="math inline">\(t_{\text{cal}} = (24.01 - 21.6083)/1.3254 = 1.812\)</span>.</p>
+<p><strong>(c)</strong></p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_A = \mu_B \quad H_1: \mu_A \ne \mu_B\)</span></p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(t_{\text{cal}} = 1.812\)</span>, df = 20</p>
+<p><strong>Step 4.</strong> p-value = 0.0850</p>
+<p><strong>Step 5.</strong> p-value = 0.0850 <span class="math inline">\(\ge\)</span> <span class="math inline">\(\alpha\)</span> = 0.05, so we accept <span class="math inline">\(H_0\)</span>. That is, the mean starting salaries of graduates from the two universities are equal at the 0.05 level of significance.</p>
 </section>
 <section id="formula-summary-4" class="slide level2">
 <h2>Formula Summary</h2>
-<p><em>To be added.</em></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Situation</th>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Paired data</td>
+<td style="text-align: left;">paired <span class="math inline">\(t\)</span> on <span class="math inline">\(d\)</span> (Section 3.3)</td>
+<td style="text-align: left;"><code>t.test(x1, x2, paired = TRUE)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Independent, equal variances</td>
+<td style="text-align: left;">pooled <span class="math inline">\(t\)</span>: <span class="math inline">\(s_p^2 = \dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\)</span>, <span class="math inline">\(t_{\text{cal}} = \dfrac{\bar{x}_1-\bar{x}_2}{\sqrt{s_p^2(1/n_1+1/n_2)}}\)</span>, df <span class="math inline">\(= n_1+n_2-2\)</span></td>
+<td style="text-align: left;"><code>t.test(x1, x2, var.equal = TRUE)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Independent, unequal variances</td>
+<td style="text-align: left;">Welch <span class="math inline">\(t\)</span></td>
+<td style="text-align: left;"><code>t.test(x1, x2)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CI (pooled)</td>
+<td style="text-align: left;"><span class="math inline">\((\bar{x}_1-\bar{x}_2) \pm t_{1-\alpha/2,\,n_1+n_2-2}\,\text{SE}\)</span></td>
+<td style="text-align: left;">two-sided output</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="exercises-4" class="slide level2">
+<section id="exercises-4" class="slide level2 scrollable">
 <h2>Exercises</h2>
-<p><em>To be added.</em></p>
+<p><strong>3.5.1</strong> An economist compares the monthly inflation expectations (%) reported by 14 firms in the North and 16 firms in the South (hypothetical data). She wants to know whether expectations are higher in the North. Three outputs are shown.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Output 1</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  north and south
+F = 8.0762, num df = 13, denom df = 15, p-value = 0.0002742
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+  2.761183 24.654312
+sample estimates:
+ratio of variances 
+          8.076196 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Output 2</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  north and south
+t = 2.5738, df = 28, p-value = 0.007822
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ 0.5712447       Inf
+sample estimates:
+mean of x mean of y 
+ 8.828571  7.143750 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Output 3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  north and south
+t = 2.4385, df = 15.809, p-value = 0.01347
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ 0.4776595       Inf
+sample estimates:
+mean of x mean of y 
+ 8.828571  7.143750 </code></pre>
+</div>
+</div>
+<ol type="a">
+<li>Which of Output 2 and Output 3 should she use? Explain.</li>
+<li>Write the decision and interpretation at <span class="math inline">\(\alpha\)</span> = 0.05.</li>
+</ol>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Exercise 3.5.1</h2>
+<ol type="a">
+<li><p>In Output 1 the p-value = 0.0003 &lt; 0.05, so the variances are not equal. Use the Welch test, Output 3. (Output 2 assumes equal variances.)</p></li>
+<li><p><span class="math inline">\(H_0: \mu_N = \mu_S \quad H_1: \mu_N &gt; \mu_S\)</span>. From Output 3, <span class="math inline">\(t_{\text{cal}} = 2.439\)</span>, df = 15.81, p-value = 0.0135 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, mean inflation expectations are higher in the North than in the South at the 0.05 level of significance.</p></li>
+</ol>
+<p><strong>3.5.2</strong> For each study, say whether you would use the paired <span class="math inline">\(t\)</span> test or a two-sample (pooled or Welch) <span class="math inline">\(t\)</span> test.</p>
+<ol type="a">
+<li>The rice yield of 15 farms is recorded before and after an irrigation project.</li>
+<li>The household income of 60 randomly chosen households in Chiang Mai is compared with that of 60 randomly chosen households in Bangkok.</li>
+<li>For each of 12 provinces, the unemployment rate of men is compared with that of women.</li>
+</ol>
+</section>
+<section class="slide level2 deck scrollable">
+<h2>Solution: Exercise 3.5.2</h2>
+<ol type="a">
+<li>Paired (same farms twice). (b) Two-sample: two independent samples; check the variances with the <span class="math inline">\(F\)</span> test to choose pooled or Welch. (c) Paired (men and women are matched within each province).</li>
+</ol>
 </section>
 <section class="slide level2 deck">
 <h2>Quiz: Session 9</h2>

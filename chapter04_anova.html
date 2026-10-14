@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -76,6 +111,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -168,8 +232,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#concept" id="toc-concept" class="nav-link" data-scroll-target="#concept">Concept</a></li>
   <li><a href="#formulas-and-conditions" id="toc-formulas-and-conditions" class="nav-link" data-scroll-target="#formulas-and-conditions">Formulas and Conditions</a></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked Example</a></li>
-  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your Turn</a></li>
   <li><a href="#reading-r-output" id="toc-reading-r-output" class="nav-link" data-scroll-target="#reading-r-output">Reading R Output</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your Turn</a></li>
   <li><a href="#formula-summary" id="toc-formula-summary" class="nav-link" data-scroll-target="#formula-summary">Formula Summary</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul></li>
@@ -177,10 +241,9 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#learning-objectives-1" id="toc-learning-objectives-1" class="nav-link" data-scroll-target="#learning-objectives-1">Learning Objectives</a></li>
   <li><a href="#concept-1" id="toc-concept-1" class="nav-link" data-scroll-target="#concept-1">Concept</a></li>
-  <li><a href="#formulas-and-conditions-1" id="toc-formulas-and-conditions-1" class="nav-link" data-scroll-target="#formulas-and-conditions-1">Formulas and Conditions</a></li>
+  <li><a href="#reading-r-output-1" id="toc-reading-r-output-1" class="nav-link" data-scroll-target="#reading-r-output-1">Reading R Output</a></li>
   <li><a href="#worked-example-1" id="toc-worked-example-1" class="nav-link" data-scroll-target="#worked-example-1">Worked Example</a></li>
   <li><a href="#your-turn-1" id="toc-your-turn-1" class="nav-link" data-scroll-target="#your-turn-1">Your Turn</a></li>
-  <li><a href="#reading-r-output-1" id="toc-reading-r-output-1" class="nav-link" data-scroll-target="#reading-r-output-1">Reading R Output</a></li>
   <li><a href="#formula-summary-1" id="toc-formula-summary-1" class="nav-link" data-scroll-target="#formula-summary-1">Formula Summary</a></li>
   <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1">Exercises</a></li>
   </ul></li>
@@ -188,10 +251,10 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#learning-objectives-2" id="toc-learning-objectives-2" class="nav-link" data-scroll-target="#learning-objectives-2">Learning Objectives</a></li>
   <li><a href="#concept-2" id="toc-concept-2" class="nav-link" data-scroll-target="#concept-2">Concept</a></li>
-  <li><a href="#formulas-and-conditions-2" id="toc-formulas-and-conditions-2" class="nav-link" data-scroll-target="#formulas-and-conditions-2">Formulas and Conditions</a></li>
+  <li><a href="#formulas-and-conditions-1" id="toc-formulas-and-conditions-1" class="nav-link" data-scroll-target="#formulas-and-conditions-1">Formulas and Conditions</a></li>
   <li><a href="#worked-example-2" id="toc-worked-example-2" class="nav-link" data-scroll-target="#worked-example-2">Worked Example</a></li>
-  <li><a href="#your-turn-2" id="toc-your-turn-2" class="nav-link" data-scroll-target="#your-turn-2">Your Turn</a></li>
   <li><a href="#reading-r-output-2" id="toc-reading-r-output-2" class="nav-link" data-scroll-target="#reading-r-output-2">Reading R Output</a></li>
+  <li><a href="#your-turn-2" id="toc-your-turn-2" class="nav-link" data-scroll-target="#your-turn-2">Your Turn</a></li>
   <li><a href="#formula-summary-2" id="toc-formula-summary-2" class="nav-link" data-scroll-target="#formula-summary-2">Formula Summary</a></li>
   <li><a href="#exercises-2" id="toc-exercises-2" class="nav-link" data-scroll-target="#exercises-2">Exercises</a></li>
   </ul></li>
@@ -224,19 +287,274 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="4.1" class="anchored" data-anchor-id="sec-anova-crd"><span class="header-section-number">4.1</span> One-Way ANOVA: CRD</h2>
 <section id="learning-objectives" class="level3">
 <h3 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h3>
-<p><em>To be added.</em></p>
+<ol type="1">
+<li>Explain why we use ANOVA, not many <span class="math inline">\(t\)</span> tests, to compare three or more means.</li>
+<li>Describe a completely randomized design (CRD) and the assumptions of one-way ANOVA.</li>
+<li>Calculate the ANOVA table by hand for a small data set.</li>
+<li>Read the output of <code>summary(aov(y ~ trt))</code> in R and write the conclusion.</li>
+</ol>
 </section>
 <section id="concept" class="level3">
 <h3 class="anchored" data-anchor-id="concept">Concept</h3>
-<p><em>To be added.</em></p>
+<p>A retail chain wants to compare <strong>three</strong> pricing strategies. Testing each pair with a <span class="math inline">\(t\)</span> test needs three tests; with five strategies it needs ten. Each test has a 5% chance of a Type I error, so the chance of at least one false “significant” result grows quickly. <strong>Analysis of variance (ANOVA)</strong> tests all the means at once: <span class="math display">\[
+H_0: \mu_1 = \mu_2 = \cdots = \mu_k \qquad
+H_1: \text{at least one } \mu_i \text{ is different}
+\]</span></p>
+<p>In a <strong>completely randomized design (CRD)</strong> the treatments (here, pricing strategies) are assigned to experimental units (stores) completely at random.</p>
+<p>The idea of ANOVA is to split the total variation in the data into two parts:</p>
+<ul>
+<li>variation <strong>between</strong> the treatment means (treatment sum of squares, SSTr)</li>
+<li>variation <strong>within</strong> the treatments (error sum of squares, SSE)</li>
+</ul>
+<p>If the treatment means are really equal, the between-treatment variation is only random noise, about the same size as the within-treatment variation. The ratio of the two mean squares is an <span class="math inline">\(F\)</span> statistic, as in Section 3.4.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-crd-dots" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-crd-dots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter04_anova_files/figure-html/fig-crd-dots-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-crd-dots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Weekly sales (hundred units) of 15 stores under three pricing strategies; lines show treatment means
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="formulas-and-conditions" class="level3">
 <h3 class="anchored" data-anchor-id="formulas-and-conditions">Formulas and Conditions</h3>
-<p><em>To be added.</em></p>
+<p><strong>Assumptions:</strong> independent random samples (units assigned at random); each population is normal; all populations have the same variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>With <span class="math inline">\(k\)</span> treatments, <span class="math inline">\(n_i\)</span> observations in treatment <span class="math inline">\(i\)</span>, <span class="math inline">\(N = \sum n_i\)</span>, treatment totals <span class="math inline">\(T_i\)</span> and grand total <span class="math inline">\(G\)</span>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: left;">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Correction factor</td>
+<td style="text-align: left;"><span class="math inline">\(\text{CF} = G^2/N\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total SS</td>
+<td style="text-align: left;"><span class="math inline">\(\text{SST} = \sum y^2 - \text{CF}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Treatment SS</td>
+<td style="text-align: left;"><span class="math inline">\(\text{SSTr} = \sum \dfrac{T_i^2}{n_i} - \text{CF}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Error SS</td>
+<td style="text-align: left;"><span class="math inline">\(\text{SSE} = \text{SST} - \text{SSTr}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>ANOVA table</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: center;">df</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MS</th>
+<th style="text-align: center;"><span class="math inline">\(F\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Treatments</td>
+<td style="text-align: center;"><span class="math inline">\(k-1\)</span></td>
+<td style="text-align: center;">SSTr</td>
+<td style="text-align: center;"><span class="math inline">\(\text{MSTr} = \dfrac{\text{SSTr}}{k-1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(F_{\text{cal}} = \dfrac{\text{MSTr}}{\text{MSE}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Error</td>
+<td style="text-align: center;"><span class="math inline">\(N-k\)</span></td>
+<td style="text-align: center;">SSE</td>
+<td style="text-align: center;"><span class="math inline">\(\text{MSE} = \dfrac{\text{SSE}}{N-k}\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;"><span class="math inline">\(N-1\)</span></td>
+<td style="text-align: center;">SST</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Critical region:</strong> <span class="math inline">\(F_{\text{cal}} &gt; F_{1-\alpha,\,k-1,\,N-k}\)</span>. The ANOVA <span class="math inline">\(F\)</span> test is always <strong>right-sided</strong>: only a large between-treatment variation is evidence against <span class="math inline">\(H_0\)</span>.</p>
+<p><strong>In R:</strong> <code>summary(aov(y ~ trt))</code>. The row named after the treatment is the treatment row and <code>Residuals</code> is the error row.</p>
 </section>
 <section id="worked-example" class="level3">
 <h3 class="anchored" data-anchor-id="worked-example">Worked Example</h3>
-<p><em>To be added.</em></p>
+<p><strong>Worked Example 4.1.1.</strong> A retail chain randomly assigns three pricing strategies (Regular, Discount, Bundle) to 15 similar stores, 5 stores each, and records weekly sales in hundreds of units (hypothetical data):</p>
+<div class="cell">
+<div id="tbl-crd" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-crd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.1: Weekly sales (hundred units) under three pricing strategies
+</figcaption>
+<div aria-describedby="tbl-crd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Strategy</th>
+<th style="text-align: left;">Sales</th>
+<th style="text-align: center;">Total</th>
+<th style="text-align: center;">Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Regular</td>
+<td style="text-align: left;">21, 24, 19, 23, 18</td>
+<td style="text-align: center;">105</td>
+<td style="text-align: center;">21.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Discount</td>
+<td style="text-align: left;">28, 31, 26, 30, 27</td>
+<td style="text-align: center;">142</td>
+<td style="text-align: center;">28.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bundle</td>
+<td style="text-align: left;">25, 22, 27, 24, 26</td>
+<td style="text-align: center;">124</td>
+<td style="text-align: center;">24.8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the mean weekly sales differ among the three strategies.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(k\)</span> = 3, <span class="math inline">\(N\)</span> = 15, <span class="math inline">\(G\)</span> = 371, <span class="math inline">\(\sum y^2\)</span> = 9,371.</p>
+<p><span class="math display">\[
+\text{CF} = \frac{371^2}{15} = 9176.0667
+\]</span> <span class="math display">\[
+\text{SST} = 9,371 - 9176.0667 = 194.9333
+\]</span> <span class="math display">\[
+\text{SSTr} = \frac{105^2 + 142^2 + 124^2}{5} - 9176.0667 = 9313 - 9176.0667 = 136.9333
+\]</span> <span class="math display">\[
+\text{SSE} = 194.9333 - 136.9333 = 58
+\]</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: center;">df</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MS</th>
+<th style="text-align: center;"><span class="math inline">\(F\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Strategy</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">136.9333</td>
+<td style="text-align: center;">68.4667</td>
+<td style="text-align: center;">14.166</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Error</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">58</td>
+<td style="text-align: center;">4.8333</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">194.9333</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: \mu_R = \mu_D = \mu_B\)</span> <span class="math inline">\(\quad H_1:\)</span> at least one mean is different</p>
+<p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3: Test statistic.</strong> <span class="math inline">\(F_{\text{cal}} = \dfrac{68.4667}{4.8333} = 14.166\)</span>, df = (2, 12)</p>
+<p><strong>Step 4: p-value.</strong> From the R output below, p-value = 0.0007. (With the table: <span class="math inline">\(F_{0.95,\,2,\,12} = 3.89\)</span>, critical region <span class="math inline">\(F_{\text{cal}} &gt; 3.89\)</span>.)</p>
+<p><strong>Step 5: Decision and interpretation.</strong> p-value = 0.0007 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean weekly sales are not all equal across the three pricing strategies at the 0.05 level of significance. Section 4.2 shows how to find which strategies differ.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-r-output" class="level3">
+<h3 class="anchored" data-anchor-id="reading-r-output">Reading R Output</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(sales <span class="sc">~</span> strategy, <span class="at">data =</span> crd))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+strategy     2  136.9   68.47   14.17 0.000694 ***
+Residuals   12   58.0    4.83                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Output</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>strategy</code> row</td>
+<td style="text-align: left;">treatment: df <span class="math inline">\(= k-1\)</span>, SSTr, MSTr, <span class="math inline">\(F_{\text{cal}}\)</span>, p-value</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>Residuals</code> row</td>
+<td style="text-align: left;">error: df <span class="math inline">\(= N-k\)</span>, SSE, MSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>Pr(&gt;F)</code></td>
+<td style="text-align: left;">p-value</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>***</code>, <code>**</code>, <code>*</code></td>
+<td style="text-align: left;">significance codes; we use the p-value itself</td>
+</tr>
+</tbody>
+</table>
+<p>R does not print the Total row; add the other two rows to get it (df = 14, SS = 194.9333).</p>
 </section>
 <section id="your-turn" class="level3">
 <h3 class="anchored" data-anchor-id="your-turn">Your Turn</h3>
@@ -250,11 +568,69 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>Problem to be added.</em></p>
+<p>The household saving rate (% of income) of 4 randomly selected households in each of four regions is recorded (hypothetical data):</p>
+<div class="cell">
+<div id="tbl-sav" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-sav-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.2
+</figcaption>
+<div aria-describedby="tbl-sav-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Region</th>
+<th style="text-align: left;">Saving rate</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">North</td>
+<td style="text-align: left;">12, 15, 11, 14</td>
+<td style="text-align: right;">52</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Northeast</td>
+<td style="text-align: left;">9, 10, 8, 11</td>
+<td style="text-align: right;">38</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Central</td>
+<td style="text-align: left;">16, 14, 17, 15</td>
+<td style="text-align: right;">62</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">13, 11, 12, 14</td>
+<td style="text-align: right;">50</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p><span class="math inline">\(\sum y^2\)</span> = 2,648. (a) Complete the ANOVA table by hand. (b) At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the mean saving rate differs among the regions, and check your table against the R output.</p>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(saving <span class="sc">~</span> region, <span class="at">data =</span> sav))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+region       3  72.75  24.250   11.64 0.000725 ***
+Residuals   12  25.00   2.083                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -263,43 +639,308 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><em>Solution to be added.</em></p>
+<p><strong>(a)</strong> <span class="math inline">\(G\)</span> = 202, CF <span class="math inline">\(= 202^2/16 = 2550.25\)</span>, SST <span class="math inline">\(= 2648 - 2550.25 = 97.75\)</span>, SSTr <span class="math inline">\(= (52^2 + 38^2 + 62^2 + 50^2)/4 - 2550.25 = 72.75\)</span>, SSE <span class="math inline">\(= 25\)</span>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: center;">df</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MS</th>
+<th style="text-align: center;"><span class="math inline">\(F\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Region</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">72.75</td>
+<td style="text-align: center;">24.25</td>
+<td style="text-align: center;">11.640</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Error</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">2.0833</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">97.75</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>(b)</strong></p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_N = \mu_{NE} = \mu_C = \mu_S \quad H_1:\)</span> at least one mean is different</p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(F_{\text{cal}} = 24.25/2.0833 = 11.640\)</span>, df = (3, 12)</p>
+<p><strong>Step 4.</strong> p-value = 0.0007 (table: <span class="math inline">\(F_{0.95,\,3,\,12} = 3.49\)</span>)</p>
+<p><strong>Step 5.</strong> p-value = 0.0007 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean saving rates are not all equal across the four regions at the 0.05 level of significance.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="reading-r-output" class="level3">
-<h3 class="anchored" data-anchor-id="reading-r-output">Reading R Output</h3>
-<p><em>To be added.</em></p>
 </section>
 <section id="formula-summary" class="level3">
 <h3 class="anchored" data-anchor-id="formula-summary">Formula Summary</h3>
-<p><em>To be added.</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Hypotheses</td>
+<td style="text-align: left;"><span class="math inline">\(H_0: \mu_1 = \cdots = \mu_k\)</span>; <span class="math inline">\(H_1\)</span>: at least one <span class="math inline">\(\mu_i\)</span> different</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sums of squares</td>
+<td style="text-align: left;"><span class="math inline">\(\text{CF} = G^2/N\)</span>; <span class="math inline">\(\text{SST} = \sum y^2 - \text{CF}\)</span>; <span class="math inline">\(\text{SSTr} = \sum T_i^2/n_i - \text{CF}\)</span>; <span class="math inline">\(\text{SSE} = \text{SST} - \text{SSTr}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">df</td>
+<td style="text-align: left;">treatments <span class="math inline">\(k-1\)</span>; error <span class="math inline">\(N-k\)</span>; total <span class="math inline">\(N-1\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Test statistic</td>
+<td style="text-align: left;"><span class="math inline">\(F_{\text{cal}} = \text{MSTr}/\text{MSE}\)</span>; reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(F_{\text{cal}} &gt; F_{1-\alpha,\,k-1,\,N-k}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R</td>
+<td style="text-align: left;"><code>summary(aov(y ~ trt))</code></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="exercises" class="level3">
 <h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
-<p><em>To be added.</em></p>
+<p><strong>4.1.1</strong> Complete the ANOVA table for a CRD with 4 treatments and 6 units per treatment, and state the decision at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: center;">df</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MS</th>
+<th style="text-align: center;"><span class="math inline">\(F\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Treatments</td>
+<td style="text-align: center;">(a)</td>
+<td style="text-align: center;">54.0</td>
+<td style="text-align: center;">(c)</td>
+<td style="text-align: center;">(e)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Error</td>
+<td style="text-align: center;">(b)</td>
+<td style="text-align: center;">80.0</td>
+<td style="text-align: center;">(d)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">134.0</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 4.1.1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><span class="math inline">\(k - 1 = 3\)</span>; (b) <span class="math inline">\(N - k = 24 - 4 = 20\)</span>; (c) <span class="math inline">\(54.0/3 = 18\)</span>; (d) <span class="math inline">\(80.0/20 = 4\)</span>;</li>
+<li><span class="math inline">\(F_{\text{cal}} = 18/4 = 4.500\)</span>. <span class="math inline">\(F_{0.95,\,3,\,20} = 3.1\)</span>; <span class="math inline">\(4.500 &gt; 3.1\)</span>, so <span class="math inline">\(F_{\text{cal}}\)</span> falls in the critical region and we reject <span class="math inline">\(H_0\)</span>: the treatment means are not all equal at the 0.05 level of significance.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>4.1.2</strong> Explain why a researcher comparing five investment funds should use ANOVA rather than ten separate two-sample <span class="math inline">\(t\)</span> tests.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 4.1.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Each <span class="math inline">\(t\)</span> test has a 5% chance of a Type I error. With ten tests the chance of at least one false significant result is much larger than 5%. ANOVA tests all five means in one test at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="sec-tukey" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="sec-tukey"><span class="header-section-number">4.2</span> Multiple Comparisons (Tukey)</h2>
 <section id="learning-objectives-1" class="level3">
 <h3 class="anchored" data-anchor-id="learning-objectives-1">Learning Objectives</h3>
-<p><em>To be added.</em></p>
+<ol type="1">
+<li>Explain when a multiple-comparison procedure is needed.</li>
+<li>Read the output of <code>TukeyHSD()</code>: difference, confidence interval and adjusted p-value.</li>
+<li>Decide which pairs of means differ and write the conclusion.</li>
+</ol>
 </section>
 <section id="concept-1" class="level3">
 <h3 class="anchored" data-anchor-id="concept-1">Concept</h3>
-<p><em>To be added.</em></p>
+<p>When ANOVA rejects <span class="math inline">\(H_0\)</span>, we know that <strong>at least one</strong> mean is different, but not which ones. Comparing every pair with separate <span class="math inline">\(t\)</span> tests would raise the overall chance of a Type I error, as Section 4.1 explained.</p>
+<p><strong>Tukey’s honestly significant difference (HSD)</strong> method compares every pair of means while keeping the <strong>family-wise</strong> error rate (the chance of at least one Type I error among all the comparisons) at <span class="math inline">\(\alpha\)</span> = 0.05. It is based on the Studentized range distribution (Table 14). In this course we read Tukey’s results from R only.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>When to use Tukey
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use Tukey only <strong>after</strong> the ANOVA <span class="math inline">\(F\)</span> test rejects <span class="math inline">\(H_0\)</span>. If ANOVA accepts <span class="math inline">\(H_0\)</span>, the conclusion is that all the means are equal, and no pairwise comparison is needed.</p>
+</div>
+</div>
 </section>
-<section id="formulas-and-conditions-1" class="level3">
-<h3 class="anchored" data-anchor-id="formulas-and-conditions-1">Formulas and Conditions</h3>
-<p><em>To be added.</em></p>
+<section id="reading-r-output-1" class="level3">
+<h3 class="anchored" data-anchor-id="reading-r-output-1">Reading R Output</h3>
+<p><code>TukeyHSD(model)</code> prints one row for each pair of treatments:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>diff</code></td>
+<td style="text-align: left;">difference between the two sample means, in the order of the row name (e.g.&nbsp;<code>Discount-Regular</code> = <span class="math inline">\(\bar{x}_D - \bar{x}_R\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>lwr</code>, <code>upr</code></td>
+<td style="text-align: left;">lower and upper limits of a 95% (family-wise) CI for the difference</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>p adj</code></td>
+<td style="text-align: left;">adjusted p-value for <span class="math inline">\(H_0: \mu_i = \mu_j\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>A pair is significantly different if <code>p adj</code> <span class="math inline">\(&lt; 0.05\)</span>; equivalently, if the CI from <code>lwr</code> to <code>upr</code> <strong>does not contain 0</strong>.</p>
 </section>
 <section id="worked-example-1" class="level3">
 <h3 class="anchored" data-anchor-id="worked-example-1">Worked Example</h3>
-<p><em>To be added.</em></p>
+<p><strong>Worked Example 4.2.1.</strong> In Worked Example 4.1.1 the ANOVA rejected <span class="math inline">\(H_0\)</span> (p-value = 0.0007). The sample means are Regular 21, Discount 28.4 and Bundle 24.8. Use the Tukey output to find which pricing strategies differ at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = sales ~ strategy, data = crd)
+
+$strategy
+                 diff         lwr        upr     p adj
+Discount-Regular  7.4  3.69048613 11.1095139 0.0004927
+Bundle-Regular    3.8  0.09048613  7.5095139 0.0445827
+Bundle-Discount  -3.6 -7.30951387  0.1095139 0.0573998</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Pair</th>
+<th style="text-align: center;">diff</th>
+<th style="text-align: center;">95% CI</th>
+<th style="text-align: center;">p adj</th>
+<th style="text-align: left;">Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Discount <span class="math inline">\(-\)</span> Regular</td>
+<td style="text-align: center;">7.4</td>
+<td style="text-align: center;">(3.6905, 11.1095)</td>
+<td style="text-align: center;">0.0005</td>
+<td style="text-align: left;">&lt; 0.05: different</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bundle <span class="math inline">\(-\)</span> Regular</td>
+<td style="text-align: center;">3.8</td>
+<td style="text-align: center;">(0.0905, 7.5095)</td>
+<td style="text-align: center;">0.0446</td>
+<td style="text-align: left;">&lt; 0.05: different</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bundle <span class="math inline">\(-\)</span> Discount</td>
+<td style="text-align: center;">-3.6</td>
+<td style="text-align: center;">(-7.3095, 0.1095)</td>
+<td style="text-align: center;">0.0574</td>
+<td style="text-align: left;"><span class="math inline">\(\ge\)</span> 0.05: not different</td>
+</tr>
+</tbody>
+</table>
+<p>At the 0.05 level of significance:</p>
+<ul>
+<li>mean sales with the Discount strategy are higher than with the Regular strategy;</li>
+<li>mean sales with the Bundle strategy are higher than with the Regular strategy;</li>
+<li>mean sales with the Discount and Bundle strategies are equal.</li>
+</ul>
+<p>Both promotional strategies beat the regular price, but there is no significant difference between them.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="your-turn-1" class="level3">
 <h3 class="anchored" data-anchor-id="your-turn-1">Your Turn</h3>
@@ -313,11 +954,32 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>Problem to be added.</em></p>
+<p>In Your Turn 4.1.1 the ANOVA showed that the mean saving rates differ among the four regions. Use the output below to decide which pairs of regions differ at <span class="math inline">\(\alpha\)</span> = 0.05, and summarize the result in one or two sentences.</p>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model_sav)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = saving ~ region, data = sav)
+
+$region
+                  diff         lwr         upr     p adj
+Northeast-North   -3.5 -6.53012202 -0.46987798 0.0224076
+Central-North      2.5 -0.53012202  5.53012202 0.1199630
+South-North       -0.5 -3.53012202  2.53012202 0.9598670
+Central-Northeast  6.0  2.96987798  9.03012202 0.0003771
+South-Northeast    3.0 -0.03012202  6.03012202 0.0526110
+South-Central     -3.0 -6.03012202  0.03012202 0.0526110</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -326,43 +988,396 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><em>Solution to be added.</em></p>
+<p>Pairs with p adj &lt; 0.05 (CI does not contain 0): Northeast <span class="math inline">\(-\)</span> North (p adj = 0.0224); Central <span class="math inline">\(-\)</span> Northeast (p adj = 0.0004). All other pairs are not significantly different.</p>
+<p>That is, at the 0.05 level of significance the mean saving rate in the Northeast is lower than in the North and lower than in the Central region; the other pairs of regions have equal mean saving rates.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="reading-r-output-1" class="level3">
-<h3 class="anchored" data-anchor-id="reading-r-output-1">Reading R Output</h3>
-<p><em>To be added.</em></p>
 </section>
 <section id="formula-summary-1" class="level3">
 <h3 class="anchored" data-anchor-id="formula-summary-1">Formula Summary</h3>
-<p><em>To be added.</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">When</td>
+<td style="text-align: left;">after ANOVA rejects <span class="math inline">\(H_0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R</td>
+<td style="text-align: left;"><code>TukeyHSD(model)</code> (CRD); <code>TukeyHSD(model, "trt")</code> (RCBD, Section 4.3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Decision for a pair</td>
+<td style="text-align: left;">different if <code>p adj</code> &lt; 0.05, equivalently if (<code>lwr</code>, <code>upr</code>) does not contain 0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Direction</td>
+<td style="text-align: left;">sign of <code>diff</code> (row <code>A-B</code> means <span class="math inline">\(\bar{x}_A - \bar{x}_B\)</span>)</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="exercises-1" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-1">Exercises</h3>
-<p><em>To be added.</em></p>
+<p><strong>4.2.1</strong> A Tukey output for three loan products contains the row</p>
+<pre><code>                diff       lwr       upr     p adj
+Car-Personal  -1.85  -3.12000  -0.58000 0.0041000</code></pre>
+<p>Interpret this row.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 4.2.1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The mean for car loans is 1.85 lower than for personal loans (<span class="math inline">\(\bar{x}_{\text{Car}} - \bar{x}_{\text{Personal}} = -1.85\)</span>). The 95% CI (-3.12, -0.58) does not contain 0 and p adj = 0.0041 &lt; 0.05, so the mean for car loans is lower than for personal loans at the 0.05 level of significance.</p>
+</div>
+</div>
+</div>
+<p><strong>4.2.2</strong> An ANOVA comparing four advertising channels gives p-value = 0.2840. A student then runs <code>TukeyHSD()</code> and finds one pair with p adj = 0.0470. What should the conclusion be?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 4.2.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The ANOVA accepts <span class="math inline">\(H_0\)</span> (0.2840 <span class="math inline">\(\ge\)</span> 0.05), so the conclusion is that the mean outcomes of the four channels are equal. Tukey’s method should not be used after ANOVA accepts <span class="math inline">\(H_0\)</span>.</p>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="sec-anova-rcbd" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="sec-anova-rcbd"><span class="header-section-number">4.3</span> Randomized Complete Block Design (RCBD)</h2>
 <section id="learning-objectives-2" class="level3">
 <h3 class="anchored" data-anchor-id="learning-objectives-2">Learning Objectives</h3>
-<p><em>To be added.</em></p>
+<ol type="1">
+<li>Explain what a block is and why blocking makes a comparison more precise.</li>
+<li>Describe a randomized complete block design (RCBD).</li>
+<li>Calculate the RCBD ANOVA table and read <code>summary(aov(y ~ trt + block))</code>.</li>
+<li>Follow a significant result with <code>TukeyHSD(model, "trt")</code>.</li>
+</ol>
 </section>
 <section id="concept-2" class="level3">
 <h3 class="anchored" data-anchor-id="concept-2">Concept</h3>
-<p><em>To be added.</em></p>
+<p>Suppose the retail chain from Section 4.1 has stores in five provinces. Sales in Chiang Mai are much higher than in Nan, whatever the pricing strategy. In a CRD this province-to-province variation ends up in the error term, makes MSE large and hides the differences between strategies.</p>
+<p>A <strong>block</strong> is a group of similar experimental units. In a <strong>randomized complete block design (RCBD)</strong>:</p>
+<ul>
+<li>every treatment appears <strong>once in every block</strong> (the design is “complete”);</li>
+<li>within each block, the treatments are assigned to units <strong>at random</strong>.</li>
+</ul>
+<p>Here each province is a block: in each province, three stores are randomly assigned to the three strategies. Comparing strategies <strong>within</strong> each province removes the province effect, and ANOVA separates the variation into three parts: treatments, blocks and error.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-rcbd" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rcbd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter04_anova_files/figure-html/fig-rcbd-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rcbd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Weekly sales by strategy in each province. Provinces differ a lot, but within every province the Discount strategy sells most.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="formulas-and-conditions-2" class="level3">
-<h3 class="anchored" data-anchor-id="formulas-and-conditions-2">Formulas and Conditions</h3>
-<p><em>To be added.</em></p>
+<section id="formulas-and-conditions-1" class="level3">
+<h3 class="anchored" data-anchor-id="formulas-and-conditions-1">Formulas and Conditions</h3>
+<p><strong>Assumptions:</strong> within each block the treatments are assigned at random; the errors are independent and normal with constant variance; no interaction between treatments and blocks.</p>
+<p>With <span class="math inline">\(t\)</span> treatments, <span class="math inline">\(b\)</span> blocks, <span class="math inline">\(N = tb\)</span>, treatment totals <span class="math inline">\(T_i\)</span>, block totals <span class="math inline">\(B_j\)</span> and grand total <span class="math inline">\(G\)</span>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: left;">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Correction factor</td>
+<td style="text-align: left;"><span class="math inline">\(\text{CF} = G^2/N\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total SS</td>
+<td style="text-align: left;"><span class="math inline">\(\text{SST} = \sum y^2 - \text{CF}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Treatment SS</td>
+<td style="text-align: left;"><span class="math inline">\(\text{SSTr} = \dfrac{\sum T_i^2}{b} - \text{CF}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Block SS</td>
+<td style="text-align: left;"><span class="math inline">\(\text{SSB} = \dfrac{\sum B_j^2}{t} - \text{CF}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Error SS</td>
+<td style="text-align: left;"><span class="math inline">\(\text{SSE} = \text{SST} - \text{SSTr} - \text{SSB}\)</span></td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: center;">df</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MS</th>
+<th style="text-align: center;"><span class="math inline">\(F\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Treatments</td>
+<td style="text-align: center;"><span class="math inline">\(t-1\)</span></td>
+<td style="text-align: center;">SSTr</td>
+<td style="text-align: center;">MSTr</td>
+<td style="text-align: center;">MSTr/MSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Blocks</td>
+<td style="text-align: center;"><span class="math inline">\(b-1\)</span></td>
+<td style="text-align: center;">SSB</td>
+<td style="text-align: center;">MSB</td>
+<td style="text-align: center;">MSB/MSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Error</td>
+<td style="text-align: center;"><span class="math inline">\((t-1)(b-1)\)</span></td>
+<td style="text-align: center;">SSE</td>
+<td style="text-align: center;">MSE</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;"><span class="math inline">\(tb-1\)</span></td>
+<td style="text-align: center;">SST</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Test for treatments:</strong> <span class="math inline">\(H_0: \mu_1 = \cdots = \mu_t\)</span>; reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(F_{\text{cal}} &gt; F_{1-\alpha,\,t-1,\,(t-1)(b-1)}\)</span>. The block row is printed by R, but our question is about the treatments.</p>
+<p><strong>In R:</strong> <code>summary(aov(y ~ trt + block))</code>, then <code>TukeyHSD(model, "trt")</code> to compare the treatments only.</p>
 </section>
 <section id="worked-example-2" class="level3">
 <h3 class="anchored" data-anchor-id="worked-example-2">Worked Example</h3>
-<p><em>To be added.</em></p>
+<p><strong>Worked Example 4.3.1.</strong> In each of five provinces, three stores are randomly assigned to the Regular, Discount and Bundle pricing strategies. Weekly sales (hundred units) are recorded (hypothetical data):</p>
+<div class="cell">
+<div id="tbl-rcbd" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rcbd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.3: Weekly sales (hundred units): strategies (rows) in five provinces (blocks)
+</figcaption>
+<div aria-describedby="tbl-rcbd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Chiang Mai</th>
+<th style="text-align: right;">Lampang</th>
+<th style="text-align: right;">Lamphun</th>
+<th style="text-align: right;">Phrae</th>
+<th style="text-align: right;">Nan</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Regular</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">124</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Discount</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">152</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bundle</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">136</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">412</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the mean weekly sales differ among the strategies. If they do, find which strategies differ.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(t\)</span> = 3, <span class="math inline">\(b\)</span> = 5, <span class="math inline">\(N\)</span> = 15, <span class="math inline">\(G\)</span> = 412, <span class="math inline">\(\sum y^2\)</span> = 11,684.</p>
+<p><span class="math display">\[
+\text{CF} = \frac{412^2}{15} = 11316.2667, \qquad
+\text{SST} = 11,684 - 11316.2667 = 367.7333
+\]</span> <span class="math display">\[
+\text{SSTr} = \frac{124^2 + 152^2 + 136^2}{5} - 11316.2667 = 78.9333
+\]</span> <span class="math display">\[
+\text{SSB} = \frac{104^2 + 80^2 + 88^2 + 72^2 + 68^2}{3} - 11316.2667 = 273.0666
+\]</span> <span class="math display">\[
+\text{SSE} = 367.7333 - 78.9333 - 273.0666 = 15.7334
+\]</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: center;">df</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MS</th>
+<th style="text-align: center;"><span class="math inline">\(F\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Strategy</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">78.9333</td>
+<td style="text-align: center;">39.4667</td>
+<td style="text-align: center;">20.067</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Province</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">273.0666</td>
+<td style="text-align: center;">68.2667</td>
+<td style="text-align: center;">34.711</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Error</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">15.7334</td>
+<td style="text-align: center;">1.9667</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">367.7333</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: \mu_R = \mu_D = \mu_B\)</span> <span class="math inline">\(\quad H_1:\)</span> at least one mean is different</p>
+<p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3: Test statistic.</strong> <span class="math inline">\(F_{\text{cal}} = 39.4667/1.9667 = 20.067\)</span>, df = (2, 8)</p>
+<p><strong>Step 4: p-value.</strong> From the R output below, p-value = 0.0008. (With the table: <span class="math inline">\(F_{0.95,\,2,\,8} = 4.46\)</span>.)</p>
+<p><strong>Step 5: Decision and interpretation.</strong> p-value = 0.0008 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean weekly sales are not all equal across the three pricing strategies at the 0.05 level of significance.</p>
+<p><strong>Which strategies differ?</strong> From <code>TukeyHSD(model, "strategy")</code> below: Discount <span class="math inline">\(-\)</span> Regular (p adj = 0.0006) and Bundle <span class="math inline">\(-\)</span> Discount (p adj = 0.0169) are significant; Bundle <span class="math inline">\(-\)</span> Regular (p adj = 0.0625) is not. At the 0.05 level of significance the Discount strategy has higher mean sales than both the Regular and the Bundle strategies, and the Regular and Bundle strategies have equal mean sales.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-r-output-2" class="level3">
+<h3 class="anchored" data-anchor-id="reading-r-output-2">Reading R Output</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(sales <span class="sc">~</span> strategy <span class="sc">+</span> province, <span class="at">data =</span> rb)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+strategy     2  78.93   39.47   20.07 0.000763 ***
+province     4 273.07   68.27   34.71 4.21e-05 ***
+Residuals    8  15.73    1.97                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model, <span class="st">"strategy"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = sales ~ strategy + province, data = rb)
+
+$strategy
+                 diff        lwr        upr     p adj
+Discount-Regular  5.6  3.0656117  8.1343883 0.0005906
+Bundle-Regular    2.4 -0.1343883  4.9343883 0.0624855
+Bundle-Discount  -3.2 -5.7343883 -0.6656117 0.0168916</code></pre>
+</div>
+</div>
+<p>The <code>strategy</code> row is the treatment test; the <code>province</code> row shows that the blocks differ a lot, which is why blocking helps.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>What if we ignore the blocks?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Analysing the same data as a CRD, <code>summary(aov(sales ~ strategy))</code>, puts the province variation into the error term:</p>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(sales <span class="sc">~</span> strategy, <span class="at">data =</span> rb))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)
+strategy     2  78.93   39.47    1.64  0.235
+Residuals   12 288.80   24.07               </code></pre>
+</div>
+</div>
+<p>The treatment SS is the same (78.9333), but the error SS grows from 15.7334 to 288.8, the p-value becomes 0.2346 and the difference between the strategies is no longer detected. The design and the analysis must match.</p>
 </section>
 <section id="your-turn-2" class="level3">
 <h3 class="anchored" data-anchor-id="your-turn-2">Your Turn</h3>
@@ -376,11 +1391,101 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>Problem to be added.</em></p>
+<p>A regulator records the interest rate (%) of three loan products (Personal, Car, Home) at six banks (hypothetical data). Each bank offers all three products, so the banks are blocks.</p>
+<div class="cell">
+<div id="tbl-loans" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-loans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.4
+</figcaption>
+<div aria-describedby="tbl-loans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Bank 1</th>
+<th style="text-align: right;">Bank 2</th>
+<th style="text-align: right;">Bank 3</th>
+<th style="text-align: right;">Bank 4</th>
+<th style="text-align: right;">Bank 5</th>
+<th style="text-align: right;">Bank 6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Personal</td>
+<td style="text-align: right;">8.4</td>
+<td style="text-align: right;">7.9</td>
+<td style="text-align: right;">9.1</td>
+<td style="text-align: right;">8.8</td>
+<td style="text-align: right;">7.6</td>
+<td style="text-align: right;">9.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Car</td>
+<td style="text-align: right;">7.4</td>
+<td style="text-align: right;">6.3</td>
+<td style="text-align: right;">8.6</td>
+<td style="text-align: right;">7.9</td>
+<td style="text-align: right;">7.1</td>
+<td style="text-align: right;">8.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Home</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">6.4</td>
+<td style="text-align: right;">7.9</td>
+<td style="text-align: right;">8.1</td>
+<td style="text-align: right;">6.0</td>
+<td style="text-align: right;">8.4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<ol type="a">
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the mean interest rates of the three products differ.</li>
+<li>If they do, find which products differ.</li>
+</ol>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>model_loan <span class="ot">&lt;-</span> <span class="fu">aov</span>(rate <span class="sc">~</span> product <span class="sc">+</span> bank, <span class="at">data =</span> loans)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_loan)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+product      2  5.250  2.6250   23.51 0.000166 ***
+bank         5  9.513  1.9027   17.04 0.000131 ***
+Residuals   10  1.117  0.1117                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<details class="code-fold">
+<summary>Show R code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model_loan, <span class="st">"product"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = rate ~ product + bank, data = loans)
+
+$product
+               diff        lwr        upr     p adj
+Car-Personal  -1.00 -1.5288798 -0.4711202 0.0010846
+Home-Personal -1.25 -1.7788798 -0.7211202 0.0001896
+Home-Car      -0.25 -0.7788798  0.2788798 0.4288716</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -389,24 +1494,95 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><em>Solution to be added.</em></p>
+<p><strong>(a)</strong></p>
+<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_P = \mu_C = \mu_H \quad H_1:\)</span> at least one mean is different</p>
+<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p><strong>Step 3.</strong> <span class="math inline">\(F_{\text{cal}} = 23.507\)</span>, df = (2, 10)</p>
+<p><strong>Step 4.</strong> p-value = 0.0002</p>
+<p><strong>Step 5.</strong> p-value = 0.0002 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean interest rates are not all equal across the three loan products at the 0.05 level of significance.</p>
+<p><strong>(b)</strong> Car <span class="math inline">\(-\)</span> Personal (p adj = 0.0011) and Home <span class="math inline">\(-\)</span> Personal (p adj = 0.0002) are significant; Home <span class="math inline">\(-\)</span> Car (p adj = 0.4289) is not. At the 0.05 level of significance, personal loans have a higher mean interest rate than car loans and home loans, and car and home loans have equal mean rates.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="reading-r-output-2" class="level3">
-<h3 class="anchored" data-anchor-id="reading-r-output-2">Reading R Output</h3>
-<p><em>To be added.</em></p>
 </section>
 <section id="formula-summary-2" class="level3">
 <h3 class="anchored" data-anchor-id="formula-summary-2">Formula Summary</h3>
-<p><em>To be added.</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sums of squares</td>
+<td style="text-align: left;"><span class="math inline">\(\text{SSTr} = \sum T_i^2/b - \text{CF}\)</span>; <span class="math inline">\(\text{SSB} = \sum B_j^2/t - \text{CF}\)</span>; <span class="math inline">\(\text{SSE} = \text{SST} - \text{SSTr} - \text{SSB}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">df</td>
+<td style="text-align: left;">treatments <span class="math inline">\(t-1\)</span>; blocks <span class="math inline">\(b-1\)</span>; error <span class="math inline">\((t-1)(b-1)\)</span>; total <span class="math inline">\(tb-1\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Test for treatments</td>
+<td style="text-align: left;"><span class="math inline">\(F_{\text{cal}} = \text{MSTr}/\text{MSE}\)</span>, df <span class="math inline">\(= (t-1,\ (t-1)(b-1))\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R</td>
+<td style="text-align: left;"><code>summary(aov(y ~ trt + block))</code>; <code>TukeyHSD(model, "trt")</code></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="exercises-2" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-2">Exercises</h3>
-<p><em>To be added.</em></p>
+<p><strong>4.3.1</strong> For each study, say whether it is a CRD or an RCBD, and name the treatments and (if any) the blocks.</p>
+<ol type="a">
+<li>Twenty shops are randomly assigned to four store layouts, five shops each.</li>
+<li>Four store layouts are each tried once in each of five shopping malls, with the layout randomly assigned to shops within each mall.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 4.3.1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>CRD; treatments: the four layouts; no blocks.</li>
+<li>RCBD; treatments: the four layouts; blocks: the five malls.</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>4.3.2</strong> An RCBD has 4 treatments and 6 blocks, with SST = 120, SSTr = 36 and SSB = 54. Complete the ANOVA table and test the treatments at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution: Exercise 4.3.2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>SSE = 120 <span class="math inline">\(-\)</span> 36 <span class="math inline">\(-\)</span> 54 = 30; df: treatments 3, blocks 5, error 15, total 23. MSTr = 36/3 = 12, MSB = 54/5 = 10.8, MSE = 30/15 = 2. <span class="math inline">\(F_{\text{cal}}\)</span> = 12/2 = 6.000 for treatments. <span class="math inline">\(F_{0.95,\,3,\,15} = 3.29\)</span>; <span class="math inline">\(6.000 &gt; 3.29\)</span>, so <span class="math inline">\(F_{\text{cal}}\)</span> falls in the critical region and we reject <span class="math inline">\(H_0\)</span>: the treatment means are not all equal at the 0.05 level of significance.</p>
+</div>
+</div>
+</div>
 
 
 </section>
