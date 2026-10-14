@@ -1,0 +1,376 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Elementary Statistics for Social Sciences II",
+    "section": "",
+    "text": "Preface\nThis book covers the first half of 208272 Elementary Statistics for Social Sciences II: the principles of statistical inference, inference about means, proportions and variances, and analysis of variance. All examples use economic contexts. Unless a source is given, the numbers in the examples are hypothetical and are used for illustration only.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use-this-book",
+    "href": "index.html#how-to-use-this-book",
+    "title": "Elementary Statistics for Social Sciences II",
+    "section": "How to use this book",
+    "text": "How to use this book\nEach section of Chapters 2–4 matches one class session and follows the same pattern:\n\nLearning objectives\nConcept: why we need this method\nFormulas and conditions\nWorked example: a full solution\nYour Turn: a similar problem with space to write your own solution\nReading R output (from Section 3.2 onward)\nFormula summary\nExercises\nSolutions to Your Turn and the Exercises\n\nIn the PDF, the Your Turn problems have blank space for writing, and the solutions are at the end of each section. On the web, click a solution box to open it. Try the problem first.\n\n\n\nSession\nSection\n\n\n\n\n1\nChapter 1 Basic Principles of Statistical Inference\n\n\n2\n2.1 Mean, \\(\\sigma\\) known\n\n\n3\n2.2 Mean, \\(\\sigma\\) unknown\n\n\n4\n2.3 Proportion\n\n\n5\n2.4 Variance\n\n\n6\n3.1 Two proportions\n\n\n7\n3.2 P-values and R output; 3.3 Paired means\n\n\n8\n3.4 Two variances\n\n\n9\n3.5 Two independent means\n\n\n10\n4.1 One-way ANOVA: CRD\n\n\n11\n4.2 Multiple comparisons (Tukey); 4.3 RCBD\n\n\n12\nSummary: Choosing a Method",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#notation-for-critical-values",
+    "href": "index.html#notation-for-critical-values",
+    "title": "Elementary Statistics for Social Sciences II",
+    "section": "Notation for critical values",
+    "text": "Notation for critical values\nThe subscript of a critical value is the area to its left. This is the same convention as the R functions qnorm(), qt(), qchisq() and qf().\n\n\n\n\n\n\n\n\nNotation\nMeaning\nR\n\n\n\n\n\\(z_{0.975}\\)\nthe \\(z\\) value with area 0.975 to its left\nqnorm(0.975)\n\n\n\\(t_{0.975,\\,24}\\)\nthe \\(t\\) value with 24 df and area 0.975 to its left\nqt(0.975, 24)\n\n\n\\(\\chi^2_{0.025,\\,10}\\)\nthe \\(\\chi^2\\) value with 10 df and area 0.025 to its left\nqchisq(0.025, 10)\n\n\n\\(F_{0.975,\\,5,\\,8}\\)\nthe \\(F\\) value with (5, 8) df and area 0.975 to its left\nqf(0.975, 5, 8)\n\n\n\nA value calculated from the sample has the subscript “cal”, for example \\(z_{\\text{cal}}\\), \\(t_{\\text{cal}}\\), \\(\\chi^2_{\\text{cal}}\\) and \\(F_{\\text{cal}}\\).",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#the-five-steps-of-a-hypothesis-test",
+    "href": "index.html#the-five-steps-of-a-hypothesis-test",
+    "title": "Elementary Statistics for Social Sciences II",
+    "section": "The five steps of a hypothesis test",
+    "text": "The five steps of a hypothesis test\n\nHypotheses: state \\(H_0\\) and \\(H_1\\).\nLevel of significance: state \\(\\alpha\\).\nTest statistic: write the formula, substitute the values, and give the result.\nCritical value and critical region.\nDecision and interpretation.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#writing-the-conclusion",
+    "href": "index.html#writing-the-conclusion",
+    "title": "Elementary Statistics for Social Sciences II",
+    "section": "Writing the conclusion",
+    "text": "Writing the conclusion\nDecision using the critical region (Chapters 1–2 and Section 3.1)\n\n\\(t_{\\text{cal}}\\) = … [falls / does not fall] in the critical region (\\(t_{\\text{cal}}\\) [&lt;, &gt;] …), so we [reject / do not reject] \\(H_0\\).\n\nDecision using the p-value (from Section 3.2 onward)\n\np-value = … [&lt;, \\(\\ge\\)] \\(\\alpha\\) = 0.05, so we [reject / do not reject] \\(H_0\\).\n\nInterpretation\n\nThat is, … at the 0.05 level of significance.\n\n\nIf we reject \\(H_0\\), write \\(H_1\\) as a sentence.\nIf we do not reject \\(H_0\\), write \\(H_0\\) as a sentence.\nFor a two-sided test that rejects \\(H_0\\), also state the direction, using the sample statistic.\n\nConfidence interval\n\nWe are 95% confident that … is between … and ….",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#rounding",
+    "href": "index.html#rounding",
+    "title": "Elementary Statistics for Social Sciences II",
+    "section": "Rounding",
+    "text": "Rounding\nTo be added.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "chapter01_principles.html",
+    "href": "chapter01_principles.html",
+    "title": "1  Basic Principles of Statistical Inference",
+    "section": "",
+    "text": "Learning Objectives\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter01_principles.html#sampling-distributions-of-barx-and-hatp",
+    "href": "chapter01_principles.html#sampling-distributions-of-barx-and-hatp",
+    "title": "1  Basic Principles of Statistical Inference",
+    "section": "1.1 Sampling Distributions of \\(\\bar{x}\\) and \\(\\hat{p}\\)",
+    "text": "1.1 Sampling Distributions of \\(\\bar{x}\\) and \\(\\hat{p}\\)\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter01_principles.html#standard-error-and-the-central-limit-theorem",
+    "href": "chapter01_principles.html#standard-error-and-the-central-limit-theorem",
+    "title": "1  Basic Principles of Statistical Inference",
+    "section": "1.2 Standard Error and the Central Limit Theorem",
+    "text": "1.2 Standard Error and the Central Limit Theorem\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter01_principles.html#the-idea-of-a-confidence-interval",
+    "href": "chapter01_principles.html#the-idea-of-a-confidence-interval",
+    "title": "1  Basic Principles of Statistical Inference",
+    "section": "1.3 The Idea of a Confidence Interval",
+    "text": "1.3 The Idea of a Confidence Interval\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter01_principles.html#the-logic-of-hypothesis-testing",
+    "href": "chapter01_principles.html#the-logic-of-hypothesis-testing",
+    "title": "1  Basic Principles of Statistical Inference",
+    "section": "1.4 The Logic of Hypothesis Testing",
+    "text": "1.4 The Logic of Hypothesis Testing\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter01_principles.html#type-i-and-type-ii-errors",
+    "href": "chapter01_principles.html#type-i-and-type-ii-errors",
+    "title": "1  Basic Principles of Statistical Inference",
+    "section": "1.5 Type I and Type II Errors",
+    "text": "1.5 Type I and Type II Errors\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter01_principles.html#reading-statistical-tables",
+    "href": "chapter01_principles.html#reading-statistical-tables",
+    "title": "1  Basic Principles of Statistical Inference",
+    "section": "1.6 Reading Statistical Tables",
+    "text": "1.6 Reading Statistical Tables\nTo be added. Shade the area to the left of the value before you read the table.\n\n\nShow R code\nblank_curve(\"t\", df1 = 24)\n\n\n\n\n\n\n\n\nFigure 1.1: Blank curve: shade the area to the left of \\(t_{0.975,\\,24}\\) (layout demo)",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter01_principles.html#formula-summary",
+    "href": "chapter01_principles.html#formula-summary",
+    "title": "1  Basic Principles of Statistical Inference",
+    "section": "Formula Summary",
+    "text": "Formula Summary\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter01_principles.html#exercises",
+    "href": "chapter01_principles.html#exercises",
+    "title": "1  Basic Principles of Statistical Inference",
+    "section": "Exercises",
+    "text": "Exercises\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic Principles of Statistical Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter02_one_sample.html",
+    "href": "chapter02_one_sample.html",
+    "title": "2  One-Sample Inference",
+    "section": "",
+    "text": "2.1 Mean, \\(\\sigma\\) Known",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>One-Sample Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter02_one_sample.html#sec-mean-sigma-known",
+    "href": "chapter02_one_sample.html#sec-mean-sigma-known",
+    "title": "2  One-Sample Inference",
+    "section": "",
+    "text": "Learning Objectives\nTo be added.\n\n\nConcept\nTo be added.\n\n\nFormulas and Conditions\nTo be added.\n\n\nWorked Example\nTo be added.\n\n\nYour Turn\n\n\n\n\n\n\nNoteYour Turn 2.1.1\n\n\n\nProblem to be added.\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 2.1.1\n\n\n\n\n\nSolution to be added.\n\n\n\n\n\nFormula Summary\nTo be added.\n\n\nExercises\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>One-Sample Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter02_one_sample.html#sec-mean-sigma-unknown",
+    "href": "chapter02_one_sample.html#sec-mean-sigma-unknown",
+    "title": "2  One-Sample Inference",
+    "section": "2.2 Mean, \\(\\sigma\\) Unknown",
+    "text": "2.2 Mean, \\(\\sigma\\) Unknown\n\nLearning Objectives\nTo be added.\n\n\nConcept\nTo be added.\n\n\nFormulas and Conditions\nTo be added.\n\n\nWorked Example\nTo be added.\n\n\nYour Turn\n\n\n\n\n\n\nNoteYour Turn 2.2.1\n\n\n\nProblem to be added.\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 2.2.1\n\n\n\n\n\nSolution to be added.\n\n\n\n\n\nFormula Summary\nTo be added.\n\n\nExercises\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>One-Sample Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter02_one_sample.html#sec-proportion",
+    "href": "chapter02_one_sample.html#sec-proportion",
+    "title": "2  One-Sample Inference",
+    "section": "2.3 Proportion",
+    "text": "2.3 Proportion\n\nLearning Objectives\nTo be added.\n\n\nConcept\nTo be added.\n\n\nFormulas and Conditions\nTo be added.\n\n\nWorked Example\nTo be added.\n\n\nYour Turn\n\n\n\n\n\n\nNoteYour Turn 2.3.1\n\n\n\nProblem to be added.\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 2.3.1\n\n\n\n\n\nSolution to be added.\n\n\n\n\n\nFormula Summary\nTo be added.\n\n\nExercises\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>One-Sample Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter02_one_sample.html#sec-variance",
+    "href": "chapter02_one_sample.html#sec-variance",
+    "title": "2  One-Sample Inference",
+    "section": "2.4 Variance",
+    "text": "2.4 Variance\n\nLearning Objectives\nTo be added.\n\n\nConcept\nTo be added.\n\n\nFormulas and Conditions\nTo be added.\n\n\nWorked Example\nTo be added.\n\n\nYour Turn\n\n\n\n\n\n\nNoteYour Turn 2.4.1\n\n\n\nProblem to be added.\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 2.4.1\n\n\n\n\n\nSolution to be added.\n\n\n\n\n\nFormula Summary\nTo be added.\n\n\nExercises\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>One-Sample Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter03_two_sample.html",
+    "href": "chapter03_two_sample.html",
+    "title": "3  Two-Sample Inference",
+    "section": "",
+    "text": "3.1 Two Proportions",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Two-Sample Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter03_two_sample.html#sec-two-proportions",
+    "href": "chapter03_two_sample.html#sec-two-proportions",
+    "title": "3  Two-Sample Inference",
+    "section": "",
+    "text": "Learning Objectives\nTo be added.\n\n\nConcept\nTo be added.\n\n\nFormulas and Conditions\nTo be added.\n\n\nWorked Example\nTo be added.\n\n\nYour Turn\n\n\n\n\n\n\nNoteYour Turn 3.1.1\n\n\n\nProblem to be added.\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 3.1.1\n\n\n\n\n\nSolution to be added.\n\n\n\n\n\nFormula Summary\nTo be added.\n\n\nExercises\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Two-Sample Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter03_two_sample.html#sec-p-values-r-output",
+    "href": "chapter03_two_sample.html#sec-p-values-r-output",
+    "title": "3  Two-Sample Inference",
+    "section": "3.2 P-values and R Output",
+    "text": "3.2 P-values and R Output\n\nLearning Objectives\nTo be added.\n\n\nConcept\nTo be added.\n\n\nFormulas and Conditions\nTo be added.\n\n\nWorked Example\nTo be added.\n\n\nYour Turn\n\n\n\n\n\n\nNoteYour Turn 3.2.1\n\n\n\nProblem to be added.\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 3.2.1\n\n\n\n\n\nSolution to be added.\n\n\n\n\n\nReading R Output\nTo be added.\n\n\nFormula Summary\nTo be added.\n\n\nExercises\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Two-Sample Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter03_two_sample.html#sec-paired-means",
+    "href": "chapter03_two_sample.html#sec-paired-means",
+    "title": "3  Two-Sample Inference",
+    "section": "3.3 Paired Means",
+    "text": "3.3 Paired Means\n\nLearning Objectives\nTo be added.\n\n\nConcept\nTo be added.\n\n\nFormulas and Conditions\nTo be added.\n\n\nWorked Example\nTo be added.\n\n\nYour Turn\n\n\n\n\n\n\nNoteYour Turn 3.3.1\n\n\n\nProblem to be added.\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 3.3.1\n\n\n\n\n\nSolution to be added.\n\n\n\n\n\nReading R Output\nTo be added.\n\n\nFormula Summary\nTo be added.\n\n\nExercises\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Two-Sample Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter03_two_sample.html#sec-two-variances",
+    "href": "chapter03_two_sample.html#sec-two-variances",
+    "title": "3  Two-Sample Inference",
+    "section": "3.4 Two Variances",
+    "text": "3.4 Two Variances\n\nLearning Objectives\nTo be added.\n\n\nConcept\nTo be added.\n\n\nFormulas and Conditions\nTo be added.\n\n\nWorked Example\nTo be added.\n\n\nYour Turn\n\n\n\n\n\n\nNoteYour Turn 3.4.1\n\n\n\nProblem to be added.\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 3.4.1\n\n\n\n\n\nSolution to be added.\n\n\n\n\n\nReading R Output\nTo be added.\n\n\nFormula Summary\nTo be added.\n\n\nExercises\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Two-Sample Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter03_two_sample.html#sec-independent-means",
+    "href": "chapter03_two_sample.html#sec-independent-means",
+    "title": "3  Two-Sample Inference",
+    "section": "3.5 Two Independent Means",
+    "text": "3.5 Two Independent Means\n\nLearning Objectives\nTo be added.\n\n\nConcept\nTo be added.\n\n\nFormulas and Conditions\nTo be added.\n\n\nWorked Example\nTo be added.\n\n\nYour Turn\n\n\n\n\n\n\nNoteYour Turn 3.5.1\n\n\n\nProblem to be added.\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 3.5.1\n\n\n\n\n\nSolution to be added.\n\n\n\n\n\nReading R Output\nTo be added.\n\n\nFormula Summary\nTo be added.\n\n\nExercises\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Two-Sample Inference</span>"
+    ]
+  },
+  {
+    "objectID": "chapter04_anova.html",
+    "href": "chapter04_anova.html",
+    "title": "4  Analysis of Variance",
+    "section": "",
+    "text": "4.1 One-Way ANOVA: CRD",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Analysis of Variance</span>"
+    ]
+  },
+  {
+    "objectID": "chapter04_anova.html#sec-anova-crd",
+    "href": "chapter04_anova.html#sec-anova-crd",
+    "title": "4  Analysis of Variance",
+    "section": "",
+    "text": "Learning Objectives\nTo be added.\n\n\nConcept\nTo be added.\n\n\nFormulas and Conditions\nTo be added.\n\n\nWorked Example\nTo be added.\n\n\nYour Turn\n\n\n\n\n\n\nNoteYour Turn 4.1.1\n\n\n\nProblem to be added.\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 4.1.1\n\n\n\n\n\nSolution to be added.\n\n\n\n\n\nReading R Output\nTo be added.\n\n\nFormula Summary\nTo be added.\n\n\nExercises\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Analysis of Variance</span>"
+    ]
+  },
+  {
+    "objectID": "chapter04_anova.html#sec-tukey",
+    "href": "chapter04_anova.html#sec-tukey",
+    "title": "4  Analysis of Variance",
+    "section": "4.2 Multiple Comparisons (Tukey)",
+    "text": "4.2 Multiple Comparisons (Tukey)\n\nLearning Objectives\nTo be added.\n\n\nConcept\nTo be added.\n\n\nFormulas and Conditions\nTo be added.\n\n\nWorked Example\nTo be added.\n\n\nYour Turn\n\n\n\n\n\n\nNoteYour Turn 4.2.1\n\n\n\nProblem to be added.\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 4.2.1\n\n\n\n\n\nSolution to be added.\n\n\n\n\n\nReading R Output\nTo be added.\n\n\nFormula Summary\nTo be added.\n\n\nExercises\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Analysis of Variance</span>"
+    ]
+  },
+  {
+    "objectID": "chapter04_anova.html#sec-anova-rcbd",
+    "href": "chapter04_anova.html#sec-anova-rcbd",
+    "title": "4  Analysis of Variance",
+    "section": "4.3 Randomized Complete Block Design (RCBD)",
+    "text": "4.3 Randomized Complete Block Design (RCBD)\n\nLearning Objectives\nTo be added.\n\n\nConcept\nTo be added.\n\n\nFormulas and Conditions\nTo be added.\n\n\nWorked Example\nTo be added.\n\n\nYour Turn\n\n\n\n\n\n\nNoteYour Turn 4.3.1\n\n\n\nProblem to be added.\n\n\n\n\n\n\n\n\nTipSolution: Your Turn 4.3.1\n\n\n\n\n\nSolution to be added.\n\n\n\n\n\nReading R Output\nTo be added.\n\n\nFormula Summary\nTo be added.\n\n\nExercises\nTo be added.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Analysis of Variance</span>"
+    ]
+  },
+  {
+    "objectID": "summary_choosing_method.html",
+    "href": "summary_choosing_method.html",
+    "title": "Summary: Choosing a Method",
+    "section": "",
+    "text": "Which Method? A Flowchart\nTo be added.",
+    "crumbs": [
+      "Summary: Choosing a Method"
+    ]
+  },
+  {
+    "objectID": "summary_choosing_method.html#mixed-problems",
+    "href": "summary_choosing_method.html#mixed-problems",
+    "title": "Summary: Choosing a Method",
+    "section": "Mixed Problems",
+    "text": "Mixed Problems\nTo be added.",
+    "crumbs": [
+      "Summary: Choosing a Method"
+    ]
+  },
+  {
+    "objectID": "summary_choosing_method.html#writing-a-full-conclusion",
+    "href": "summary_choosing_method.html#writing-a-full-conclusion",
+    "title": "Summary: Choosing a Method",
+    "section": "Writing a Full Conclusion",
+    "text": "Writing a Full Conclusion\nTo be added.",
+    "crumbs": [
+      "Summary: Choosing a Method"
+    ]
+  },
+  {
+    "objectID": "appendix_tables.html",
+    "href": "appendix_tables.html",
+    "title": "Appendix A — Statistical Tables",
+    "section": "",
+    "text": "A.1 Standard Normal Distribution\nAll tables give the value with the stated area to its left.\nTo be added.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Statistical Tables</span>"
+    ]
+  },
+  {
+    "objectID": "appendix_tables.html#t-distribution",
+    "href": "appendix_tables.html#t-distribution",
+    "title": "Appendix A — Statistical Tables",
+    "section": "A.2 \\(t\\) Distribution",
+    "text": "A.2 \\(t\\) Distribution\nTo be added.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Statistical Tables</span>"
+    ]
+  },
+  {
+    "objectID": "appendix_tables.html#chi-square-distribution",
+    "href": "appendix_tables.html#chi-square-distribution",
+    "title": "Appendix A — Statistical Tables",
+    "section": "A.3 Chi-Square Distribution",
+    "text": "A.3 Chi-Square Distribution\nTo be added.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Statistical Tables</span>"
+    ]
+  },
+  {
+    "objectID": "appendix_tables.html#f-distribution",
+    "href": "appendix_tables.html#f-distribution",
+    "title": "Appendix A — Statistical Tables",
+    "section": "A.4 \\(F\\) Distribution",
+    "text": "A.4 \\(F\\) Distribution\nTo be added.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Statistical Tables</span>"
+    ]
+  }
+]
