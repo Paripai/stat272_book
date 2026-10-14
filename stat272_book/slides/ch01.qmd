@@ -1,5 +1,6 @@
 ---
 title: 'Basic Principles of Statistical Inference'
+split-subsections: true
 subtitle: "Chapter 1 | 208272 Elementary Statistics for Social Sciences II"
 ---
 

@@ -17,13 +17,13 @@ theme_set(theme_minimal(base_size = 13))
 fmt <- function(x, digits = 4) formatC(x, format = "f", digits = digits)
 
 # ---- Critical values as printed in the course tables ----------------------
-# Students use the department's printed tables (Tables 3-6, left-tail areas).
+# Students use the department's printed tables (Tables 4-7, left-tail areas).
 # These helpers give the value a student would read from the table, so the
 # hand calculations in the book match the table exactly. They stop with an
 # error when the table has no row or column for the request, which keeps
 # every example answerable with the printed tables.
-#   z: Table 3 bottom row (3 decimals)        t: Table 4 (3 decimals)
-#   chi-square: Table 5 (3 significant digits) F: Table 6 (2 decimals; 1 above 100)
+#   z: Table 4 bottom row (3 decimals)        t: Table 5 (3 decimals)
+#   chi-square: Table 6 (3 significant digits) F: Table 7 (2 decimals; 1 above 100)
 
 tab_t_p  <- c(.60, .70, .80, .90, .95, .975, .99, .995, .999, .9995)
 tab_t_df <- c(1:30, 40, 50, 60, 80, 100, 200, 500, Inf)
@@ -108,4 +108,35 @@ area_curve <- function(dist = c("z", "t", "chisq", "F"), q, df1 = NULL, df2 = NU
     annotate("text", x = q, y = 0, label = if (is.null(label)) fmt(q, 3) else label,
              vjust = 1.5, parse = !is.null(label)) +
     theme_void()
+}
+
+# Critical region(s) shaded, with the critical value(s) marked.
+#   side = "two", "left" or "right"; values come from the printed tables
+crit_plot <- function(dist = c("z", "t", "chisq", "F"), side = c("two", "left", "right"),
+                      alpha = 0.05, df1 = NULL, df2 = NULL) {
+  dist <- match.arg(dist); side <- match.arg(side)
+  crit <- switch(dist,
+    z     = function(p) if (p < 0.5) -crit_z(1 - p) else crit_z(p),
+    t     = function(p) if (p < 0.5) -crit_t(1 - p, df1) else crit_t(p, df1),
+    chisq = function(p) crit_chisq(p, df1),
+    F     = function(p) crit_F(p, df1, df2)
+  )
+  f <- dens_fun(dist, df1, df2)
+  rng <- dens_range(dist, df1, df2)
+  cuts <- switch(side,
+    two   = c(crit(alpha / 2), crit(1 - alpha / 2)),
+    left  = crit(alpha),
+    right = crit(1 - alpha)
+  )
+  p <- ggplot() + stat_function(fun = f, xlim = rng, n = 500, linewidth = 0.8)
+  shade <- function(lo, hi) stat_function(fun = f, xlim = c(lo, hi), geom = "area",
+                                          fill = "firebrick", alpha = 0.45, n = 300)
+  if (side %in% c("two", "left"))  p <- p + shade(rng[1], cuts[1])
+  if (side %in% c("two", "right")) p <- p + shade(cuts[length(cuts)], rng[2])
+  p + geom_hline(yintercept = 0, linewidth = 0.4) +
+    geom_vline(xintercept = cuts, linetype = "dashed", linewidth = 0.4) +
+    annotate("text", x = cuts, y = 0, vjust = 1.5, size = 4,
+             label = if (dist %in% c("z", "t")) fmt(cuts, 3) else format(cuts)) +
+    coord_cartesian(clip = "off") +
+    theme_void() + theme(plot.margin = margin(5, 5, 18, 5))
 }

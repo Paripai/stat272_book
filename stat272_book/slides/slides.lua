@@ -58,8 +58,19 @@ local function shift_section_headings(blocks, meta)
   return blocks
 end
 
+-- 0b. Chapter 1 has no sections, so its level-3 headings (worked examples,
+--     Your Turn) would sit inside one long slide. A deck with
+--     split-subsections: true makes them slides of their own.
+local function split_subsections(blocks, meta)
+  if not meta["split-subsections"] then return blocks end
+  for _, b in ipairs(blocks) do
+    if b.t == "Header" and b.level == 3 then b.level = 2 end
+  end
+  return blocks
+end
+
 function Pandoc(doc)
-  local blocks = shift_section_headings(doc.blocks, doc.meta)
+  local blocks = split_subsections(shift_section_headings(doc.blocks, doc.meta), doc.meta)
   blocks = drop_chapter_title(drop_rules(blocks), doc.meta)
   doc.blocks = demote_level1_with_content(blocks)
   return doc

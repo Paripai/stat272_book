@@ -56,10 +56,10 @@ The statistical tables for this course give the same left-tail areas:
 
 | Distribution | Table | Left-tail areas in the table |
 |:---|:---|:---|
-| Standard normal ($z$) | Table 3 | $z$ from 0.00 to 3.49 |
-| $t$ | Table 4 | 0.60, 0.70, 0.80, 0.90, 0.95, 0.975, 0.99, 0.995, 0.999, 0.9995 |
-| Chi-square ($\chi^2$) | Table 5 | 0.0005 to 0.9995 |
-| $F$ | Table 6 | 0.90, 0.95, 0.975, 0.99, 0.995 |
+| Standard normal ($z$) | Table 4 | $z$ from 0.00 to 3.49 |
+| $t$ | Table 5 | 0.60, 0.70, 0.80, 0.90, 0.95, 0.975, 0.99, 0.995, 0.999, 0.9995 |
+| Chi-square ($\chi^2$) | Table 6 | 0.0005 to 0.9995 |
+| $F$ | Table 7 | 0.90, 0.95, 0.975, 0.99, 0.995 |
 
 A value calculated from the sample has the subscript "cal", for example
 $z_{\text{cal}}$, $t_{\text{cal}}$, $\chi^2_{\text{cal}}$ and $F_{\text{cal}}$.
