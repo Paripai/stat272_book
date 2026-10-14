@@ -21,8 +21,6 @@ book:
     - chapter03_two_sample.qmd
     - chapter04_anova.qmd
     - summary_choosing_method.qmd
-  appendices:
-    - appendix_tables.qmd
 
 format:
   html:

@@ -1,7 +1,0 @@
-# Analysis of Variance
-
-{{< include sections/_4-1_anova_crd.qmd >}}
-
-{{< include sections/_4-2_tukey.qmd >}}
-
-{{< include sections/_4-3_anova_rcbd.qmd >}}

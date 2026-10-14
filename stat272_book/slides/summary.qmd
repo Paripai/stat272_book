@@ -1,6 +1,0 @@
----
-title: 'Summary: Choosing a Method'
-subtitle: "Summary | 208272 Elementary Statistics for Social Sciences II"
----
-
-{{< include ../summary_choosing_method.qmd >}}

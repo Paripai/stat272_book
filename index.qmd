@@ -52,6 +52,15 @@ same convention as the R functions `qnorm()`, `qt()`, `qchisq()` and `qf()`.
 | $\chi^2_{0.025,\,10}$ | the $\chi^2$ value with 10 df and area 0.025 to its left | `qchisq(0.025, 10)` |
 | $F_{0.975,\,5,\,8}$ | the $F$ value with (5, 8) df and area 0.975 to its left | `qf(0.975, 5, 8)` |
 
+The statistical tables for this course give the same left-tail areas:
+
+| Distribution | Table | Left-tail areas in the table |
+|:---|:---|:---|
+| Standard normal ($z$) | Table 4 | $z$ from 0.00 to 3.49 |
+| $t$ | Table 5 | 0.60, 0.70, 0.80, 0.90, 0.95, 0.975, 0.99, 0.995, 0.999, 0.9995 |
+| Chi-square ($\chi^2$) | Table 6 | 0.0005 to 0.9995 |
+| $F$ | Table 7 | 0.90, 0.95, 0.975, 0.99, 0.995 |
+
 A value calculated from the sample has the subscript "cal", for example
 $z_{\text{cal}}$, $t_{\text{cal}}$, $\chi^2_{\text{cal}}$ and $F_{\text{cal}}$.
 
@@ -68,25 +77,21 @@ $z_{\text{cal}}$, $t_{\text{cal}}$, $\chi^2_{\text{cal}}$ and $F_{\text{cal}}$.
 **Decision using the critical region** (Chapters 1--2 and Section 3.1)
 
 > $t_{\text{cal}}$ = ... [falls / does not fall] in the critical region
-> ($t_{\text{cal}}$ [<, >] ...), so we [reject / do not reject] $H_0$.
+> ($t_{\text{cal}}$ [<, >] ...), so we [reject / accept] $H_0$.
 
 **Decision using the p-value** (from Section 3.2 onward)
 
-> p-value = ... [<, $\ge$] $\alpha$ = 0.05, so we [reject / do not reject] $H_0$.
+> p-value = ... [<, $\ge$] $\alpha$ = 0.05, so we [reject / accept] $H_0$.
 
 **Interpretation**
 
 > That is, ... at the 0.05 level of significance.
 
 - If we reject $H_0$, write $H_1$ as a sentence.
-- If we do not reject $H_0$, write $H_0$ as a sentence.
+- If we accept $H_0$, write $H_0$ as a sentence.
 - For a two-sided test that rejects $H_0$, also state the direction, using the
   sample statistic.
 
 **Confidence interval**
 
 > We are 95% confident that ... is between ... and ....
-
-## Rounding {.unnumbered}
-
-*To be added.*

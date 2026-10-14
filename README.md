@@ -13,7 +13,6 @@ Quarto book and lecture slides for the first half of 208272.
 | `chapter0*.qmd` | Chapters 1-4; Chapters 2-4 include their sections |
 | `sections/_*.qmd` | One file per section (one class session) |
 | `summary_choosing_method.qmd` | Summary chapter (Session 12) |
-| `appendix_tables.qmd` | Statistical tables |
 | `R/setup.R` | Shared R setup: figure theme, blank curves for table practice |
 | `data/` | Example data (.csv), shared by the book and the slides |
 | `book.lua` | Writing space, solution boxes and quiz slides (see the comments in the file) |
