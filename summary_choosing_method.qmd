@@ -1,0 +1,16 @@
+# Summary: Choosing a Method {.unnumbered}
+
+## Which Method? A Flowchart {.unnumbered}
+
+*To be added.*
+
+## Mixed Problems {.unnumbered}
+
+*To be added.*
+
+## Writing a Full Conclusion {.unnumbered}
+
+*To be added.*
+
+::: {.solutions-here level="2"}
+:::

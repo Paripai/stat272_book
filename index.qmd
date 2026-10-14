@@ -1,0 +1,92 @@
+# Preface {.unnumbered}
+
+This book covers the first half of 208272 Elementary Statistics for Social
+Sciences II: the principles of statistical inference, inference about means,
+proportions and variances, and analysis of variance. All examples use
+economic contexts. Unless a source is given, the numbers in the examples are
+hypothetical and are used for illustration only.
+
+## How to use this book {.unnumbered}
+
+Each section of Chapters 2--4 matches one class session and follows the same
+pattern:
+
+1. **Learning objectives**
+2. **Concept**: why we need this method
+3. **Formulas and conditions**
+4. **Worked example**: a full solution
+5. **Your Turn**: a similar problem with space to write your own solution
+6. **Reading R output** (from Section 3.2 onward)
+7. **Formula summary**
+8. **Exercises**
+9. **Solutions** to Your Turn and the Exercises
+
+In the PDF, the Your Turn problems have blank space for writing, and the
+solutions are at the end of each section. On the web, click a solution box
+to open it. Try the problem first.
+
+| Session | Section |
+|:---:|:---|
+| 1 | Chapter 1 Basic Principles of Statistical Inference |
+| 2 | 2.1 Mean, $\sigma$ known |
+| 3 | 2.2 Mean, $\sigma$ unknown |
+| 4 | 2.3 Proportion |
+| 5 | 2.4 Variance |
+| 6 | 3.1 Two proportions |
+| 7 | 3.2 P-values and R output; 3.3 Paired means |
+| 8 | 3.4 Two variances |
+| 9 | 3.5 Two independent means |
+| 10 | 4.1 One-way ANOVA: CRD |
+| 11 | 4.2 Multiple comparisons (Tukey); 4.3 RCBD |
+| 12 | Summary: Choosing a Method |
+
+## Notation for critical values {.unnumbered}
+
+The subscript of a critical value is the **area to its left**. This is the
+same convention as the R functions `qnorm()`, `qt()`, `qchisq()` and `qf()`.
+
+| Notation | Meaning | R |
+|:---|:---|:---|
+| $z_{0.975}$ | the $z$ value with area 0.975 to its left | `qnorm(0.975)` |
+| $t_{0.975,\,24}$ | the $t$ value with 24 df and area 0.975 to its left | `qt(0.975, 24)` |
+| $\chi^2_{0.025,\,10}$ | the $\chi^2$ value with 10 df and area 0.025 to its left | `qchisq(0.025, 10)` |
+| $F_{0.975,\,5,\,8}$ | the $F$ value with (5, 8) df and area 0.975 to its left | `qf(0.975, 5, 8)` |
+
+A value calculated from the sample has the subscript "cal", for example
+$z_{\text{cal}}$, $t_{\text{cal}}$, $\chi^2_{\text{cal}}$ and $F_{\text{cal}}$.
+
+## The five steps of a hypothesis test {.unnumbered}
+
+1. **Hypotheses**: state $H_0$ and $H_1$.
+2. **Level of significance**: state $\alpha$.
+3. **Test statistic**: write the formula, substitute the values, and give the result.
+4. **Critical value and critical region**.
+5. **Decision and interpretation**.
+
+## Writing the conclusion {.unnumbered}
+
+**Decision using the critical region** (Chapters 1--2 and Section 3.1)
+
+> $t_{\text{cal}}$ = ... [falls / does not fall] in the critical region
+> ($t_{\text{cal}}$ [<, >] ...), so we [reject / do not reject] $H_0$.
+
+**Decision using the p-value** (from Section 3.2 onward)
+
+> p-value = ... [<, $\ge$] $\alpha$ = 0.05, so we [reject / do not reject] $H_0$.
+
+**Interpretation**
+
+> That is, ... at the 0.05 level of significance.
+
+- If we reject $H_0$, write $H_1$ as a sentence.
+- If we do not reject $H_0$, write $H_0$ as a sentence.
+- For a two-sided test that rejects $H_0$, also state the direction, using the
+  sample statistic.
+
+**Confidence interval**
+
+> We are 95% confident that ... is between ... and ....
+
+## Rounding {.unnumbered}
+
+*To be added.*

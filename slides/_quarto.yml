@@ -1,0 +1,44 @@
+project:
+  output-dir: _site
+
+knitr:
+  opts_chunk:
+    dev: "ragg_png"
+
+# book.lua: workspace / solution boxes (shared with the book)
+# slides.lua: turns book sections into slides
+filters:
+  - ../book.lua
+  - slides.lua
+
+author: "Asst. Prof. Dr. Parichart Pattarapanitchai"
+
+format:
+  revealjs:
+    scrollable: true
+    # Slides scroll, so do not shrink figures to the space left on the screen
+    auto-stretch: false
+    slide-number: true
+    slide-level: 2
+    theme: [default, custom.scss]
+    fig-width: 8
+    fig-height: 5
+    # Draw on slides (C) or on a blank board (B) during the lecture
+    chalkboard:
+      theme: whiteboard
+      boardmarker-width: 4
+      buttons: true
+    # Laser pointer: press Q (or the red-dot button, bottom left) on a computer
+    revealjs-plugins:
+      - pointer
+    pointer:
+      key: "q"
+      color: "red"
+      pointerSize: 18
+    include-after-body: pointer-button.html
+
+# Slides show R output only; the code is in the web version of the book
+execute:
+  echo: false
+  warning: false
+  message: false

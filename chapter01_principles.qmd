@@ -1,0 +1,58 @@
+# Basic Principles of Statistical Inference
+
+```{r}
+#| label: setup-1
+#| include: false
+source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
+```
+
+## Learning Objectives {.unnumbered}
+
+*To be added.*
+
+## Sampling Distributions of $\bar{x}$ and $\hat{p}$
+
+*To be added.*
+
+## Standard Error and the Central Limit Theorem
+
+*To be added.*
+
+## The Idea of a Confidence Interval
+
+*To be added.*
+
+## The Logic of Hypothesis Testing
+
+*To be added.*
+
+## Type I and Type II Errors
+
+*To be added.*
+
+## Reading Statistical Tables
+
+*To be added.* Shade the area to the left of the value before you read the table.
+
+```{r}
+#| label: fig-blank-curve-demo
+#| fig-cap: "Blank curve: shade the area to the left of $t_{0.975,\\,24}$ (layout demo)"
+#| fig-height: 2.2
+#| fig-width: 5
+#| fig-align: center
+blank_curve("t", df1 = 24)
+```
+
+## Formula Summary {.unnumbered}
+
+*To be added.*
+
+## Exercises {.unnumbered}
+
+*To be added.*
+
+::: {.solutions-here level="2"}
+:::
+
+::: {.quiz session="1"}
+:::
