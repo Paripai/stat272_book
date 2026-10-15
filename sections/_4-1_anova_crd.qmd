@@ -50,7 +50,7 @@ The idea of ANOVA is to split the total variation in the data into two parts:
 
 If the treatment means are really equal, the between-treatment variation is only
 random noise, about the same size as the within-treatment variation. The ratio
-of the two mean squares is an $F$ statistic, as in Section 3.4.
+of the two mean squares is an $F$ statistic, as in Section 3.5.
 
 ```{r}
 #| label: fig-crd-dots

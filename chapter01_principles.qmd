@@ -378,6 +378,9 @@ A smaller $\alpha$ makes a Type I error less likely but a Type II error more
 likely, for the same sample size. A larger sample reduces both.
 :::
 
+::: {.quiz session="1"}
+:::
+
 ## Reading Statistical Tables
 
 All the tables used in this course (Tables 4--7) give the **area to the left**
@@ -557,5 +560,3 @@ mean, not about individual households.
 ::: {.solutions-here level="2"}
 :::
 
-::: {.quiz session="1"}
-:::

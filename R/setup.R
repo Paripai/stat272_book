@@ -218,3 +218,16 @@ mask_print <- function(x, hide) {
   }
   cat(out, sep = "\n")
 }
+
+# p-value of a z test read from Table 4: round |z| to 2 decimals, read the
+# left-tail area F, then take the tail(s) in the direction of H1.
+#   side = "two", "left" (H1: <) or "right" (H1: >)
+pz_table <- function(z, side = c("two", "left", "right")) {
+  side <- match.arg(side)
+  a <- round(abs(z), 2); F <- round(pnorm(a), 4); tail <- round(1 - F, 4)
+  p <- switch(side,
+    two   = 2 * tail,
+    right = if (z >= 0) tail else F,
+    left  = if (z <= 0) tail else F)
+  list(a = a, F = F, tail = tail, p = round(p, 4))
+}

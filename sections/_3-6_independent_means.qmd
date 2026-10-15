@@ -1,7 +1,7 @@
 ## Two Independent Means {#sec-independent-means}
 
 ```{r}
-#| label: setup-3-5
+#| label: setup-3-6
 #| include: false
 source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
 pricing <- read.csv(data_path("pricing_sales.csv"))
@@ -39,12 +39,12 @@ depends on whether the two population variances are equal:
   number, so we read it from R.
 
 So the method has a first step: compare the variances with the $F$ test of
-Section 3.4.
+Section 3.5.
 
 ::: {.callout-important icon=false}
 ## Choosing the method
 
-1. Paired or independent? (Section 3.3) If paired, use the paired $t$ test.
+1. Paired or independent? (Section 3.4) If paired, use the paired $t$ test.
 2. If independent, test $H_0: \sigma_1^2 = \sigma_2^2$ (two-sided, $\alpha$ = 0.05).
    - accept $H_0$ → **pooled $t$ test**: `t.test(x1, x2, var.equal = TRUE)`
    - reject $H_0$ → **Welch $t$ test**: `t.test(x1, x2, var.equal = FALSE)`
@@ -75,7 +75,7 @@ $$
 | $\mu_1 > \mu_2$ | $t_{\text{cal}} > t_{1-\alpha,\,\text{df}}$ |
 
 ```{r}
-#| label: ex-3-5
+#| label: ex-3-6
 n1 <- length(discount); n2 <- length(bundle)
 m1 <- round(mean(discount), 4); m2 <- round(mean(bundle), 4)
 v1 <- round(var(discount), 4); v2 <- round(var(bundle), 4)
@@ -88,7 +88,7 @@ tt <- t.test(discount, bundle, var.equal = TRUE)
 
 ### Example: Pooled $t$ Test
 
-**Example 3.5.1.** A retail chain tries two pricing strategies. `r n1`
+**Example 3.6.1.** A retail chain tries two pricing strategies. `r n1`
 stores use a **discount** strategy and `r n2` other stores use a **bundle**
 strategy. Daily sales (units) are recorded:
 
@@ -174,14 +174,14 @@ With `var.equal = TRUE` R prints **Two Sample t-test** (pooled); with
 `var.equal = FALSE` it prints **Welch Two Sample t-test**. Check the title before reading the numbers.
 
 ```{r}
-#| label: ex-3-5-welch
+#| label: ex-3-6-welch
 hv <- var.test(online, physical)
 hw <- t.test(online, physical, var.equal = FALSE)
 ```
 
 ### Example: Welch $t$ Test
 
-**Example 3.5.2.** A consumer researcher records the price (baht) of the
+**Example 3.6.2.** A consumer researcher records the price (baht) of the
 same model of headphones at `r length(online)` online stores and
 `r length(physical)` physical stores. Is the mean price
 different?
@@ -224,7 +224,7 @@ is between `r big(hw$conf.int[1])` and `r big(hw$conf.int[2])` baht.
 :::
 
 ```{r}
-#| label: yt-3-5
+#| label: yt-3-6
 set.seed(2757)
 uni_A <- round(rnorm(10, 24.5, 3.2), 1)
 uni_B <- round(rnorm(12, 22.3, 3.0), 1)
@@ -237,7 +237,7 @@ yv <- var.test(uni_A, uni_B); yt <- t.test(uni_A, uni_B, var.equal = TRUE)
 ### Your Turn
 
 ::: {.callout-note icon=false}
-## Your Turn 3.5.1
+## Your Turn 3.6.1
 
 The starting monthly salaries (thousand baht) of 10 economics graduates from
 University A and 12 from University B are compared:
@@ -256,7 +256,7 @@ $s_B^2$ = `r num(yb_v)`.
 ```
 
 ```{r}
-#| label: r-yt-3-5
+#| label: r-yt-3-6
 #| echo: !expr show_code
 #| eval: false
 var.test(uni_A, uni_B)
@@ -264,7 +264,7 @@ t.test(uni_A, uni_B, var.equal = TRUE)
 ```
 
 ```{r}
-#| label: r-yt-3-5-out
+#| label: r-yt-3-6-out
 print(var.test(uni_A, uni_B))
 mask_print(t.test(uni_A, uni_B, var.equal = TRUE), list(c("^t = ", 1)))
 ```
@@ -275,7 +275,7 @@ mask_print(t.test(uni_A, uni_B, var.equal = TRUE), list(c("^t = ", 1)))
 ::: {.workspace steps="names" method="pvalue"}
 :::
 
-::: {.answer title="Your Turn 3.5.1"}
+::: {.answer title="Your Turn 3.6.1"}
 **(a)** $F$ test p-value = `r fmt(yv$p.value, 4)` $\ge$ 0.05: accept equal
 variances, so use the pooled $t$ test.
 
@@ -302,13 +302,13 @@ universities are equal at the 0.05 level of significance.
 
 | Situation | Method | R |
 |:---|:---|:---|
-| Paired data | paired $t$ on $d$ (Section 3.3) | `t.test(x1, x2, paired = TRUE)` |
+| Paired data | paired $t$ on $d$ (Section 3.4) | `t.test(x1, x2, paired = TRUE)` |
 | Independent, equal variances | pooled $t$: $s_p^2 = \dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}$, $t_{\text{cal}} = \dfrac{\bar{x}_1-\bar{x}_2}{\sqrt{s_p^2(1/n_1+1/n_2)}}$, df $= n_1+n_2-2$ | `t.test(x1, x2, var.equal = TRUE)` |
 | Independent, unequal variances | Welch $t$ | `t.test(x1, x2, var.equal = FALSE)` |
 | CI (pooled) | $(\bar{x}_1-\bar{x}_2) \pm t_{1-\alpha/2,\,n_1+n_2-2}\,\text{SE}$ | two-sided output |
 
 ```{r}
-#| label: ex-3-5-exercises
+#| label: ex-3-6-exercises
 set.seed(2758)
 north <- round(rnorm(14, 9.2, 2.6), 1)
 south <- round(rnorm(16, 7.4, 0.9), 1)
@@ -319,7 +319,7 @@ ew <- t.test(north, south, var.equal = FALSE, alternative = "greater")
 
 ### Exercises
 
-**3.5.1** An economist compares the monthly inflation expectations (%) reported
+**3.6.1** An economist compares the monthly inflation expectations (%) reported
 by `r length(north)` firms in the North and `r length(south)` firms in the South. She wants to know whether expectations are higher in the
 North. Three outputs are shown.
 
@@ -330,7 +330,7 @@ North. Three outputs are shown.
 ```
 
 ```{r}
-#| label: r-ex-3-5
+#| label: r-ex-3-6
 #| echo: !expr show_code
 cat("Output 1\n"); var.test(north, south)
 cat("Output 2\n"); t.test(north, south, var.equal = TRUE, alternative = "greater")
@@ -340,7 +340,7 @@ cat("Output 3\n"); t.test(north, south, var.equal = FALSE, alternative = "greate
 (a) Which of Output 2 and Output 3 should she use? Explain.
 (b) Write the decision and interpretation at $\alpha$ = 0.05.
 
-::: {.answer title="Exercise 3.5.1"}
+::: {.answer title="Exercise 3.6.1"}
 (a) In Output 1 the p-value = `r fmt(ev$p.value, 4)` < 0.05, so the variances are
 not equal. Use the Welch test, Output 3. (Output 2 assumes equal variances.)
 
@@ -351,14 +351,14 @@ mean inflation expectations are higher in the North than in the South at the
 0.05 level of significance.
 :::
 
-**3.5.2** For each study, say whether you would use the paired $t$ test or a
+**3.6.2** For each study, say whether you would use the paired $t$ test or a
 two-sample (pooled or Welch) $t$ test.
 
 (a) The rice yield of 15 farms is recorded before and after an irrigation project.
 (b) The household income of 60 randomly chosen households in Chiang Mai is compared with that of 60 randomly chosen households in Bangkok.
 (c) For each of 12 provinces, the unemployment rate of men is compared with that of women.
 
-::: {.answer title="Exercise 3.5.2"}
+::: {.answer title="Exercise 3.6.2"}
 (a) Paired (same farms twice). (b) Two-sample: two independent samples; check
 the variances with the $F$ test to choose pooled or Welch. (c) Paired (men and
 women are matched within each province).

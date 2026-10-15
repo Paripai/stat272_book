@@ -1,7 +1,7 @@
 ## Paired Means {#sec-paired-means}
 
 ```{r}
-#| label: setup-3-3
+#| label: setup-3-4
 #| include: false
 source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
 stim <- read.csv(data_path("stimulus_spending.csv"))
@@ -35,7 +35,7 @@ differences only. A paired test is a **one-sample $t$ test on $d$**
 Decide from **how the data were collected**, not from the numbers:
 
 - the same units measured twice, or units matched one-to-one → **paired**
-- two separate random samples, with no link between a unit in one group and a unit in the other → **independent** (Section 3.5)
+- two separate random samples, with no link between a unit in one group and a unit in the other → **independent** (Section 3.6)
 
 Paired samples always have the same size. Equal sample sizes alone do not make
 the data paired.
@@ -61,7 +61,7 @@ $$
 $d$ = after $-$ before (first argument minus second).
 
 ```{r}
-#| label: ex-3-3
+#| label: ex-3-4
 d <- after - before
 n <- length(d); df_ <- n - 1
 dbar <- mean(d); sd_ <- round(sd(d), 4)
@@ -74,7 +74,7 @@ o2 <- t.test(after, before, paired = TRUE)
 
 ### Example
 
-**Example 3.3.1.** The government gave a cash transfer to low-income
+**Example 3.4.1.** The government gave a cash transfer to low-income
 households. A researcher recorded the monthly spending (baht) of `r n`
 households in the month before and the month after the transfer. Did mean spending increase?
 
@@ -154,7 +154,7 @@ comes from rounding: the table gives $t_{0.975,\,9}$ = `r fmt(t975, 3)`, while R
 `r format(qt(.975, 9), digits = 7)`.
 
 ```{r}
-#| label: yt-3-3
+#| label: yt-3-4
 w_d <- train$after - train$before
 w_n <- length(w_d); w_dbar <- round(mean(w_d), 4); w_sd <- round(sd(w_d), 4)
 w_se <- round(w_sd / sqrt(w_n), 4); w_t <- round(w_dbar / w_se, 3)
@@ -165,7 +165,7 @@ wage_after <- train$after; wage_before <- train$before
 ### Your Turn
 
 ::: {.callout-note icon=false}
-## Your Turn 3.3.1
+## Your Turn 3.4.1
 
 The daily wage (baht) of `r w_n` workers was recorded before and after a
 training course. For $d$ = after $-$ before,
@@ -188,14 +188,14 @@ knitr::kable(data.frame(Worker = train$worker, Before = train$before, After = tr
 ```
 
 ```{r}
-#| label: r-yt-3-3
+#| label: r-yt-3-4
 #| echo: !expr show_code
 #| eval: false
 t.test(wage_after, wage_before, paired = TRUE)
 ```
 
 ```{r}
-#| label: r-yt-3-3-out
+#| label: r-yt-3-4-out
 mask_print(t.test(wage_after, wage_before, paired = TRUE), list(c("^t = ", 1)))
 ```
 
@@ -205,7 +205,7 @@ mask_print(t.test(wage_after, wage_before, paired = TRUE), list(c("^t = ", 1)))
 ::: {.workspace steps="full" method="pvalue"}
 :::
 
-::: {.answer title="Your Turn 3.3.1"}
+::: {.answer title="Your Turn 3.4.1"}
 **(a)** $s_d/\sqrt{n} = `r num(w_sd)`/\sqrt{`r w_n`} = `r num(w_se)`$;
 $t_{\text{cal}} = `r num(w_dbar)`/`r num(w_se)` = `r fmt(w_t, 3)`$ (R: `r fmt(wo$statistic, 3)`).
 
@@ -234,7 +234,7 @@ is equal to 0) at the 0.05 level of significance.
 | R | `t.test(x1, x2, paired = TRUE, alternative = ...)`, $d$ = `x1` $-$ `x2` |
 
 ```{r}
-#| label: ex-3-3-exercises
+#| label: ex-3-4-exercises
 shopA <- c(42, 118, 65, 89, 27, 154, 73, 36)
 shopB <- c(45, 121, 64, 94, 29, 159, 77, 38)
 eo <- t.test(shopA, shopB, paired = TRUE, alternative = "less")
@@ -242,19 +242,19 @@ eo <- t.test(shopA, shopB, paired = TRUE, alternative = "less")
 
 ### Exercises
 
-**3.3.1** Paired or independent?
+**3.4.1** Paired or independent?
 
 (a) The household income of 50 families is recorded in 2024 and again in 2025.
 (b) The wages of 40 randomly chosen workers in Chiang Mai are compared with the wages of 40 randomly chosen workers in Lampang.
 (c) The same 20 products are priced at a supermarket and at a fresh market.
 (d) 30 firms that adopted a new technology are compared with 30 other firms that did not.
 
-::: {.answer title="Exercise 3.3.1"}
+::: {.answer title="Exercise 3.4.1"}
 (a) Paired (same families twice). (b) Independent (two separate samples).
 (c) Paired (same products at two places). (d) Independent (different firms).
 :::
 
-**3.3.2** A consumer group priced the same `r length(shopA)` products at Shop A and
+**3.4.2** A consumer group priced the same `r length(shopA)` products at Shop A and
 Shop B. It wants to know whether prices at Shop A are lower
 on average. Use the output to write the decision and interpretation at
 $\alpha$ = 0.05.
@@ -266,12 +266,12 @@ $\alpha$ = 0.05.
 ```
 
 ```{r}
-#| label: r-ex-3-3
+#| label: r-ex-3-4
 #| echo: !expr show_code
 t.test(shopA, shopB, paired = TRUE, alternative = "less")
 ```
 
-::: {.answer title="Exercise 3.3.2"}
+::: {.answer title="Exercise 3.4.2"}
 $H_0: \mu_d = 0 \quad H_1: \mu_d < 0$ ($d$ = Shop A $-$ Shop B).
 $t_{\text{cal}} = `r fmt(eo$statistic, 3)`$, df = `r eo$parameter`, p-value = `r fmt(eo$p.value, 4)`.
 p-value = `r fmt(eo$p.value, 4)` < $\alpha$ = 0.05, so we reject $H_0$. That is,

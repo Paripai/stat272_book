@@ -1,7 +1,7 @@
 ## Two Variances {#sec-two-variances}
 
 ```{r}
-#| label: setup-3-4
+#| label: setup-3-5
 #| include: false
 source(if (file.exists("R/setup.R")) "R/setup.R" else "../R/setup.R")
 funds <- read.csv(data_path("fund_returns.csv"))
@@ -28,7 +28,7 @@ If the two populations are normal with equal variances, this ratio follows an
 (numerator) and $\text{df}_2 = n_2 - 1$ (denominator). Like $\chi^2$, the $F$
 distribution is positive and skewed to the right.
 
-The $F$ test is also the starting point for the next two topics: Section 3.5
+The $F$ test is also the starting point for the next two topics: Section 3.6
 uses it to choose between two $t$ tests, and Chapter 4 (ANOVA) is built on an
 $F$ ratio.
 
@@ -44,7 +44,7 @@ $$
 F_{\alpha,\,\text{df}_1,\,\text{df}_2} = \frac{1}{F_{1-\alpha,\,\text{df}_2,\,\text{df}_1}}
 $$
 
-**Example 3.4.1.** Find (a) $F_{0.95,\,4,\,10}$, (b) $F_{0.975,\,12,\,15}$, (c) $F_{0.025,\,12,\,15}$.
+**Example 3.5.1.** Find (a) $F_{0.95,\,4,\,10}$, (b) $F_{0.975,\,12,\,15}$, (c) $F_{0.025,\,12,\,15}$.
 
 ::: {.callout-tip icon=false collapse=false}
 ## Solution
@@ -67,14 +67,14 @@ crit_plot("F", "two", df1 = 12, df2 = 15)
 :::
 
 ::: {.callout-note icon=false}
-## Your Turn 3.4.1
+## Your Turn 3.5.1
 
 Find
 (a) $F_{0.95,\,3,\,20}$, (b) $F_{0.975,\,8,\,10}$, (c) $F_{0.025,\,8,\,10}$.
 :::
 
 ```{r}
-#| label: curves-3-4-1
+#| label: curves-3-5-1
 #| layout-ncol: 3
 #| fig-subcap: ["", "", ""]
 #| fig-height: 1.8
@@ -85,7 +85,7 @@ blank_curve("F", 3, 20); blank_curve("F", 8, 10); blank_curve("F", 8, 10)
 ::: {.workspace lines="4"}
 :::
 
-::: {.answer title="Your Turn 3.4.1"}
+::: {.answer title="Your Turn 3.5.1"}
 (a) $F_{0.95,\,3,\,20} = `r crit_F(.95, 3, 20)`$
 
 (b) $F_{0.975,\,8,\,10} = `r crit_F(.975, 8, 10)`$
@@ -120,7 +120,7 @@ $$
 **In R:** `var.test(x1, x2, alternative = ...)` uses $F = s_1^2/s_2^2$ with `x1` in the numerator.
 
 ```{r}
-#| label: ex-3-4
+#| label: ex-3-5
 nA <- length(fund_A); nB <- length(fund_B)
 vA <- round(var(fund_A), 4); vB <- round(var(fund_B), 4)
 F_cal <- round(vA / vB, 3)
@@ -132,7 +132,7 @@ ov <- var.test(fund_A, fund_B)
 
 ### Example
 
-**Example 3.4.2.** An investor compares the risk of two mutual funds using
+**Example 3.5.2.** An investor compares the risk of two mutual funds using
 their monthly returns (%): `r nA` months for Fund A and `r nB` months for Fund B. The sample variances are $s_A^2$ = `r num(vA)` and
 $s_B^2$ = `r num(vB)`. Assume returns are normally distributed.
 
@@ -199,7 +199,7 @@ R's CI (`r fmt(ov$conf.int[1], 4)`, `r fmt(ov$conf.int[2], 4)`) differs a little
 the hand calculation because R uses unrounded $F$ values.
 
 ```{r}
-#| label: yt-3-4
+#| label: yt-3-5
 yx_n <- 11; yx_s <- 2.8; yy_n <- 21; yy_s <- 1.9
 y_F <- round(yx_s^2 / yy_s^2, 3); y_c <- crit_F(.95, yx_n - 1, yy_n - 1)
 ```
@@ -207,7 +207,7 @@ y_F <- round(yx_s^2 / yy_s^2, 3); y_c <- crit_F(.95, yx_n - 1, yy_n - 1)
 ### Your Turn
 
 ::: {.callout-note icon=false}
-## Your Turn 3.4.2
+## Your Turn 3.5.2
 
 An analyst compares the daily price changes (%) of two stocks. For Stock X,
 $n$ = `r yx_n` days and $s$ = `r yx_s`; for Stock Y, $n$ = `r yy_n` days and
@@ -219,7 +219,7 @@ using the critical region from Table 7.
 ::: {.workspace steps="names"}
 :::
 
-::: {.answer title="Your Turn 3.4.2"}
+::: {.answer title="Your Turn 3.5.2"}
 **Step 1.** $H_0: \sigma_X^2 = \sigma_Y^2 \quad H_1: \sigma_X^2 > \sigma_Y^2$
 
 **Step 2.** $\alpha$ = 0.05
@@ -244,7 +244,7 @@ daily price changes of the two stocks are equal at the 0.05 level of significanc
 | R | `var.test(x1, x2, alternative = ...)` |
 
 ```{r}
-#| label: ex-3-4-exercises
+#| label: ex-3-5-exercises
 set.seed(2745)
 rate_bankA <- round(rnorm(16, 7.2, 0.9), 2)
 rate_bankB <- round(rnorm(21, 6.8, 0.5), 2)
@@ -253,13 +253,13 @@ eo <- var.test(rate_bankA, rate_bankB, alternative = "greater")
 
 ### Exercises
 
-**3.4.1** Find (a) $F_{0.99,\,5,\,12}$, (b) $F_{0.05,\,6,\,20}$, (c) $F_{0.975,\,24,\,30}$.
+**3.5.1** Find (a) $F_{0.99,\,5,\,12}$, (b) $F_{0.05,\,6,\,20}$, (c) $F_{0.975,\,24,\,30}$.
 
-::: {.answer title="Exercise 3.4.1"}
+::: {.answer title="Exercise 3.5.1"}
 (a) `r crit_F(.99, 5, 12)` (b) $1/F_{0.95,\,20,\,6} = 1/`r crit_F(.95, 20, 6)` = `r num(crit_F(.05, 6, 20))`$ (c) `r crit_F(.975, 24, 30)`
 :::
 
-**3.4.2** A regulator compares the interest rates (%) on personal loans from two
+**3.5.2** A regulator compares the interest rates (%) on personal loans from two
 groups of lenders: `r length(rate_bankA)` loans from group A and
 `r length(rate_bankB)` from group B. It wants to know whether
 rates vary more in group A. Use the output to write the decision and
@@ -272,12 +272,12 @@ interpretation at $\alpha$ = 0.05.
 ```
 
 ```{r}
-#| label: r-ex-3-4
+#| label: r-ex-3-5
 #| echo: !expr show_code
 var.test(rate_bankA, rate_bankB, alternative = "greater")
 ```
 
-::: {.answer title="Exercise 3.4.2"}
+::: {.answer title="Exercise 3.5.2"}
 $H_0: \sigma_A^2 = \sigma_B^2 \quad H_1: \sigma_A^2 > \sigma_B^2$.
 $F_{\text{cal}} = `r fmt(eo$statistic, 3)`$, df = (`r eo$parameter[1]`, `r eo$parameter[2]`),
 p-value = `r fmt(eo$p.value, 4)` < $\alpha$ = 0.05, so we reject $H_0$. That is,

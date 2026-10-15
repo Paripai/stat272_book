@@ -22,11 +22,11 @@ Every problem in this book answers the same three questions:
 #| fig-width: 7.5
 leaf <- data.frame(y = 11:1, label = c(
   "σ known: z test (2.1)", "σ unknown: t test (2.2)",
-  "Paired: paired t test (3.3)", "Independent, equal variances: pooled t (3.5)",
-  "Independent, unequal variances: Welch t (3.5)",
+  "Paired: paired t test (3.4)", "Independent, equal variances: pooled t (3.6)",
+  "Independent, unequal variances: Welch t (3.6)",
   "No blocks: one-way ANOVA, CRD (4.1)", "Blocks: ANOVA, RCBD (4.3)",
   "z test for p (2.3)", "z test for p1 − p2 (3.1)",
-  "Chi-square test for σ² (2.4)", "F test for σ1²/σ2² (3.4)"))
+  "Chi-square test for σ² (2.4)", "F test for σ1²/σ2² (3.5)"))
 grp <- data.frame(label = c("One group", "Two groups", "Three or more", "One group",
                             "Two groups", "One group", "Two groups"),
                   y = c(10.5, 8, 5.5, 4, 3, 2, 1))
@@ -83,9 +83,9 @@ scheme randomly assigned to villages within each district.
 ::: {.answer title="Which Method? Practice"}
 (a) One proportion, $z$ test for $p$ (2.3), $H_1: p > 0.35$.
 
-(b) Two independent means: $F$ test for the variances first, then pooled or Welch $t$ (3.4, 3.5).
+(b) Two independent means: $F$ test for the variances first, then pooled or Welch $t$ (3.5, 3.6).
 
-(c) Paired means: paired $t$ test on the differences (3.3).
+(c) Paired means: paired $t$ test on the differences (3.4).
 
 (d) One variance: chi-square test, $H_1: \sigma^2 > 1.44$ (2.4).
 
@@ -237,7 +237,7 @@ t.test(bill_after, bill_before, paired = TRUE, alternative = "less")
 :::
 
 ::: {.answer title="M4"}
-Paired means (3.3), $d$ = after $-$ before.
+Paired means (3.4), $d$ = after $-$ before.
 
 **Step 1.** $H_0: \mu_d = 0 \quad H_1: \mu_d < 0$
 

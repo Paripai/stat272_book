@@ -15,7 +15,7 @@ pattern:
 3. **Formulas and conditions**
 4. **Example**: a full solution
 5. **Your Turn**: a similar problem with space to write your own solution
-6. **Reading R output** (from Section 3.2 onward)
+6. **Reading R output** (from Section 3.3 onward)
 7. **Formula summary**
 8. **Exercises**
 9. **Solutions** to Your Turn and the Exercises
@@ -26,15 +26,15 @@ to open it. Try the problem first.
 
 | Session | Section |
 |:---:|:---|
-| 1 | Chapter 1 Basic Principles of Statistical Inference |
-| 2 | 2.1 Mean, $\sigma$ known |
+| 1 | Chapter 1 Basic Principles of Statistical Inference (1.1--1.5) |
+| 2 | 1.6 Reading statistical tables; 2.1 Mean, $\sigma$ known |
 | 3 | 2.2 Mean, $\sigma$ unknown |
 | 4 | 2.3 Proportion |
 | 5 | 2.4 Variance |
-| 6 | 3.1 Two proportions |
-| 7 | 3.2 P-values and R output; 3.3 Paired means |
-| 8 | 3.4 Two variances |
-| 9 | 3.5 Two independent means |
+| 6 | 3.1 Two proportions; 3.2 P-values |
+| 7 | 3.3 Reading R output; 3.4 Paired means |
+| 8 | 3.5 Two variances |
+| 9 | 3.6 Two independent means |
 | 10 | 4.1 One-way ANOVA: CRD |
 | 11 | 4.2 Multiple comparisons (Tukey); 4.3 RCBD |
 | 12 | Summary: Choosing a Method |

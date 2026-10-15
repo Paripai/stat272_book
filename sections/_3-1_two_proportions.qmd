@@ -192,7 +192,7 @@ Brand B at the 0.05 level of significance.
 
 Every test so far followed the same five steps and made the decision with the
 critical region. Section 3.2 introduces a second way to make the decision, the
-p-value, and shows how to read the results from R.
+p-value, and Section 3.3 shows how to read the results from R.
 
 ### Formula Summary
 
@@ -245,5 +245,3 @@ That is, the purchase rates with the two displays are equal at the 0.05 level of
 ::: {.solutions-here}
 :::
 
-::: {.quiz session="6"}
-:::
