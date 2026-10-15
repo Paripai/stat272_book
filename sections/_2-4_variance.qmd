@@ -55,7 +55,7 @@ Table 6 gives $\chi^2$ values with a stated area to the left, for df = 1 to 100.
 The curve is **not symmetric**, so for a two-sided test or a CI we read two
 different values from the table; we cannot use a minus sign.
 
-**Worked Example 2.4.1.** For df = 23, find $\chi^2_{0.025,\,23}$, $\chi^2_{0.975,\,23}$ and $\chi^2_{0.95,\,23}$.
+**Example 2.4.1.** For df = 23, find $\chi^2_{0.025,\,23}$, $\chi^2_{0.975,\,23}$ and $\chi^2_{0.95,\,23}$.
 
 ::: {.callout-tip icon=false collapse=false}
 ## Solution
@@ -138,12 +138,12 @@ a_lo_c <- crit_chisq(.025, a_df); a_hi_c <- crit_chisq(.975, a_df); a_95 <- crit
 a_v_lo <- round(a_ss / a_hi_c, 4); a_v_hi <- round(a_ss / a_lo_c, 4)
 ```
 
-### Worked Example
+### Example
 
-**Worked Example 2.4.2.** A fund manager states that the standard deviation of
+**Example 2.4.2.** A fund manager states that the standard deviation of
 the fund's monthly return is 2%. An investor suspects the fund is riskier. Over
 the last `r a_n` months the standard deviation of the monthly return was
-$s$ = `r a_s`% (hypothetical figures). Assume monthly returns are normally distributed.
+$s$ = `r a_s`%. Assume monthly returns are normally distributed.
 
 (a) Construct a 95% confidence interval for the variance and the standard deviation of the monthly return.
 (b) At $\alpha$ = 0.05, test whether the standard deviation is more than 2%.
@@ -200,7 +200,7 @@ b_v_lo <- round(b_ss / b_hi_c, 4); b_v_hi <- round(b_ss / b_lo_c, 4)
 
 A price-stabilization policy aims to keep the standard deviation of the weekly
 retail price of pork at 3 baht per kg. Over `r b_n` weeks the standard deviation
-was $s$ = `r b_s` baht (hypothetical figures). Assume prices are normally distributed.
+was $s$ = `r b_s` baht. Assume prices are normally distributed.
 
 (a) Construct a 95% confidence interval for $\sigma$.
 (b) At $\alpha$ = 0.05, test whether the standard deviation is different from 3 baht.
@@ -260,7 +260,7 @@ e2_v_lo <- round(e2_ss / e2_hi_c, 4); e2_v_hi <- round(e2_ss / e2_lo_c, 4)
 
 **2.4.1** Before a new ordering system, the standard deviation of a shop's daily
 sales was 10 units. After the system was introduced, `r e1_n` days of sales had
-a standard deviation of `r e1_s` units (hypothetical figures). At
+a standard deviation of `r e1_s` units. At
 $\alpha$ = 0.05, test whether the standard deviation is now less than 10 units.
 Assume normality.
 
@@ -280,7 +280,7 @@ level of significance.
 :::
 
 **2.4.2** The daily change in an exchange rate over `r e2_n` trading days has a
-standard deviation of `r e2_s` baht (hypothetical figures). Assuming normality,
+standard deviation of `r e2_s` baht. Assuming normality,
 construct a 90% confidence interval for the standard deviation of the daily change.
 
 ::: {.answer title="Exercise 2.4.2"}

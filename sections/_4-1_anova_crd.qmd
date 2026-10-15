@@ -103,11 +103,11 @@ Fc <- crit_F(.95, A$k - 1, A$N - A$k)
 oa <- summary(aov(sales ~ strategy, data = crd))[[1]]
 ```
 
-### Worked Example
+### Example
 
-**Worked Example 4.1.1.** A retail chain randomly assigns three pricing
+**Example 4.1.1.** A retail chain randomly assigns three pricing
 strategies (Regular, Discount, Bundle) to 15 similar stores, 5 stores each, and
-records weekly sales in hundreds of units (hypothetical data):
+records weekly sales in hundreds of units:
 
 ```{r}
 #| label: tbl-crd
@@ -162,9 +162,15 @@ Section 4.2 shows how to find which strategies differ.
 ### Reading R Output
 
 ```{r}
+#| label: r-data-crd
+#| echo: !expr show_code
+#| code: !expr c(grp_code("strategy", levels(crd$strategy), each = 5), vec_code("sales", crd$sales))
+```
+
+```{r}
 #| label: r-crd
 #| echo: !expr show_code
-summary(aov(sales ~ strategy, data = crd))
+summary(aov(sales ~ strategy))
 ```
 
 | Output | Meaning |
@@ -190,7 +196,7 @@ ob <- summary(aov(saving ~ region, data = sav))[[1]]
 ## Your Turn 4.1.1
 
 The household saving rate (% of income) of 4 randomly selected households in
-each of four regions is recorded (hypothetical data):
+each of four regions is recorded:
 
 ```{r}
 #| label: tbl-sav
@@ -205,9 +211,15 @@ regions, and check your table against the R output.
 :::
 
 ```{r}
+#| label: r-data-sav
+#| echo: !expr show_code
+#| code: !expr c(grp_code("region", levels(sav$region), each = 4), vec_code("saving", sav$saving))
+```
+
+```{r}
 #| label: r-yt-4-1
 #| echo: !expr show_code
-summary(aov(saving ~ region, data = sav))
+summary(aov(saving ~ region))
 ```
 
 ::: {.workspace lines="16"}

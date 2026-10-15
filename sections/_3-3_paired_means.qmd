@@ -72,12 +72,11 @@ og <- t.test(after, before, paired = TRUE, alternative = "greater")
 o2 <- t.test(after, before, paired = TRUE)
 ```
 
-### Worked Example
+### Example
 
-**Worked Example 3.3.1.** The government gave a cash transfer to low-income
+**Example 3.3.1.** The government gave a cash transfer to low-income
 households. A researcher recorded the monthly spending (baht) of `r n`
-households in the month before and the month after the transfer
-(hypothetical data). Did mean spending increase?
+households in the month before and the month after the transfer. Did mean spending increase?
 
 ```{r}
 #| label: tbl-stim
@@ -128,6 +127,12 @@ after the cash transfer at the 0.05 level of significance.
 ### Reading R Output
 
 ```{r}
+#| label: r-data-stim
+#| echo: !expr show_code
+#| code: !expr c(vec_code("before", before), vec_code("after", after))
+```
+
+```{r}
 #| label: r-stim-greater
 #| echo: !expr show_code
 t.test(after, before, paired = TRUE, alternative = "greater")
@@ -163,7 +168,7 @@ wage_after <- train$after; wage_before <- train$before
 ## Your Turn 3.3.1
 
 The daily wage (baht) of `r w_n` workers was recorded before and after a
-training course (hypothetical data). For $d$ = after $-$ before,
+training course. For $d$ = after $-$ before,
 $\bar{d}$ = `r num(w_dbar)` and $s_d$ = `r num(w_sd)`.
 
 ```{r}
@@ -175,6 +180,12 @@ knitr::kable(data.frame(Worker = train$worker, Before = train$before, After = tr
 (a) Calculate $t_{\text{cal}}$ by hand.
 (b) Use the R output to test whether the training changed the mean daily wage at $\alpha$ = 0.05.
 :::
+
+```{r}
+#| label: r-data-train
+#| echo: !expr show_code
+#| code: !expr c(vec_code("wage_before", train$before), vec_code("wage_after", train$after))
+```
 
 ```{r}
 #| label: r-yt-3-3
@@ -235,9 +246,15 @@ eo <- t.test(shopA, shopB, paired = TRUE, alternative = "less")
 :::
 
 **3.3.2** A consumer group priced the same `r length(shopA)` products at Shop A and
-Shop B (hypothetical data). It wants to know whether prices at Shop A are lower
+Shop B. It wants to know whether prices at Shop A are lower
 on average. Use the output to write the decision and interpretation at
 $\alpha$ = 0.05.
+
+```{r}
+#| label: r-data-shops
+#| echo: !expr show_code
+#| code: !expr c(vec_code("shopA", shopA), vec_code("shopB", shopB))
+```
 
 ```{r}
 #| label: r-ex-3-3

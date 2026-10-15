@@ -125,7 +125,7 @@ m6$se <- round(m6$s / sqrt(m6$n), 4); m6$tc <- crit_t(.975, 19); m6$me <- m6$tc 
 
 ## Mixed Problems {.unnumbered}
 
-All figures are hypothetical. Use $\alpha$ = 0.05 and the five steps.
+Use $\alpha$ = 0.05 and the five steps.
 
 **M1.** In a survey of 500 workers, 210 have a second job. Test whether more
 than 40% of workers have a second job. Use the critical region.
@@ -214,6 +214,12 @@ bills (baht) before and after installation were recorded. Did the mean bill
 decrease?
 
 ```{r}
+#| label: r-data-m4
+#| echo: !expr show_code
+#| code: !expr c(vec_code("bill_before", bill_before), vec_code("bill_after", bill_after))
+```
+
+```{r}
 #| label: r-m4
 #| echo: !expr show_code
 t.test(bill_after, bill_before, paired = TRUE, alternative = "less")
@@ -244,9 +250,15 @@ Online, Radio, Print), five stores each, and weekly sales are recorded.
 channels differ?
 
 ```{r}
+#| label: r-data-m5
+#| echo: !expr show_code
+#| code: !expr c(grp_code("channel", levels(ads$channel), each = 5), vec_code("sales", ads$sales))
+```
+
+```{r}
 #| label: r-m5
 #| echo: !expr show_code
-model_ads <- aov(sales ~ channel, data = ads)
+model_ads <- aov(sales ~ channel)
 summary(model_ads)
 TukeyHSD(model_ads)
 ```

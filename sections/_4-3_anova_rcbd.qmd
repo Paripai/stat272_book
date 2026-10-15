@@ -98,11 +98,11 @@ tkr <- TukeyHSD(model_rcbd, "strategy")$strategy
 ocrd <- summary(aov(sales ~ strategy, data = rb))[[1]]
 ```
 
-### Worked Example
+### Example
 
-**Worked Example 4.3.1.** In each of five provinces, three stores are randomly
+**Example 4.3.1.** In each of five provinces, three stores are randomly
 assigned to the Regular, Discount and Bundle pricing strategies. Weekly sales
-(hundred units) are recorded (hypothetical data):
+(hundred units) are recorded:
 
 ```{r}
 #| label: tbl-rcbd
@@ -166,9 +166,15 @@ strategies, and the Regular and Bundle strategies have equal mean sales.
 ### Reading R Output
 
 ```{r}
+#| label: r-data-rcbd
+#| echo: !expr show_code
+#| code: !expr c(grp_code("strategy", levels(rb$strategy), each = 5), grp_code("province", levels(rb$province), times = 3), vec_code("sales", rb$sales))
+```
+
+```{r}
 #| label: r-rcbd
 #| echo: !expr show_code
-model <- aov(sales ~ strategy + province, data = rb)
+model <- aov(sales ~ strategy + province)
 summary(model)
 TukeyHSD(model, "strategy")
 ```
@@ -186,7 +192,7 @@ province variation into the error term:
 ```{r}
 #| label: r-rcbd-as-crd
 #| echo: !expr show_code
-summary(aov(sales ~ strategy, data = rb))
+summary(aov(sales ~ strategy))
 ```
 
 The treatment SS is the same (`r num(SSTr)`), but the error SS grows from
@@ -206,7 +212,7 @@ tkl <- TukeyHSD(model_loan, "product")$product
 ## Your Turn 4.3.1
 
 A regulator records the interest rate (%) of three loan products (Personal,
-Car, Home) at six banks (hypothetical data). Each bank offers all three products,
+Car, Home) at six banks. Each bank offers all three products,
 so the banks are blocks.
 
 ```{r}
@@ -219,9 +225,15 @@ knitr::kable(tapply(loans$rate, list(loans$product, loans$bank), sum))
 :::
 
 ```{r}
+#| label: r-data-loans
+#| echo: !expr show_code
+#| code: !expr c(grp_code("product", levels(loans$product), each = 6), grp_code("bank", levels(loans$bank), times = 3), vec_code("rate", loans$rate))
+```
+
+```{r}
 #| label: r-yt-4-3
 #| echo: !expr show_code
-model_loan <- aov(rate ~ product + bank, data = loans)
+model_loan <- aov(rate ~ product + bank)
 summary(model_loan)
 TukeyHSD(model_loan, "product")
 ```

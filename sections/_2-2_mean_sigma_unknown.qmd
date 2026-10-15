@@ -76,7 +76,7 @@ After df = 30 the table jumps to 40, 50, 60, 80, 100, 200, 500 and $\infty$.
 All examples in this book use df that appear in the table.
 :::
 
-**Worked Example 2.2.1.** Find (a) $t_{0.975,\,24}$, (b) $t_{0.05,\,15}$, (c) $t_{0.995,\,40}$.
+**Example 2.2.1.** Find (a) $t_{0.975,\,24}$, (b) $t_{0.05,\,15}$, (c) $t_{0.995,\,40}$.
 
 ::: {.callout-tip icon=false collapse=false}
 ## Solution
@@ -130,12 +130,11 @@ r_me <- r_t975 * r_se
 r_lo <- r_xbar - r_me; r_hi <- r_xbar + r_me
 ```
 
-### Worked Example
+### Example
 
-**Worked Example 2.2.2.** A food-delivery platform claims that its riders in
+**Example 2.2.2.** A food-delivery platform claims that its riders in
 Chiang Mai earn more than `r r_mu0` baht per day on average. A researcher
-records the daily earnings (baht) of `r r_n` randomly selected riders
-(hypothetical data):
+records the daily earnings (baht) of `r r_n` randomly selected riders:
 
 ```{r}
 #| label: tbl-riders
@@ -183,7 +182,7 @@ Critical region: $t_{\text{cal}} > `r fmt(r_t95, 3)`$.
 
 ```{r}
 #| label: fig-ex-2-2
-#| fig-cap: "Critical region for Worked Example 2.2.2"
+#| fig-cap: "Critical region for Example 2.2.2"
 #| fig-height: 2
 #| fig-width: 5
 #| fig-align: center
@@ -233,8 +232,7 @@ c_me <- c_t975 * c_se; c_lo <- c_xbar - c_me; c_hi <- c_xbar + c_me
 
 A property agent records the monthly rent of `r c_n` one-bedroom condominium
 units near Nimmanhaemin Road, Chiang Mai. The sample mean is
-`r big(c_xbar, 0)` baht and the standard deviation is `r c_s` baht
-(hypothetical figures). Assume rents are normally distributed.
+`r big(c_xbar, 0)` baht and the standard deviation is `r c_s` baht. Assume rents are normally distributed.
 
 (a) Construct a 95% confidence interval for the mean rent.
 (b) At $\alpha$ = 0.05, test whether the mean rent is different from `r big(c_mu0, 0)` baht.
@@ -298,7 +296,7 @@ g_se <- round(g_s / sqrt(g_n), 4); g_t <- crit_t(.995, g_df); g_me <- g_t * g_se
 
 **2.2.1** A survey of `r d_n` households in a district finds a mean household
 debt of `r big(d_xbar, 0)` baht with a standard deviation of
-`r big(d_s, 0)` baht (hypothetical figures). At $\alpha$ = 0.05, test whether
+`r big(d_s, 0)` baht. At $\alpha$ = 0.05, test whether
 the mean household debt is more than `r big(d_mu0, 0)` baht.
 
 ::: {.answer title="Exercise 2.2.1"}
@@ -318,8 +316,7 @@ baht at the 0.05 level of significance.
 :::
 
 **2.2.2** A sample of `r g_n` gig workers reports a mean of `r g_xbar` working
-hours per week with a standard deviation of `r g_s` hours (hypothetical
-figures). Construct a 99% confidence interval for the mean weekly working hours.
+hours per week with a standard deviation of `r g_s` hours. Construct a 99% confidence interval for the mean weekly working hours.
 
 ::: {.answer title="Exercise 2.2.2"}
 df = `r g_df`, $t_{0.995,\,`r g_df`} = `r fmt(g_t, 3)`$;
@@ -331,7 +328,7 @@ that the mean weekly working hours of gig workers are between
 :::
 
 **2.2.3** A 95% confidence interval for the mean monthly interest rate charged
-by informal lenders is (12.4%, 15.8%) (hypothetical figures). Without further
+by informal lenders is (12.4%, 15.8%). Without further
 calculation, what is the decision of a two-sided test at $\alpha$ = 0.05 for
 (a) $H_0: \mu = 16$, (b) $H_0: \mu = 15$?
 

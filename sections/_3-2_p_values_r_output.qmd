@@ -39,7 +39,7 @@ r_t <- round(unname(t.test(earnings, mu = 600, alternative = "greater")$statisti
 r_p1 <- round(pt(r_t, 24, lower.tail = FALSE), 4)
 ```
 
-**Example.** In Worked Example 2.2.2 (rider earnings, $H_1: \mu > 600$),
+**Example.** In Example 2.2.2 (rider earnings, $H_1: \mu > 600$),
 $t_{\text{cal}} = `r fmt(r_t, 3)`$ with df = 24. The p-value is the area to the
 **right** of `r fmt(r_t, 3)` under the $t$ curve, because $H_1$ points to the right.
 It is about `r fmt(r_p1, 4)`.
@@ -78,9 +78,15 @@ assuming $H_0$ is true.
 ### Reading R Output
 
 R is free statistical software. In this course you do not need to write R code,
-but you must be able to **read** its output. The function `t.test()` carries out
-the $t$ test for one mean. For the riders in Worked Example 2.2.2 we use
+but you must be able to **read** the command and its output. The function `t.test()` carries out
+the $t$ test for one mean. For the riders in Example 2.2.2 we use
 `t.test(earnings, mu = 600, alternative = "greater")`:
+
+```{r}
+#| label: r-data-riders
+#| echo: !expr show_code
+#| code: !expr vec_code("earnings", riders$earnings)
+```
 
 ```{r}
 #| label: r-riders-greater
@@ -127,7 +133,7 @@ o2 <- t.test(earnings, mu = 600)
 ```
 
 The 95% CI (`r fmt(o2$conf.int[1], 2)`, `r fmt(o2$conf.int[2], 2)`) is the same
-as in Worked Example 2.2.2. The test statistic does not change, but the
+as in Example 2.2.2. The test statistic does not change, but the
 two-sided p-value (`r fmt(o2$p.value, 4)`) is twice the one-sided p-value.
 
 ::: {.callout-tip icon=false}
@@ -153,11 +159,17 @@ From this section on, Step 4 is the p-value instead of the critical value:
 ob <- t.test(bill, mu = 1200)
 ```
 
-### Worked Example
+### Example
 
-**Worked Example 3.2.1.** An energy agency records the monthly electricity bill
-(baht) of `r length(bill)` randomly selected households (hypothetical data). It
+**Example 3.2.1.** An energy agency records the monthly electricity bill
+(baht) of `r length(bill)` randomly selected households. It
 wants to know whether the mean bill is different from 1,200 baht. R gives:
+
+```{r}
+#| label: r-data-bills
+#| echo: !expr show_code
+#| code: !expr vec_code("bill", bills$bill)
+```
 
 ```{r}
 #| label: r-bills
@@ -249,7 +261,7 @@ ex <- list(
 
 ### Exercises
 
-**3.2.1** The electricity agency in Worked Example 3.2.1 now asks whether the
+**3.2.1** The electricity agency in Example 3.2.1 now asks whether the
 mean bill is **more than** 1,200 baht. Four outputs are shown below.
 
 ```{r}

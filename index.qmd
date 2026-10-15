@@ -3,8 +3,7 @@
 This book covers the first half of 208272 Elementary Statistics for Social
 Sciences II: the principles of statistical inference, inference about means,
 proportions and variances, and analysis of variance. All examples use
-economic contexts. Unless a source is given, the numbers in the examples are
-hypothetical and are used for illustration only.
+economic contexts.
 
 ## How to use this book {.unnumbered}
 
@@ -14,7 +13,7 @@ pattern:
 1. **Learning objectives**
 2. **Concept**: why we need this method
 3. **Formulas and conditions**
-4. **Worked example**: a full solution
+4. **Example**: a full solution
 5. **Your Turn**: a similar problem with space to write your own solution
 6. **Reading R output** (from Section 3.2 onward)
 7. **Formula summary**

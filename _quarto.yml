@@ -34,9 +34,7 @@ format:
     fig-width: 8
     fig-height: 5
     # R code is hidden by default. Chunks that show R output for students set
-    # echo: !expr show_code, and their code is folded on the web.
-    code-fold: true
-    code-summary: "Show R code"
+    # echo: !expr show_code, so the command is printed above its output.
   pdf:
     pdf-engine: xelatex
     documentclass: scrreprt
@@ -47,8 +45,6 @@ format:
     number-depth: 1
     geometry: margin=1in
     fontsize: 12pt
-    # The PDF shows R output only, never the code
-    echo: false
 
 execute:
   echo: false

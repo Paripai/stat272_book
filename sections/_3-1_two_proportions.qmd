@@ -72,11 +72,11 @@ a <- two_prop(171, 300, 165, 250)
 a_me <- crit_z(.975) * a$se
 ```
 
-### Worked Example
+### Example
 
-**Worked Example 3.1.1.** A survey asks households whether they have any
+**Example 3.1.1.** A survey asks households whether they have any
 outstanding debt. In urban areas, `r a$x1` of `r a$n1` households have debt; in
-rural areas, `r a$x2` of `r a$n2` households have debt (hypothetical figures).
+rural areas, `r a$x2` of `r a$n2` households have debt.
 
 (a) Construct a 95% confidence interval for the difference between the urban and rural proportions.
 (b) At $\alpha$ = 0.05, test whether the proportion of households with debt is different in urban and rural areas.
@@ -142,7 +142,7 @@ b_me <- crit_z(.975) * b$se
 
 Two brands of instant noodles raised their prices by the same amount. Of
 `r b$n1` regular customers of Brand A, `r b$x1` switched to another brand; of
-`r b$n2` regular customers of Brand B, `r b$x2` switched (hypothetical figures).
+`r b$n2` regular customers of Brand B, `r b$x2` switched.
 
 (a) Construct a 95% confidence interval for $p_A - p_B$.
 (b) At $\alpha$ = 0.05, test whether the proportion of customers who switched is higher for Brand A.
@@ -210,8 +210,7 @@ e2 <- two_prop(84, 240, 96, 240)
 ### Exercises
 
 **3.1.1** In a labour force survey, `r e1$x1` of `r e1$n1` women and `r e1$x2`
-of `r e1$n2` men aged 15--24 were not in employment, education or training
-(hypothetical figures). Construct a 90% confidence interval for
+of `r e1$n2` men aged 15--24 were not in employment, education or training. Construct a 90% confidence interval for
 $p_{\text{women}} - p_{\text{men}}$.
 
 ::: {.answer title="Exercise 3.1.1"}
@@ -225,7 +224,7 @@ not in employment, education or training is between `r fmt(e1$d - e1_me, 4)` and
 
 **3.1.2** A shop tests two price displays. With display 1, `r e2$x1` of
 `r e2$n1` visitors bought the product; with display 2, `r e2$x2` of `r e2$n2`
-bought it (hypothetical figures). At $\alpha$ = 0.05, test whether display 1
+bought it. At $\alpha$ = 0.05, test whether display 1
 has a lower purchase rate.
 
 ::: {.answer title="Exercise 3.1.2"}

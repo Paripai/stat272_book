@@ -60,12 +60,12 @@ a_se0 <- round(sqrt(a_p0 * (1 - a_p0) / a_n), 4)
 a_z <- round((a_ph - a_p0) / a_se0, 3)
 ```
 
-### Worked Example
+### Example
 
-**Worked Example 2.3.1.** The government ran a co-payment scheme in which it
+**Example 2.3.1.** The government ran a co-payment scheme in which it
 paid part of the price of goods bought at small shops. An economist claims that
 more than 30% of households in Chiang Mai used the scheme. In a random sample of
-`r a_n` households, `r a_x` used it (hypothetical figures).
+`r a_n` households, `r a_x` used it.
 
 (a) Construct a 95% confidence interval for the proportion of households that used the scheme.
 (b) At $\alpha$ = 0.05, test the economist's claim.
@@ -127,7 +127,7 @@ b_z <- round((b_ph - b_p0) / b_se0, 3)
 
 A university reports that 70% of its economics graduates find a job within six
 months. A survey of `r b_n` recent graduates finds that `r b_x` found a job
-within six months (hypothetical figures).
+within six months.
 
 (a) Construct a 95% confidence interval for the proportion of graduates who find a job within six months.
 (b) At $\alpha$ = 0.05, test whether the proportion is different from 0.70.
@@ -185,7 +185,7 @@ e2_se <- round(sqrt(e2_p0 * (1 - e2_p0) / e2_n), 4); e2_z <- round((e2_ph - e2_p
 ### Exercises
 
 **2.3.1** In a survey of `r e1_n` small businesses, `r e1_x` had borrowed from
-an informal lender in the past year (hypothetical figures). Construct a 99%
+an informal lender in the past year. Construct a 99%
 confidence interval for the proportion of small businesses that borrowed from
 an informal lender.
 
@@ -200,7 +200,7 @@ between `r fmt(e1_ph - e1_me, 4)` and `r fmt(e1_ph + e1_me, 4)`.
 
 **2.3.2** A bank believes that less than 25% of its credit-card holders pay
 only the minimum amount each month. In a sample of `r e2_n` card holders,
-`r e2_x` paid only the minimum (hypothetical figures). Test the bank's belief at
+`r e2_x` paid only the minimum. Test the bank's belief at
 $\alpha$ = 0.05.
 
 ::: {.answer title="Exercise 2.3.2"}

@@ -63,3 +63,20 @@
 .slide-clear-button:active {
   color: red;
 }
+
+// "Your Turn: Work Space" slides (from book.lua): step names and ruled lines
+// that fit on one screen, to write on with the chalkboard pen (press C)
+.reveal .slides .ws {
+  font-size: 0.55em;
+  margin-top: 0.3em;
+}
+.reveal .slides .ws-step {
+  font-weight: bold;
+  margin-top: 0.35em;
+}
+.reveal .slides .ws-line {
+  border-bottom: 1px solid #c8c8c8;
+  height: 1.7em;
+  line-height: 2.4em;
+  color: #666;
+}

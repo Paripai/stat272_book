@@ -86,11 +86,11 @@ tg <- t.test(discount, bundle, var.equal = TRUE, alternative = "greater")
 tt <- t.test(discount, bundle, var.equal = TRUE)
 ```
 
-### Worked Example: Pooled $t$ Test
+### Example: Pooled $t$ Test
 
-**Worked Example 3.5.1.** A retail chain tries two pricing strategies. `r n1`
+**Example 3.5.1.** A retail chain tries two pricing strategies. `r n1`
 stores use a **discount** strategy and `r n2` other stores use a **bundle**
-strategy. Daily sales (units) are recorded (hypothetical data):
+strategy. Daily sales (units) are recorded:
 
 ```{r}
 #| label: tbl-pricing
@@ -157,6 +157,12 @@ is not a contradiction: the CI matches a **two-sided** test, whose p-value
 ### Reading R Output
 
 ```{r}
+#| label: r-data-pricing
+#| echo: !expr show_code
+#| code: !expr c(vec_code("discount", discount), vec_code("bundle", bundle))
+```
+
+```{r}
 #| label: r-pricing
 #| echo: !expr show_code
 var.test(discount, bundle)
@@ -173,12 +179,18 @@ hv <- var.test(online, physical)
 hw <- t.test(online, physical)
 ```
 
-### Worked Example: Welch $t$ Test
+### Example: Welch $t$ Test
 
-**Worked Example 3.5.2.** A consumer researcher records the price (baht) of the
+**Example 3.5.2.** A consumer researcher records the price (baht) of the
 same model of headphones at `r length(online)` online stores and
-`r length(physical)` physical stores (hypothetical data). Is the mean price
+`r length(physical)` physical stores. Is the mean price
 different?
+
+```{r}
+#| label: r-data-headphones
+#| echo: !expr show_code
+#| code: !expr c(vec_code("online", online), vec_code("physical", physical))
+```
 
 ```{r}
 #| label: r-headphones
@@ -228,7 +240,7 @@ yv <- var.test(uni_A, uni_B); yt <- t.test(uni_A, uni_B, var.equal = TRUE)
 ## Your Turn 3.5.1
 
 The starting monthly salaries (thousand baht) of 10 economics graduates from
-University A and 12 from University B are compared (hypothetical data):
+University A and 12 from University B are compared:
 $\bar{x}_A$ = `r num(ya_m)`, $s_A^2$ = `r num(ya_v)`, $\bar{x}_B$ = `r num(yb_m)`,
 $s_B^2$ = `r num(yb_v)`.
 
@@ -236,6 +248,12 @@ $s_B^2$ = `r num(yb_v)`.
 (b) Calculate $t_{\text{cal}}$ by hand.
 (c) Use the R output to test whether the mean starting salaries are different at $\alpha$ = 0.05.
 :::
+
+```{r}
+#| label: r-data-uni
+#| echo: !expr show_code
+#| code: !expr c(vec_code("uni_A", uni_A), vec_code("uni_B", uni_B))
+```
 
 ```{r}
 #| label: r-yt-3-5
@@ -292,9 +310,14 @@ ew <- t.test(north, south, alternative = "greater")
 ### Exercises
 
 **3.5.1** An economist compares the monthly inflation expectations (%) reported
-by `r length(north)` firms in the North and `r length(south)` firms in the South
-(hypothetical data). She wants to know whether expectations are higher in the
+by `r length(north)` firms in the North and `r length(south)` firms in the South. She wants to know whether expectations are higher in the
 North. Three outputs are shown.
+
+```{r}
+#| label: r-data-region
+#| echo: !expr show_code
+#| code: !expr c(vec_code("north", north), vec_code("south", south))
+```
 
 ```{r}
 #| label: r-ex-3-5

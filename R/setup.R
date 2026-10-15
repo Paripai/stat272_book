@@ -157,10 +157,31 @@ big <- function(x, d = 2) formatC(round(x, d), format = "f", digits = d, big.mar
 # (num(10, 4) -> "10", num(1.714286, 4) -> "1.7143")
 num <- function(x, d = 4) format(round(x, d), digits = 15, nsmall = 0, scientific = FALSE, trim = TRUE)
 
-# R code is shown (folded) only on the web, and only for chunks that set
+# R code is shown in the book (web and PDF) and the slides for chunks that set
 #   #| echo: !expr show_code
 # Calculation chunks stay hidden so they do not reveal the answers.
-show_code <- identical(knitr::pandoc_to(), "html")
+show_code <- TRUE
+
+# The data as R code, so students see the data and the command together.
+# Used as a chunk option:  #| code: !expr vec_code("earnings", riders$earnings)
+vec_code <- function(name, x, per_line = 10) {
+  v <- if (is.character(x)) paste0('"', x, '"') else format(x, trim = TRUE, drop0trailing = TRUE)
+  rows <- split(v, ceiling(seq_along(v) / per_line))
+  rows <- vapply(rows, paste, "", collapse = ", ")
+  pad <- strrep(" ", nchar(name) + 7)
+  paste0(c(paste0(name, " <- c(", rows[1]), if (length(rows) > 1) paste0(pad, rows[-1])),
+         c(rep(",", length(rows) - 1), ")"))
+}
+
+# A treatment or block factor written as R code, e.g.
+#   strategy <- factor(rep(c("Regular", "Discount", "Bundle"), each = 5),
+#                      levels = c("Regular", "Discount", "Bundle"))
+grp_code <- function(name, levels, each = NULL, times = NULL) {
+  lv <- paste0("c(", paste0('"', levels, '"', collapse = ", "), ")")
+  rep_arg <- if (!is.null(each)) paste0("each = ", each) else paste0("times = ", times)
+  c(paste0(name, " <- factor(rep(", lv, ", ", rep_arg, "),"),
+    paste0(strrep(" ", nchar(name) + 11), "levels = ", lv, ")"))
+}
 
 # p-value as an area: the t (or z) curve with the area beyond the observed
 # statistic shaded, in the direction(s) of H1

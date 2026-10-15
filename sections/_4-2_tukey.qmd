@@ -8,8 +8,10 @@ crd <- read.csv(data_path("pricing_crd.csv"))
 crd$strategy <- factor(crd$strategy, levels = c("Regular", "Discount", "Bundle"))
 sav <- read.csv(data_path("saving_rate.csv"))
 sav$region <- factor(sav$region, levels = c("North", "Northeast", "Central", "South"))
-model <- aov(sales ~ strategy, data = crd)
-model_sav <- aov(saving ~ region, data = sav)
+sales <- crd$sales; strategy <- crd$strategy
+saving <- sav$saving; region <- sav$region
+model <- aov(sales ~ strategy)
+model_sav <- aov(saving ~ region)
 ```
 
 ### Learning Objectives
@@ -57,9 +59,9 @@ tk <- TukeyHSD(model)$strategy
 mns <- tapply(crd$sales, crd$strategy, mean)
 ```
 
-### Worked Example
+### Example
 
-**Worked Example 4.2.1.** In Worked Example 4.1.1 the ANOVA rejected $H_0$
+**Example 4.2.1.** In Example 4.1.1 the ANOVA rejected $H_0$
 (p-value = `r fmt(summary(model)[[1]][1, "Pr(>F)"], 4)`). The sample means are
 Regular `r num(mns[1])`, Discount `r num(mns[2])` and Bundle `r num(mns[3])`.
 Use the Tukey output to find which pricing strategies differ at $\alpha$ = 0.05.
@@ -67,6 +69,7 @@ Use the Tukey output to find which pricing strategies differ at $\alpha$ = 0.05.
 ```{r}
 #| label: r-tukey-crd
 #| echo: !expr show_code
+model <- aov(sales ~ strategy)    # data of Example 4.1.1
 TukeyHSD(model)
 ```
 
@@ -107,6 +110,7 @@ $\alpha$ = 0.05, and summarize the result in one or two sentences.
 ```{r}
 #| label: r-tukey-sav
 #| echo: !expr show_code
+model_sav <- aov(saving ~ region)    # data of Your Turn 4.1.1
 TukeyHSD(model_sav)
 ```
 

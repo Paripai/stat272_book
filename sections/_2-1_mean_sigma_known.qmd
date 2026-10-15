@@ -56,12 +56,12 @@ a_lo <- a_xbar - a_z975 * a_se; a_hi <- a_xbar + a_z975 * a_se
 a_z <- round((a_xbar - a_mu0) / a_se, 3)
 ```
 
-### Worked Example
+### Example
 
-**Worked Example 2.1.1.** From many years of Labour Force Survey records, the
+**Example 2.1.1.** From many years of Labour Force Survey records, the
 standard deviation of the daily wage of construction workers in Chiang Mai is
 $\sigma$ = `r a_sigma` baht. A labour union surveys `r a_n` workers and finds a
-mean daily wage of $\bar{x}$ = `r a_xbar` baht (hypothetical figures). The
+mean daily wage of $\bar{x}$ = `r a_xbar` baht. The
 Ministry of Labour reports a mean of `r a_mu0` baht; the union believes the true
 mean is lower.
 
@@ -103,7 +103,7 @@ Critical region: $z_{\text{cal}} < `r fmt(-a_z95, 3)`$.
 
 ```{r}
 #| label: fig-ex-2-1
-#| fig-cap: "Critical region for Worked Example 2.1.1"
+#| fig-cap: "Critical region for Example 2.1.1"
 #| fig-height: 2
 #| fig-width: 5
 #| fig-align: center
@@ -132,8 +132,7 @@ b_z <- round((b_xbar - b_mu0) / b_se, 3)
 
 The standard deviation of the price of a 5-kg bag of jasmine rice across shops
 is known to be $\sigma$ = `r b_sigma` baht. A price-monitoring agency checks
-`r b_n` shops and finds a mean price of $\bar{x}$ = `r b_xbar` baht
-(hypothetical figures).
+`r b_n` shops and finds a mean price of $\bar{x}$ = `r b_xbar` baht.
 
 (a) Construct a 95% confidence interval for the mean price.
 (b) At $\alpha$ = 0.05, test whether the mean price is different from `r b_mu0` baht.
@@ -193,8 +192,7 @@ e3_se <- round(e3_sigma / sqrt(e3_n), 4); e3_z <- round((e3_xbar - e3_mu0) / e3_
 
 **2.1.1** Utility records show that the standard deviation of the monthly
 electricity bill of households in a city is `r e1_sigma` baht. A sample of
-`r e1_n` households has a mean bill of `r big(e1_xbar, 0)` baht (hypothetical
-figures). Construct a 99% confidence interval for the mean monthly bill.
+`r e1_n` households has a mean bill of `r big(e1_xbar, 0)` baht. Construct a 99% confidence interval for the mean monthly bill.
 
 ::: {.answer title="Exercise 2.1.1"}
 $\sigma/\sqrt{n} = `r e1_sigma`/\sqrt{`r e1_n`} = `r num(e1_se)`$; $z_{0.995} = `r fmt(e1_z, 3)`$.
@@ -207,7 +205,7 @@ We are 99% confident that the mean monthly electricity bill is between
 **2.1.2** A company claims that the mean monthly sales per salesperson are more
 than `r e2_mu0` thousand baht. The standard deviation is known to be
 `r e2_sigma` thousand baht. A sample of `r e2_n` salespeople has a mean of
-`r e2_xbar` thousand baht (hypothetical figures). Test the claim at $\alpha$ = 0.01.
+`r e2_xbar` thousand baht. Test the claim at $\alpha$ = 0.01.
 
 ::: {.answer title="Exercise 2.1.2"}
 
@@ -228,7 +226,7 @@ baht at the 0.01 level of significance.
 
 **2.1.3** The standard deviation of savings deposits at a bank is known to be
 `r big(e3_sigma, 0)` baht. A sample of `r e3_n` accounts has a mean balance of
-`r big(e3_xbar, 0)` baht (hypothetical figures).
+`r big(e3_xbar, 0)` baht.
 
 (a) At $\alpha$ = 0.05, test whether the mean balance is different from `r big(e3_mu0, 0)` baht.
 (b) Construct a 95% CI for the mean balance. Does it agree with (a)?

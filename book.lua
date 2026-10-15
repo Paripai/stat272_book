@@ -9,19 +9,23 @@
 --                      (Sessions 4-6)
 --      steps="none"  : ruled lines only (default; Sessions 7-12)
 --      lines="N"     : ruled lines per step (or in total for steps="none")
---    HTML and slides: removed (the problem itself is shown in the text).
+--    slides: a "Your Turn: Work Space" slide with the same step names and
+--            ruled lines, short enough not to scroll, so the teacher can
+--            write on it with the chalkboard pen together with the students.
+--    HTML  : removed (the problem itself is shown in the text).
 --
 -- 2. ::: {.answer title="Your Turn 2.2.1"}
 --    A worked solution that must not sit next to its problem.
 --      HTML  : a collapsed callout, opened with a click
 --      PDF   : moved to the next ::: {.solutions-here} marker, which is placed
 --              at the end of every section
---      slides: starts a new slide, so the answer comes after the problem
+--      slides: starts a new slide, so the answer comes after the problem;
+--              answers to Exercises are left out of the slides
 
 --
 -- 3. ::: {.quiz session="N"}
 --    Placed at the end of the last section taught in a session.
---      slides: a "Quiz: Session N" slide with space for the entry code
+--      slides: a "Quiz: Session N" slide (title only)
 --      book  : removed
 
 local fmt_pdf = quarto.doc.is_format("pdf")
@@ -89,6 +93,42 @@ local function workspace(div)
   return latex(table.concat(tex, "\n"))
 end
 
+-- Slide version of the writing space (HTML, styled in slides/custom.scss)
+local html_prompts = {
+  { "H<sub>0</sub>:", "H<sub>1</sub>:" },
+  { "&alpha; =" },
+  { "Formula:", "Substitution:", "Result:" },
+  { "Critical value(s):", "Critical region:" },
+  { "Decision:", "Interpretation:" },
+}
+
+local function workspace_slide(div)
+  local steps = div.attributes["steps"] or "none"
+  local n = tonumber(div.attributes["lines"] or "")
+  local h = { '<div class="ws">' }
+  local function line(label)
+    h[#h + 1] = '<div class="ws-line">' .. (label or "") .. '</div>'
+  end
+  if steps == "full" then
+    for i, name in ipairs(step_names) do
+      h[#h + 1] = '<div class="ws-step">' .. name .. '</div>'
+      for _, p in ipairs(html_prompts[i]) do line(p) end
+    end
+  elseif steps == "names" then
+    for _, name in ipairs(step_names) do
+      h[#h + 1] = '<div class="ws-step">' .. name .. '</div>'
+      line(); line()
+    end
+  else
+    for _ = 1, math.min(n or 10, 10) do line() end
+  end
+  h[#h + 1] = '</div>'
+  return {
+    pandoc.Header(2, pandoc.Str("Your Turn: Work Space"), pandoc.Attr("", { "deck" })),
+    pandoc.RawBlock("html", table.concat(h, "\n")),
+  }
+end
+
 local function solution(div)
   local title = div.attributes["title"] or "Solution"
   if fmt_pdf then
@@ -99,6 +139,7 @@ local function solution(div)
     pending[#pending + 1] = blocks
     return {}
   elseif fmt_slides then
+    if title:match("^Exercise") then return {} end
     local blocks = pandoc.List({
       pandoc.Header(2, pandoc.Str("Solution: " .. title), pandoc.Attr("", { "deck" }))
     })
@@ -133,6 +174,7 @@ return {
     Div = function(div)
       if div.classes:includes("workspace") then
         if fmt_pdf then return workspace(div) end
+        if fmt_slides then return workspace_slide(div) end
         return {}
       elseif div.classes:includes("answer") then
         return solution(div)
@@ -141,7 +183,6 @@ return {
         local n = div.attributes["session"] or ""
         return {
           pandoc.Header(2, pandoc.Str("Quiz: Session " .. n), pandoc.Attr("", { "deck" })),
-          pandoc.Para({ pandoc.Str("Quiz code: ______") }),
         }
       elseif div.classes:includes("solutions-here") then
         return solutions_here(div)

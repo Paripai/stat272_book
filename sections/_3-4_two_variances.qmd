@@ -44,7 +44,7 @@ $$
 F_{\alpha,\,\text{df}_1,\,\text{df}_2} = \frac{1}{F_{1-\alpha,\,\text{df}_2,\,\text{df}_1}}
 $$
 
-**Worked Example 3.4.1.** Find (a) $F_{0.95,\,4,\,10}$, (b) $F_{0.975,\,12,\,15}$, (c) $F_{0.025,\,12,\,15}$.
+**Example 3.4.1.** Find (a) $F_{0.95,\,4,\,10}$, (b) $F_{0.975,\,12,\,15}$, (c) $F_{0.025,\,12,\,15}$.
 
 ::: {.callout-tip icon=false collapse=false}
 ## Solution
@@ -131,11 +131,10 @@ ci_lo <- round(F_cal / F_hi, 4); ci_hi <- round(F_cal * F_hi_swap, 4)
 ov <- var.test(fund_A, fund_B)
 ```
 
-### Worked Example
+### Example
 
-**Worked Example 3.4.2.** An investor compares the risk of two mutual funds using
-their monthly returns (%): `r nA` months for Fund A and `r nB` months for Fund B
-(hypothetical data). The sample variances are $s_A^2$ = `r num(vA)` and
+**Example 3.4.2.** An investor compares the risk of two mutual funds using
+their monthly returns (%): `r nA` months for Fund A and `r nB` months for Fund B. The sample variances are $s_A^2$ = `r num(vA)` and
 $s_B^2$ = `r num(vB)`. Assume returns are normally distributed.
 
 (a) Construct a 95% confidence interval for $\sigma_A^2/\sigma_B^2$.
@@ -179,6 +178,12 @@ $s_A^2 > s_B^2$, Fund A is riskier.
 ### Reading R Output
 
 ```{r}
+#| label: r-data-funds
+#| echo: !expr show_code
+#| code: !expr c(vec_code("fund_A", fund_A), vec_code("fund_B", fund_B))
+```
+
+```{r}
 #| label: r-funds
 #| echo: !expr show_code
 var.test(fund_A, fund_B)
@@ -207,7 +212,7 @@ y_F <- round(yx_s^2 / yy_s^2, 3); y_c <- crit_F(.95, yx_n - 1, yy_n - 1)
 
 An analyst compares the daily price changes (%) of two stocks. For Stock X,
 $n$ = `r yx_n` days and $s$ = `r yx_s`; for Stock Y, $n$ = `r yy_n` days and
-$s$ = `r yy_s` (hypothetical figures). Assume normality. At $\alpha$ = 0.05,
+$s$ = `r yy_s`. Assume normality. At $\alpha$ = 0.05,
 test whether Stock X is more volatile (has a larger variance) than Stock Y,
 using the critical region from Table 7.
 :::
@@ -257,9 +262,15 @@ eo <- var.test(rate_bankA, rate_bankB, alternative = "greater")
 
 **3.4.2** A regulator compares the interest rates (%) on personal loans from two
 groups of lenders: `r length(rate_bankA)` loans from group A and
-`r length(rate_bankB)` from group B (hypothetical data). It wants to know whether
+`r length(rate_bankB)` from group B. It wants to know whether
 rates vary more in group A. Use the output to write the decision and
 interpretation at $\alpha$ = 0.05.
+
+```{r}
+#| label: r-data-banks
+#| echo: !expr show_code
+#| code: !expr c(vec_code("rate_bankA", rate_bankA), vec_code("rate_bankB", rate_bankB))
+```
 
 ```{r}
 #| label: r-ex-3-4

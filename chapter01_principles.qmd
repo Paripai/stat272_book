@@ -13,7 +13,7 @@ After this chapter you should be able to:
 1. Distinguish a **parameter** from a **statistic**.
 2. Describe the sampling distribution of $\bar{x}$ and of $\hat{p}$: its mean, its
    standard error and its shape.
-3. Use the Central Limit Theorem to find probabilities about $\bar{x}$ and $\hat{p}$.
+3. Calculate the standard error of $\bar{x}$ and of $\hat{p}$.
 4. Explain what a 95% confidence interval means.
 5. Write the null and alternative hypotheses for a research question, and tell
    a one-sided test from a two-sided test.
@@ -70,7 +70,7 @@ samp$panel <- factor(samp$panel, levels = c("Population", "Means, n = 5",
                                             "Means, n = 30", "Means, n = 100"))
 ```
 
-**Example.** @fig-income-sampling uses a hypothetical population of
+**Example.** @fig-income-sampling uses a population of
 100,000 households. Monthly household income is skewed to the right: most
 households earn a moderate amount and a few earn a great deal. The population
 mean is $\mu$ = `r format(round(mu_inc), big.mark = ",")` baht and the
@@ -79,7 +79,7 @@ The other panels show the means of 5,000 random samples of size 5, 30 and 100.
 
 ```{r}
 #| label: fig-income-sampling
-#| fig-cap: "Household income in a hypothetical population (top left) and the sampling distribution of the sample mean for n = 5, 30 and 100"
+#| fig-cap: "Household income in a population (top left) and the sampling distribution of the sample mean for n = 5, 30 and 100"
 #| fig-height: 5
 ggplot(samp, aes(value / 1000)) +
   geom_histogram(bins = 50, fill = "steelblue", colour = "white", linewidth = 0.1) +
@@ -109,11 +109,6 @@ The standard deviation of a sampling distribution is called the
   - if not, $\bar{x}$ is **approximately normal** when $n$ is large ($n \ge 30$).
     This is the **Central Limit Theorem (CLT)**.
 
-So we can standardize $\bar{x}$ and use the $z$ table:
-$$
-z = \frac{\bar{x} - \mu}{\sigma / \sqrt{n}}
-$$
-
 ### Sampling distribution of $\hat{p}$
 
 The sample proportion $\hat{p} = x/n$, where $x$ is the number of "successes".
@@ -121,10 +116,6 @@ The sample proportion $\hat{p} = x/n$, where $x$ is the number of "successes".
 - Mean: $\mu_{\hat{p}} = p$
 - Standard error: $\displaystyle \sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}$
 - Shape: approximately normal when $np \ge 5$ and $n(1-p) \ge 5$.
-
-$$
-z = \frac{\hat{p} - p}{\sqrt{p(1-p)/n}}
-$$
 
 ::: {.callout-tip icon=false}
 ## Larger samples, smaller error
@@ -135,83 +126,59 @@ halves the standard error.
 
 ```{r}
 #| label: ex-wage
-w_mu <- 380; w_sigma <- 60; w_n <- 36
-w_se <- w_sigma / sqrt(w_n)
-w_z  <- (400 - w_mu) / w_se
-w_F  <- round(pnorm(w_z), 4)
+w_mu <- 380; w_sigma <- 60; w_n <- 36; w_n2 <- 144
+w_se <- w_sigma / sqrt(w_n); w_se2 <- w_sigma / sqrt(w_n2)
 
 d_p <- 0.65; d_n <- 400
 d_se <- round(sqrt(d_p * (1 - d_p) / d_n), 4)
-d_z  <- round((0.60 - d_p) / d_se, 2)
-d_F  <- round(pnorm(abs(d_z)), 4)
 ```
 
-### Worked Example 1.1: daily wage
+### Example 1.1: daily wage
 
-Suppose the daily wage of construction workers in Chiang Mai has mean
-$\mu$ = `r w_mu` baht and standard deviation $\sigma$ = `r w_sigma` baht
-(hypothetical figures). A random sample of $n$ = `r w_n` workers is taken.
+The daily wage of construction workers in Chiang Mai has mean
+$\mu$ = `r w_mu` baht and standard deviation $\sigma$ = `r w_sigma` baht.
 
-(a) Describe the sampling distribution of $\bar{x}$.
-(b) Find the probability that the sample mean wage is more than 400 baht.
+(a) Describe the sampling distribution of $\bar{x}$ for samples of $n$ = `r w_n` workers.
+(b) Find the standard error for samples of $n$ = `r w_n2` workers.
 
 ::: {.callout-tip icon=false collapse=false}
 ## Solution
 
 (a) Since $n$ = `r w_n` $\ge 30$, by the CLT $\bar{x}$ is approximately normal with
 $$
-\mu_{\bar{x}} = `r w_mu`, \qquad
-\sigma_{\bar{x}} = \frac{`r w_sigma`}{\sqrt{`r w_n`}} = `r w_se` \text{ baht.}
+\mu_{\bar{x}} = `r w_mu` \text{ baht}, \qquad
+\sigma_{\bar{x}} = \frac{`r w_sigma`}{\sqrt{`r w_n`}} = `r num(w_se)` \text{ baht.}
 $$
 
 (b)
 $$
-z = \frac{400 - `r w_mu`}{`r w_se`} = `r fmt(w_z, 2)`
+\sigma_{\bar{x}} = \frac{`r w_sigma`}{\sqrt{`r w_n2`}} = `r num(w_se2)` \text{ baht.}
 $$
-From Table 4, $P(Z \le `r fmt(w_z, 2)`) = `r fmt(w_F, 4)`$, so
-$$
-P(\bar{x} > 400) = P(Z > `r fmt(w_z, 2)`) = 1 - `r fmt(w_F, 4)` = `r fmt(1 - w_F, 4)`.
-$$
-
-About `r round(100 * (1 - w_F), 1)`% of samples of `r w_n` workers would have a mean
-wage above 400 baht.
+A sample four times as large halves the standard error.
 :::
 
-### Worked Example 1.2: household debt
+### Example 1.2: household debt
 
-Suppose `r 100 * d_p`% of households in a region have outstanding debt
-(hypothetical figure). A survey samples $n$ = `r d_n` households.
-Find the probability that less than 60% of the sampled households have debt.
+In a region, `r 100 * d_p`% of households have outstanding debt. A survey
+samples $n$ = `r d_n` households. Describe the sampling distribution of $\hat{p}$.
 
 ::: {.callout-tip icon=false collapse=false}
 ## Solution
 
 Check the conditions: $np = `r d_n * d_p` \ge 5$ and $n(1-p) = `r d_n * (1 - d_p)` \ge 5$,
-so $\hat{p}$ is approximately normal.
+so $\hat{p}$ is approximately normal with mean $\mu_{\hat{p}} = `r fmt(d_p, 2)`$ and
 $$
-\sigma_{\hat{p}} = \sqrt{\frac{`r d_p`(1-`r d_p`)}{`r d_n`}} = `r fmt(d_se, 4)`
-$$
-$$
-z = \frac{0.60 - `r d_p`}{`r fmt(d_se, 4)`} = `r fmt(d_z, 2)`
-$$
-Table 4 gives only positive $z$. By symmetry,
-$$
-P(\hat{p} < 0.60) = P(Z < `r fmt(d_z, 2)`) = P(Z > `r fmt(abs(d_z), 2)`)
-= 1 - `r fmt(d_F, 4)` = `r fmt(1 - d_F, 4)`.
+\sigma_{\hat{p}} = \sqrt{\frac{`r fmt(d_p, 2)`(1-`r fmt(d_p, 2)`)}{`r d_n`}} = `r num(d_se)`
 $$
 :::
 
 ```{r}
 #| label: yt-1-1
-y_mu <- 4500; y_sigma <- 900; y_n <- 81
-y_se <- y_sigma / sqrt(y_n)
-y_z  <- (4320 - y_mu) / y_se
-y_F  <- round(pnorm(abs(y_z)), 4)
+y_mu <- 4500; y_sigma <- 900; y_n <- 81; y_n2 <- 324
+y_se <- y_sigma / sqrt(y_n); y_se2 <- y_sigma / sqrt(y_n2)
 
 v_p <- 0.40; v_n <- 600
 v_se <- round(sqrt(v_p * (1 - v_p) / v_n), 4)
-v_z  <- round((0.45 - v_p) / v_se, 2)
-v_F  <- round(pnorm(v_z), 4)
 ```
 
 ### Your Turn
@@ -219,40 +186,35 @@ v_F  <- round(pnorm(v_z), 4)
 ::: {.callout-note icon=false}
 ## Your Turn 1.1
 
-The monthly rent of rooms near a university has mean `r format(y_mu, big.mark = ",")`
-baht and standard deviation `r y_sigma` baht (hypothetical figures). A random sample of
-`r y_n` rooms is taken. Find
-
-(a) the standard error of $\bar{x}$, and
-(b) the probability that the sample mean rent is less than 4,320 baht.
+The monthly rent of rooms near a university has mean `r big(y_mu, 0)`
+baht and standard deviation `r y_sigma` baht. Find the standard error of
+$\bar{x}$ for random samples of (a) `r y_n` rooms and (b) `r y_n2` rooms.
 :::
 
-::: {.workspace lines="8"}
+::: {.workspace lines="6"}
 :::
 
 ::: {.answer title="Your Turn 1.1"}
-(a) $\sigma_{\bar{x}} = `r y_sigma` / \sqrt{`r y_n`} = `r y_se`$ baht.
+(a) $\sigma_{\bar{x}} = `r y_sigma` / \sqrt{`r y_n`} = `r num(y_se)`$ baht.
 
-(b) $z = (4320 - `r y_mu`) / `r y_se` = `r fmt(y_z, 2)`$, so
-$P(\bar{x} < 4320) = P(Z > `r fmt(abs(y_z), 2)`) = 1 - `r fmt(y_F, 4)` = `r fmt(1 - y_F, 4)`$.
+(b) $\sigma_{\bar{x}} = `r y_sigma` / \sqrt{`r y_n2`} = `r num(y_se2)`$ baht.
 :::
 
 ::: {.callout-note icon=false}
 ## Your Turn 1.2
 
-In a province, `r 100 * v_p`% of workers are in the informal sector
-(hypothetical figure). A labour force survey samples `r v_n` workers. Find the
-probability that more than 45% of the sample work in the informal sector.
+In a province, `r 100 * v_p`% of workers are in the informal sector. A labour
+force survey samples `r v_n` workers. Check whether $\hat{p}$ is approximately
+normal and find its standard error.
 :::
 
-::: {.workspace lines="8"}
+::: {.workspace lines="6"}
 :::
 
 ::: {.answer title="Your Turn 1.2"}
-$np = `r v_n * v_p`$ and $n(1-p) = `r v_n * (1 - v_p)`$ are both at least 5.
-$\sigma_{\hat{p}} = \sqrt{`r v_p`(`r 1 - v_p`)/`r v_n`} = `r fmt(v_se, 4)`$,
-$z = (0.45 - `r v_p`)/`r fmt(v_se, 4)` = `r fmt(v_z, 2)`$, so
-$P(\hat{p} > 0.45) = 1 - `r fmt(v_F, 4)` = `r fmt(1 - v_F, 4)`$.
+$np = `r v_n * v_p`$ and $n(1-p) = `r v_n * (1 - v_p)`$ are both at least 5, so
+$\hat{p}$ is approximately normal.
+$\sigma_{\hat{p}} = \sqrt{`r fmt(v_p, 2)`(`r fmt(1 - v_p, 2)`)/`r v_n`} = `r num(v_se)`$.
 :::
 
 ## The Idea of a Confidence Interval
@@ -270,7 +232,7 @@ the intervals would contain the true parameter.
 
 ```{r}
 #| label: fig-ci-sim
-#| fig-cap: "Forty 95% confidence intervals for the mean daily wage, each from a different sample of 36 workers (hypothetical population with mean 380 baht). Red intervals miss the true mean."
+#| fig-cap: "Forty 95% confidence intervals for the mean daily wage, each from a different sample of 36 workers (population mean 380 baht). Red intervals miss the true mean."
 #| fig-height: 4.5
 set.seed(2721)
 z975 <- crit_z(0.975)
@@ -360,7 +322,7 @@ $H_0$. Otherwise we accept $H_0$.
 
 ### Writing the hypotheses
 
-**Worked Example 1.3.** Write $H_0$ and $H_1$.
+**Example 1.3.** Write $H_0$ and $H_1$.
 
 (a) A price-monitoring agency checks whether the mean price of a 5-kg bag of
 rice has changed from 210 baht.
@@ -452,7 +414,7 @@ knitr::kable(data.frame(`Area to the left` = fmt(zp, 3),
 Table 4 has only positive $z$. Because the normal curve is symmetric,
 $z_{0.05} = -z_{0.95}$ and $z_{0.025} = -z_{0.975}$.
 
-**Worked Example 1.4.** Find the critical value(s) and critical region for a
+**Example 1.4.** Find the critical value(s) and critical region for a
 $z$ test with $\alpha$ = 0.05.
 
 ::: {.callout-tip icon=false collapse=false}
@@ -501,10 +463,10 @@ Critical region: $z_{\text{cal}} < `r fmt(-crit_z(.90), 3)`$.
 
 ## Formula Summary {.unnumbered}
 
-| Statistic | Mean | Standard error | Normal when | $z$ |
-|:---|:---:|:---:|:---|:---:|
-| $\bar{x}$ | $\mu$ | $\dfrac{\sigma}{\sqrt{n}}$ | population normal, or $n \ge 30$ | $\dfrac{\bar{x}-\mu}{\sigma/\sqrt{n}}$ |
-| $\hat{p}$ | $p$ | $\sqrt{\dfrac{p(1-p)}{n}}$ | $np \ge 5$ and $n(1-p) \ge 5$ | $\dfrac{\hat{p}-p}{\sqrt{p(1-p)/n}}$ |
+| Statistic | Mean | Standard error | Normal when |
+|:---|:---:|:---:|:---|
+| $\bar{x}$ | $\mu$ | $\dfrac{\sigma}{\sqrt{n}}$ | population normal, or $n \ge 30$ |
+| $\hat{p}$ | $p$ | $\sqrt{\dfrac{p(1-p)}{n}}$ | $np \ge 5$ and $n(1-p) \ge 5$ |
 
 | $H_1$ | Critical region ($z$ test) |
 |:---:|:---|
@@ -516,28 +478,23 @@ Critical region: $z_{\text{cal}} < `r fmt(-crit_z(.90), 3)`$.
 #| label: exercises-1
 e1_mu <- 45; e1_sigma <- 4; e1_n <- 64
 e1_se <- e1_sigma / sqrt(e1_n)
-e1_z1 <- (44.2 - e1_mu) / e1_se; e1_F1 <- round(pnorm(abs(e1_z1)), 4)
-e1_z2 <- (46 - e1_mu) / e1_se;   e1_F2 <- round(pnorm(e1_z2), 4)
+e1_target <- 0.25; e1_nreq <- (e1_sigma / e1_target)^2
 e5_p <- 0.05
 ```
 
 ## Exercises {.unnumbered}
 
 **1.1** The price of a kilogram of pork at fresh markets has mean `r e1_mu`
-baht and standard deviation `r e1_sigma` baht (hypothetical figures). A random sample of `r e1_n` markets is taken.
+baht and standard deviation `r e1_sigma` baht. A random sample of `r e1_n` markets is taken.
 
-(a) Find the standard error of $\bar{x}$.
-(b) Find $P(\bar{x} < 44.2)$.
-(c) Find $P(44.2 < \bar{x} < 46)$.
+(a) Describe the sampling distribution of $\bar{x}$.
+(b) How many markets are needed for the standard error to be `r e1_target` baht?
 
 ::: {.answer title="Exercise 1.1"}
-(a) $\sigma_{\bar{x}} = `r e1_sigma`/\sqrt{`r e1_n`} = `r e1_se`$ baht.
+(a) Since $n$ = `r e1_n` $\ge 30$, $\bar{x}$ is approximately normal with mean
+`r e1_mu` baht and $\sigma_{\bar{x}} = `r e1_sigma`/\sqrt{`r e1_n`} = `r num(e1_se)`$ baht.
 
-(b) $z = (44.2 - `r e1_mu`)/`r e1_se` = `r fmt(e1_z1, 2)`$;
-$P(\bar{x} < 44.2) = 1 - `r fmt(e1_F1, 4)` = `r fmt(1 - e1_F1, 4)`$.
-
-(c) $z = (46 - `r e1_mu`)/`r e1_se` = `r fmt(e1_z2, 2)`$;
-$P(44.2 < \bar{x} < 46) = `r fmt(e1_F2, 4)` - `r fmt(1 - e1_F1, 4)` = `r fmt(e1_F2 - (1 - e1_F1), 4)`$.
+(b) $`r e1_sigma`/\sqrt{n} = `r e1_target`$ gives $\sqrt{n} = `r e1_sigma / e1_target`$, so $n$ = `r e1_nreq` markets.
 :::
 
 **1.2** Write $H_0$ and $H_1$.
@@ -579,8 +536,7 @@ Type II error: concluding that the programme has no effect when it does raise
 income. A useful programme may be cut.
 :::
 
-**1.5** The unemployment rate in a province is `r 100 * e5_p`% (hypothetical
-figure). Can the normal approximation be used for $\hat{p}$ when (a) $n$ = 80,
+**1.5** The unemployment rate in a province is `r 100 * e5_p`%. Can the normal approximation be used for $\hat{p}$ when (a) $n$ = 80,
 (b) $n$ = 200? Explain.
 
 ::: {.answer title="Exercise 1.5"}
