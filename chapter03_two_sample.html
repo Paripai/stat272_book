@@ -241,7 +241,6 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#learning-objectives-1" id="toc-learning-objectives-1" class="nav-link" data-scroll-target="#learning-objectives-1">Learning Objectives</a></li>
   <li><a href="#concept-1" id="toc-concept-1" class="nav-link" data-scroll-target="#concept-1">Concept</a></li>
-  <li><a href="#finding-a-p-value-from-the-z-table" id="toc-finding-a-p-value-from-the-z-table" class="nav-link" data-scroll-target="#finding-a-p-value-from-the-z-table">Finding a p-value from the <span class="math inline">\(z\)</span> Table</a></li>
   <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example</a></li>
   <li><a href="#your-turn-1" id="toc-your-turn-1" class="nav-link" data-scroll-target="#your-turn-1">Your Turn</a></li>
   <li><a href="#formula-summary-1" id="toc-formula-summary-1" class="nav-link" data-scroll-target="#formula-summary-1">Formula Summary</a></li>
@@ -586,9 +585,9 @@ z_{\text{cal}} = \frac{-0.09}
 <section id="learning-objectives-1" class="level3">
 <h3 class="anchored" data-anchor-id="learning-objectives-1">Learning Objectives</h3>
 <ol type="1">
-<li>Explain what a p-value is.</li>
-<li>Find the p-value of a <span class="math inline">\(z\)</span> test from Table 4 for a left-sided, right-sided or two-sided test.</li>
-<li>Make the decision of a test with the p-value, and check that it agrees with the critical region.</li>
+<li>Make the decision of a test with the p-value.</li>
+<li>Write the decision and the interpretation of a test from its p-value.</li>
+<li>See that the p-value and the critical region give the same decision.</li>
 </ol>
 </section>
 <section id="concept-1" class="level3">
@@ -643,7 +642,7 @@ z_{\text{cal}} = \frac{-0.09}
 <img src="chapter03_two_sample_files/figure-html/fig-pval-z-1.png" class="img-fluid figure-img" data-ref-parent="fig-pval-z" width="316">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pval-z-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) H1: &lt;
+(a) Left-sided
 </figcaption>
 </figure>
 </div>
@@ -655,7 +654,7 @@ z_{\text{cal}} = \frac{-0.09}
 <img src="chapter03_two_sample_files/figure-html/fig-pval-z-2.png" class="img-fluid figure-img" data-ref-parent="fig-pval-z" width="316">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pval-z-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) H1: &gt;
+(b) Right-sided
 </figcaption>
 </figure>
 </div>
@@ -667,7 +666,7 @@ z_{\text{cal}} = \frac{-0.09}
 <img src="chapter03_two_sample_files/figure-html/fig-pval-z-3.png" class="img-fluid figure-img" data-ref-parent="fig-pval-z" width="316">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pval-z-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c) H1: ≠
+(c) Two-sided
 </figcaption>
 </figure>
 </div>
@@ -694,19 +693,9 @@ Figure&nbsp;3.1: The p-value as an area under the z curve (orange)
 </div>
 </div>
 </section>
-<section id="finding-a-p-value-from-the-z-table" class="level3">
-<h3 class="anchored" data-anchor-id="finding-a-p-value-from-the-z-table">Finding a p-value from the <span class="math inline">\(z\)</span> Table</h3>
-<p>Table 4 gives the area to the <strong>left</strong> of a positive <span class="math inline">\(z\)</span>. To find a p-value:</p>
-<ol type="1">
-<li>Round <span class="math inline">\(|z_{\text{cal}}|\)</span> to 2 decimals and read the area to its left, <span class="math inline">\(P(Z \le |z_{\text{cal}}|)\)</span>.</li>
-<li>The area in one tail beyond it is <span class="math inline">\(1 - P(Z \le |z_{\text{cal}}|)\)</span>.</li>
-<li>Take one tail for a one-sided test (in the direction of <span class="math inline">\(H_1\)</span>), or twice that area for a two-sided test.</li>
-</ol>
-<p>The p-value is rounded to 4 decimals.</p>
-</section>
 <section id="example-1" class="level3">
 <h3 class="anchored" data-anchor-id="example-1">Example</h3>
-<p><strong>Example 3.2.1.</strong> In Example 3.1.1 (household debt, urban vs rural) we tested <span class="math inline">\(H_0: p_1 = p_2\)</span> against <span class="math inline">\(H_1: p_1 \ne p_2\)</span> and found <span class="math inline">\(z_{\text{cal}} = -2.153\)</span>. Find the p-value and make the decision at <span class="math inline">\(\alpha\)</span> = 0.05. Compare with the critical-region method.</p>
+<p><strong>Example 3.2.1.</strong> In Example 3.1.1 (household debt, urban vs rural) we tested <span class="math inline">\(H_0: p_1 = p_2\)</span> against <span class="math inline">\(H_1: p_1 \ne p_2\)</span> and found <span class="math inline">\(z_{\text{cal}} = -2.153\)</span>. The p-value of this test is 0.0316. Make the decision at <span class="math inline">\(\alpha\)</span> = 0.05 and compare it with the critical-region method.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -734,15 +723,14 @@ Figure&nbsp;3.2: p-value for Example 3.2.1: the two tails beyond ±2.153
 </div>
 </div>
 </div>
-<p>From Table 4, <span class="math inline">\(P(Z \le 2.15) = 0.9842\)</span>, so one tail is <span class="math inline">\(1 - 0.9842 = 0.0158\)</span> and <span class="math display">\[
+<p><strong>Where does 0.0316 come from?</strong> (shown for illustration only; in this course p-values are given or read from R output.) From Table 4, <span class="math inline">\(P(Z \le 2.15) = 0.9842\)</span>, so one tail is <span class="math inline">\(1 - 0.9842 = 0.0158\)</span>, and for a two-sided test <span class="math display">\[
 \text{p-value} = 2(0.0158) = 0.0316.
 \]</span></p>
-<p>The test in five steps, with the p-value in Step 4:</p>
 <p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: p_1 = p_2\)</span> <span class="math inline">\(\quad H_1: p_1 \ne p_2\)</span></p>
 <p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
 <p><strong>Step 3: Test statistic.</strong> <span class="math inline">\(z_{\text{cal}} = -2.153\)</span> (from Example 3.1.1)</p>
 <p><strong>Step 4: p-value.</strong> p-value = 0.0316</p>
-<p><strong>Step 5: Decision and interpretation.</strong> p-value = 0.0316 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the proportion of households with debt is different in urban and rural areas at the 0.05 level of significance.</p>
+<p><strong>Step 5: Decision and interpretation.</strong> p-value = 0.0316 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the proportion of households with debt is different in urban and rural areas at the 0.05 level of significance; since <span class="math inline">\(\hat{p}_1 &lt; \hat{p}_2\)</span>, the proportion is lower in urban areas.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -769,7 +757,7 @@ Figure&nbsp;3.2: p-value for Example 3.2.1: the two tails beyond ±2.153
 </tr>
 </tbody>
 </table>
-<p>Both methods give the same decision.</p>
+<p>Both methods give the same decision, and the interpretation is written in the same way.</p>
 </div>
 </div>
 </div>
@@ -786,21 +774,12 @@ Figure&nbsp;3.2: p-value for Example 3.2.1: the two tails beyond ±2.153
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Find the p-value from Table 4 and make the decision at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<p>Each test was done earlier with the critical region. Use the p-value to write the decision and the interpretation at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 <ol type="a">
-<li>Your Turn 3.1.1 (brand switching): <span class="math inline">\(H_1: p_A &gt; p_B\)</span>, <span class="math inline">\(z_{\text{cal}} = 2.032\)</span>.</li>
-<li>Example 2.1.1 (construction wages): <span class="math inline">\(H_1: \mu &lt; 380\)</span>, <span class="math inline">\(z_{\text{cal}} = -2.160\)</span>.</li>
+<li>Your Turn 3.1.1 (brand switching): <span class="math inline">\(H_0: p_A = p_B\)</span>, <span class="math inline">\(H_1: p_A &gt; p_B\)</span>, p-value = 0.0212.</li>
+<li>Your Turn 2.3.1 (graduate jobs): <span class="math inline">\(H_0: p = 0.70\)</span>, <span class="math inline">\(H_1: p \ne 0.70\)</span>, <span class="math inline">\(\hat{p}\)</span> = 0.64, p-value = 0.0384.</li>
+<li>Exercise 3.1.2 (price displays): <span class="math inline">\(H_0: p_1 = p_2\)</span>, <span class="math inline">\(H_1: p_1 &lt; p_2\)</span>, p-value = 0.1292.</li>
 </ol>
-</div>
-</div>
-<div class="cell quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="chapter03_two_sample_files/figure-html/curves-3-2-1-1.png" class="img-fluid" width="345"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="chapter03_two_sample_files/figure-html/curves-3-2-1-2.png" class="img-fluid" width="345"></p>
-</div>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -816,9 +795,11 @@ Figure&nbsp;3.2: p-value for Example 3.2.1: the two tails beyond ±2.153
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
-<li><p>Right-sided: p-value = area to the right of <span class="math inline">\(2.032\)</span>. <span class="math inline">\(P(Z \le 2.03) = 0.9788\)</span>, so p-value <span class="math inline">\(= 1 - 0.9788 = 0.0212\)</span>. p-value = 0.0212 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span> (the same decision as in Your Turn 3.1.1).</p></li>
-<li><p>Left-sided: p-value = area to the left of <span class="math inline">\(-2.160\)</span>. By symmetry it equals the area to the right of 2.16: <span class="math inline">\(1 - 0.9846 = 0.0154\)</span>. p-value = 0.0154 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span> (the same decision as in Example 2.1.1).</p></li>
+<li><p>p-value = 0.0212 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the proportion of customers who switched is higher for Brand A than for Brand B at the 0.05 level of significance.</p></li>
+<li><p>p-value = 0.0384 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the proportion of graduates who find a job within six months is different from 0.70 at the 0.05 level of significance; since <span class="math inline">\(\hat{p}\)</span> = 0.64, the proportion is lower than 0.70.</p></li>
+<li><p>p-value = 0.1292 <span class="math inline">\(\ge\)</span> <span class="math inline">\(\alpha\)</span> = 0.05, so we accept <span class="math inline">\(H_0\)</span>. That is, the purchase rates with the two displays are equal at the 0.05 level of significance.</p></li>
 </ol>
+<p>All three decisions are the same as with the critical region.</p>
 </div>
 </div>
 </div>
@@ -833,26 +814,22 @@ Figure&nbsp;3.2: p-value for Example 3.2.1: the two tails beyond ±2.153
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">p-value</td>
-<td style="text-align: left;">probability, assuming <span class="math inline">\(H_0\)</span> is true, of a test statistic at least as extreme as observed, in the direction of <span class="math inline">\(H_1\)</span></td>
+<td style="text-align: left;">an area beyond the test statistic, in the direction of <span class="math inline">\(H_1\)</span> (both tails for <span class="math inline">\(\ne\)</span>)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">From Table 4</td>
-<td style="text-align: left;">one tail <span class="math inline">\(= 1 - P(Z \le |z_{\text{cal}}|)\)</span>; one-sided: p-value = one tail (in the direction of <span class="math inline">\(H_1\)</span>); two-sided: p-value = 2 × one tail</td>
+<td style="text-align: left;">Decision</td>
+<td style="text-align: left;">p-value = … [&lt;, <span class="math inline">\(\ge\)</span>] <span class="math inline">\(\alpha\)</span> = 0.05, so we [reject / accept] <span class="math inline">\(H_0\)</span>.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Decision</td>
-<td style="text-align: left;">reject <span class="math inline">\(H_0\)</span> if p-value <span class="math inline">\(&lt; \alpha\)</span>; accept <span class="math inline">\(H_0\)</span> if p-value <span class="math inline">\(\ge \alpha\)</span></td>
+<td style="text-align: left;">Interpretation</td>
+<td style="text-align: left;">That is, … at the 0.05 level of significance. (reject: write <span class="math inline">\(H_1\)</span>; accept: write <span class="math inline">\(H_0\)</span>; two-sided reject: add the direction)</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="exercises-1" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-1">Exercises</h3>
-<p><strong>3.2.1</strong> Find the p-value from Table 4 and make the decision at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
-<ol type="a">
-<li>Example 2.3.1 (co-payment scheme): <span class="math inline">\(H_1: p &gt; 0.30\)</span>, <span class="math inline">\(z_{\text{cal}} = 3.057\)</span>.</li>
-<li>Exercise 3.1.2 (price displays): <span class="math inline">\(H_1: p_1 &lt; p_2\)</span>, <span class="math inline">\(z_{\text{cal}} = -1.131\)</span>.</li>
-</ol>
+<p><strong>3.2.1</strong> For each p-value, write the decision at <span class="math inline">\(\alpha\)</span> = 0.05: (a) 0.0312, (b) 0.0500, (c) 0.1847, (d) 0.0005.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -866,14 +843,19 @@ Figure&nbsp;3.2: p-value for Example 3.2.1: the two tails beyond ±2.153
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
-<li><p>Right-sided: p-value <span class="math inline">\(= 1 - P(Z \le 3.06) = 1 - 0.9989 = 0.0011\)</span> &lt; 0.05: reject <span class="math inline">\(H_0\)</span>.</p></li>
-<li><p>Left-sided: p-value <span class="math inline">\(= P(Z \le -1.131) = 1 - P(Z \le 1.13) = 1 - 0.8708 = 0.1292\)</span> <span class="math inline">\(\ge\)</span> 0.05: accept <span class="math inline">\(H_0\)</span>.</p></li>
+<li>0.0312 &lt; 0.05: reject <span class="math inline">\(H_0\)</span>.</li>
+<li>0.0500 <span class="math inline">\(\ge\)</span> 0.05: accept <span class="math inline">\(H_0\)</span>.</li>
+<li>0.1847 <span class="math inline">\(\ge\)</span> 0.05: accept <span class="math inline">\(H_0\)</span>.</li>
+<li>0.0005 &lt; 0.05: reject <span class="math inline">\(H_0\)</span>.</li>
 </ol>
-<p>Both agree with the critical-region decisions in Sections 2.3 and 3.1.</p>
 </div>
 </div>
 </div>
-<p><strong>3.2.2</strong> For each p-value, write the decision at <span class="math inline">\(\alpha\)</span> = 0.05: (a) 0.0312, (b) 0.0500, (c) 0.1847, (d) 0.0005.</p>
+<p><strong>3.2.2</strong> Write the decision and the interpretation at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<ol type="a">
+<li>Exercise 2.2.1 (household debt in a district): <span class="math inline">\(H_0: \mu = 170000\)</span>, <span class="math inline">\(H_1: \mu &gt; 170000\)</span>, p-value = 0.0660.</li>
+<li>Your Turn 2.4.2 (weekly pork price): <span class="math inline">\(H_0: \sigma^2 = 9\)</span>, <span class="math inline">\(H_1: \sigma^2 \ne 9\)</span>, <span class="math inline">\(s\)</span> = 4.5, p-value = 0.0028.</li>
+</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -887,28 +869,9 @@ Figure&nbsp;3.2: p-value for Example 3.2.1: the two tails beyond ±2.153
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
-<li>0.0312 &lt; 0.05: reject <span class="math inline">\(H_0\)</span>.</li>
-<li>0.0500 <span class="math inline">\(\ge\)</span> 0.05: accept <span class="math inline">\(H_0\)</span>.</li>
-<li>0.1847 <span class="math inline">\(\ge\)</span> 0.05: accept <span class="math inline">\(H_0\)</span>.</li>
-<li>0.0005 &lt; 0.05: reject <span class="math inline">\(H_0\)</span>.</li>
+<li><p>p-value = 0.0660 <span class="math inline">\(\ge\)</span> <span class="math inline">\(\alpha\)</span> = 0.05, so we accept <span class="math inline">\(H_0\)</span>. That is, the mean household debt in the district is equal to 170,000 baht at the 0.05 level of significance.</p></li>
+<li><p>p-value = 0.0028 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the standard deviation of the weekly pork price is different from 3 baht at the 0.05 level of significance; since <span class="math inline">\(s\)</span> = 4.5, it is higher than 3 baht.</p></li>
 </ol>
-</div>
-</div>
-</div>
-<p><strong>3.2.3</strong> A student says: “The p-value is 0.03, so there is a 3% chance that <span class="math inline">\(H_0\)</span> is true.” Explain what is wrong.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Solution: Exercise 3.2.3
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The p-value is calculated assuming <span class="math inline">\(H_0\)</span> is true. It is the probability of a result at least as extreme as the sample result if <span class="math inline">\(H_0\)</span> were true, not the probability that <span class="math inline">\(H_0\)</span> is true.</p>
 </div>
 </div>
 </div>
@@ -926,7 +889,7 @@ Figure&nbsp;3.2: p-value for Example 3.2.1: the two tails beyond ±2.153
 </section>
 <section id="concept-2" class="level3">
 <h3 class="anchored" data-anchor-id="concept-2">Concept</h3>
-<p>In Section 3.2 we found p-values for <span class="math inline">\(z\)</span> tests from Table 4. For <span class="math inline">\(t\)</span>, <span class="math inline">\(\chi^2\)</span> and <span class="math inline">\(F\)</span> the printed tables give only a few areas, so we cannot read an exact p-value from them. Statistical software calculates the p-value for us. The p-value means the same thing as before: an area beyond the test statistic, in the direction of <span class="math inline">\(H_1\)</span>, now under the <span class="math inline">\(t\)</span> curve.</p>
+<p>In Section 3.2 we saw where the p-value of a <span class="math inline">\(z\)</span> test comes from, and made decisions with p-values that were given to us. In practice the p-value is calculated by statistical software. The printed tables cannot give it for <span class="math inline">\(t\)</span>, <span class="math inline">\(\chi^2\)</span> or <span class="math inline">\(F\)</span>, so from now on we read the test statistic, the p-value and the confidence interval from the output of R. The p-value means the same thing as before: an area beyond the test statistic, in the direction of <span class="math inline">\(H_1\)</span>, now under the <span class="math inline">\(t\)</span> curve.</p>
 <p><strong>Example.</strong> In Example 2.2.2 (rider earnings, <span class="math inline">\(H_1: \mu &gt; 600\)</span>), <span class="math inline">\(t_{\text{cal}} = 2.326\)</span> with df = 24. The p-value is the area to the <strong>right</strong> of 2.326 under the <span class="math inline">\(t\)</span> curve, because <span class="math inline">\(H_1\)</span> points to the right. It is about 0.0144.</p>
 <div id="fig-pval-areas" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1118,7 +1081,7 @@ mean of x
 </div>
 <p>Use the output to (a) write the 95% CI and (b) test the hypothesis at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1127,7 +1090,7 @@ mean of x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse show">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p><strong>(a)</strong> We are 95% confident that the mean monthly electricity bill is between 1,187.18 and 1,336.69 baht.</p>
 <p><strong>(b)</strong></p>
@@ -1173,7 +1136,7 @@ mean of x
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1182,7 +1145,7 @@ mean of x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu = 620 \quad H_1: \mu \ne 620\)</span></p>
 <p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
@@ -1295,7 +1258,7 @@ mean of x
 <li>Why is the test statistic the same in Outputs A, B and C, but not in D?</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1304,7 +1267,7 @@ mean of x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Output B: <span class="math inline">\(\mu_0\)</span> = 1200 and the alternative hypothesis is “greater than 1200”, which matches <span class="math inline">\(H_1: \mu &gt; 1200\)</span>.</p></li>
@@ -1458,7 +1421,7 @@ Table&nbsp;3.1: Monthly spending (baht) before and after the transfer, and the d
 <li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether mean spending increased after the transfer.</li>
 </ol>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1467,7 +1430,7 @@ Table&nbsp;3.1: Monthly spending (baht) before and after the transfer, and the d
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse show">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>The same households are measured twice, so the data are paired. From the differences: <span class="math inline">\(n\)</span> = 10, <span class="math inline">\(\bar{d}\)</span> = 1044, <span class="math inline">\(s_d\)</span> = 937.8604. <span class="math display">\[
 \frac{s_d}{\sqrt{n}} = \frac{937.8604}{\sqrt{10}} = 296.5775
@@ -1670,7 +1633,7 @@ mean difference
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1679,7 +1642,7 @@ mean difference
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>(a)</strong> <span class="math inline">\(s_d/\sqrt{n} = 24.4776/\sqrt{12} = 7.0661\)</span>; <span class="math inline">\(t_{\text{cal}} = 7.6667/7.0661 = 1.085\)</span> (R: 1.085).</p>
 <p><strong>(b)</strong></p>
@@ -1735,7 +1698,7 @@ mean difference
 <li>30 firms that adopted a new technology are compared with 30 other firms that did not.</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1744,7 +1707,7 @@ mean difference
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li>Paired (same families twice). (b) Independent (two separate samples).</li>
@@ -1775,7 +1738,7 @@ mean difference
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1784,7 +1747,7 @@ mean difference
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(H_0: \mu_d = 0 \quad H_1: \mu_d &lt; 0\)</span> (<span class="math inline">\(d\)</span> = Shop A <span class="math inline">\(-\)</span> Shop B). <span class="math inline">\(t_{\text{cal}} = -4.150\)</span>, df = 7, p-value = 0.0021. p-value = 0.0021 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, prices at Shop A are lower than at Shop B on average at the 0.05 level of significance.</p>
 </div>
@@ -1817,7 +1780,7 @@ F_{\alpha,\,\text{df}_1,\,\text{df}_2} = \frac{1}{F_{1-\alpha,\,\text{df}_2,\,\t
 \]</span></p>
 <p><strong>Example 3.5.1.</strong> Find (a) <span class="math inline">\(F_{0.95,\,4,\,10}\)</span>, (b) <span class="math inline">\(F_{0.975,\,12,\,15}\)</span>, (c) <span class="math inline">\(F_{0.025,\,12,\,15}\)</span>.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1826,7 +1789,7 @@ F_{\alpha,\,\text{df}_1,\,\text{df}_2} = \frac{1}{F_{1-\alpha,\,\text{df}_2,\,\t
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-26" class="callout-26-contents callout-collapse collapse show">
+<div id="callout-25" class="callout-25-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Page for 0.95, column 4, row 10: <span class="math inline">\(F_{0.95,\,4,\,10} = 3.48\)</span>.</p></li>
@@ -1877,7 +1840,7 @@ Figure&nbsp;3.4: Areas 0.025 in each tail of the F distribution with df = (12, 1
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1886,7 +1849,7 @@ Figure&nbsp;3.4: Areas 0.025 in each tail of the F distribution with df = (12, 1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><span class="math inline">\(F_{0.95,\,3,\,20} = 3.1\)</span></p></li>
@@ -1945,7 +1908,7 @@ F_{\text{cal}} = \frac{s_1^2}{s_2^2}
 <li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the two funds have different variances (risk).</li>
 </ol>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1954,7 +1917,7 @@ F_{\text{cal}} = \frac{s_1^2}{s_2^2}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-29" class="callout-29-contents callout-collapse collapse show">
+<div id="callout-28" class="callout-28-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(\text{df}_1 = 13 - 1 = 12\)</span>, <span class="math inline">\(\text{df}_2 = 16 - 1 = 15\)</span>, <span class="math inline">\(s_A^2/s_B^2 = 6.3586/1.2101 = 5.255\)</span>.</p>
 <p><strong>(a)</strong> <span class="math inline">\(F_{0.975,\,12,\,15} = 2.96\)</span> and <span class="math inline">\(F_{0.975,\,15,\,12} = 3.18\)</span>: <span class="math display">\[
@@ -2046,7 +2009,7 @@ ratio of variances
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2055,7 +2018,7 @@ ratio of variances
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-31" class="callout-31-contents callout-collapse collapse">
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>Step 1.</strong> <span class="math inline">\(H_0: \sigma_X^2 = \sigma_Y^2 \quad H_1: \sigma_X^2 &gt; \sigma_Y^2\)</span></p>
 <p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
@@ -2107,7 +2070,7 @@ ratio of variances
 <h3 class="anchored" data-anchor-id="exercises-4">Exercises</h3>
 <p><strong>3.5.1</strong> Find (a) <span class="math inline">\(F_{0.99,\,5,\,12}\)</span>, (b) <span class="math inline">\(F_{0.05,\,6,\,20}\)</span>, (c) <span class="math inline">\(F_{0.975,\,24,\,30}\)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2116,7 +2079,7 @@ ratio of variances
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li>5.06 (b) <span class="math inline">\(1/F_{0.95,\,20,\,6} = 1/3.87 = 0.2584\)</span> (c) 2.14</li>
@@ -2149,7 +2112,7 @@ ratio of variances
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2158,7 +2121,7 @@ ratio of variances
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(H_0: \sigma_A^2 = \sigma_B^2 \quad H_1: \sigma_A^2 &gt; \sigma_B^2\)</span>. <span class="math inline">\(F_{\text{cal}} = 3.529\)</span>, df = (15, 20), p-value = 0.0048 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, interest rates vary more in group A than in group B at the 0.05 level of significance.</p>
 </div>
@@ -2301,7 +2264,7 @@ Table&nbsp;3.3: Daily sales (units) under two pricing strategies
 <li>Construct a 95% confidence interval for <span class="math inline">\(\mu_D - \mu_B\)</span>.</li>
 </ol>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -2310,7 +2273,7 @@ Table&nbsp;3.3: Daily sales (units) under two pricing strategies
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-35" class="callout-35-contents callout-collapse collapse show">
+<div id="callout-34" class="callout-34-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>The stores are different stores, so the samples are independent.</p>
 <p><strong>(a)</strong> <span class="math inline">\(H_0: \sigma_D^2 = \sigma_B^2\)</span> vs <span class="math inline">\(H_1: \sigma_D^2 \ne \sigma_B^2\)</span>. <span class="math inline">\(F_{\text{cal}} = 239.2955/136.9333 = 1.748\)</span>; from <code>var.test()</code> below, p-value = 0.4110 <span class="math inline">\(\ge\)</span> 0.05, so we accept <span class="math inline">\(H_0\)</span>: the variances are equal. Use the <strong>pooled</strong> method.</p>
@@ -2438,7 +2401,7 @@ mean of x mean of y
 </div>
 </div>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -2447,7 +2410,7 @@ mean of x mean of y
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-37" class="callout-37-contents callout-collapse collapse show">
+<div id="callout-36" class="callout-36-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p><strong>Equal variances?</strong> p-value of the <span class="math inline">\(F\)</span> test = 0.0022 &lt; 0.05, so we reject <span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span>. Online prices vary much more. Use the <strong>Welch</strong> test (the second output).</p>
 <p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: \mu_{\text{online}} = \mu_{\text{physical}}\)</span> <span class="math inline">\(\quad H_1: \mu_{\text{online}} \ne \mu_{\text{physical}}\)</span></p>
@@ -2518,7 +2481,7 @@ mean of x mean of y
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2527,7 +2490,7 @@ mean of x mean of y
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-39" class="callout-39-contents callout-collapse collapse">
+<div id="callout-38" class="callout-38-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>(a)</strong> <span class="math inline">\(F\)</span> test p-value = 0.3264 <span class="math inline">\(\ge\)</span> 0.05: accept equal variances, so use the pooled <span class="math inline">\(t\)</span> test.</p>
 <p><strong>(b)</strong> <span class="math inline">\(s_p^2 = \dfrac{9(12.8677) + 11(6.8936)}{20} = 9.5819\)</span>, SE <span class="math inline">\(= \sqrt{9.5819(1/10 + 1/12)} = 1.3254\)</span>, <span class="math inline">\(t_{\text{cal}} = (24.01 - 21.6083)/1.3254 = 1.812\)</span>.</p>
@@ -2647,7 +2610,7 @@ mean of x mean of y
 <li>Write the decision and interpretation at <span class="math inline">\(\alpha\)</span> = 0.05.</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2656,7 +2619,7 @@ mean of x mean of y
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-40" class="callout-40-contents callout-collapse collapse">
+<div id="callout-39" class="callout-39-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>In Output 1 the p-value = 0.0003 &lt; 0.05, so the variances are not equal. Use the Welch test, Output 3. (Output 2 assumes equal variances.)</p></li>
@@ -2672,7 +2635,7 @@ mean of x mean of y
 <li>For each of 12 provinces, the unemployment rate of men is compared with that of women.</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2681,7 +2644,7 @@ mean of x mean of y
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-41" class="callout-41-contents callout-collapse collapse">
+<div id="callout-40" class="callout-40-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li>Paired (same farms twice). (b) Two-sample: two independent samples; check the variances with the <span class="math inline">\(F\)</span> test to choose pooled or Welch. (c) Paired (men and women are matched within each province).</li>
