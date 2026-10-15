@@ -231,7 +231,7 @@ window.Quarto = {
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   <li><a href="#concept" id="toc-concept" class="nav-link" data-scroll-target="#concept">Concept</a></li>
   <li><a href="#formulas-and-conditions" id="toc-formulas-and-conditions" class="nav-link" data-scroll-target="#formulas-and-conditions">Formulas and Conditions</a></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked Example</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
   <li><a href="#reading-r-output" id="toc-reading-r-output" class="nav-link" data-scroll-target="#reading-r-output">Reading R Output</a></li>
   <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your Turn</a></li>
   <li><a href="#formula-summary" id="toc-formula-summary" class="nav-link" data-scroll-target="#formula-summary">Formula Summary</a></li>
@@ -242,7 +242,7 @@ window.Quarto = {
   <li><a href="#learning-objectives-1" id="toc-learning-objectives-1" class="nav-link" data-scroll-target="#learning-objectives-1">Learning Objectives</a></li>
   <li><a href="#concept-1" id="toc-concept-1" class="nav-link" data-scroll-target="#concept-1">Concept</a></li>
   <li><a href="#reading-r-output-1" id="toc-reading-r-output-1" class="nav-link" data-scroll-target="#reading-r-output-1">Reading R Output</a></li>
-  <li><a href="#worked-example-1" id="toc-worked-example-1" class="nav-link" data-scroll-target="#worked-example-1">Worked Example</a></li>
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example</a></li>
   <li><a href="#your-turn-1" id="toc-your-turn-1" class="nav-link" data-scroll-target="#your-turn-1">Your Turn</a></li>
   <li><a href="#formula-summary-1" id="toc-formula-summary-1" class="nav-link" data-scroll-target="#formula-summary-1">Formula Summary</a></li>
   <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1">Exercises</a></li>
@@ -252,7 +252,7 @@ window.Quarto = {
   <li><a href="#learning-objectives-2" id="toc-learning-objectives-2" class="nav-link" data-scroll-target="#learning-objectives-2">Learning Objectives</a></li>
   <li><a href="#concept-2" id="toc-concept-2" class="nav-link" data-scroll-target="#concept-2">Concept</a></li>
   <li><a href="#formulas-and-conditions-1" id="toc-formulas-and-conditions-1" class="nav-link" data-scroll-target="#formulas-and-conditions-1">Formulas and Conditions</a></li>
-  <li><a href="#worked-example-2" id="toc-worked-example-2" class="nav-link" data-scroll-target="#worked-example-2">Worked Example</a></li>
+  <li><a href="#example-2" id="toc-example-2" class="nav-link" data-scroll-target="#example-2">Example</a></li>
   <li><a href="#reading-r-output-2" id="toc-reading-r-output-2" class="nav-link" data-scroll-target="#reading-r-output-2">Reading R Output</a></li>
   <li><a href="#your-turn-2" id="toc-your-turn-2" class="nav-link" data-scroll-target="#your-turn-2">Your Turn</a></li>
   <li><a href="#formula-summary-2" id="toc-formula-summary-2" class="nav-link" data-scroll-target="#formula-summary-2">Formula Summary</a></li>
@@ -397,9 +397,9 @@ Figure&nbsp;4.1: Weekly sales (hundred units) of 15 stores under three pricing s
 <p><strong>Critical region:</strong> <span class="math inline">\(F_{\text{cal}} &gt; F_{1-\alpha,\,k-1,\,N-k}\)</span>. The ANOVA <span class="math inline">\(F\)</span> test is always <strong>right-sided</strong>: only a large between-treatment variation is evidence against <span class="math inline">\(H_0\)</span>.</p>
 <p><strong>In R:</strong> <code>summary(aov(y ~ trt))</code>. The row named after the treatment is the treatment row and <code>Residuals</code> is the error row.</p>
 </section>
-<section id="worked-example" class="level3">
-<h3 class="anchored" data-anchor-id="worked-example">Worked Example</h3>
-<p><strong>Worked Example 4.1.1.</strong> A retail chain randomly assigns three pricing strategies (Regular, Discount, Bundle) to 15 similar stores, 5 stores each, and records weekly sales in hundreds of units (hypothetical data):</p>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<p><strong>Example 4.1.1.</strong> A retail chain randomly assigns three pricing strategies (Regular, Discount, Bundle) to 15 similar stores, 5 stores each, and records weekly sales in hundreds of units:</p>
 <div class="cell">
 <div id="tbl-crd" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -512,10 +512,13 @@ Table&nbsp;4.1: Weekly sales (hundred units) under three pricing strategies
 <section id="reading-r-output" class="level3">
 <h3 class="anchored" data-anchor-id="reading-r-output">Reading R Output</h3>
 <div class="cell">
-<details class="code-fold">
-<summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(sales <span class="sc">~</span> strategy, <span class="at">data =</span> crd))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>strategy <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Regular"</span>, <span class="st">"Discount"</span>, <span class="st">"Bundle"</span>), <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Regular"</span>, <span class="st">"Discount"</span>, <span class="st">"Bundle"</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">24</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">18</span>, <span class="dv">28</span>, <span class="dv">31</span>, <span class="dv">26</span>, <span class="dv">30</span>, <span class="dv">27</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            <span class="dv">25</span>, <span class="dv">22</span>, <span class="dv">27</span>, <span class="dv">24</span>, <span class="dv">26</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(sales <span class="sc">~</span> strategy))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 strategy     2  136.9   68.47   14.17 0.000694 ***
@@ -568,7 +571,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The household saving rate (% of income) of 4 randomly selected households in each of four regions is recorded (hypothetical data):</p>
+<p>The household saving rate (% of income) of 4 randomly selected households in each of four regions is recorded:</p>
 <div class="cell">
 <div id="tbl-sav" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -617,10 +620,13 @@ Table&nbsp;4.2
 </div>
 </div>
 <div class="cell">
-<details class="code-fold">
-<summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(saving <span class="sc">~</span> region, <span class="at">data =</span> sav))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>region <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"North"</span>, <span class="st">"Northeast"</span>, <span class="st">"Central"</span>, <span class="st">"South"</span>), <span class="at">each =</span> <span class="dv">4</span>),</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"North"</span>, <span class="st">"Northeast"</span>, <span class="st">"Central"</span>, <span class="st">"South"</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>saving <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">11</span>, <span class="dv">14</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">11</span>, <span class="dv">16</span>, <span class="dv">14</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>             <span class="dv">17</span>, <span class="dv">15</span>, <span class="dv">13</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">14</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(saving <span class="sc">~</span> region))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 region       3  72.75  24.250   11.64 0.000725 ***
@@ -857,19 +863,17 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </table>
 <p>A pair is significantly different if <code>p adj</code> <span class="math inline">\(&lt; 0.05\)</span>; equivalently, if the CI from <code>lwr</code> to <code>upr</code> <strong>does not contain 0</strong>.</p>
 </section>
-<section id="worked-example-1" class="level3">
-<h3 class="anchored" data-anchor-id="worked-example-1">Worked Example</h3>
-<p><strong>Worked Example 4.2.1.</strong> In Worked Example 4.1.1 the ANOVA rejected <span class="math inline">\(H_0\)</span> (p-value = 0.0007). The sample means are Regular 21, Discount 28.4 and Bundle 24.8. Use the Tukey output to find which pricing strategies differ at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<section id="example-1" class="level3">
+<h3 class="anchored" data-anchor-id="example-1">Example</h3>
+<p><strong>Example 4.2.1.</strong> In Example 4.1.1 the ANOVA rejected <span class="math inline">\(H_0\)</span> (p-value = 0.0007). The sample means are Regular 21, Discount 28.4 and Bundle 24.8. Use the Tukey output to find which pricing strategies differ at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(sales <span class="sc">~</span> strategy)    <span class="co"># data of Example 4.1.1</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Tukey multiple comparisons of means
     95% family-wise confidence level
 
-Fit: aov(formula = sales ~ strategy, data = crd)
+Fit: aov(formula = sales ~ strategy)
 
 $strategy
                  diff         lwr        upr     p adj
@@ -958,15 +962,13 @@ Bundle-Discount  -3.6 -7.30951387  0.1095139 0.0573998</code></pre>
 </div>
 </div>
 <div class="cell">
-<details class="code-fold">
-<summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model_sav)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model_sav <span class="ot">&lt;-</span> <span class="fu">aov</span>(saving <span class="sc">~</span> region)    <span class="co"># data of Your Turn 4.1.1</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model_sav)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Tukey multiple comparisons of means
     95% family-wise confidence level
 
-Fit: aov(formula = saving ~ region, data = sav)
+Fit: aov(formula = saving ~ region)
 
 $region
                   diff         lwr         upr     p adj
@@ -1177,9 +1179,9 @@ Figure&nbsp;4.2: Weekly sales by strategy in each province. Provinces differ a l
 <p><strong>Test for treatments:</strong> <span class="math inline">\(H_0: \mu_1 = \cdots = \mu_t\)</span>; reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(F_{\text{cal}} &gt; F_{1-\alpha,\,t-1,\,(t-1)(b-1)}\)</span>. The block row is printed by R, but our question is about the treatments.</p>
 <p><strong>In R:</strong> <code>summary(aov(y ~ trt + block))</code>, then <code>TukeyHSD(model, "trt")</code> to compare the treatments only.</p>
 </section>
-<section id="worked-example-2" class="level3">
-<h3 class="anchored" data-anchor-id="worked-example-2">Worked Example</h3>
-<p><strong>Worked Example 4.3.1.</strong> In each of five provinces, three stores are randomly assigned to the Regular, Discount and Bundle pricing strategies. Weekly sales (hundred units) are recorded (hypothetical data):</p>
+<section id="example-2" class="level3">
+<h3 class="anchored" data-anchor-id="example-2">Example</h3>
+<p><strong>Example 4.3.1.</strong> In each of five provinces, three stores are randomly assigned to the Regular, Discount and Bundle pricing strategies. Weekly sales (hundred units) are recorded:</p>
 <div class="cell">
 <div id="tbl-rcbd" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1322,11 +1324,16 @@ Table&nbsp;4.3: Weekly sales (hundred units): strategies (rows) in five province
 <section id="reading-r-output-2" class="level3">
 <h3 class="anchored" data-anchor-id="reading-r-output-2">Reading R Output</h3>
 <div class="cell">
-<details class="code-fold">
-<summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(sales <span class="sc">~</span> strategy <span class="sc">+</span> province, <span class="at">data =</span> rb)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>strategy <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Regular"</span>, <span class="st">"Discount"</span>, <span class="st">"Bundle"</span>), <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Regular"</span>, <span class="st">"Discount"</span>, <span class="st">"Bundle"</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>province <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Chiang Mai"</span>, <span class="st">"Lampang"</span>, <span class="st">"Lamphun"</span>, <span class="st">"Phrae"</span>, <span class="st">"Nan"</span>), <span class="at">times =</span> <span class="dv">3</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Chiang Mai"</span>, <span class="st">"Lampang"</span>, <span class="st">"Lamphun"</span>, <span class="st">"Phrae"</span>, <span class="st">"Nan"</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">32</span>, <span class="dv">24</span>, <span class="dv">27</span>, <span class="dv">23</span>, <span class="dv">18</span>, <span class="dv">37</span>, <span class="dv">29</span>, <span class="dv">33</span>, <span class="dv">27</span>, <span class="dv">26</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            <span class="dv">35</span>, <span class="dv">27</span>, <span class="dv">28</span>, <span class="dv">22</span>, <span class="dv">24</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(sales <span class="sc">~</span> strategy <span class="sc">+</span> province)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 strategy     2  78.93   39.47   20.07 0.000763 ***
@@ -1335,15 +1342,12 @@ Residuals    8  15.73    1.97
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<details class="code-fold">
-<summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model, <span class="st">"strategy"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model, <span class="st">"strategy"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Tukey multiple comparisons of means
     95% family-wise confidence level
 
-Fit: aov(formula = sales ~ strategy + province, data = rb)
+Fit: aov(formula = sales ~ strategy + province)
 
 $strategy
                  diff        lwr        upr     p adj
@@ -1367,10 +1371,7 @@ Bundle-Discount  -3.2 -5.7343883 -0.6656117 0.0168916</code></pre>
 </div>
 </div>
 <div class="cell">
-<details class="code-fold">
-<summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(sales <span class="sc">~</span> strategy, <span class="at">data =</span> rb))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(sales <span class="sc">~</span> strategy))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)
 strategy     2  78.93   39.47    1.64  0.235
@@ -1391,7 +1392,7 @@ Residuals   12 288.80   24.07               </code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A regulator records the interest rate (%) of three loan products (Personal, Car, Home) at six banks (hypothetical data). Each bank offers all three products, so the banks are blocks.</p>
+<p>A regulator records the interest rate (%) of three loan products (Personal, Car, Home) at six banks. Each bank offers all three products, so the banks are blocks.</p>
 <div class="cell">
 <div id="tbl-loans" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1454,11 +1455,16 @@ Table&nbsp;4.4
 </div>
 </div>
 <div class="cell">
-<details class="code-fold">
-<summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>model_loan <span class="ot">&lt;-</span> <span class="fu">aov</span>(rate <span class="sc">~</span> product <span class="sc">+</span> bank, <span class="at">data =</span> loans)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_loan)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>product <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Personal"</span>, <span class="st">"Car"</span>, <span class="st">"Home"</span>), <span class="at">each =</span> <span class="dv">6</span>),</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Personal"</span>, <span class="st">"Car"</span>, <span class="st">"Home"</span>))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>bank <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Bank 1"</span>, <span class="st">"Bank 2"</span>, <span class="st">"Bank 3"</span>, <span class="st">"Bank 4"</span>, <span class="st">"Bank 5"</span>, <span class="st">"Bank 6"</span>), <span class="at">times =</span> <span class="dv">3</span>),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Bank 1"</span>, <span class="st">"Bank 2"</span>, <span class="st">"Bank 3"</span>, <span class="st">"Bank 4"</span>, <span class="st">"Bank 5"</span>, <span class="st">"Bank 6"</span>))</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>rate <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">8.4</span>, <span class="fl">7.9</span>, <span class="fl">9.1</span>, <span class="fl">8.8</span>, <span class="fl">7.6</span>, <span class="fl">9.5</span>, <span class="fl">7.4</span>, <span class="fl">6.3</span>, <span class="fl">8.6</span>, <span class="fl">7.9</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>           <span class="fl">7.1</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="fl">6.4</span>, <span class="fl">7.9</span>, <span class="fl">8.1</span>, <span class="dv">6</span>, <span class="fl">8.4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>model_loan <span class="ot">&lt;-</span> <span class="fu">aov</span>(rate <span class="sc">~</span> product <span class="sc">+</span> bank)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_loan)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 product      2  5.250  2.6250   23.51 0.000166 ***
@@ -1467,15 +1473,12 @@ Residuals   10  1.117  0.1117
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<details class="code-fold">
-<summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model_loan, <span class="st">"product"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model_loan, <span class="st">"product"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Tukey multiple comparisons of means
     95% family-wise confidence level
 
-Fit: aov(formula = rate ~ product + bank, data = loans)
+Fit: aov(formula = rate ~ product + bank)
 
 $product
                diff        lwr        upr     p adj

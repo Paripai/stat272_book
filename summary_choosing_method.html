@@ -404,7 +404,7 @@ Figure&nbsp;1: Choosing a method. Numbers in brackets are the sections.
 </section>
 <section id="mixed-problems" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="mixed-problems">Mixed Problems</h2>
-<p>All figures are hypothetical. Use <span class="math inline">\(\alpha\)</span> = 0.05 and the five steps.</p>
+<p>Use <span class="math inline">\(\alpha\)</span> = 0.05 and the five steps.</p>
 <p><strong>M1.</strong> In a survey of 500 workers, 210 have a second job. Test whether more than 40% of workers have a second job. Use the critical region.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -474,10 +474,11 @@ Figure&nbsp;1: Choosing a method. Numbers in brackets are the sections.
 </div>
 <p><strong>M4.</strong> Eight households installed solar panels. Their monthly electricity bills (baht) before and after installation were recorded. Did the mean bill decrease?</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bill_after, bill_before, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">"less"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>bill_before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2280</span>, <span class="dv">1610</span>, <span class="dv">2360</span>, <span class="dv">2940</span>, <span class="dv">3050</span>, <span class="dv">3070</span>, <span class="dv">1800</span>, <span class="dv">2570</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>bill_after <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1590</span>, <span class="dv">1110</span>, <span class="dv">2190</span>, <span class="dv">2440</span>, <span class="dv">2560</span>, <span class="dv">3160</span>, <span class="dv">1450</span>, <span class="dv">2160</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bill_after, bill_before, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">"less"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test
@@ -515,11 +516,14 @@ mean difference
 </div>
 <p><strong>M5.</strong> Twenty stores are randomly assigned to four advertising channels (TV, Online, Radio, Print), five stores each, and weekly sales are recorded. (a) Test whether mean sales differ among the channels. (b) If they do, which channels differ?</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>model_ads <span class="ot">&lt;-</span> <span class="fu">aov</span>(sales <span class="sc">~</span> channel, <span class="at">data =</span> ads)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_ads)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>channel <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"TV"</span>, <span class="st">"Online"</span>, <span class="st">"Radio"</span>, <span class="st">"Print"</span>), <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"TV"</span>, <span class="st">"Online"</span>, <span class="st">"Radio"</span>, <span class="st">"Print"</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">52.1</span>, <span class="fl">55.9</span>, <span class="fl">55.4</span>, <span class="fl">57.3</span>, <span class="fl">53.4</span>, <span class="fl">54.2</span>, <span class="fl">50.9</span>, <span class="fl">58.9</span>, <span class="fl">60.3</span>, <span class="fl">57.4</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="dv">50</span>, <span class="fl">42.8</span>, <span class="fl">45.6</span>, <span class="fl">46.7</span>, <span class="fl">43.9</span>, <span class="fl">43.9</span>, <span class="fl">40.5</span>, <span class="fl">49.4</span>, <span class="fl">52.1</span>, <span class="dv">45</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model_ads <span class="ot">&lt;-</span> <span class="fu">aov</span>(sales <span class="sc">~</span> channel)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_ads)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 channel      3    466  155.33   13.08 0.000142 ***
@@ -527,15 +531,12 @@ Residuals   16    190   11.87
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<details class="code-fold">
-<summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model_ads)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model_ads)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Tukey multiple comparisons of means
     95% family-wise confidence level
 
-Fit: aov(formula = sales ~ channel, data = ads)
+Fit: aov(formula = sales ~ channel)
 
 $channel
                diff        lwr       upr     p adj

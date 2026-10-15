@@ -34,8 +34,74 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="ch03_files/libs/revealjs/dist/theme/quarto-c38eb1cfb684de4251163e209291dfcd.css">
+  <link rel="stylesheet" href="ch03_files/libs/revealjs/dist/theme/quarto-824e372990ae5d288e1d466f01273102.css">
   <link href="ch03_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="ch03_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="ch03_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -213,9 +279,9 @@ z_{\text{cal}} = \frac{\hat{p}_1 - \hat{p}_2}
 </tbody>
 </table>
 </section>
-<section id="worked-example" class="slide level2 scrollable">
-<h2>Worked Example</h2>
-<p><strong>Worked Example 3.1.1.</strong> A survey asks households whether they have any outstanding debt. In urban areas, 171 of 300 households have debt; in rural areas, 165 of 250 households have debt (hypothetical figures).</p>
+<section id="example" class="slide level2 scrollable">
+<h2>Example</h2>
+<p><strong>Example 3.1.1.</strong> A survey asks households whether they have any outstanding debt. In urban areas, 171 of 300 households have debt; in rural areas, 165 of 250 households have debt.</p>
 <ol type="a">
 <li>Construct a 95% confidence interval for the difference between the urban and rural proportions.</li>
 <li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the proportion of households with debt is different in urban and rural areas.</li>
@@ -257,13 +323,42 @@ z_{\text{cal}} = \frac{-0.09}
 <p><strong>Your Turn 3.1.1</strong></p>
 </div>
 <div class="callout-content">
-<p>Two brands of instant noodles raised their prices by the same amount. Of 200 regular customers of Brand A, 58 switched to another brand; of 180 regular customers of Brand B, 36 switched (hypothetical figures).</p>
+<p>Two brands of instant noodles raised their prices by the same amount. Of 200 regular customers of Brand A, 58 switched to another brand; of 180 regular customers of Brand B, 36 switched.</p>
 <ol type="a">
 <li>Construct a 95% confidence interval for <span class="math inline">\(p_A - p_B\)</span>.</li>
 <li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the proportion of customers who switched is higher for Brand A.</li>
 </ol>
 </div>
 </div>
+</div>
+</section>
+<section class="slide level2 deck">
+<h2>Your Turn: Work Space</h2>
+<div class="ws">
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+</div>
+</section>
+<section class="slide level2 deck">
+<h2>Your Turn: Work Space</h2>
+<div class="ws">
+<div class="ws-step">Step 1: Hypotheses</div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-step">Step 2: Level of significance</div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-step">Step 3: Test statistic</div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-step">Step 4: Critical value and critical region</div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-step">Step 5: Decision and interpretation</div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
 </div>
 </section>
 <section class="slide level2 deck">
@@ -354,24 +449,11 @@ z_{\text{cal}} = \frac{-0.09}
 </section>
 <section id="exercises" class="slide level2">
 <h2>Exercises</h2>
-<p><strong>3.1.1</strong> In a labour force survey, 45 of 150 women and 62 of 160 men aged 15–24 were not in employment, education or training (hypothetical figures). Construct a 90% confidence interval for <span class="math inline">\(p_{\text{women}} - p_{\text{men}}\)</span>.</p>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: Exercise 3.1.1</h2>
-<p><span class="math inline">\(\hat{p}_1 = 0.3\)</span>, <span class="math inline">\(\hat{p}_2 = 0.3875\)</span>, difference <span class="math inline">\(= -0.0875\)</span>, SE <span class="math inline">\(= 0.0537\)</span>, <span class="math inline">\(z_{0.95} = 1.645\)</span>. <span class="math inline">\(-0.0875 \pm 0.0883\)</span>: 90% CI (-0.1758, 0.0008). We are 90% confident that the difference between the proportions of women and men not in employment, education or training is between -0.1758 and 0.0008. The interval contains 0.</p>
-<p><strong>3.1.2</strong> A shop tests two price displays. With display 1, 84 of 240 visitors bought the product; with display 2, 96 of 240 bought it (hypothetical figures). At <span class="math inline">\(\alpha\)</span> = 0.05, test whether display 1 has a lower purchase rate.</p>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: Exercise 3.1.2</h2>
-<p><strong>Step 1.</strong> <span class="math inline">\(H_0: p_1 = p_2 \quad H_1: p_1 &lt; p_2\)</span></p>
-<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p><strong>Step 3.</strong> <span class="math inline">\(\hat{p}_1 = 0.35\)</span>, <span class="math inline">\(\hat{p}_2 = 0.4\)</span>, <span class="math inline">\(\bar{p} = 0.375\)</span>; <span class="math inline">\(z_{\text{cal}} = -0.05/0.0442 = -1.131\)</span></p>
-<p><strong>Step 4.</strong> <span class="math inline">\(z_{0.05} = -1.645\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &lt; -1.645\)</span>.</p>
-<p><strong>Step 5.</strong> <span class="math inline">\(z_{\text{cal}} = -1.131\)</span> does not fall in the critical region (<span class="math inline">\(-1.131 &gt; -1.645\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the purchase rates with the two displays are equal at the 0.05 level of significance.</p>
+<p><strong>3.1.1</strong> In a labour force survey, 45 of 150 women and 62 of 160 men aged 15–24 were not in employment, education or training. Construct a 90% confidence interval for <span class="math inline">\(p_{\text{women}} - p_{\text{men}}\)</span>.</p>
+<p><strong>3.1.2</strong> A shop tests two price displays. With display 1, 84 of 240 visitors bought the product; with display 2, 96 of 240 bought it. At <span class="math inline">\(\alpha\)</span> = 0.05, test whether display 1 has a lower purchase rate.</p>
 </section>
 <section class="slide level2 deck">
 <h2>Quiz: Session 6</h2>
-<p>Quiz code: ______</p>
 </section></section>
 <section>
 <section id="sec-p-values-r-output" class="title-slide slide level1 center">
@@ -402,7 +484,7 @@ z_{\text{cal}} = \frac{-0.09}
 </div>
 </div>
 </div>
-<p><strong>Example.</strong> In Worked Example 2.2.2 (rider earnings, <span class="math inline">\(H_1: \mu &gt; 600\)</span>), <span class="math inline">\(t_{\text{cal}} = 2.326\)</span> with df = 24. The p-value is the area to the <strong>right</strong> of 2.326 under the <span class="math inline">\(t\)</span> curve, because <span class="math inline">\(H_1\)</span> points to the right. It is about 0.0144.</p>
+<p><strong>Example.</strong> In Example 2.2.2 (rider earnings, <span class="math inline">\(H_1: \mu &gt; 600\)</span>), <span class="math inline">\(t_{\text{cal}} = 2.326\)</span> with df = 24. The p-value is the area to the <strong>right</strong> of 2.326 under the <span class="math inline">\(t\)</span> curve, because <span class="math inline">\(H_1\)</span> points to the right. It is about 0.0144.</p>
 <div id="fig-pval-areas" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-pval-areas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -474,8 +556,14 @@ Figure&nbsp;1: The p-value as an area under the t curve with df = 24
 </section>
 <section id="reading-r-output" class="slide level2">
 <h2>Reading R Output</h2>
-<p>R is free statistical software. In this course you do not need to write R code, but you must be able to <strong>read</strong> its output. The function <code>t.test()</code> carries out the <span class="math inline">\(t\)</span> test for one mean. For the riders in Worked Example 2.2.2 we use <code>t.test(earnings, mu = 600, alternative = "greater")</code>:</p>
+<p>R is free statistical software. In this course you do not need to write R code, but you must be able to <strong>read</strong> the command and its output. The function <code>t.test()</code> carries out the <span class="math inline">\(t\)</span> test for one mean. For the riders in Example 2.2.2 we use <code>t.test(earnings, mu = 600, alternative = "greater")</code>:</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-label="1"></a>earnings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">724</span>, <span class="dv">756</span>, <span class="dv">588</span>, <span class="dv">693</span>, <span class="dv">777</span>, <span class="dv">657</span>, <span class="dv">631</span>, <span class="dv">777</span>, <span class="dv">549</span>, <span class="dv">444</span>,</span>
+<span id="cb1-2"><a href="" aria-label="2"></a>               <span class="dv">511</span>, <span class="dv">614</span>, <span class="dv">754</span>, <span class="dv">593</span>, <span class="dv">698</span>, <span class="dv">541</span>, <span class="dv">616</span>, <span class="dv">793</span>, <span class="dv">670</span>, <span class="dv">698</span>,</span>
+<span id="cb1-3"><a href="" aria-label="3"></a>               <span class="dv">555</span>, <span class="dv">668</span>, <span class="dv">510</span>, <span class="dv">740</span>, <span class="dv">567</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(earnings, <span class="at">mu =</span> <span class="dv">600</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -546,6 +634,7 @@ mean of x
 </div>
 </div>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(earnings, <span class="at">mu =</span> <span class="dv">600</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -560,7 +649,7 @@ mean of x
    644.96 </code></pre>
 </div>
 </div>
-<p>The 95% CI (605.06, 684.86) is the same as in Worked Example 2.2.2. The test statistic does not change, but the two-sided p-value (0.0288) is twice the one-sided p-value.</p>
+<p>The 95% CI (605.06, 684.86) is the same as in Example 2.2.2. The test statistic does not change, but the two-sided p-value (0.0288) is twice the one-sided p-value.</p>
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -587,10 +676,16 @@ mean of x
 <li><strong>Decision and interpretation</strong>: p-value = … [&lt;, <span class="math inline">\(\ge\)</span>] <span class="math inline">\(\alpha\)</span> = 0.05, so we [reject / accept] <span class="math inline">\(H_0\)</span>. That is, …</li>
 </ol>
 </section>
-<section id="worked-example-1" class="slide level2">
-<h2>Worked Example</h2>
-<p><strong>Worked Example 3.2.1.</strong> An energy agency records the monthly electricity bill (baht) of 30 randomly selected households (hypothetical data). It wants to know whether the mean bill is different from 1,200 baht. R gives:</p>
+<section id="example-1" class="slide level2">
+<h2>Example</h2>
+<p><strong>Example 3.2.1.</strong> An energy agency records the monthly electricity bill (baht) of 30 randomly selected households. It wants to know whether the mean bill is different from 1,200 baht. R gives:</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-label="1"></a>bill <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1371</span>, <span class="dv">1127</span>, <span class="dv">1714</span>, <span class="dv">1150</span>, <span class="dv">1056</span>, <span class="dv">1416</span>, <span class="dv">1176</span>, <span class="dv">1245</span>, <span class="dv">806</span>, <span class="dv">1318</span>,</span>
+<span id="cb6-2"><a href="" aria-label="2"></a>           <span class="dv">1042</span>, <span class="dv">1303</span>, <span class="dv">1149</span>, <span class="dv">1197</span>, <span class="dv">1474</span>, <span class="dv">1164</span>, <span class="dv">1409</span>, <span class="dv">1201</span>, <span class="dv">1354</span>, <span class="dv">993</span>,</span>
+<span id="cb6-3"><a href="" aria-label="3"></a>           <span class="dv">1548</span>, <span class="dv">1282</span>, <span class="dv">1276</span>, <span class="dv">834</span>, <span class="dv">1342</span>, <span class="dv">1529</span>, <span class="dv">1413</span>, <span class="dv">1298</span>, <span class="dv">1446</span>, <span class="dv">1225</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(bill, <span class="at">mu =</span> <span class="dv">1200</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -637,6 +732,7 @@ mean of x
 </div>
 </div>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(earnings, <span class="at">mu =</span> <span class="dv">620</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -650,6 +746,21 @@ sample estimates:
 mean of x 
    644.96 </code></pre>
 </div>
+</div>
+</section>
+<section class="slide level2 deck">
+<h2>Your Turn: Work Space</h2>
+<div class="ws">
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
 </div>
 </section>
 <section class="slide level2 deck">
@@ -689,8 +800,9 @@ mean of x
 </section>
 <section id="exercises-1" class="slide level2 scrollable">
 <h2>Exercises</h2>
-<p><strong>3.2.1</strong> The electricity agency in Worked Example 3.2.1 now asks whether the mean bill is <strong>more than</strong> 1,200 baht. Four outputs are shown below.</p>
+<p><strong>3.2.1</strong> The electricity agency in Example 3.2.1 now asks whether the mean bill is <strong>more than</strong> 1,200 baht. Four outputs are shown below.</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Output A</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">t.test</span>(bill, <span class="at">mu =</span> <span class="dv">1200</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Output A</code></pre>
 </div>
@@ -707,6 +819,7 @@ sample estimates:
 mean of x 
  1261.933 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Output B</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">t.test</span>(bill, <span class="at">mu =</span> <span class="dv">1200</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Output B</code></pre>
 </div>
@@ -723,6 +836,7 @@ sample estimates:
 mean of x 
  1261.933 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Output C</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">t.test</span>(bill, <span class="at">mu =</span> <span class="dv">1200</span>, <span class="at">alternative =</span> <span class="st">"less"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Output C</code></pre>
 </div>
@@ -739,6 +853,7 @@ sample estimates:
 mean of x 
  1261.933 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="" aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Output D</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">t.test</span>(bill, <span class="at">mu =</span> <span class="dv">1250</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Output D</code></pre>
 </div>
@@ -761,29 +876,8 @@ mean of x
 <li>Write the decision and interpretation at <span class="math inline">\(\alpha\)</span> = 0.05.</li>
 <li>Why is the test statistic the same in Outputs A, B and C, but not in D?</li>
 </ol>
-</section>
-<section class="slide level2 deck scrollable">
-<h2>Solution: Exercise 3.2.1</h2>
-<ol type="a">
-<li><p>Output B: <span class="math inline">\(\mu_0\)</span> = 1200 and the alternative hypothesis is “greater than 1200”, which matches <span class="math inline">\(H_1: \mu &gt; 1200\)</span>.</p></li>
-<li><p>p-value = 0.0504 <span class="math inline">\(\ge\)</span> <span class="math inline">\(\alpha\)</span> = 0.05, so we accept <span class="math inline">\(H_0\)</span>. That is, the mean monthly electricity bill is equal to 1,200 baht at the 0.05 level of significance.</p></li>
-<li><p>The test statistic depends on <span class="math inline">\(\mu_0\)</span> but not on <span class="math inline">\(H_1\)</span>. A, B and C all use <span class="math inline">\(\mu_0\)</span> = 1200; D uses <span class="math inline">\(\mu_0\)</span> = 1250. Only the p-value depends on <span class="math inline">\(H_1\)</span>.</p></li>
-</ol>
 <p><strong>3.2.2</strong> For each p-value, write the decision at <span class="math inline">\(\alpha\)</span> = 0.05: (a) 0.0312, (b) 0.0500, (c) 0.1847, (d) <code>5.4e-04</code>.</p>
-</section>
-<section class="slide level2 deck scrollable">
-<h2>Solution: Exercise 3.2.2</h2>
-<ol type="a">
-<li>0.0312 &lt; 0.05: reject <span class="math inline">\(H_0\)</span>.</li>
-<li>0.0500 <span class="math inline">\(\ge\)</span> 0.05: accept <span class="math inline">\(H_0\)</span>.</li>
-<li>0.1847 <span class="math inline">\(\ge\)</span> 0.05: accept <span class="math inline">\(H_0\)</span>.</li>
-<li><code>5.4e-04</code> = 0.00054 &lt; 0.05: reject <span class="math inline">\(H_0\)</span>.</li>
-</ol>
 <p><strong>3.2.3</strong> A student says: “The p-value is 0.03, so there is a 3% chance that <span class="math inline">\(H_0\)</span> is true.” Explain what is wrong.</p>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: Exercise 3.2.3</h2>
-<p>The p-value is calculated assuming <span class="math inline">\(H_0\)</span> is true. It is the probability of a result at least as extreme as the sample result if <span class="math inline">\(H_0\)</span> were true, not the probability that <span class="math inline">\(H_0\)</span> is true.</p>
 </section></section>
 <section>
 <section id="sec-paired-means" class="title-slide slide level1 center">
@@ -834,9 +928,9 @@ t_{\text{cal}} = \frac{\bar{d}}{s_d/\sqrt{n}}
 \]</span></p>
 <p><strong>In R:</strong> <code>t.test(after, before, paired = TRUE, alternative = ...)</code> uses <span class="math inline">\(d\)</span> = after <span class="math inline">\(-\)</span> before (first argument minus second).</p>
 </section>
-<section id="worked-example-2" class="slide level2 scrollable">
-<h2>Worked Example</h2>
-<p><strong>Worked Example 3.3.1.</strong> The government gave a cash transfer to low-income households. A researcher recorded the monthly spending (baht) of 10 households in the month before and the month after the transfer (hypothetical data). Did mean spending increase?</p>
+<section id="example-2" class="slide level2 scrollable">
+<h2>Example</h2>
+<p><strong>Example 3.3.1.</strong> The government gave a cash transfer to low-income households. A researcher recorded the monthly spending (baht) of 10 households in the month before and the month after the transfer. Did mean spending increase?</p>
 <div class="cell">
 <div id="tbl-stim" class="cell quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl">
@@ -954,6 +1048,11 @@ t_{\text{cal}} = \frac{\bar{d}}{s_d/\sqrt{n}} = \frac{1044}{296.5775} = 3.520
 <section id="reading-r-output-1" class="slide level2">
 <h2>Reading R Output</h2>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-label="1"></a>before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">14570</span>, <span class="dv">12550</span>, <span class="dv">14270</span>, <span class="dv">12370</span>, <span class="dv">12130</span>, <span class="dv">12420</span>, <span class="dv">15090</span>, <span class="dv">16280</span>, <span class="dv">15050</span>, <span class="dv">13610</span>)</span>
+<span id="cb23-2"><a href="" aria-label="2"></a>after <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">16140</span>, <span class="dv">14740</span>, <span class="dv">14840</span>, <span class="dv">14220</span>, <span class="dv">12960</span>, <span class="dv">13790</span>, <span class="dv">16590</span>, <span class="dv">17840</span>, <span class="dv">14380</span>, <span class="dv">13280</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(after, before, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test
@@ -970,6 +1069,7 @@ mean difference
 </div>
 <p><code>t =</code> 3.520 and <code>df =</code> 9 match the hand calculation, and <code>mean difference</code> is <span class="math inline">\(\bar{d}\)</span> = 1044. For the 95% CI we use the two-sided output:</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(after, before, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test
@@ -994,7 +1094,7 @@ mean difference
 <p><strong>Your Turn 3.3.1</strong></p>
 </div>
 <div class="callout-content">
-<p>The daily wage (baht) of 12 workers was recorded before and after a training course (hypothetical data). For <span class="math inline">\(d\)</span> = after <span class="math inline">\(-\)</span> before, <span class="math inline">\(\bar{d}\)</span> = 7.6667 and <span class="math inline">\(s_d\)</span> = 24.4776.</p>
+<p>The daily wage (baht) of 12 workers was recorded before and after a training course. For <span class="math inline">\(d\)</span> = after <span class="math inline">\(-\)</span> before, <span class="math inline">\(\bar{d}\)</span> = 7.6667 and <span class="math inline">\(s_d\)</span> = 24.4776.</p>
 <div class="cell">
 <div id="tbl-train" class="cell quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl">
@@ -1100,6 +1200,13 @@ Table&nbsp;2
 </div>
 </div>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="" aria-label="1"></a>wage_before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">371</span>, <span class="dv">405</span>, <span class="dv">409</span>, <span class="dv">538</span>, <span class="dv">357</span>, <span class="dv">351</span>, <span class="dv">414</span>, <span class="dv">416</span>, <span class="dv">390</span>, <span class="dv">438</span>,</span>
+<span id="cb28-2"><a href="" aria-label="2"></a>                  <span class="dv">401</span>, <span class="dv">428</span>)</span>
+<span id="cb28-3"><a href="" aria-label="3"></a>wage_after <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">388</span>, <span class="dv">460</span>, <span class="dv">425</span>, <span class="dv">562</span>, <span class="dv">315</span>, <span class="dv">379</span>, <span class="dv">413</span>, <span class="dv">412</span>, <span class="dv">398</span>, <span class="dv">418</span>,</span>
+<span id="cb28-4"><a href="" aria-label="4"></a>                 <span class="dv">401</span>, <span class="dv">439</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(wage_after, wage_before, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test
@@ -1113,6 +1220,21 @@ sample estimates:
 mean difference 
        7.666667 </code></pre>
 </div>
+</div>
+</section>
+<section class="slide level2 deck">
+<h2>Your Turn: Work Space</h2>
+<div class="ws">
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
 </div>
 </section>
 <section class="slide level2 deck">
@@ -1167,15 +1289,13 @@ mean difference
 <li>The same 20 products are priced at a supermarket and at a fresh market.</li>
 <li>30 firms that adopted a new technology are compared with 30 other firms that did not.</li>
 </ol>
-</section>
-<section class="slide level2 deck scrollable">
-<h2>Solution: Exercise 3.3.1</h2>
-<ol type="a">
-<li>Paired (same families twice). (b) Independent (two separate samples).</li>
-<li>Paired (same products at two places). (d) Independent (different firms).</li>
-</ol>
-<p><strong>3.3.2</strong> A consumer group priced the same 8 products at Shop A and Shop B (hypothetical data). It wants to know whether prices at Shop A are lower on average. Use the output to write the decision and interpretation at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<p><strong>3.3.2</strong> A consumer group priced the same 8 products at Shop A and Shop B. It wants to know whether prices at Shop A are lower on average. Use the output to write the decision and interpretation at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="" aria-label="1"></a>shopA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">118</span>, <span class="dv">65</span>, <span class="dv">89</span>, <span class="dv">27</span>, <span class="dv">154</span>, <span class="dv">73</span>, <span class="dv">36</span>)</span>
+<span id="cb31-2"><a href="" aria-label="2"></a>shopB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">45</span>, <span class="dv">121</span>, <span class="dv">64</span>, <span class="dv">94</span>, <span class="dv">29</span>, <span class="dv">159</span>, <span class="dv">77</span>, <span class="dv">38</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(shopA, shopB, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">"less"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test
@@ -1192,12 +1312,7 @@ mean difference
 </div>
 </section>
 <section class="slide level2 deck">
-<h2>Solution: Exercise 3.3.2</h2>
-<p><span class="math inline">\(H_0: \mu_d = 0 \quad H_1: \mu_d &lt; 0\)</span> (<span class="math inline">\(d\)</span> = Shop A <span class="math inline">\(-\)</span> Shop B). <span class="math inline">\(t_{\text{cal}} = -4.150\)</span>, df = 7, p-value = 0.0021. p-value = 0.0021 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, prices at Shop A are lower than at Shop B on average at the 0.05 level of significance.</p>
-</section>
-<section class="slide level2 deck">
 <h2>Quiz: Session 7</h2>
-<p>Quiz code: ______</p>
 </section></section>
 <section>
 <section id="sec-two-variances" class="title-slide slide level1 center">
@@ -1225,7 +1340,7 @@ F = \frac{s_1^2}{s_2^2}.
 <p>Areas such as 0.025 and 0.05 are not printed. Use the <strong>reciprocal rule</strong>, which swaps the two df: <span class="math display">\[
 F_{\alpha,\,\text{df}_1,\,\text{df}_2} = \frac{1}{F_{1-\alpha,\,\text{df}_2,\,\text{df}_1}}
 \]</span></p>
-<p><strong>Worked Example 3.4.1.</strong> Find (a) <span class="math inline">\(F_{0.95,\,4,\,10}\)</span>, (b) <span class="math inline">\(F_{0.975,\,12,\,15}\)</span>, (c) <span class="math inline">\(F_{0.025,\,12,\,15}\)</span>.</p>
+<p><strong>Example 3.4.1.</strong> Find (a) <span class="math inline">\(F_{0.95,\,4,\,10}\)</span>, (b) <span class="math inline">\(F_{0.975,\,12,\,15}\)</span>, (c) <span class="math inline">\(F_{0.025,\,12,\,15}\)</span>.</p>
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1312,6 +1427,15 @@ Figure&nbsp;3: Shade the area to the left before reading Table 7
 </figure>
 </div>
 </section>
+<section class="slide level2 deck">
+<h2>Your Turn: Work Space</h2>
+<div class="ws">
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+</div>
+</section>
 <section class="slide level2 deck scrollable">
 <h2>Solution: Your Turn 3.4.1</h2>
 <ol type="a">
@@ -1360,9 +1484,9 @@ F_{\text{cal}} = \frac{s_1^2}{s_2^2}
 </table>
 <p><strong>In R:</strong> <code>var.test(x1, x2, alternative = ...)</code> uses <span class="math inline">\(F = s_1^2/s_2^2\)</span> with <code>x1</code> in the numerator.</p>
 </section>
-<section id="worked-example-3" class="slide level2 scrollable">
-<h2>Worked Example</h2>
-<p><strong>Worked Example 3.4.2.</strong> An investor compares the risk of two mutual funds using their monthly returns (%): 13 months for Fund A and 16 months for Fund B (hypothetical data). The sample variances are <span class="math inline">\(s_A^2\)</span> = 6.3586 and <span class="math inline">\(s_B^2\)</span> = 1.2101. Assume returns are normally distributed.</p>
+<section id="example-3" class="slide level2 scrollable">
+<h2>Example</h2>
+<p><strong>Example 3.4.2.</strong> An investor compares the risk of two mutual funds using their monthly returns (%): 13 months for Fund A and 16 months for Fund B. The sample variances are <span class="math inline">\(s_A^2\)</span> = 6.3586 and <span class="math inline">\(s_B^2\)</span> = 1.2101. Assume returns are normally distributed.</p>
 <ol type="a">
 <li>Construct a 95% confidence interval for <span class="math inline">\(\sigma_A^2/\sigma_B^2\)</span>.</li>
 <li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the two funds have different variances (risk).</li>
@@ -1394,6 +1518,13 @@ F_{\text{cal}} = \frac{s_A^2}{s_B^2} = \frac{6.3586}{1.2101} = 5.255,
 <section id="reading-r-output-2" class="slide level2">
 <h2>Reading R Output</h2>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="" aria-label="1"></a>fund_A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.18</span>, <span class="fl">3.79</span>, <span class="fl">0.49</span>, <span class="fl">3.79</span>, <span class="fl">3.81</span>, <span class="fl">1.49</span>, <span class="fl">0.12</span>, <span class="fl">1.04</span>, <span class="sc">-</span><span class="fl">3.16</span>, <span class="fl">3.62</span>,</span>
+<span id="cb34-2"><a href="" aria-label="2"></a>             <span class="sc">-</span><span class="fl">0.44</span>, <span class="fl">1.78</span>, <span class="sc">-</span><span class="fl">3.97</span>)</span>
+<span id="cb34-3"><a href="" aria-label="3"></a>fund_B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.93</span>, <span class="fl">1.49</span>, <span class="fl">0.23</span>, <span class="fl">0.59</span>, <span class="fl">1.69</span>, <span class="fl">0.45</span>, <span class="fl">1.99</span>, <span class="sc">-</span><span class="fl">0.54</span>, <span class="fl">2.61</span>, <span class="fl">0.31</span>,</span>
+<span id="cb34-4"><a href="" aria-label="4"></a>             <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">1.59</span>, <span class="sc">-</span><span class="fl">0.57</span>, <span class="fl">1.77</span>, <span class="fl">1.78</span>, <span class="fl">1.14</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="" aria-label="1"></a><span class="fu">var.test</span>(fund_A, fund_B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     F test to compare two variances
@@ -1448,9 +1579,24 @@ ratio of variances
 <p><strong>Your Turn 3.4.2</strong></p>
 </div>
 <div class="callout-content">
-<p>An analyst compares the daily price changes (%) of two stocks. For Stock X, <span class="math inline">\(n\)</span> = 11 days and <span class="math inline">\(s\)</span> = 2.8; for Stock Y, <span class="math inline">\(n\)</span> = 21 days and <span class="math inline">\(s\)</span> = 1.9 (hypothetical figures). Assume normality. At <span class="math inline">\(\alpha\)</span> = 0.05, test whether Stock X is more volatile (has a larger variance) than Stock Y, using the critical region from Table 7.</p>
+<p>An analyst compares the daily price changes (%) of two stocks. For Stock X, <span class="math inline">\(n\)</span> = 11 days and <span class="math inline">\(s\)</span> = 2.8; for Stock Y, <span class="math inline">\(n\)</span> = 21 days and <span class="math inline">\(s\)</span> = 1.9. Assume normality. At <span class="math inline">\(\alpha\)</span> = 0.05, test whether Stock X is more volatile (has a larger variance) than Stock Y, using the critical region from Table 7.</p>
 </div>
 </div>
+</div>
+</section>
+<section class="slide level2 deck">
+<h2>Your Turn: Work Space</h2>
+<div class="ws">
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
 </div>
 </section>
 <section class="slide level2 deck">
@@ -1501,14 +1647,16 @@ ratio of variances
 <section id="exercises-3" class="slide level2">
 <h2>Exercises</h2>
 <p><strong>3.4.1</strong> Find (a) <span class="math inline">\(F_{0.99,\,5,\,12}\)</span>, (b) <span class="math inline">\(F_{0.05,\,6,\,20}\)</span>, (c) <span class="math inline">\(F_{0.975,\,24,\,30}\)</span>.</p>
-</section>
-<section class="slide level2 deck scrollable">
-<h2>Solution: Exercise 3.4.1</h2>
-<ol type="a">
-<li>5.06 (b) <span class="math inline">\(1/F_{0.95,\,20,\,6} = 1/3.87 = 0.2584\)</span> (c) 2.14</li>
-</ol>
-<p><strong>3.4.2</strong> A regulator compares the interest rates (%) on personal loans from two groups of lenders: 16 loans from group A and 21 from group B (hypothetical data). It wants to know whether rates vary more in group A. Use the output to write the decision and interpretation at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<p><strong>3.4.2</strong> A regulator compares the interest rates (%) on personal loans from two groups of lenders: 16 loans from group A and 21 from group B. It wants to know whether rates vary more in group A. Use the output to write the decision and interpretation at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="" aria-label="1"></a>rate_bankA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">6.97</span>, <span class="fl">6.98</span>, <span class="fl">5.5</span>, <span class="fl">7.42</span>, <span class="fl">9.43</span>, <span class="fl">7.36</span>, <span class="fl">7.9</span>, <span class="fl">6.67</span>, <span class="fl">7.02</span>, <span class="fl">7.95</span>,</span>
+<span id="cb37-2"><a href="" aria-label="2"></a>                 <span class="fl">6.35</span>, <span class="fl">7.43</span>, <span class="fl">6.71</span>, <span class="fl">7.72</span>, <span class="fl">6.2</span>, <span class="fl">8.68</span>)</span>
+<span id="cb37-3"><a href="" aria-label="3"></a>rate_bankB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">6.93</span>, <span class="fl">6.71</span>, <span class="fl">6.87</span>, <span class="fl">7.09</span>, <span class="fl">7.2</span>, <span class="fl">5.49</span>, <span class="fl">6.85</span>, <span class="fl">6.21</span>, <span class="fl">6.16</span>, <span class="fl">6.42</span>,</span>
+<span id="cb37-4"><a href="" aria-label="4"></a>                 <span class="fl">7.51</span>, <span class="fl">7.33</span>, <span class="fl">7.3</span>, <span class="fl">6.86</span>, <span class="fl">6.33</span>, <span class="fl">5.88</span>, <span class="fl">6.32</span>, <span class="fl">6.84</span>, <span class="fl">7.17</span>, <span class="fl">6.68</span>,</span>
+<span id="cb37-5"><a href="" aria-label="5"></a>                 <span class="fl">6.65</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="" aria-label="1"></a><span class="fu">var.test</span>(rate_bankA, rate_bankB, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     F test to compare two variances
@@ -1525,12 +1673,7 @@ ratio of variances
 </div>
 </section>
 <section class="slide level2 deck">
-<h2>Solution: Exercise 3.4.2</h2>
-<p><span class="math inline">\(H_0: \sigma_A^2 = \sigma_B^2 \quad H_1: \sigma_A^2 &gt; \sigma_B^2\)</span>. <span class="math inline">\(F_{\text{cal}} = 3.529\)</span>, df = (15, 20), p-value = 0.0048 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, interest rates vary more in group A than in group B at the 0.05 level of significance.</p>
-</section>
-<section class="slide level2 deck">
 <h2>Quiz: Session 8</h2>
-<p>Quiz code: ______</p>
 </section></section>
 <section>
 <section id="sec-independent-means" class="title-slide slide level1 center">
@@ -1611,9 +1754,9 @@ t_{\text{cal}} = \frac{\bar{x}_1 - \bar{x}_2}{\text{SE}}
 </tbody>
 </table>
 </section>
-<section id="worked-example-pooled-t-test" class="slide level2 scrollable">
-<h2>Worked Example: Pooled <span class="math inline">\(t\)</span> Test</h2>
-<p><strong>Worked Example 3.5.1.</strong> A retail chain tries two pricing strategies. 12 stores use a <strong>discount</strong> strategy and 10 other stores use a <strong>bundle</strong> strategy. Daily sales (units) are recorded (hypothetical data):</p>
+<section id="example-pooled-t-test" class="slide level2 scrollable">
+<h2>Example: Pooled <span class="math inline">\(t\)</span> Test</h2>
+<p><strong>Example 3.5.1.</strong> A retail chain tries two pricing strategies. 12 stores use a <strong>discount</strong> strategy and 10 other stores use a <strong>bundle</strong> strategy. Daily sales (units) are recorded:</p>
 <div class="cell">
 <div id="tbl-pricing" class="cell quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl">
@@ -1705,6 +1848,12 @@ t_{\text{cal}} = \frac{123.75 - 111.6}{5.952} = 2.041,
 <section id="reading-r-output-3" class="slide level2">
 <h2>Reading R Output</h2>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="" aria-label="1"></a>discount <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">128</span>, <span class="dv">148</span>, <span class="dv">102</span>, <span class="dv">121</span>, <span class="dv">116</span>, <span class="dv">116</span>, <span class="dv">108</span>, <span class="dv">142</span>, <span class="dv">138</span>, <span class="dv">128</span>,</span>
+<span id="cb40-2"><a href="" aria-label="2"></a>               <span class="dv">102</span>, <span class="dv">136</span>)</span>
+<span id="cb40-3"><a href="" aria-label="3"></a>bundle <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">119</span>, <span class="dv">124</span>, <span class="dv">109</span>, <span class="dv">133</span>, <span class="dv">91</span>, <span class="dv">113</span>, <span class="dv">106</span>, <span class="dv">105</span>, <span class="dv">112</span>, <span class="dv">104</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="" aria-label="1"></a><span class="fu">var.test</span>(discount, bundle)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     F test to compare two variances
@@ -1718,6 +1867,7 @@ sample estimates:
 ratio of variances 
           1.747533 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(discount, bundle, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -1731,6 +1881,7 @@ sample estimates:
 mean of x mean of y 
    123.75    111.60 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(discount, bundle, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -1747,10 +1898,17 @@ mean of x mean of y
 </div>
 <p>With <code>var.equal = TRUE</code> R prints <strong>Two Sample t-test</strong> (pooled); without it R prints <strong>Welch Two Sample t-test</strong>. Check the title before reading the numbers.</p>
 </section>
-<section id="worked-example-welch-t-test" class="slide level2">
-<h2>Worked Example: Welch <span class="math inline">\(t\)</span> Test</h2>
-<p><strong>Worked Example 3.5.2.</strong> A consumer researcher records the price (baht) of the same model of headphones at 15 online stores and 12 physical stores (hypothetical data). Is the mean price different?</p>
+<section id="example-welch-t-test" class="slide level2">
+<h2>Example: Welch <span class="math inline">\(t\)</span> Test</h2>
+<p><strong>Example 3.5.2.</strong> A consumer researcher records the price (baht) of the same model of headphones at 15 online stores and 12 physical stores. Is the mean price different?</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="" aria-label="1"></a>online <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1940</span>, <span class="dv">1950</span>, <span class="dv">1920</span>, <span class="dv">1670</span>, <span class="dv">1960</span>, <span class="dv">2060</span>, <span class="dv">1970</span>, <span class="dv">1950</span>, <span class="dv">1980</span>, <span class="dv">1590</span>,</span>
+<span id="cb47-2"><a href="" aria-label="2"></a>             <span class="dv">1780</span>, <span class="dv">1630</span>, <span class="dv">1880</span>, <span class="dv">1920</span>, <span class="dv">1710</span>)</span>
+<span id="cb47-3"><a href="" aria-label="3"></a>physical <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2060</span>, <span class="dv">2060</span>, <span class="dv">2160</span>, <span class="dv">2110</span>, <span class="dv">2130</span>, <span class="dv">2030</span>, <span class="dv">2010</span>, <span class="dv">2040</span>, <span class="dv">2170</span>, <span class="dv">2060</span>,</span>
+<span id="cb47-4"><a href="" aria-label="4"></a>               <span class="dv">2050</span>, <span class="dv">2140</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="" aria-label="1"></a><span class="fu">var.test</span>(online, physical)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     F test to compare two variances
@@ -1764,6 +1922,7 @@ sample estimates:
 ratio of variances 
            7.23668 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(online, physical)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -1803,7 +1962,7 @@ mean of x mean of y
 <p><strong>Your Turn 3.5.1</strong></p>
 </div>
 <div class="callout-content">
-<p>The starting monthly salaries (thousand baht) of 10 economics graduates from University A and 12 from University B are compared (hypothetical data): <span class="math inline">\(\bar{x}_A\)</span> = 24.01, <span class="math inline">\(s_A^2\)</span> = 12.8677, <span class="math inline">\(\bar{x}_B\)</span> = 21.6083, <span class="math inline">\(s_B^2\)</span> = 6.8936.</p>
+<p>The starting monthly salaries (thousand baht) of 10 economics graduates from University A and 12 from University B are compared: <span class="math inline">\(\bar{x}_A\)</span> = 24.01, <span class="math inline">\(s_A^2\)</span> = 12.8677, <span class="math inline">\(\bar{x}_B\)</span> = 21.6083, <span class="math inline">\(s_B^2\)</span> = 6.8936.</p>
 <ol type="a">
 <li>Use the first output to decide which <span class="math inline">\(t\)</span> test to use.</li>
 <li>Calculate <span class="math inline">\(t_{\text{cal}}\)</span> by hand.</li>
@@ -1813,6 +1972,12 @@ mean of x mean of y
 </div>
 </div>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="" aria-label="1"></a>uni_A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">28.5</span>, <span class="fl">25.4</span>, <span class="fl">24.9</span>, <span class="fl">25.2</span>, <span class="fl">21.9</span>, <span class="fl">22.8</span>, <span class="dv">21</span>, <span class="fl">19.1</span>, <span class="fl">20.8</span>, <span class="fl">30.5</span>)</span>
+<span id="cb52-2"><a href="" aria-label="2"></a>uni_B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">17.7</span>, <span class="fl">20.1</span>, <span class="fl">22.4</span>, <span class="fl">23.6</span>, <span class="fl">16.6</span>, <span class="fl">22.2</span>, <span class="fl">23.7</span>, <span class="fl">19.9</span>, <span class="fl">25.5</span>, <span class="fl">21.7</span>,</span>
+<span id="cb52-3"><a href="" aria-label="3"></a>            <span class="fl">21.9</span>, <span class="dv">24</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="" aria-label="1"></a><span class="fu">var.test</span>(uni_A, uni_B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     F test to compare two variances
@@ -1826,6 +1991,7 @@ sample estimates:
 ratio of variances 
           1.866621 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(uni_A, uni_B, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -1839,6 +2005,21 @@ sample estimates:
 mean of x mean of y 
  24.01000  21.60833 </code></pre>
 </div>
+</div>
+</section>
+<section class="slide level2 deck">
+<h2>Your Turn: Work Space</h2>
+<div class="ws">
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
+<div class="ws-line"></div>
 </div>
 </section>
 <section class="slide level2 deck">
@@ -1893,8 +2074,15 @@ mean of x mean of y
 </section>
 <section id="exercises-4" class="slide level2 scrollable">
 <h2>Exercises</h2>
-<p><strong>3.5.1</strong> An economist compares the monthly inflation expectations (%) reported by 14 firms in the North and 16 firms in the South (hypothetical data). She wants to know whether expectations are higher in the North. Three outputs are shown.</p>
+<p><strong>3.5.1</strong> An economist compares the monthly inflation expectations (%) reported by 14 firms in the North and 16 firms in the South. She wants to know whether expectations are higher in the North. Three outputs are shown.</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="" aria-label="1"></a>north <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.5</span>, <span class="fl">5.4</span>, <span class="fl">7.6</span>, <span class="fl">9.7</span>, <span class="dv">10</span>, <span class="fl">10.7</span>, <span class="fl">9.7</span>, <span class="fl">8.9</span>, <span class="fl">11.7</span>, <span class="fl">12.6</span>,</span>
+<span id="cb57-2"><a href="" aria-label="2"></a>            <span class="fl">5.6</span>, <span class="fl">10.8</span>, <span class="fl">7.1</span>, <span class="fl">9.3</span>)</span>
+<span id="cb57-3"><a href="" aria-label="3"></a>south <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">8.1</span>, <span class="fl">8.1</span>, <span class="fl">7.4</span>, <span class="dv">7</span>, <span class="fl">7.8</span>, <span class="fl">6.4</span>, <span class="fl">7.8</span>, <span class="dv">6</span>, <span class="fl">7.8</span>, <span class="fl">8.3</span>,</span>
+<span id="cb57-4"><a href="" aria-label="4"></a>            <span class="fl">7.3</span>, <span class="fl">6.2</span>, <span class="dv">7</span>, <span class="fl">6.9</span>, <span class="fl">5.2</span>, <span class="dv">7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="" aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Output 1</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">var.test</span>(north, south)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Output 1</code></pre>
 </div>
@@ -1911,6 +2099,7 @@ sample estimates:
 ratio of variances 
           8.076196 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="" aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Output 2</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">t.test</span>(north, south, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Output 2</code></pre>
 </div>
@@ -1927,6 +2116,7 @@ sample estimates:
 mean of x mean of y 
  8.828571  7.143750 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="" aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Output 3</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">t.test</span>(north, south, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Output 3</code></pre>
 </div>
@@ -1948,13 +2138,6 @@ mean of x mean of y
 <li>Which of Output 2 and Output 3 should she use? Explain.</li>
 <li>Write the decision and interpretation at <span class="math inline">\(\alpha\)</span> = 0.05.</li>
 </ol>
-</section>
-<section class="slide level2 deck scrollable">
-<h2>Solution: Exercise 3.5.1</h2>
-<ol type="a">
-<li><p>In Output 1 the p-value = 0.0003 &lt; 0.05, so the variances are not equal. Use the Welch test, Output 3. (Output 2 assumes equal variances.)</p></li>
-<li><p><span class="math inline">\(H_0: \mu_N = \mu_S \quad H_1: \mu_N &gt; \mu_S\)</span>. From Output 3, <span class="math inline">\(t_{\text{cal}} = 2.439\)</span>, df = 15.81, p-value = 0.0135 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, mean inflation expectations are higher in the North than in the South at the 0.05 level of significance.</p></li>
-</ol>
 <p><strong>3.5.2</strong> For each study, say whether you would use the paired <span class="math inline">\(t\)</span> test or a two-sample (pooled or Welch) <span class="math inline">\(t\)</span> test.</p>
 <ol type="a">
 <li>The rice yield of 15 farms is recorded before and after an irrigation project.</li>
@@ -1962,15 +2145,8 @@ mean of x mean of y
 <li>For each of 12 provinces, the unemployment rate of men is compared with that of women.</li>
 </ol>
 </section>
-<section class="slide level2 deck scrollable">
-<h2>Solution: Exercise 3.5.2</h2>
-<ol type="a">
-<li>Paired (same farms twice). (b) Two-sample: two independent samples; check the variances with the <span class="math inline">\(F\)</span> test to choose pooled or Welch. (c) Paired (men and women are matched within each province).</li>
-</ol>
-</section>
 <section class="slide level2 deck">
 <h2>Quiz: Session 9</h2>
-<p>Quiz code: ______</p>
 
 </section></section>
     </div>
