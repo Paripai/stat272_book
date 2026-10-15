@@ -42,8 +42,8 @@ end
 --    from the deck, not from the chapter file) and set section-deck: true,
 --    which moves every heading up one level: each section becomes a level-1
 --    divider slide and each subsection a slide.
---    Headings with the class "deck" were written for the slides (Solution,
---    Quiz, Course Rules) and stay at level 2.
+--    Headings with the class "deck" were written for the slides (Quiz,
+--    Work Space) and stay at level 2.
 local function shift_section_headings(blocks, meta)
   if not meta["section-deck"] then return blocks end
   for _, b in ipairs(blocks) do

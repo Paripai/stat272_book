@@ -4,8 +4,4 @@ split-subsections: true
 subtitle: "Chapter 1 | 208272 Elementary Statistics for Social Sciences II"
 ---
 
-## Course Rules {.deck}
-
-*To be added.*
-
 {{< include ../chapter01_principles.qmd >}}
