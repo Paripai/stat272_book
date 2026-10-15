@@ -227,7 +227,15 @@ window.Quarto = {
   <ul>
   <li><a href="#which-method-a-flowchart" id="toc-which-method-a-flowchart" class="nav-link active" data-scroll-target="#which-method-a-flowchart">Which Method? A Flowchart</a></li>
   <li><a href="#which-method-practice" id="toc-which-method-practice" class="nav-link" data-scroll-target="#which-method-practice">Which Method? Practice</a></li>
-  <li><a href="#mixed-problems" id="toc-mixed-problems" class="nav-link" data-scroll-target="#mixed-problems">Mixed Problems</a></li>
+  <li><a href="#mixed-problems" id="toc-mixed-problems" class="nav-link" data-scroll-target="#mixed-problems">Mixed Problems</a>
+  <ul class="collapse">
+  <li><a href="#m1" id="toc-m1" class="nav-link" data-scroll-target="#m1">M1</a></li>
+  <li><a href="#m2" id="toc-m2" class="nav-link" data-scroll-target="#m2">M2</a></li>
+  <li><a href="#m3" id="toc-m3" class="nav-link" data-scroll-target="#m3">M3</a></li>
+  <li><a href="#m4" id="toc-m4" class="nav-link" data-scroll-target="#m4">M4</a></li>
+  <li><a href="#m5" id="toc-m5" class="nav-link" data-scroll-target="#m5">M5</a></li>
+  <li><a href="#m6" id="toc-m6" class="nav-link" data-scroll-target="#m6">M6</a></li>
+  </ul></li>
   <li><a href="#writing-a-full-conclusion" id="toc-writing-a-full-conclusion" class="nav-link" data-scroll-target="#writing-a-full-conclusion">Writing a Full Conclusion</a></li>
   </ul>
 </nav>
@@ -344,7 +352,7 @@ Figure&nbsp;1: Choosing a method. Numbers in brackets are the sections.
 <td style="text-align: left;">Two means, Welch</td>
 <td style="text-align: left;">–</td>
 <td style="text-align: left;"><span class="math inline">\(t\)</span></td>
-<td style="text-align: left;"><code>t.test(x1, x2)</code></td>
+<td style="text-align: left;"><code>t.test(x1, x2, var.equal = FALSE)</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ANOVA (CRD)</td>
@@ -405,7 +413,9 @@ Figure&nbsp;1: Choosing a method. Numbers in brackets are the sections.
 <section id="mixed-problems" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="mixed-problems">Mixed Problems</h2>
 <p>Use <span class="math inline">\(\alpha\)</span> = 0.05 and the five steps.</p>
-<p><strong>M1.</strong> In a survey of 500 workers, 210 have a second job. Test whether more than 40% of workers have a second job. Use the critical region.</p>
+<section id="m1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="m1">M1</h3>
+<p>In a survey of 500 workers, 210 have a second job. Test whether more than 40% of workers have a second job. Use the critical region.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -427,7 +437,10 @@ Figure&nbsp;1: Choosing a method. Numbers in brackets are the sections.
 </div>
 </div>
 </div>
-<p><strong>M2.</strong> The monthly profit (thousand baht) of 9 cafés in the old city has <span class="math inline">\(\bar{x}\)</span> = 52.4, <span class="math inline">\(s\)</span> = 6.1; that of 13 cafés near the university has <span class="math inline">\(\bar{x}\)</span> = 47.8, <span class="math inline">\(s\)</span> = 5.4. (a) Use the <span class="math inline">\(F\)</span> test with the critical region to check the variances. (b) Test whether the mean profits are different, using the critical region.</p>
+</section>
+<section id="m2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="m2">M2</h3>
+<p>The monthly profit (thousand baht) of 9 cafés in the old city has <span class="math inline">\(\bar{x}\)</span> = 52.4, <span class="math inline">\(s\)</span> = 6.1; that of 13 cafés near the university has <span class="math inline">\(\bar{x}\)</span> = 47.8, <span class="math inline">\(s\)</span> = 5.4. (a) Use the <span class="math inline">\(F\)</span> test with the critical region to check the variances. (b) Test whether the mean profits are different, using the critical region.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -450,7 +463,10 @@ Figure&nbsp;1: Choosing a method. Numbers in brackets are the sections.
 </div>
 </div>
 </div>
-<p><strong>M3.</strong> A central bank wants the standard deviation of the monthly inflation rate to be less than 1 percentage point. Over 15 months, <span class="math inline">\(s\)</span> = 0.8. Assume normality and test whether the target is met, using the critical region.</p>
+</section>
+<section id="m3" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="m3">M3</h3>
+<p>A central bank wants the standard deviation of the monthly inflation rate to be less than 1 percentage point. Over 15 months, <span class="math inline">\(s\)</span> = 0.8. Assume normality and test whether the target is met, using the critical region.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -472,7 +488,10 @@ Figure&nbsp;1: Choosing a method. Numbers in brackets are the sections.
 </div>
 </div>
 </div>
-<p><strong>M4.</strong> Eight households installed solar panels. Their monthly electricity bills (baht) before and after installation were recorded. Did the mean bill decrease?</p>
+</section>
+<section id="m4" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="m4">M4</h3>
+<p>Eight households installed solar panels. Their monthly electricity bills (baht) before and after installation were recorded. Did the mean bill decrease?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>bill_before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2280</span>, <span class="dv">1610</span>, <span class="dv">2360</span>, <span class="dv">2940</span>, <span class="dv">3050</span>, <span class="dv">3070</span>, <span class="dv">1800</span>, <span class="dv">2570</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>bill_after <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1590</span>, <span class="dv">1110</span>, <span class="dv">2190</span>, <span class="dv">2440</span>, <span class="dv">2560</span>, <span class="dv">3160</span>, <span class="dv">1450</span>, <span class="dv">2160</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -514,7 +533,10 @@ mean difference
 </div>
 </div>
 </div>
-<p><strong>M5.</strong> Twenty stores are randomly assigned to four advertising channels (TV, Online, Radio, Print), five stores each, and weekly sales are recorded. (a) Test whether mean sales differ among the channels. (b) If they do, which channels differ?</p>
+</section>
+<section id="m5" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="m5">M5</h3>
+<p>Twenty stores are randomly assigned to four advertising channels (TV, Online, Radio, Print), five stores each, and weekly sales are recorded. (a) Test whether mean sales differ among the channels. (b) If they do, which channels differ?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>channel <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"TV"</span>, <span class="st">"Online"</span>, <span class="st">"Radio"</span>, <span class="st">"Print"</span>), <span class="at">each =</span> <span class="dv">5</span>),</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"TV"</span>, <span class="st">"Online"</span>, <span class="st">"Radio"</span>, <span class="st">"Print"</span>))</span>
@@ -570,7 +592,10 @@ Print-Radio    0.38  -5.854923  6.614923 0.9980348</code></pre>
 </div>
 </div>
 </div>
-<p><strong>M6.</strong> The mean household size in a district is estimated from 20 households: <span class="math inline">\(\bar{x}\)</span> = 3.42, <span class="math inline">\(s\)</span> = 0.58. Construct a 95% confidence interval for the mean household size.</p>
+</section>
+<section id="m6" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="m6">M6</h3>
+<p>The mean household size in a district is estimated from 20 households: <span class="math inline">\(\bar{x}\)</span> = 3.42, <span class="math inline">\(s\)</span> = 0.58. Construct a 95% confidence interval for the mean household size.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -587,6 +612,7 @@ Print-Radio    0.38  -5.854923  6.614923 0.9980348</code></pre>
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="writing-a-full-conclusion" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="writing-a-full-conclusion">Writing a Full Conclusion</h2>

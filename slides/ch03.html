@@ -101,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="ch03_files/libs/revealjs/dist/theme/quarto-824e372990ae5d288e1d466f01273102.css">
+  <link rel="stylesheet" href="ch03_files/libs/revealjs/dist/theme/quarto-3b57af344655fc6ade99625c29241338.css">
   <link href="ch03_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="ch03_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="ch03_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -335,15 +335,6 @@ z_{\text{cal}} = \frac{-0.09}
 <section class="slide level2 deck">
 <h2>Your Turn: Work Space</h2>
 <div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
-</section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
 <div class="ws-step">Step 1: Hypotheses</div>
 <div class="ws-line"></div>
 <div class="ws-line"></div>
@@ -360,17 +351,6 @@ z_{\text{cal}} = \frac{-0.09}
 <div class="ws-line"></div>
 <div class="ws-line"></div>
 </div>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: Your Turn 3.1.1</h2>
-<p><span class="math inline">\(\hat{p}_A = 0.29\)</span>, <span class="math inline">\(\hat{p}_B = 0.2\)</span>, <span class="math inline">\(\hat{p}_A - \hat{p}_B = 0.09\)</span>.</p>
-<p><strong>(a)</strong> SE <span class="math inline">\(= 0.0438\)</span>; <span class="math inline">\(0.09 \pm 1.960(0.0438) = 0.09 \pm 0.0858\)</span>. 95% CI: (0.0042, 0.1758). We are 95% confident that the difference between the proportions of Brand A and Brand B customers who switched is between 0.0042 and 0.1758.</p>
-<p><strong>(b)</strong></p>
-<p><strong>Step 1.</strong> <span class="math inline">\(H_0: p_A = p_B \quad H_1: p_A &gt; p_B\)</span></p>
-<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p><strong>Step 3.</strong> <span class="math inline">\(\bar{p} = (58 + 36)/(200 + 180) = 0.2474\)</span>; <span class="math inline">\(z_{\text{cal}} = 0.09/0.0443 = 2.032\)</span></p>
-<p><strong>Step 4.</strong> <span class="math inline">\(z_{0.95} = 1.645\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &gt; 1.645\)</span>.</p>
-<p><strong>Step 5.</strong> <span class="math inline">\(z_{\text{cal}} = 2.032\)</span> falls in the critical region (<span class="math inline">\(2.032 &gt; 1.645\)</span>), so we reject <span class="math inline">\(H_0\)</span>. That is, the proportion of customers who switched is higher for Brand A than for Brand B at the 0.05 level of significance.</p>
 </section>
 <section id="looking-back-methods-so-far" class="slide level2">
 <h2>Looking Back: Methods So Far</h2>
@@ -751,25 +731,20 @@ mean of x
 <section class="slide level2 deck">
 <h2>Your Turn: Work Space</h2>
 <div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
+<div class="ws-step">Step 1: Hypotheses</div>
+<div class="ws-line">H<sub>0</sub>:</div>
+<div class="ws-line">H<sub>1</sub>:</div>
+<div class="ws-step">Step 2: Level of significance</div>
+<div class="ws-line">α =</div>
+<div class="ws-step">Step 3: Test statistic</div>
+<div class="ws-line">Test statistic:</div>
+<div class="ws-line">df:</div>
+<div class="ws-step">Step 4: p-value</div>
+<div class="ws-line">p-value:</div>
+<div class="ws-step">Step 5: Decision and interpretation</div>
+<div class="ws-line">Decision:</div>
+<div class="ws-line">Interpretation:</div>
 </div>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: Your Turn 3.2.1</h2>
-<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu = 620 \quad H_1: \mu \ne 620\)</span></p>
-<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p><strong>Step 3.</strong> <span class="math inline">\(t_{\text{cal}} = 1.291\)</span>, df = 24</p>
-<p><strong>Step 4.</strong> p-value = 0.2089</p>
-<p><strong>Step 5.</strong> p-value = 0.2089 <span class="math inline">\(\ge\)</span> <span class="math inline">\(\alpha\)</span> = 0.05, so we accept <span class="math inline">\(H_0\)</span>. That is, the mean daily earnings of riders are equal to 620 baht at the 0.05 level of significance. (This agrees with Section 2.2: 620 is inside the 95% CI.)</p>
 </section>
 <section id="formula-summary-1" class="slide level2">
 <h2>Formula Summary</h2>
@@ -1193,7 +1168,7 @@ Table&nbsp;2
 </div>
 </div>
 <ol type="a">
-<li>Calculate <span class="math inline">\(t_{\text{cal}}\)</span> by hand.</li>
+<li>Calculate <span class="math inline">\(t_{\text{cal}}\)</span> by hand (it is hidden in the output).</li>
 <li>Use the R output to test whether the training changed the mean daily wage at <span class="math inline">\(\alpha\)</span> = 0.05.</li>
 </ol>
 </div>
@@ -1207,12 +1182,14 @@ Table&nbsp;2
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(wage_after, wage_before, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test
 
 data:  wage_after and wage_before
-t = 1.085, df = 11, p-value = 0.3011
+t = _____, df = 11, p-value = 0.3011
 alternative hypothesis: true mean difference is not equal to 0
 95 percent confidence interval:
  -7.88564 23.21897
@@ -1225,27 +1202,20 @@ mean difference
 <section class="slide level2 deck">
 <h2>Your Turn: Work Space</h2>
 <div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
+<div class="ws-step">Step 1: Hypotheses</div>
+<div class="ws-line">H<sub>0</sub>:</div>
+<div class="ws-line">H<sub>1</sub>:</div>
+<div class="ws-step">Step 2: Level of significance</div>
+<div class="ws-line">α =</div>
+<div class="ws-step">Step 3: Test statistic</div>
+<div class="ws-line">Test statistic:</div>
+<div class="ws-line">df:</div>
+<div class="ws-step">Step 4: p-value</div>
+<div class="ws-line">p-value:</div>
+<div class="ws-step">Step 5: Decision and interpretation</div>
+<div class="ws-line">Decision:</div>
+<div class="ws-line">Interpretation:</div>
 </div>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: Your Turn 3.3.1</h2>
-<p><strong>(a)</strong> <span class="math inline">\(s_d/\sqrt{n} = 24.4776/\sqrt{12} = 7.0661\)</span>; <span class="math inline">\(t_{\text{cal}} = 7.6667/7.0661 = 1.085\)</span> (R: 1.085).</p>
-<p><strong>(b)</strong></p>
-<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_d = 0 \quad H_1: \mu_d \ne 0\)</span></p>
-<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p><strong>Step 3.</strong> <span class="math inline">\(t_{\text{cal}} = 1.085\)</span>, df = 11</p>
-<p><strong>Step 4.</strong> p-value = 0.3011</p>
-<p><strong>Step 5.</strong> p-value = 0.3011 <span class="math inline">\(\ge\)</span> <span class="math inline">\(\alpha\)</span> = 0.05, so we accept <span class="math inline">\(H_0\)</span>. That is, the training did not change the mean daily wage (the mean difference is equal to 0) at the 0.05 level of significance.</p>
 </section>
 <section id="formula-summary-2" class="slide level2">
 <h2>Formula Summary</h2>
@@ -1375,74 +1345,23 @@ Figure&nbsp;2: Areas 0.025 in each tail of the F distribution with df = (12, 15)
 <p><strong>Your Turn 3.4.1</strong></p>
 </div>
 <div class="callout-content">
-<p>Shade the area to the left on each curve, then find (a) <span class="math inline">\(F_{0.95,\,3,\,20}\)</span>, (b) <span class="math inline">\(F_{0.975,\,8,\,10}\)</span>, (c) <span class="math inline">\(F_{0.025,\,8,\,10}\)</span>.</p>
+<p>Find (a) <span class="math inline">\(F_{0.95,\,3,\,20}\)</span>, (b) <span class="math inline">\(F_{0.975,\,8,\,10}\)</span>, (c) <span class="math inline">\(F_{0.025,\,8,\,10}\)</span>.</p>
 </div>
 </div>
 </div>
-<div id="fig-yt-3-4-1" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-yt-3-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell quarto-layout-panel" data-layout-ncol="3">
 <div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-3-4-1" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-yt-3-4-1-1" class="quarto-float quarto-figure quarto-figure-center" width="307.2">
-<figure class="quarto-float quarto-subfloat-fig">
-<div aria-describedby="fig-yt-3-4-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="ch03_files/figure-revealjs/fig-yt-3-4-1-1.png" id="fig-yt-3-4-1-1" data-ref-parent="fig-yt-3-4-1" width="307">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="ch03_files/figure-revealjs/curves-3-4-1-1.png" width="307"></p>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-3-4-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a)
-</figcaption>
-</figure>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="ch03_files/figure-revealjs/curves-3-4-1-2.png" width="307"></p>
 </div>
-</div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-3-4-1" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-yt-3-4-1-2" class="quarto-float quarto-figure quarto-figure-center" width="307.2">
-<figure class="quarto-float quarto-subfloat-fig">
-<div aria-describedby="fig-yt-3-4-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="ch03_files/figure-revealjs/fig-yt-3-4-1-2.png" id="fig-yt-3-4-1-2" data-ref-parent="fig-yt-3-4-1" width="307">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-3-4-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b)
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-yt-3-4-1" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-yt-3-4-1-3" class="quarto-float quarto-figure quarto-figure-center" width="307.2">
-<figure class="quarto-float quarto-subfloat-fig">
-<div aria-describedby="fig-yt-3-4-1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="ch03_files/figure-revealjs/fig-yt-3-4-1-3.png" id="fig-yt-3-4-1-3" data-ref-parent="fig-yt-3-4-1" width="307">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yt-3-4-1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c)
-</figcaption>
-</figure>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="ch03_files/figure-revealjs/curves-3-4-1-3.png" width="307"></p>
 </div>
 </div>
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-yt-3-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Shade the area to the left before reading Table 7
-</figcaption>
-</figure>
-</div>
-</section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
-</section>
-<section class="slide level2 deck scrollable">
-<h2>Solution: Your Turn 3.4.1</h2>
-<ol type="a">
-<li><p><span class="math inline">\(F_{0.95,\,3,\,20} = 3.1\)</span></p></li>
-<li><p><span class="math inline">\(F_{0.975,\,8,\,10} = 3.85\)</span></p></li>
-<li><p><span class="math inline">\(F_{0.025,\,8,\,10} = 1/F_{0.975,\,10,\,8} = 1/4.3 = 0.2326\)</span></p></li>
-</ol>
 </section>
 <section id="formulas-and-conditions-2" class="slide level2">
 <h2>Formulas and Conditions</h2>
@@ -1587,25 +1506,22 @@ ratio of variances
 <section class="slide level2 deck">
 <h2>Your Turn: Work Space</h2>
 <div class="ws">
+<div class="ws-step">Step 1: Hypotheses</div>
 <div class="ws-line"></div>
 <div class="ws-line"></div>
+<div class="ws-step">Step 2: Level of significance</div>
 <div class="ws-line"></div>
 <div class="ws-line"></div>
+<div class="ws-step">Step 3: Test statistic</div>
 <div class="ws-line"></div>
 <div class="ws-line"></div>
+<div class="ws-step">Step 4: Critical value and critical region</div>
 <div class="ws-line"></div>
 <div class="ws-line"></div>
+<div class="ws-step">Step 5: Decision and interpretation</div>
 <div class="ws-line"></div>
 <div class="ws-line"></div>
 </div>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: Your Turn 3.4.2</h2>
-<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \sigma_X^2 = \sigma_Y^2 \quad H_1: \sigma_X^2 &gt; \sigma_Y^2\)</span></p>
-<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p><strong>Step 3.</strong> <span class="math inline">\(F_{\text{cal}} = 2.8^2/1.9^2 = 7.84/3.61 = 2.172\)</span>, df = (10, 20)</p>
-<p><strong>Step 4.</strong> <span class="math inline">\(F_{0.95,\,10,\,20} = 2.35\)</span>. Critical region: <span class="math inline">\(F_{\text{cal}} &gt; 2.35\)</span>.</p>
-<p><strong>Step 5.</strong> <span class="math inline">\(F_{\text{cal}} = 2.172\)</span> does not fall in the critical region (<span class="math inline">\(2.172 &lt; 2.35\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the variances of the daily price changes of the two stocks are equal at the 0.05 level of significance.</p>
 </section>
 <section id="formula-summary-3" class="slide level2">
 <h2>Formula Summary</h2>
@@ -1707,7 +1623,7 @@ ratio of variances
 <li>If independent, test <span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> (two-sided, <span class="math inline">\(\alpha\)</span> = 0.05).
 <ul>
 <li>accept <span class="math inline">\(H_0\)</span> → <strong>pooled <span class="math inline">\(t\)</span> test</strong>: <code>t.test(x1, x2, var.equal = TRUE)</code></li>
-<li>reject <span class="math inline">\(H_0\)</span> → <strong>Welch <span class="math inline">\(t\)</span> test</strong>: <code>t.test(x1, x2)</code></li>
+<li>reject <span class="math inline">\(H_0\)</span> → <strong>Welch <span class="math inline">\(t\)</span> test</strong>: <code>t.test(x1, x2, var.equal = FALSE)</code></li>
 </ul></li>
 </ol>
 </div>
@@ -1726,7 +1642,7 @@ s_p^2 = \frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2},
 \qquad
 t_{\text{cal}} = \frac{\bar{x}_1 - \bar{x}_2}{\text{SE}}
 \]</span></p>
-<p><strong>Welch method</strong> (unequal variances): read <span class="math inline">\(t_{\text{cal}}\)</span>, df, p-value and CI from <code>t.test(x1, x2)</code>.</p>
+<p><strong>Welch method</strong> (unequal variances): read <span class="math inline">\(t_{\text{cal}}\)</span>, df, p-value and CI from <code>t.test(x1, x2, var.equal = FALSE)</code>.</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 55%">
@@ -1896,7 +1812,7 @@ mean of x mean of y
    123.75    111.60 </code></pre>
 </div>
 </div>
-<p>With <code>var.equal = TRUE</code> R prints <strong>Two Sample t-test</strong> (pooled); without it R prints <strong>Welch Two Sample t-test</strong>. Check the title before reading the numbers.</p>
+<p>With <code>var.equal = TRUE</code> R prints <strong>Two Sample t-test</strong> (pooled); with <code>var.equal = FALSE</code> it prints <strong>Welch Two Sample t-test</strong>. Check the title before reading the numbers.</p>
 </section>
 <section id="example-welch-t-test" class="slide level2">
 <h2>Example: Welch <span class="math inline">\(t\)</span> Test</h2>
@@ -1922,7 +1838,7 @@ sample estimates:
 ratio of variances 
            7.23668 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(online, physical)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(online, physical, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -1965,7 +1881,7 @@ mean of x mean of y
 <p>The starting monthly salaries (thousand baht) of 10 economics graduates from University A and 12 from University B are compared: <span class="math inline">\(\bar{x}_A\)</span> = 24.01, <span class="math inline">\(s_A^2\)</span> = 12.8677, <span class="math inline">\(\bar{x}_B\)</span> = 21.6083, <span class="math inline">\(s_B^2\)</span> = 6.8936.</p>
 <ol type="a">
 <li>Use the first output to decide which <span class="math inline">\(t\)</span> test to use.</li>
-<li>Calculate <span class="math inline">\(t_{\text{cal}}\)</span> by hand.</li>
+<li>Calculate <span class="math inline">\(t_{\text{cal}}\)</span> by hand (it is hidden in the output).</li>
 <li>Use the R output to test whether the mean starting salaries are different at <span class="math inline">\(\alpha\)</span> = 0.05.</li>
 </ol>
 </div>
@@ -1977,7 +1893,10 @@ mean of x mean of y
 <span id="cb52-3"><a href="" aria-label="3"></a>            <span class="fl">21.9</span>, <span class="dv">24</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="" aria-label="1"></a><span class="fu">var.test</span>(uni_A, uni_B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="" aria-label="1"></a><span class="fu">var.test</span>(uni_A, uni_B)</span>
+<span id="cb53-2"><a href="" aria-label="2"></a><span class="fu">t.test</span>(uni_A, uni_B, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
     F test to compare two variances
@@ -1991,13 +1910,12 @@ sample estimates:
 ratio of variances 
           1.866621 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="" aria-label="1"></a><span class="fu">t.test</span>(uni_A, uni_B, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
 
 data:  uni_A and uni_B
-t = 1.812, df = 20, p-value = 0.08502
+t = _____, df = 20, p-value = 0.08502
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
  -0.3630677  5.1664011
@@ -2010,28 +1928,22 @@ mean of x mean of y
 <section class="slide level2 deck">
 <h2>Your Turn: Work Space</h2>
 <div class="ws">
+<div class="ws-step">Step 1: Hypotheses</div>
 <div class="ws-line"></div>
 <div class="ws-line"></div>
+<div class="ws-step">Step 2: Level of significance</div>
 <div class="ws-line"></div>
 <div class="ws-line"></div>
+<div class="ws-step">Step 3: Test statistic</div>
 <div class="ws-line"></div>
 <div class="ws-line"></div>
+<div class="ws-step">Step 4: p-value</div>
 <div class="ws-line"></div>
 <div class="ws-line"></div>
+<div class="ws-step">Step 5: Decision and interpretation</div>
 <div class="ws-line"></div>
 <div class="ws-line"></div>
 </div>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: Your Turn 3.5.1</h2>
-<p><strong>(a)</strong> <span class="math inline">\(F\)</span> test p-value = 0.3264 <span class="math inline">\(\ge\)</span> 0.05: accept equal variances, so use the pooled <span class="math inline">\(t\)</span> test.</p>
-<p><strong>(b)</strong> <span class="math inline">\(s_p^2 = \dfrac{9(12.8677) + 11(6.8936)}{20} = 9.5819\)</span>, SE <span class="math inline">\(= \sqrt{9.5819(1/10 + 1/12)} = 1.3254\)</span>, <span class="math inline">\(t_{\text{cal}} = (24.01 - 21.6083)/1.3254 = 1.812\)</span>.</p>
-<p><strong>(c)</strong></p>
-<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_A = \mu_B \quad H_1: \mu_A \ne \mu_B\)</span></p>
-<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p><strong>Step 3.</strong> <span class="math inline">\(t_{\text{cal}} = 1.812\)</span>, df = 20</p>
-<p><strong>Step 4.</strong> p-value = 0.0850</p>
-<p><strong>Step 5.</strong> p-value = 0.0850 <span class="math inline">\(\ge\)</span> <span class="math inline">\(\alpha\)</span> = 0.05, so we accept <span class="math inline">\(H_0\)</span>. That is, the mean starting salaries of graduates from the two universities are equal at the 0.05 level of significance.</p>
 </section>
 <section id="formula-summary-4" class="slide level2">
 <h2>Formula Summary</h2>
@@ -2062,7 +1974,7 @@ mean of x mean of y
 <tr class="odd">
 <td style="text-align: left;">Independent, unequal variances</td>
 <td style="text-align: left;">Welch <span class="math inline">\(t\)</span></td>
-<td style="text-align: left;"><code>t.test(x1, x2)</code></td>
+<td style="text-align: left;"><code>t.test(x1, x2, var.equal = FALSE)</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CI (pooled)</td>
@@ -2076,13 +1988,13 @@ mean of x mean of y
 <h2>Exercises</h2>
 <p><strong>3.5.1</strong> An economist compares the monthly inflation expectations (%) reported by 14 firms in the North and 16 firms in the South. She wants to know whether expectations are higher in the North. Three outputs are shown.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="" aria-label="1"></a>north <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.5</span>, <span class="fl">5.4</span>, <span class="fl">7.6</span>, <span class="fl">9.7</span>, <span class="dv">10</span>, <span class="fl">10.7</span>, <span class="fl">9.7</span>, <span class="fl">8.9</span>, <span class="fl">11.7</span>, <span class="fl">12.6</span>,</span>
-<span id="cb57-2"><a href="" aria-label="2"></a>            <span class="fl">5.6</span>, <span class="fl">10.8</span>, <span class="fl">7.1</span>, <span class="fl">9.3</span>)</span>
-<span id="cb57-3"><a href="" aria-label="3"></a>south <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">8.1</span>, <span class="fl">8.1</span>, <span class="fl">7.4</span>, <span class="dv">7</span>, <span class="fl">7.8</span>, <span class="fl">6.4</span>, <span class="fl">7.8</span>, <span class="dv">6</span>, <span class="fl">7.8</span>, <span class="fl">8.3</span>,</span>
-<span id="cb57-4"><a href="" aria-label="4"></a>            <span class="fl">7.3</span>, <span class="fl">6.2</span>, <span class="dv">7</span>, <span class="fl">6.9</span>, <span class="fl">5.2</span>, <span class="dv">7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="" aria-label="1"></a>north <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.5</span>, <span class="fl">5.4</span>, <span class="fl">7.6</span>, <span class="fl">9.7</span>, <span class="dv">10</span>, <span class="fl">10.7</span>, <span class="fl">9.7</span>, <span class="fl">8.9</span>, <span class="fl">11.7</span>, <span class="fl">12.6</span>,</span>
+<span id="cb56-2"><a href="" aria-label="2"></a>            <span class="fl">5.6</span>, <span class="fl">10.8</span>, <span class="fl">7.1</span>, <span class="fl">9.3</span>)</span>
+<span id="cb56-3"><a href="" aria-label="3"></a>south <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">8.1</span>, <span class="fl">8.1</span>, <span class="fl">7.4</span>, <span class="dv">7</span>, <span class="fl">7.8</span>, <span class="fl">6.4</span>, <span class="fl">7.8</span>, <span class="dv">6</span>, <span class="fl">7.8</span>, <span class="fl">8.3</span>,</span>
+<span id="cb56-4"><a href="" aria-label="4"></a>            <span class="fl">7.3</span>, <span class="fl">6.2</span>, <span class="dv">7</span>, <span class="fl">6.9</span>, <span class="fl">5.2</span>, <span class="dv">7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="" aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Output 1</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">var.test</span>(north, south)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="" aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Output 1</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">var.test</span>(north, south)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Output 1</code></pre>
 </div>
@@ -2099,7 +2011,7 @@ sample estimates:
 ratio of variances 
           8.076196 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="" aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Output 2</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">t.test</span>(north, south, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="" aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Output 2</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">t.test</span>(north, south, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Output 2</code></pre>
 </div>
@@ -2116,7 +2028,7 @@ sample estimates:
 mean of x mean of y 
  8.828571  7.143750 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="" aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Output 3</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">t.test</span>(north, south, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="" aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Output 3</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">t.test</span>(north, south, <span class="at">var.equal =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Output 3</code></pre>
 </div>

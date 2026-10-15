@@ -101,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="summary_files/libs/revealjs/dist/theme/quarto-824e372990ae5d288e1d466f01273102.css">
+  <link rel="stylesheet" href="summary_files/libs/revealjs/dist/theme/quarto-3b57af344655fc6ade99625c29241338.css">
   <link href="summary_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="summary_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="summary_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -305,7 +305,7 @@ Figure&nbsp;1: Choosing a method. Numbers in brackets are the sections.
 <td style="text-align: left;">Two means, Welch</td>
 <td style="text-align: left;">–</td>
 <td style="text-align: left;"><span class="math inline">\(t\)</span></td>
-<td style="text-align: left;"><code>t.test(x1, x2)</code></td>
+<td style="text-align: left;"><code>t.test(x1, x2, var.equal = FALSE)</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ANOVA (CRD)</td>
@@ -340,97 +340,25 @@ Figure&nbsp;1: Choosing a method. Numbers in brackets are the sections.
 <li>A survey compares the proportion of men and of women who own a business.</li>
 </ol>
 </section>
-<section class="slide level2 deck scrollable">
-<h2>Solution: Which Method? Practice</h2>
-<ol type="a">
-<li><p>One proportion, <span class="math inline">\(z\)</span> test for <span class="math inline">\(p\)</span> (2.3), <span class="math inline">\(H_1: p &gt; 0.35\)</span>.</p></li>
-<li><p>Two independent means: <span class="math inline">\(F\)</span> test for the variances first, then pooled or Welch <span class="math inline">\(t\)</span> (3.4, 3.5).</p></li>
-<li><p>Paired means: paired <span class="math inline">\(t\)</span> test on the differences (3.3).</p></li>
-<li><p>One variance: chi-square test, <span class="math inline">\(H_1: \sigma^2 &gt; 1.44\)</span> (2.4).</p></li>
-<li><p>Four means with blocks (districts): RCBD ANOVA (4.3), then Tukey if <span class="math inline">\(H_0\)</span> is rejected.</p></li>
-<li><p>Two proportions: <span class="math inline">\(z\)</span> test for <span class="math inline">\(p_1 - p_2\)</span> (3.1).</p></li>
-</ol>
-</section>
 <section id="mixed-problems" class="slide level2 unnumbered">
 <h2>Mixed Problems</h2>
 <p>Use <span class="math inline">\(\alpha\)</span> = 0.05 and the five steps.</p>
-<p><strong>M1.</strong> In a survey of 500 workers, 210 have a second job. Test whether more than 40% of workers have a second job. Use the critical region.</p>
 </section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
+<section id="m1" class="slide level2 unnumbered">
+<h2>M1</h2>
+<p>In a survey of 500 workers, 210 have a second job. Test whether more than 40% of workers have a second job. Use the critical region.</p>
 </section>
-<section class="slide level2 deck">
-<h2>Solution: M1</h2>
-<p>One proportion (2.3). <span class="math inline">\(\hat{p} = 210/500 = 0.42\)</span>.</p>
-<p><strong>Step 1.</strong> <span class="math inline">\(H_0: p = 0.40 \quad H_1: p &gt; 0.40\)</span></p>
-<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p><strong>Step 3.</strong> <span class="math inline">\(\sqrt{0.40(0.60)/500} = 0.0219\)</span>; <span class="math inline">\(z_{\text{cal}} = (0.42 - 0.40)/0.0219 = 0.913\)</span></p>
-<p><strong>Step 4.</strong> Critical region: <span class="math inline">\(z_{\text{cal}} &gt; 1.645\)</span>.</p>
-<p><strong>Step 5.</strong> <span class="math inline">\(z_{\text{cal}} = 0.913\)</span> does not fall in the critical region (<span class="math inline">\(0.913 &lt; 1.645\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the proportion of workers with a second job is equal to 0.40 at the 0.05 level of significance.</p>
-<p><strong>M2.</strong> The monthly profit (thousand baht) of 9 cafés in the old city has <span class="math inline">\(\bar{x}\)</span> = 52.4, <span class="math inline">\(s\)</span> = 6.1; that of 13 cafés near the university has <span class="math inline">\(\bar{x}\)</span> = 47.8, <span class="math inline">\(s\)</span> = 5.4. (a) Use the <span class="math inline">\(F\)</span> test with the critical region to check the variances. (b) Test whether the mean profits are different, using the critical region.</p>
+<section id="m2" class="slide level2 unnumbered">
+<h2>M2</h2>
+<p>The monthly profit (thousand baht) of 9 cafés in the old city has <span class="math inline">\(\bar{x}\)</span> = 52.4, <span class="math inline">\(s\)</span> = 6.1; that of 13 cafés near the university has <span class="math inline">\(\bar{x}\)</span> = 47.8, <span class="math inline">\(s\)</span> = 5.4. (a) Use the <span class="math inline">\(F\)</span> test with the critical region to check the variances. (b) Test whether the mean profits are different, using the critical region.</p>
 </section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
+<section id="m3" class="slide level2 unnumbered">
+<h2>M3</h2>
+<p>A central bank wants the standard deviation of the monthly inflation rate to be less than 1 percentage point. Over 15 months, <span class="math inline">\(s\)</span> = 0.8. Assume normality and test whether the target is met, using the critical region.</p>
 </section>
-<section class="slide level2 deck">
-<h2>Solution: M2</h2>
-<p><strong>(a)</strong> <span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> vs <span class="math inline">\(H_1: \sigma_1^2 \ne \sigma_2^2\)</span>. <span class="math inline">\(F_{\text{cal}} = 37.21/29.16 = 1.276\)</span>, df = (8, 12). Critical region: <span class="math inline">\(F_{\text{cal}} &lt; 1/F_{0.975,\,12,\,8} = 0.2381\)</span> or <span class="math inline">\(F_{\text{cal}} &gt; F_{0.975,\,8,\,12} = 3.51\)</span>. <span class="math inline">\(F_{\text{cal}}\)</span> does not fall in the critical region, so we accept <span class="math inline">\(H_0\)</span>: the variances are equal. Use the pooled <span class="math inline">\(t\)</span> test.</p>
-<p><strong>(b)</strong></p>
-<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_1 = \mu_2 \quad H_1: \mu_1 \ne \mu_2\)</span></p>
-<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p><strong>Step 3.</strong> <span class="math inline">\(s_p^2 = [8(37.21) + 12(29.16)]/20 = 32.38\)</span>; SE <span class="math inline">\(= \sqrt{32.38(1/9 + 1/13)} = 2.4675\)</span>; <span class="math inline">\(t_{\text{cal}} = (52.4 - 47.8)/2.4675 = 1.864\)</span>, df = 20</p>
-<p><strong>Step 4.</strong> Critical region: <span class="math inline">\(t_{\text{cal}} &lt; -2.086\)</span> or <span class="math inline">\(t_{\text{cal}} &gt; 2.086\)</span>.</p>
-<p><strong>Step 5.</strong> <span class="math inline">\(t_{\text{cal}} = 1.864\)</span> does not fall in the critical region (<span class="math inline">\(-2.086 &lt; 1.864 &lt; 2.086\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the mean monthly profits of cafés in the two areas are equal at the 0.05 level of significance.</p>
-<p><strong>M3.</strong> A central bank wants the standard deviation of the monthly inflation rate to be less than 1 percentage point. Over 15 months, <span class="math inline">\(s\)</span> = 0.8. Assume normality and test whether the target is met, using the critical region.</p>
-</section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: M3</h2>
-<p>One variance (2.4).</p>
-<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \sigma^2 = 1 \quad H_1: \sigma^2 &lt; 1\)</span></p>
-<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p><strong>Step 3.</strong> <span class="math inline">\(\chi^2_{\text{cal}} = 14(0.64)/1 = 8.960\)</span>, df = 14</p>
-<p><strong>Step 4.</strong> <span class="math inline">\(\chi^2_{0.05,\,14} = 6.57\)</span>. Critical region: <span class="math inline">\(\chi^2_{\text{cal}} &lt; 6.57\)</span>.</p>
-<p><strong>Step 5.</strong> <span class="math inline">\(\chi^2_{\text{cal}} = 8.960\)</span> does not fall in the critical region (<span class="math inline">\(8.960 &gt; 6.57\)</span>), so we accept <span class="math inline">\(H_0\)</span>. That is, the standard deviation of monthly inflation is equal to 1 percentage point at the 0.05 level of significance; the data do not show that the target is met.</p>
-<p><strong>M4.</strong> Eight households installed solar panels. Their monthly electricity bills (baht) before and after installation were recorded. Did the mean bill decrease?</p>
+<section id="m4" class="slide level2 unnumbered">
+<h2>M4</h2>
+<p>Eight households installed solar panels. Their monthly electricity bills (baht) before and after installation were recorded. Did the mean bill decrease?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-label="1"></a>bill_before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2280</span>, <span class="dv">1610</span>, <span class="dv">2360</span>, <span class="dv">2940</span>, <span class="dv">3050</span>, <span class="dv">3070</span>, <span class="dv">1800</span>, <span class="dv">2570</span>)</span>
 <span id="cb1-2"><a href="" aria-label="2"></a>bill_after <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1590</span>, <span class="dv">1110</span>, <span class="dv">2190</span>, <span class="dv">2440</span>, <span class="dv">2560</span>, <span class="dv">3160</span>, <span class="dv">1450</span>, <span class="dv">2160</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -452,30 +380,9 @@ mean difference
 </div>
 </div>
 </section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: M4</h2>
-<p>Paired means (3.3), <span class="math inline">\(d\)</span> = after <span class="math inline">\(-\)</span> before.</p>
-<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_d = 0 \quad H_1: \mu_d &lt; 0\)</span></p>
-<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p><strong>Step 3.</strong> <span class="math inline">\(t_{\text{cal}} = -4.446\)</span>, df = 7</p>
-<p><strong>Step 4.</strong> p-value = 0.0015</p>
-<p><strong>Step 5.</strong> p-value = 0.0015 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean monthly electricity bill decreased after installing solar panels at the 0.05 level of significance.</p>
-<p><strong>M5.</strong> Twenty stores are randomly assigned to four advertising channels (TV, Online, Radio, Print), five stores each, and weekly sales are recorded. (a) Test whether mean sales differ among the channels. (b) If they do, which channels differ?</p>
+<section id="m5" class="slide level2 unnumbered">
+<h2>M5</h2>
+<p>Twenty stores are randomly assigned to four advertising channels (TV, Online, Radio, Print), five stores each, and weekly sales are recorded. (a) Test whether mean sales differ among the channels. (b) If they do, which channels differ?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-label="1"></a>channel <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"TV"</span>, <span class="st">"Online"</span>, <span class="st">"Radio"</span>, <span class="st">"Print"</span>), <span class="at">each =</span> <span class="dv">5</span>),</span>
 <span id="cb4-2"><a href="" aria-label="2"></a>                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"TV"</span>, <span class="st">"Online"</span>, <span class="st">"Radio"</span>, <span class="st">"Print"</span>))</span>
@@ -510,46 +417,9 @@ Print-Radio    0.38  -5.854923  6.614923 0.9980348</code></pre>
 </div>
 </div>
 </section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: M5</h2>
-<p><strong>(a)</strong> One-way ANOVA, CRD (4.1).</p>
-<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_{TV} = \mu_{O} = \mu_{R} = \mu_{P} \quad H_1:\)</span> at least one mean is different</p>
-<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p><strong>Step 3.</strong> <span class="math inline">\(F_{\text{cal}} = 13.082\)</span>, df = (3, 16)</p>
-<p><strong>Step 4.</strong> p-value = 0.0001</p>
-<p><strong>Step 5.</strong> p-value = 0.0001 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, mean weekly sales are not all equal across the four channels at the 0.05 level of significance.</p>
-<p><strong>(b)</strong> Pairs with p adj &lt; 0.05: Radio <span class="math inline">\(-\)</span> TV, Print <span class="math inline">\(-\)</span> TV, Radio <span class="math inline">\(-\)</span> Online, Print <span class="math inline">\(-\)</span> Online. TV and Online have equal mean sales, Radio and Print have equal mean sales, and both TV and Online have higher mean sales than both Radio and Print.</p>
-<p><strong>M6.</strong> The mean household size in a district is estimated from 20 households: <span class="math inline">\(\bar{x}\)</span> = 3.42, <span class="math inline">\(s\)</span> = 0.58. Construct a 95% confidence interval for the mean household size.</p>
-</section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: M6</h2>
-<p>One mean, <span class="math inline">\(\sigma\)</span> unknown (2.2). <span class="math inline">\(t_{0.975,\,19} = 2.093\)</span>, <span class="math inline">\(s/\sqrt{n} = 0.1297\)</span>; <span class="math inline">\(3.42 \pm 2.093(0.1297) = 3.42 \pm 0.2715\)</span>. We are 95% confident that the mean household size is between 3.15 and 3.69 persons.</p>
+<section id="m6" class="slide level2 unnumbered">
+<h2>M6</h2>
+<p>The mean household size in a district is estimated from 20 households: <span class="math inline">\(\bar{x}\)</span> = 3.42, <span class="math inline">\(s\)</span> = 0.58. Construct a 95% confidence interval for the mean household size.</p>
 </section>
 <section id="writing-a-full-conclusion" class="slide level2 unnumbered scrollable">
 <h2>Writing a Full Conclusion</h2>
@@ -569,29 +439,6 @@ Print-Radio    0.38  -5.854923  6.614923 0.9980348</code></pre>
 <li><span class="math inline">\(H_0: \mu = 15000\)</span>, <span class="math inline">\(H_1: \mu \ne 15000\)</span> for the mean monthly rent (baht) in a district; <span class="math inline">\(t_{\text{cal}} = -2.514\)</span>, critical region <span class="math inline">\(|t_{\text{cal}}| &gt; 2.064\)</span>, <span class="math inline">\(\bar{x}\)</span> = 13,850.</li>
 <li><span class="math inline">\(H_0: p_1 = p_2\)</span>, <span class="math inline">\(H_1: p_1 &gt; p_2\)</span> for the proportions of urban (1) and rural (2) households using mobile banking; p-value = 0.0832.</li>
 <li>One-way ANOVA comparing mean loan sizes at three types of lender; p-value = 0.0007.</li>
-</ol>
-</section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
-</section>
-<section class="slide level2 deck scrollable">
-<h2>Solution: Writing a Full Conclusion</h2>
-<ol type="a">
-<li><p><span class="math inline">\(t_{\text{cal}} = -2.514\)</span> falls in the critical region (<span class="math inline">\(-2.514 &lt; -2.064\)</span>), so we reject <span class="math inline">\(H_0\)</span>. That is, the mean monthly rent in the district is different from 15,000 baht at the 0.05 level of significance; since <span class="math inline">\(\bar{x}\)</span> = 13,850, it is lower than 15,000 baht.</p></li>
-<li><p>p-value = 0.0832 <span class="math inline">\(\ge\)</span> <span class="math inline">\(\alpha\)</span> = 0.05, so we accept <span class="math inline">\(H_0\)</span>. That is, the proportions of urban and rural households using mobile banking are equal at the 0.05 level of significance.</p></li>
-<li><p>p-value = 0.0007 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean loan sizes are not all equal across the three types of lender at the 0.05 level of significance. (Use Tukey’s method to find which types differ.)</p></li>
 </ol>
 
 </section>

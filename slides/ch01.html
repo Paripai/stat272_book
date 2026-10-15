@@ -35,7 +35,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="ch01_files/libs/revealjs/dist/theme/quarto-824e372990ae5d288e1d466f01273102.css">
+  <link rel="stylesheet" href="ch01_files/libs/revealjs/dist/theme/quarto-3b57af344655fc6ade99625c29241338.css">
   <link href="ch01_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="ch01_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="ch01_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -263,16 +263,6 @@ Figure&nbsp;1: Household income in a population (top left) and the sampling dist
 <li>Standard error: <span class="math inline">\(\displaystyle \sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}\)</span></li>
 <li>Shape: approximately normal when <span class="math inline">\(np \ge 5\)</span> and <span class="math inline">\(n(1-p) \ge 5\)</span>.</li>
 </ul>
-<div class="callout callout-tip no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Larger samples, smaller error</strong></p>
-</div>
-<div class="callout-content">
-<p>Because <span class="math inline">\(\sqrt{n}\)</span> is in the denominator, a sample four times as large halves the standard error.</p>
-</div>
-</div>
-</div>
 </section>
 <section id="example-1.1-daily-wage" class="slide level2 scrollable">
 <h2>Example 1.1: daily wage</h2>
@@ -294,7 +284,7 @@ Figure&nbsp;1: Household income in a population (top left) and the sampling dist
 \]</span></p></li>
 <li><p><span class="math display">\[
 \sigma_{\bar{x}} = \frac{60}{\sqrt{144}} = 5 \text{ baht.}
-\]</span> A sample four times as large halves the standard error.</p></li>
+\]</span></p></li>
 </ol>
 </div>
 </div>
@@ -328,24 +318,6 @@ Figure&nbsp;1: Household income in a population (top left) and the sampling dist
 </div>
 </div>
 </div>
-</section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
-</section>
-<section class="slide level2 deck scrollable">
-<h2>Solution: Your Turn 1.1</h2>
-<ol type="a">
-<li><p><span class="math inline">\(\sigma_{\bar{x}} = 900 / \sqrt{81} = 100\)</span> baht.</p></li>
-<li><p><span class="math inline">\(\sigma_{\bar{x}} = 900 / \sqrt{324} = 50\)</span> baht.</p></li>
-</ol>
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -356,21 +328,6 @@ Figure&nbsp;1: Household income in a population (top left) and the sampling dist
 </div>
 </div>
 </div>
-</section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: Your Turn 1.2</h2>
-<p><span class="math inline">\(np = 240\)</span> and <span class="math inline">\(n(1-p) = 360\)</span> are both at least 5, so <span class="math inline">\(\hat{p}\)</span> is approximately normal. <span class="math inline">\(\sigma_{\hat{p}} = \sqrt{0.40(0.60)/600} = 0.02\)</span>.</p>
 </section>
 <section id="the-idea-of-a-confidence-interval" class="slide level2">
 <h2>The Idea of a Confidence Interval</h2>
@@ -552,25 +509,6 @@ Figure&nbsp;3: Critical regions for a z test at alpha = 0.05
 </div>
 </div>
 </section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
-</section>
-<section class="slide level2 deck scrollable">
-<h2>Solution: Your Turn 1.3</h2>
-<ol type="a">
-<li><span class="math inline">\(H_0: \mu = 200000 \quad H_1: \mu &gt; 200000\)</span> (right-sided)</li>
-<li><span class="math inline">\(H_0: p = 0.50 \quad H_1: p \ne 0.50\)</span> (two-sided)</li>
-<li><span class="math inline">\(H_0: \mu = 14 \quad H_1: \mu &lt; 14\)</span> (left-sided)</li>
-</ol>
-</section>
 <section id="type-i-and-type-ii-errors" class="slide level2">
 <h2>Type I and Type II Errors</h2>
 <p>The decision is based on a sample, so it can be wrong.</p>
@@ -622,12 +560,12 @@ Figure&nbsp;3: Critical regions for a z test at alpha = 0.05
 <div class="callout callout-important no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Two steps for every critical value</strong></p>
+<p><strong>Finding a critical value</strong></p>
 </div>
 <div class="callout-content">
 <ol type="1">
-<li>Draw the curve and <strong>shade the area to the left</strong> of the value you need.</li>
-<li>Read the table at that left-tail area.</li>
+<li>Draw the curve and <strong>shade the critical region</strong> (area <span class="math inline">\(\alpha\)</span>, split into two tails of <span class="math inline">\(\alpha/2\)</span> for a two-sided test).</li>
+<li>For each critical value, work out the <strong>area to its left</strong>, and read the table at that area.</li>
 </ol>
 </div>
 </div>
@@ -729,7 +667,7 @@ Table&nbsp;1: Common critical values of z (bottom row of Table 4)
 <p><strong>Your Turn 1.4</strong></p>
 </div>
 <div class="callout-content">
-<p>For each test, shade the area to the left on the curve first, then find the critical value(s) and write the critical region.</p>
+<p>For each test, shade the critical region on the curve, then find the critical value(s) and write the critical region. Remember that the table gives the area to the <strong>left</strong> of each critical value.</p>
 <ol type="a">
 <li><span class="math inline">\(H_1: \mu \ne \mu_0\)</span>, <span class="math inline">\(\alpha\)</span> = 0.01</li>
 <li><span class="math inline">\(H_1: \mu &gt; \mu_0\)</span>, <span class="math inline">\(\alpha\)</span> = 0.01</li>
@@ -781,29 +719,10 @@ Table&nbsp;1: Common critical values of z (bottom row of Table 4)
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-yt-1-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Shade the area to the left before reading Table 4
+Figure&nbsp;4: Shade the critical region
 </figcaption>
 </figure>
 </div>
-</section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
-</section>
-<section class="slide level2 deck scrollable">
-<h2>Solution: Your Turn 1.4</h2>
-<ol type="a">
-<li><p>Areas 0.005 and 0.995: <span class="math inline">\(z_{0.995} = 2.576\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &lt; -2.576\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; 2.576\)</span>.</p></li>
-<li><p>Area 0.99: <span class="math inline">\(z_{0.99} = 2.326\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &gt; 2.326\)</span>.</p></li>
-<li><p>Area 0.10: <span class="math inline">\(z_{0.10} = -z_{0.90} = -1.282\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &lt; -1.282\)</span>.</p></li>
-</ol>
 </section>
 <section id="formula-summary" class="slide level2 unnumbered">
 <h2>Formula Summary</h2>

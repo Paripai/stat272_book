@@ -101,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="ch04_files/libs/revealjs/dist/theme/quarto-824e372990ae5d288e1d466f01273102.css">
+  <link rel="stylesheet" href="ch04_files/libs/revealjs/dist/theme/quarto-3b57af344655fc6ade99625c29241338.css">
   <link href="ch04_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="ch04_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="ch04_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -330,6 +330,7 @@ Figure&nbsp;1: Weekly sales (hundred units) of 15 stores under three pricing str
 </tbody>
 </table>
 <p><strong>Critical region:</strong> <span class="math inline">\(F_{\text{cal}} &gt; F_{1-\alpha,\,k-1,\,N-k}\)</span>. The ANOVA <span class="math inline">\(F\)</span> test is always <strong>right-sided</strong>: only a large between-treatment variation is evidence against <span class="math inline">\(H_0\)</span>.</p>
+<p><strong>Decision:</strong> in this chapter we decide with the p-value: reject <span class="math inline">\(H_0\)</span> if p-value <span class="math inline">\(&lt; \alpha\)</span>. The p-value is printed by R in the column <code>Pr(&gt;F)</code>.</p>
 <p><strong>In R:</strong> <code>summary(aov(y ~ trt))</code>. The row named after the treatment is the treatment row and <code>Residuals</code> is the error row.</p>
 </section>
 <section id="example" class="slide level2">
@@ -432,7 +433,7 @@ Table&nbsp;1: Weekly sales (hundred units) under three pricing strategies
 <p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: \mu_R = \mu_D = \mu_B\)</span> <span class="math inline">\(\quad H_1:\)</span> at least one mean is different</p>
 <p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
 <p><strong>Step 3: Test statistic.</strong> <span class="math inline">\(F_{\text{cal}} = \dfrac{68.4667}{4.8333} = 14.166\)</span>, df = (2, 12)</p>
-<p><strong>Step 4: p-value.</strong> From the R output below, p-value = 0.0007. (With the table: <span class="math inline">\(F_{0.95,\,2,\,12} = 3.89\)</span>, critical region <span class="math inline">\(F_{\text{cal}} &gt; 3.89\)</span>.)</p>
+<p><strong>Step 4: p-value.</strong> From the R output below, p-value = 0.0007.</p>
 <p><strong>Step 5: Decision and interpretation.</strong> p-value = 0.0007 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean weekly sales are not all equal across the three pricing strategies at the 0.05 level of significance. Section 4.2 shows how to find which strategies differ.</p>
 </div>
 </div>
@@ -488,7 +489,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </table>
 <p>R does not print the Total row; add the other two rows to get it (df = 14, SS = 194.9333).</p>
 </section>
-<section id="your-turn" class="slide level2">
+<section id="your-turn" class="slide level2 scrollable">
 <h2>Your Turn</h2>
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
@@ -541,7 +542,11 @@ Table&nbsp;2
 </figure>
 </div>
 </div>
-<p><span class="math inline">\(\sum y^2\)</span> = 2,648. (a) Complete the ANOVA table by hand. (b) At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the mean saving rate differs among the regions, and check your table against the R output.</p>
+<p><span class="math inline">\(\sum y^2\)</span> = 2,648. Some values in the R output below are hidden (<code>____</code>).</p>
+<ol type="a">
+<li>Complete the ANOVA table by hand.</li>
+<li>At <span class="math inline">\(\alpha\)</span> = 0.05, test whether the mean saving rate differs among the regions.</li>
+</ol>
 </div>
 </div>
 </div>
@@ -553,10 +558,12 @@ Table&nbsp;2
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-label="1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(saving <span class="sc">~</span> region))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-region       3  72.75  24.250   11.64 0.000725 ***
-Residuals   12  25.00   2.083                     
+region       3  _____  ______   _____ 0.000725 ***
+Residuals   12  25.00   _____                     
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -565,61 +572,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section class="slide level2 deck">
 <h2>Your Turn: Work Space</h2>
 <div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
+<table class="ws-table"><tbody><tr><th>Source</th><th>df</th><th>SS</th><th>MS</th><th>F</th></tr>
+<tr><td>Region</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Error</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Total</td><td></td><td></td><td></td><td></td></tr>
+</tbody></table>
 </div>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: Your Turn 4.1.1</h2>
-<p><strong>(a)</strong> <span class="math inline">\(G\)</span> = 202, CF <span class="math inline">\(= 202^2/16 = 2550.25\)</span>, SST <span class="math inline">\(= 2648 - 2550.25 = 97.75\)</span>, SSTr <span class="math inline">\(= (52^2 + 38^2 + 62^2 + 50^2)/4 - 2550.25 = 72.75\)</span>, SSE <span class="math inline">\(= 25\)</span>.</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Source</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">SS</th>
-<th style="text-align: center;">MS</th>
-<th style="text-align: center;"><span class="math inline">\(F\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Region</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">72.75</td>
-<td style="text-align: center;">24.25</td>
-<td style="text-align: center;">11.640</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Error</td>
-<td style="text-align: center;">12</td>
-<td style="text-align: center;">25</td>
-<td style="text-align: center;">2.0833</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Total</td>
-<td style="text-align: center;">15</td>
-<td style="text-align: center;">97.75</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<p><strong>(b)</strong></p>
-<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_N = \mu_{NE} = \mu_C = \mu_S \quad H_1:\)</span> at least one mean is different</p>
-<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p><strong>Step 3.</strong> <span class="math inline">\(F_{\text{cal}} = 24.25/2.0833 = 11.640\)</span>, df = (3, 12)</p>
-<p><strong>Step 4.</strong> p-value = 0.0007 (table: <span class="math inline">\(F_{0.95,\,3,\,12} = 3.49\)</span>)</p>
-<p><strong>Step 5.</strong> p-value = 0.0007 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean saving rates are not all equal across the four regions at the 0.05 level of significance.</p>
 </section>
 <section id="formula-summary" class="slide level2">
 <h2>Formula Summary</h2>
@@ -649,9 +607,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Test statistic</td>
-<td style="text-align: left;"><span class="math inline">\(F_{\text{cal}} = \text{MSTr}/\text{MSE}\)</span>; reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(F_{\text{cal}} &gt; F_{1-\alpha,\,k-1,\,N-k}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(F_{\text{cal}} = \text{MSTr}/\text{MSE}\)</span>, df <span class="math inline">\(= (k-1,\ N-k)\)</span></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Decision</td>
+<td style="text-align: left;">reject <span class="math inline">\(H_0\)</span> if p-value <span class="math inline">\(&lt; \alpha\)</span></td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">R</td>
 <td style="text-align: left;"><code>summary(aov(y ~ trt))</code></td>
 </tr>
@@ -660,7 +622,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="exercises" class="slide level2">
 <h2>Exercises</h2>
-<p><strong>4.1.1</strong> Complete the ANOVA table for a CRD with 4 treatments and 6 units per treatment, and state the decision at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<p><strong>4.1.1</strong> Complete the ANOVA table for a CRD with 4 treatments and 6 units per treatment. The p-value is 0.0144. State the decision at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -868,26 +830,6 @@ South-Central     -3.0 -6.03012202  0.03012202 0.0526110</code></pre>
 </div>
 </div>
 </section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: Your Turn 4.2.1</h2>
-<p>Pairs with p adj &lt; 0.05 (CI does not contain 0): Northeast <span class="math inline">\(-\)</span> North (p adj = 0.0224); Central <span class="math inline">\(-\)</span> Northeast (p adj = 0.0004). All other pairs are not significantly different.</p>
-<p>That is, at the 0.05 level of significance the mean saving rate in the Northeast is lower than in the North and lower than in the Central region; the other pairs of regions have equal mean saving rates.</p>
-</section>
 <section id="formula-summary-1" class="slide level2">
 <h2>Formula Summary</h2>
 <table class="caption-top">
@@ -1036,7 +978,7 @@ Figure&nbsp;2: Weekly sales by strategy in each province. Provinces differ a lot
 </tr>
 </tbody>
 </table>
-<p><strong>Test for treatments:</strong> <span class="math inline">\(H_0: \mu_1 = \cdots = \mu_t\)</span>; reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(F_{\text{cal}} &gt; F_{1-\alpha,\,t-1,\,(t-1)(b-1)}\)</span>. The block row is printed by R, but our question is about the treatments.</p>
+<p><strong>Test for treatments:</strong> <span class="math inline">\(H_0: \mu_1 = \cdots = \mu_t\)</span>. The critical region is <span class="math inline">\(F_{\text{cal}} &gt; F_{1-\alpha,\,t-1,\,(t-1)(b-1)}\)</span> (always right-sided). In this chapter we decide with the p-value: reject <span class="math inline">\(H_0\)</span> if the p-value in the treatment row is less than <span class="math inline">\(\alpha\)</span>. The block row is printed by R, but our question is about the treatments.</p>
 <p><strong>In R:</strong> <code>summary(aov(y ~ trt + block))</code>, then <code>TukeyHSD(model, "trt")</code> to compare the treatments only.</p>
 </section>
 <section id="example-2" class="slide level2">
@@ -1168,7 +1110,7 @@ Table&nbsp;3: Weekly sales (hundred units): strategies (rows) in five provinces 
 <p><strong>Step 1: Hypotheses.</strong> <span class="math inline">\(H_0: \mu_R = \mu_D = \mu_B\)</span> <span class="math inline">\(\quad H_1:\)</span> at least one mean is different</p>
 <p><strong>Step 2: Level of significance.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
 <p><strong>Step 3: Test statistic.</strong> <span class="math inline">\(F_{\text{cal}} = 39.4667/1.9667 = 20.067\)</span>, df = (2, 8)</p>
-<p><strong>Step 4: p-value.</strong> From the R output below, p-value = 0.0008. (With the table: <span class="math inline">\(F_{0.95,\,2,\,8} = 4.46\)</span>.)</p>
+<p><strong>Step 4: p-value.</strong> From the R output below, p-value = 0.0008.</p>
 <p><strong>Step 5: Decision and interpretation.</strong> p-value = 0.0008 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean weekly sales are not all equal across the three pricing strategies at the 0.05 level of significance.</p>
 <p><strong>Which strategies differ?</strong> From <code>TukeyHSD(model, "strategy")</code> below: Discount <span class="math inline">\(-\)</span> Regular (p adj = 0.0006) and Bundle <span class="math inline">\(-\)</span> Discount (p adj = 0.0169) are significant; Bundle <span class="math inline">\(-\)</span> Regular (p adj = 0.0625) is not. At the 0.05 level of significance the Discount strategy has higher mean sales than both the Regular and the Bundle strategies, and the Regular and Bundle strategies have equal mean sales.</p>
 </div>
@@ -1336,31 +1278,6 @@ Home-Car      -0.25 -0.7788798  0.2788798 0.4288716</code></pre>
 </div>
 </div>
 </section>
-<section class="slide level2 deck">
-<h2>Your Turn: Work Space</h2>
-<div class="ws">
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-<div class="ws-line"></div>
-</div>
-</section>
-<section class="slide level2 deck">
-<h2>Solution: Your Turn 4.3.1</h2>
-<p><strong>(a)</strong></p>
-<p><strong>Step 1.</strong> <span class="math inline">\(H_0: \mu_P = \mu_C = \mu_H \quad H_1:\)</span> at least one mean is different</p>
-<p><strong>Step 2.</strong> <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p><strong>Step 3.</strong> <span class="math inline">\(F_{\text{cal}} = 23.507\)</span>, df = (2, 10)</p>
-<p><strong>Step 4.</strong> p-value = 0.0002</p>
-<p><strong>Step 5.</strong> p-value = 0.0002 &lt; <span class="math inline">\(\alpha\)</span> = 0.05, so we reject <span class="math inline">\(H_0\)</span>. That is, the mean interest rates are not all equal across the three loan products at the 0.05 level of significance.</p>
-<p><strong>(b)</strong> Car <span class="math inline">\(-\)</span> Personal (p adj = 0.0011) and Home <span class="math inline">\(-\)</span> Personal (p adj = 0.0002) are significant; Home <span class="math inline">\(-\)</span> Car (p adj = 0.4289) is not. At the 0.05 level of significance, personal loans have a higher mean interest rate than car loans and home loans, and car and home loans have equal mean rates.</p>
-</section>
 <section id="formula-summary-2" class="slide level2">
 <h2>Formula Summary</h2>
 <table class="caption-top">
@@ -1385,7 +1302,7 @@ Home-Car      -0.25 -0.7788798  0.2788798 0.4288716</code></pre>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Test for treatments</td>
-<td style="text-align: left;"><span class="math inline">\(F_{\text{cal}} = \text{MSTr}/\text{MSE}\)</span>, df <span class="math inline">\(= (t-1,\ (t-1)(b-1))\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(F_{\text{cal}} = \text{MSTr}/\text{MSE}\)</span>, df <span class="math inline">\(= (t-1,\ (t-1)(b-1))\)</span>; reject <span class="math inline">\(H_0\)</span> if p-value <span class="math inline">\(&lt; \alpha\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">R</td>
@@ -1401,7 +1318,7 @@ Home-Car      -0.25 -0.7788798  0.2788798 0.4288716</code></pre>
 <li>Twenty shops are randomly assigned to four store layouts, five shops each.</li>
 <li>Four store layouts are each tried once in each of five shopping malls, with the layout randomly assigned to shops within each mall.</li>
 </ol>
-<p><strong>4.3.2</strong> An RCBD has 4 treatments and 6 blocks, with SST = 120, SSTr = 36 and SSB = 54. Complete the ANOVA table and test the treatments at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<p><strong>4.3.2</strong> An RCBD has 4 treatments and 6 blocks, with SST = 120, SSTr = 36 and SSB = 54. Complete the ANOVA table. The p-value for treatments is 0.0068; test the treatments at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 </section>
 <section class="slide level2 deck">
 <h2>Quiz: Session 11</h2>

@@ -348,19 +348,6 @@ Figure&nbsp;1.1: Household income in a population (top left) and the sampling di
 <li>Standard error: <span class="math inline">\(\displaystyle \sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}\)</span></li>
 <li>Shape: approximately normal when <span class="math inline">\(np \ge 5\)</span> and <span class="math inline">\(n(1-p) \ge 5\)</span>.</li>
 </ul>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Larger samples, smaller error
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Because <span class="math inline">\(\sqrt{n}\)</span> is in the denominator, a sample four times as large halves the standard error.</p>
-</div>
-</div>
 </section>
 <section id="example-1.1-daily-wage" class="level3">
 <h3 class="anchored" data-anchor-id="example-1.1-daily-wage">Example 1.1: daily wage</h3>
@@ -369,6 +356,34 @@ Figure&nbsp;1.1: Household income in a population (top left) and the sampling di
 <li>Describe the sampling distribution of <span class="math inline">\(\bar{x}\)</span> for samples of <span class="math inline">\(n\)</span> = 36 workers.</li>
 <li>Find the standard error for samples of <span class="math inline">\(n\)</span> = 144 workers.</li>
 </ol>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Since <span class="math inline">\(n\)</span> = 36 <span class="math inline">\(\ge 30\)</span>, by the CLT <span class="math inline">\(\bar{x}\)</span> is approximately normal with <span class="math display">\[
+\mu_{\bar{x}} = 380 \text{ baht}, \qquad
+\sigma_{\bar{x}} = \frac{60}{\sqrt{36}} = 10 \text{ baht.}
+\]</span></p></li>
+<li><p><span class="math display">\[
+\sigma_{\bar{x}} = \frac{60}{\sqrt{144}} = 5 \text{ baht.}
+\]</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="example-1.2-household-debt" class="level3">
+<h3 class="anchored" data-anchor-id="example-1.2-household-debt">Example 1.2: household debt</h3>
+<p>In a region, 65% of households have outstanding debt. A survey samples <span class="math inline">\(n\)</span> = 400 households. Describe the sampling distribution of <span class="math inline">\(\hat{p}\)</span>.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -380,34 +395,6 @@ Figure&nbsp;1.1: Household income in a population (top left) and the sampling di
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<ol type="a">
-<li><p>Since <span class="math inline">\(n\)</span> = 36 <span class="math inline">\(\ge 30\)</span>, by the CLT <span class="math inline">\(\bar{x}\)</span> is approximately normal with <span class="math display">\[
-\mu_{\bar{x}} = 380 \text{ baht}, \qquad
-\sigma_{\bar{x}} = \frac{60}{\sqrt{36}} = 10 \text{ baht.}
-\]</span></p></li>
-<li><p><span class="math display">\[
-\sigma_{\bar{x}} = \frac{60}{\sqrt{144}} = 5 \text{ baht.}
-\]</span> A sample four times as large halves the standard error.</p></li>
-</ol>
-</div>
-</div>
-</div>
-</section>
-<section id="example-1.2-household-debt" class="level3">
-<h3 class="anchored" data-anchor-id="example-1.2-household-debt">Example 1.2: household debt</h3>
-<p>In a region, 65% of households have outstanding debt. A survey samples <span class="math inline">\(n\)</span> = 400 households. Describe the sampling distribution of <span class="math inline">\(\hat{p}\)</span>.</p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>Check the conditions: <span class="math inline">\(np = 260 \ge 5\)</span> and <span class="math inline">\(n(1-p) = 140 \ge 5\)</span>, so <span class="math inline">\(\hat{p}\)</span> is approximately normal with mean <span class="math inline">\(\mu_{\hat{p}} = 0.65\)</span> and <span class="math display">\[
 \sigma_{\hat{p}} = \sqrt{\frac{0.65(1-0.65)}{400}} = 0.0238
@@ -432,7 +419,7 @@ Figure&nbsp;1.1: Household income in a population (top left) and the sampling di
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -441,7 +428,7 @@ Figure&nbsp;1.1: Household income in a population (top left) and the sampling di
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><span class="math inline">\(\sigma_{\bar{x}} = 900 / \sqrt{81} = 100\)</span> baht.</p></li>
@@ -464,7 +451,7 @@ Figure&nbsp;1.1: Household income in a population (top left) and the sampling di
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -473,7 +460,7 @@ Figure&nbsp;1.1: Household income in a population (top left) and the sampling di
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(np = 240\)</span> and <span class="math inline">\(n(1-p) = 360\)</span> are both at least 5, so <span class="math inline">\(\hat{p}\)</span> is approximately normal. <span class="math inline">\(\sigma_{\hat{p}} = \sqrt{0.40(0.60)/600} = 0.02\)</span>.</p>
 </div>
@@ -634,7 +621,7 @@ Figure&nbsp;1.3: Critical regions for a z test at alpha = 0.05
 <li>A bank claims that the mean monthly loan payment of its customers is less than 8,000 baht.</li>
 </ol>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -643,7 +630,7 @@ Figure&nbsp;1.3: Critical regions for a z test at alpha = 0.05
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math inline">\(H_0: \mu = 210 \quad H_1: \mu \ne 210\)</span> (two-sided: “changed” has no direction)</li>
@@ -672,7 +659,7 @@ Figure&nbsp;1.3: Critical regions for a z test at alpha = 0.05
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -681,7 +668,7 @@ Figure&nbsp;1.3: Critical regions for a z test at alpha = 0.05
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math inline">\(H_0: \mu = 200000 \quad H_1: \mu &gt; 200000\)</span> (right-sided)</li>
@@ -750,13 +737,13 @@ Figure&nbsp;1.3: Critical regions for a z test at alpha = 0.05
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Two steps for every critical value
+<span class="screen-reader-only">Important</span>Finding a critical value
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>Draw the curve and <strong>shade the area to the left</strong> of the value you need.</li>
-<li>Read the table at that left-tail area.</li>
+<li>Draw the curve and <strong>shade the critical region</strong> (area <span class="math inline">\(\alpha\)</span>, split into two tails of <span class="math inline">\(\alpha/2\)</span> for a two-sided test).</li>
+<li>For each critical value, work out the <strong>area to its left</strong>, and read the table at that area.</li>
 </ol>
 </div>
 </div>
@@ -807,7 +794,7 @@ Table&nbsp;1.1: Common critical values of z (bottom row of Table 4)
 <p>Table 4 has only positive <span class="math inline">\(z\)</span>. Because the normal curve is symmetric, <span class="math inline">\(z_{0.05} = -z_{0.95}\)</span> and <span class="math inline">\(z_{0.025} = -z_{0.975}\)</span>.</p>
 <p><strong>Example 1.4.</strong> Find the critical value(s) and critical region for a <span class="math inline">\(z\)</span> test with <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -816,7 +803,7 @@ Table&nbsp;1.1: Common critical values of z (bottom row of Table 4)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse show">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <table class="caption-top table">
 <colgroup>
@@ -867,7 +854,7 @@ Table&nbsp;1.1: Common critical values of z (bottom row of Table 4)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>For each test, shade the area to the left on the curve first, then find the critical value(s) and write the critical region.</p>
+<p>For each test, shade the critical region on the curve, then find the critical value(s) and write the critical region. Remember that the table gives the area to the <strong>left</strong> of each critical value.</p>
 <ol type="a">
 <li><span class="math inline">\(H_1: \mu \ne \mu_0\)</span>, <span class="math inline">\(\alpha\)</span> = 0.01</li>
 <li><span class="math inline">\(H_1: \mu &gt; \mu_0\)</span>, <span class="math inline">\(\alpha\)</span> = 0.01</li>
@@ -918,12 +905,12 @@ Table&nbsp;1.1: Common critical values of z (bottom row of Table 4)
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-yt-1-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.4: Shade the area to the left before reading Table 4
+Figure&nbsp;1.4: Shade the critical region
 </figcaption>
 </figure>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -932,7 +919,7 @@ Figure&nbsp;1.4: Shade the area to the left before reading Table 4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Areas 0.005 and 0.995: <span class="math inline">\(z_{0.995} = 2.576\)</span>. Critical region: <span class="math inline">\(z_{\text{cal}} &lt; -2.576\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; 2.576\)</span>.</p></li>
@@ -1010,7 +997,7 @@ Figure&nbsp;1.4: Shade the area to the left before reading Table 4
 <li>How many markets are needed for the standard error to be 0.25 baht?</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1019,7 +1006,7 @@ Figure&nbsp;1.4: Shade the area to the left before reading Table 4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>Since <span class="math inline">\(n\)</span> = 64 <span class="math inline">\(\ge 30\)</span>, <span class="math inline">\(\bar{x}\)</span> is approximately normal with mean 45 baht and <span class="math inline">\(\sigma_{\bar{x}} = 4/\sqrt{64} = 0.5\)</span> baht.</p></li>
@@ -1035,7 +1022,7 @@ Figure&nbsp;1.4: Shade the area to the left before reading Table 4
 <li>A firm tests whether a discount campaign reduced the mean time to sell a product below 20 days.</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1044,7 +1031,7 @@ Figure&nbsp;1.4: Shade the area to the left before reading Table 4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math inline">\(H_0: \mu = 3 \quad H_1: \mu &gt; 3\)</span></li>
@@ -1061,7 +1048,7 @@ Figure&nbsp;1.4: Shade the area to the left before reading Table 4
 <li><span class="math inline">\(H_1: p &gt; p_0\)</span>, <span class="math inline">\(\alpha\)</span> = 0.05</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1070,7 +1057,7 @@ Figure&nbsp;1.4: Shade the area to the left before reading Table 4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math inline">\(z_{0.95} = 1.645\)</span>: reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(z_{\text{cal}} &lt; -1.645\)</span> or <span class="math inline">\(z_{\text{cal}} &gt; 1.645\)</span>.</li>
@@ -1082,7 +1069,7 @@ Figure&nbsp;1.4: Shade the area to the left before reading Table 4
 </div>
 <p><strong>1.4</strong> A provincial office tests whether a job-training programme raised the mean monthly income of participants. <span class="math inline">\(H_0\)</span>: the programme has no effect on mean income; <span class="math inline">\(H_1\)</span>: the programme raises mean income. Describe a Type I error and a Type II error in this context, and give one consequence of each.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1091,7 +1078,7 @@ Figure&nbsp;1.4: Shade the area to the left before reading Table 4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Type I error: concluding that the programme raises income when it does not. Budget may continue to be spent on a programme that does not work. Type II error: concluding that the programme has no effect when it does raise income. A useful programme may be cut.</p>
 </div>
@@ -1099,7 +1086,7 @@ Figure&nbsp;1.4: Shade the area to the left before reading Table 4
 </div>
 <p><strong>1.5</strong> The unemployment rate in a province is 5%. Can the normal approximation be used for <span class="math inline">\(\hat{p}\)</span> when (a) <span class="math inline">\(n\)</span> = 80, (b) <span class="math inline">\(n\)</span> = 200? Explain.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1108,7 +1095,7 @@ Figure&nbsp;1.4: Shade the area to the left before reading Table 4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><span class="math inline">\(np = 80(0.05) = 4 &lt; 5\)</span>, so the normal approximation should not be used.</li>
@@ -1124,7 +1111,7 @@ Figure&nbsp;1.4: Shade the area to the left before reading Table 4
 <li>If we took many samples and built a 95% CI from each, about 95% of the intervals would contain the population mean.</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1133,7 +1120,7 @@ Figure&nbsp;1.4: Shade the area to the left before reading Table 4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li>and (c) are correct. (b) is wrong: the interval is about the population mean, not about individual households.</li>
