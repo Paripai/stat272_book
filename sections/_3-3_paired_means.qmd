@@ -177,7 +177,7 @@ knitr::kable(data.frame(Worker = train$worker, Before = train$before, After = tr
                         d = w_d), align = "cccc")
 ```
 
-(a) Calculate $t_{\text{cal}}$ by hand.
+(a) Calculate $t_{\text{cal}}$ by hand (it is hidden in the output).
 (b) Use the R output to test whether the training changed the mean daily wage at $\alpha$ = 0.05.
 :::
 
@@ -190,10 +190,19 @@ knitr::kable(data.frame(Worker = train$worker, Before = train$before, After = tr
 ```{r}
 #| label: r-yt-3-3
 #| echo: !expr show_code
+#| eval: false
 t.test(wage_after, wage_before, paired = TRUE)
 ```
 
-::: {.workspace lines="14"}
+```{r}
+#| label: r-yt-3-3-out
+mask_print(t.test(wage_after, wage_before, paired = TRUE), list(c("^t = ", 1)))
+```
+
+::: {.workspace lines="4"}
+:::
+
+::: {.workspace steps="full" method="pvalue"}
 :::
 
 ::: {.answer title="Your Turn 3.3.1"}

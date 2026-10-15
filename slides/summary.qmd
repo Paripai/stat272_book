@@ -1,5 +1,6 @@
 ---
 title: 'Summary: Choosing a Method'
+split-subsections: true
 subtitle: "Summary | 208272 Elementary Statistics for Social Sciences II"
 ---
 

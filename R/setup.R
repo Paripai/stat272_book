@@ -92,8 +92,8 @@ dens_range <- function(dist, df1 = NULL, df2 = NULL) {
   )
 }
 
-# Blank curve for table-reading practice: students shade the left-tail area
-# before reading the value. No labels or numbers on the x-axis.
+# Blank curve for practice: students shade the critical region, then read the
+# table at the area to the left of each critical value. No labels or numbers on the x-axis.
 blank_curve <- function(dist = c("z", "t", "chisq", "F"), df1 = NULL, df2 = NULL) {
   dist <- match.arg(dist)
   ggplot() +
@@ -200,4 +200,21 @@ pval_plot <- function(stat, side = c("two", "left", "right"), dist = c("t", "z")
     geom_vline(xintercept = marks, linetype = "dashed", linewidth = 0.4) +
     annotate("text", x = marks, y = 0, label = fmt(marks, 3), vjust = 1.5, size = 4) +
     coord_cartesian(clip = "off") + theme_void() + theme(plot.margin = margin(5, 5, 18, 5))
+}
+
+# Print R output with some numbers replaced by "____", for questions that ask
+# students to calculate those numbers by hand. The command is shown by a
+# separate chunk with eval: false.
+#   hide: list of c(row pattern, k), hiding the k-th number on the first line
+#         that matches the row pattern, e.g. list(c("^t = ", 1))
+mask_print <- function(x, hide) {
+  out <- capture.output(print(x))
+  for (h in hide) {
+    i <- grep(h[1], out, perl = TRUE)[1]
+    m <- gregexpr("_+|(?<![A-Za-z(])[0-9][0-9.e+-]*|-[0-9][0-9.e+-]*", out[i], perl = TRUE)[[1]]
+    k <- as.integer(h[2])
+    s <- m[k]; len <- attr(m, "match.length")[k]
+    substr(out[i], s, s + len - 1) <- strrep("_", len)
+  }
+  cat(out, sep = "\n")
 }

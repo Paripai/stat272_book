@@ -69,14 +69,13 @@ crit_plot("F", "two", df1 = 12, df2 = 15)
 ::: {.callout-note icon=false}
 ## Your Turn 3.4.1
 
-Shade the area to the left on each curve, then find
+Find
 (a) $F_{0.95,\,3,\,20}$, (b) $F_{0.975,\,8,\,10}$, (c) $F_{0.025,\,8,\,10}$.
 :::
 
 ```{r}
-#| label: fig-yt-3-4-1
+#| label: curves-3-4-1
 #| layout-ncol: 3
-#| fig-cap: "Shade the area to the left before reading Table 7"
 #| fig-subcap: ["", "", ""]
 #| fig-height: 1.8
 #| fig-width: 3.2
@@ -217,7 +216,7 @@ test whether Stock X is more volatile (has a larger variance) than Stock Y,
 using the critical region from Table 7.
 :::
 
-::: {.workspace lines="14"}
+::: {.workspace steps="names"}
 :::
 
 ::: {.answer title="Your Turn 3.4.2"}

@@ -77,14 +77,13 @@ crit_plot("chisq", "two", df1 = 23)
 ::: {.callout-note icon=false}
 ## Your Turn 2.4.1
 
-Shade the area to the left on each curve, then find
+Find
 (a) $\chi^2_{0.05,\,19}$, (b) $\chi^2_{0.995,\,10}$, (c) $\chi^2_{0.025,\,30}$.
 :::
 
 ```{r}
-#| label: fig-yt-2-4-1
+#| label: curves-2-4-1
 #| layout-ncol: 3
-#| fig-cap: "Shade the area to the left before reading Table 6"
 #| fig-subcap: ["", "", ""]
 #| fig-height: 1.8
 #| fig-width: 3.2

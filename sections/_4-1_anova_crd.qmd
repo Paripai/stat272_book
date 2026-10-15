@@ -93,13 +93,15 @@ treatment totals $T_i$ and grand total $G$:
 test is always **right-sided**: only a large between-treatment variation is
 evidence against $H_0$.
 
+**Decision:** in this chapter we decide with the p-value: reject $H_0$ if
+p-value $< \alpha$. The p-value is printed by R in the column `Pr(>F)`.
+
 **In R:** `summary(aov(y ~ trt))`. The row named after the treatment is the
 treatment row and `Residuals` is the error row.
 
 ```{r}
 #| label: ex-4-1
 A <- anova_hand(crd$sales, crd$strategy)
-Fc <- crit_F(.95, A$k - 1, A$N - A$k)
 oa <- summary(aov(sales ~ strategy, data = crd))[[1]]
 ```
 
@@ -151,7 +153,6 @@ $$
 **Step 3: Test statistic.** $F_{\text{cal}} = \dfrac{`r num(A$MSTr)`}{`r num(A$MSE)`} = `r fmt(A$F, 3)`$, df = (`r A$k - 1`, `r A$N - A$k`)
 
 **Step 4: p-value.** From the R output below, p-value = `r fmt(oa[1, "Pr(>F)"], 4)`.
-(With the table: $F_{0.95,\,`r A$k - 1`,\,`r A$N - A$k`} = `r Fc`$, critical region $F_{\text{cal}} > `r Fc`$.)
 
 **Step 5: Decision and interpretation.** p-value = `r fmt(oa[1, "Pr(>F)"], 4)` <
 $\alpha$ = 0.05, so we reject $H_0$. That is, the mean weekly sales are not all
@@ -186,7 +187,6 @@ R does not print the Total row; add the other two rows to get it
 ```{r}
 #| label: yt-4-1
 B <- anova_hand(sav$saving, sav$region)
-Bc <- crit_F(.95, B$k - 1, B$N - B$k)
 ob <- summary(aov(saving ~ region, data = sav))[[1]]
 ```
 
@@ -205,9 +205,10 @@ knitr::kable(data.frame(Region = levels(sav$region),
                         Total = as.vector(B$Ti), check.names = FALSE), row.names = FALSE)
 ```
 
-$\sum y^2$ = `r big(B$Syy, 0)`. (a) Complete the ANOVA table by hand.
-(b) At $\alpha$ = 0.05, test whether the mean saving rate differs among the
-regions, and check your table against the R output.
+$\sum y^2$ = `r big(B$Syy, 0)`. Some values in the R output below are hidden (`____`).
+
+(a) Complete the ANOVA table by hand.
+(b) At $\alpha$ = 0.05, test whether the mean saving rate differs among the regions.
 :::
 
 ```{r}
@@ -219,10 +220,18 @@ regions, and check your table against the R output.
 ```{r}
 #| label: r-yt-4-1
 #| echo: !expr show_code
+#| eval: false
 summary(aov(saving ~ region))
 ```
 
-::: {.workspace lines="16"}
+```{r}
+#| label: r-yt-4-1-out
+saving <- sav$saving; region <- sav$region
+mask_print(summary(aov(saving ~ region)),
+           list(c("^region", 2), c("^region", 3), c("^region", 4), c("^Residuals", 3)))
+```
+
+::: {.workspace table="anova" rows="Region,Error,Total" lines="8"}
 :::
 
 ::: {.answer title="Your Turn 4.1.1"}
@@ -245,7 +254,7 @@ SSE $= `r num(B$SSE)`$.
 
 **Step 3.** $F_{\text{cal}} = `r num(B$MSTr)`/`r num(B$MSE)` = `r fmt(B$F, 3)`$, df = (`r B$k - 1`, `r B$N - B$k`)
 
-**Step 4.** p-value = `r fmt(ob[1, "Pr(>F)"], 4)` (table: $F_{0.95,\,3,\,12} = `r Bc`$)
+**Step 4.** p-value = `r fmt(ob[1, "Pr(>F)"], 4)`
 
 **Step 5.** p-value = `r fmt(ob[1, "Pr(>F)"], 4)` < $\alpha$ = 0.05, so we reject
 $H_0$. That is, the mean saving rates are not all equal across the four regions
@@ -259,13 +268,15 @@ at the 0.05 level of significance.
 | Hypotheses | $H_0: \mu_1 = \cdots = \mu_k$; $H_1$: at least one $\mu_i$ different |
 | Sums of squares | $\text{CF} = G^2/N$; $\text{SST} = \sum y^2 - \text{CF}$; $\text{SSTr} = \sum T_i^2/n_i - \text{CF}$; $\text{SSE} = \text{SST} - \text{SSTr}$ |
 | df | treatments $k-1$; error $N-k$; total $N-1$ |
-| Test statistic | $F_{\text{cal}} = \text{MSTr}/\text{MSE}$; reject $H_0$ if $F_{\text{cal}} > F_{1-\alpha,\,k-1,\,N-k}$ |
+| Test statistic | $F_{\text{cal}} = \text{MSTr}/\text{MSE}$, df $= (k-1,\ N-k)$ |
+| Decision | reject $H_0$ if p-value $< \alpha$ |
 | R | `summary(aov(y ~ trt))` |
 
 ### Exercises
 
 **4.1.1** Complete the ANOVA table for a CRD with 4 treatments and 6 units per
-treatment, and state the decision at $\alpha$ = 0.05.
+treatment. The p-value is `r fmt(pf(4.5, 3, 20, lower.tail = FALSE), 4)`. State the
+decision at $\alpha$ = 0.05.
 
 | Source | df | SS | MS | $F$ |
 |:---|:---:|:---:|:---:|:---:|
@@ -275,9 +286,10 @@ treatment, and state the decision at $\alpha$ = 0.05.
 
 ::: {.answer title="Exercise 4.1.1"}
 (a) $k - 1 = 3$; (b) $N - k = 24 - 4 = 20$; (c) $54.0/3 = 18$; (d) $80.0/20 = 4$;
-(e) $F_{\text{cal}} = 18/4 = 4.500$. $F_{0.95,\,3,\,20} = `r crit_F(.95, 3, 20)`$;
-$4.500 > `r crit_F(.95, 3, 20)`$, so $F_{\text{cal}}$ falls in the critical region
-and we reject $H_0$: the treatment means are not all equal at the 0.05 level of significance.
+(e) $F_{\text{cal}} = 18/4 = 4.500$.
+p-value = `r fmt(pf(4.5, 3, 20, lower.tail = FALSE), 4)` < $\alpha$ = 0.05, so we
+reject $H_0$. That is, the treatment means are not all equal at the 0.05 level
+of significance.
 :::
 
 **4.1.2** Explain why a researcher comparing five investment funds should use

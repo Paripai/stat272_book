@@ -60,7 +60,7 @@ ggplot() +
 | Paired means | $t = \dfrac{\bar{d}}{s_d/\sqrt{n}}$ | $t$, $n-1$ | `t.test(x1, x2, paired = TRUE)` |
 | Two variances | $F = s_1^2/s_2^2$ | $F$, $(n_1-1, n_2-1)$ | `var.test(x1, x2)` |
 | Two means, pooled | $t = \dfrac{\bar{x}_1-\bar{x}_2}{\sqrt{s_p^2(1/n_1+1/n_2)}}$ | $t$, $n_1+n_2-2$ | `t.test(x1, x2, var.equal = TRUE)` |
-| Two means, Welch | -- | $t$ | `t.test(x1, x2)` |
+| Two means, Welch | -- | $t$ | `t.test(x1, x2, var.equal = FALSE)` |
 | ANOVA (CRD) | $F = \text{MSTr}/\text{MSE}$ | $F$, $(k-1, N-k)$ | `summary(aov(y ~ trt))` |
 | ANOVA (RCBD) | $F = \text{MSTr}/\text{MSE}$ | $F$, $(t-1, (t-1)(b-1))$ | `summary(aov(y ~ trt + block))` |
 | Tukey | -- | -- | `TukeyHSD(model)` |
@@ -127,7 +127,9 @@ m6$se <- round(m6$s / sqrt(m6$n), 4); m6$tc <- crit_t(.975, 19); m6$me <- m6$tc 
 
 Use $\alpha$ = 0.05 and the five steps.
 
-**M1.** In a survey of 500 workers, 210 have a second job. Test whether more
+### M1 {.unnumbered}
+
+In a survey of 500 workers, 210 have a second job. Test whether more
 than 40% of workers have a second job. Use the critical region.
 
 ::: {.workspace lines="12"}
@@ -151,7 +153,9 @@ accept $H_0$. That is, the proportion of workers with a second job is equal to
 0.40 at the 0.05 level of significance.
 :::
 
-**M2.** The monthly profit (thousand baht) of `r m2$n1` cafés in the old city has
+### M2 {.unnumbered}
+
+The monthly profit (thousand baht) of `r m2$n1` cafés in the old city has
 $\bar{x}$ = `r m2$x1`, $s$ = `r m2$s1`; that of `r m2$n2` cafés near the
 university has $\bar{x}$ = `r m2$x2`, $s$ = `r m2$s2`. (a) Use the $F$ test with the
 critical region to check the variances. (b) Test whether the mean profits are
@@ -185,7 +189,9 @@ That is, the mean monthly profits of cafés in the two areas are equal at the
 0.05 level of significance.
 :::
 
-**M3.** A central bank wants the standard deviation of the monthly inflation rate
+### M3 {.unnumbered}
+
+A central bank wants the standard deviation of the monthly inflation rate
 to be less than 1 percentage point. Over 15 months, $s$ = 0.8. Assume normality
 and test whether the target is met, using the critical region.
 
@@ -209,7 +215,9 @@ deviation of monthly inflation is equal to 1 percentage point at the 0.05 level
 of significance; the data do not show that the target is met.
 :::
 
-**M4.** Eight households installed solar panels. Their monthly electricity
+### M4 {.unnumbered}
+
+Eight households installed solar panels. Their monthly electricity
 bills (baht) before and after installation were recorded. Did the mean bill
 decrease?
 
@@ -244,7 +252,9 @@ That is, the mean monthly electricity bill decreased after installing solar
 panels at the 0.05 level of significance.
 :::
 
-**M5.** Twenty stores are randomly assigned to four advertising channels (TV,
+### M5 {.unnumbered}
+
+Twenty stores are randomly assigned to four advertising channels (TV,
 Online, Radio, Print), five stores each, and weekly sales are recorded.
 (a) Test whether mean sales differ among the channels. (b) If they do, which
 channels differ?
@@ -286,7 +296,9 @@ TV and Online have equal mean sales, Radio and Print have equal mean sales, and
 both TV and Online have higher mean sales than both Radio and Print.
 :::
 
-**M6.** The mean household size in a district is estimated from 20 households:
+### M6 {.unnumbered}
+
+The mean household size in a district is estimated from 20 households:
 $\bar{x}$ = `r m6$xbar`, $s$ = `r m6$s`. Construct a 95% confidence interval for
 the mean household size.
 

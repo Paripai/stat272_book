@@ -80,3 +80,16 @@
   line-height: 2.4em;
   color: #666;
 }
+
+// Empty ANOVA table on a work-space slide
+.reveal .slides table.ws-table {
+  font-size: 1.2em !important;
+  border-collapse: collapse;
+  margin: 0.2em 0 0.4em 0;
+}
+.reveal .slides table.ws-table th,
+.reveal .slides table.ws-table td {
+  border: 1px solid #999;
+  min-width: 4.5em;
+  height: 2.2em;
+}

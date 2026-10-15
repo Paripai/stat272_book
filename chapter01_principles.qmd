@@ -117,13 +117,6 @@ The sample proportion $\hat{p} = x/n$, where $x$ is the number of "successes".
 - Standard error: $\displaystyle \sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}$
 - Shape: approximately normal when $np \ge 5$ and $n(1-p) \ge 5$.
 
-::: {.callout-tip icon=false}
-## Larger samples, smaller error
-
-Because $\sqrt{n}$ is in the denominator, a sample four times as large
-halves the standard error.
-:::
-
 ```{r}
 #| label: ex-wage
 w_mu <- 380; w_sigma <- 60; w_n <- 36; w_n2 <- 144
@@ -154,7 +147,6 @@ $$
 $$
 \sigma_{\bar{x}} = \frac{`r w_sigma`}{\sqrt{`r w_n2`}} = `r num(w_se2)` \text{ baht.}
 $$
-A sample four times as large halves the standard error.
 :::
 
 ### Example 1.2: household debt
@@ -393,10 +385,12 @@ of a value. The subscript in our notation is that area:
 $z_{0.975}$ is the value with area 0.975 to its left.
 
 ::: {.callout-important icon=false}
-## Two steps for every critical value
+## Finding a critical value
 
-1. Draw the curve and **shade the area to the left** of the value you need.
-2. Read the table at that left-tail area.
+1. Draw the curve and **shade the critical region** (area $\alpha$, split into
+   two tails of $\alpha/2$ for a two-sided test).
+2. For each critical value, work out the **area to its left**, and read the
+   table at that area.
 :::
 
 The $z$ table (Table 4) gives $P(Z \le z)$ for $z$ from 0.00 to 3.49. The
@@ -430,8 +424,9 @@ $z$ test with $\alpha$ = 0.05.
 ::: {.callout-note icon=false}
 ## Your Turn 1.4
 
-For each test, shade the area to the left on the curve first, then find the
-critical value(s) and write the critical region.
+For each test, shade the critical region on the curve, then find the critical
+value(s) and write the critical region. Remember that the table gives the area
+to the **left** of each critical value.
 
 (a) $H_1: \mu \ne \mu_0$, $\alpha$ = 0.01
 (b) $H_1: \mu > \mu_0$, $\alpha$ = 0.01
@@ -441,7 +436,7 @@ critical value(s) and write the critical region.
 ```{r}
 #| label: fig-yt-1-4
 #| layout-ncol: 3
-#| fig-cap: "Shade the area to the left before reading Table 4"
+#| fig-cap: "Shade the critical region"
 #| fig-subcap: ["", "", ""]
 #| fig-height: 1.8
 #| fig-width: 3.2

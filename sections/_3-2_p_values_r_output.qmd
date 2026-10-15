@@ -223,7 +223,7 @@ hypothesis at $\alpha$ = 0.05 in five steps.
 t.test(earnings, mu = 620)
 ```
 
-::: {.workspace lines="12"}
+::: {.workspace steps="full" method="pvalue"}
 :::
 
 ::: {.answer title="Your Turn 3.2.1"}

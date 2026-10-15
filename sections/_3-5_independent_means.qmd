@@ -47,7 +47,7 @@ Section 3.4.
 1. Paired or independent? (Section 3.3) If paired, use the paired $t$ test.
 2. If independent, test $H_0: \sigma_1^2 = \sigma_2^2$ (two-sided, $\alpha$ = 0.05).
    - accept $H_0$ → **pooled $t$ test**: `t.test(x1, x2, var.equal = TRUE)`
-   - reject $H_0$ → **Welch $t$ test**: `t.test(x1, x2)`
+   - reject $H_0$ → **Welch $t$ test**: `t.test(x1, x2, var.equal = FALSE)`
 :::
 
 ### Formulas and Conditions
@@ -66,7 +66,7 @@ $$
 t_{\text{cal}} = \frac{\bar{x}_1 - \bar{x}_2}{\text{SE}}
 $$
 
-**Welch method** (unequal variances): read $t_{\text{cal}}$, df, p-value and CI from `t.test(x1, x2)`.
+**Welch method** (unequal variances): read $t_{\text{cal}}$, df, p-value and CI from `t.test(x1, x2, var.equal = FALSE)`.
 
 | $H_1$ | Critical region (pooled) |
 |:---:|:---|
@@ -170,13 +170,13 @@ t.test(discount, bundle, var.equal = TRUE, alternative = "greater")
 t.test(discount, bundle, var.equal = TRUE)
 ```
 
-With `var.equal = TRUE` R prints **Two Sample t-test** (pooled); without it R
-prints **Welch Two Sample t-test**. Check the title before reading the numbers.
+With `var.equal = TRUE` R prints **Two Sample t-test** (pooled); with
+`var.equal = FALSE` it prints **Welch Two Sample t-test**. Check the title before reading the numbers.
 
 ```{r}
 #| label: ex-3-5-welch
 hv <- var.test(online, physical)
-hw <- t.test(online, physical)
+hw <- t.test(online, physical, var.equal = FALSE)
 ```
 
 ### Example: Welch $t$ Test
@@ -196,7 +196,7 @@ different?
 #| label: r-headphones
 #| echo: !expr show_code
 var.test(online, physical)
-t.test(online, physical)
+t.test(online, physical, var.equal = FALSE)
 ```
 
 ::: {.callout-tip icon=false collapse=false}
@@ -245,7 +245,7 @@ $\bar{x}_A$ = `r num(ya_m)`, $s_A^2$ = `r num(ya_v)`, $\bar{x}_B$ = `r num(yb_m)
 $s_B^2$ = `r num(yb_v)`.
 
 (a) Use the first output to decide which $t$ test to use.
-(b) Calculate $t_{\text{cal}}$ by hand.
+(b) Calculate $t_{\text{cal}}$ by hand (it is hidden in the output).
 (c) Use the R output to test whether the mean starting salaries are different at $\alpha$ = 0.05.
 :::
 
@@ -258,11 +258,21 @@ $s_B^2$ = `r num(yb_v)`.
 ```{r}
 #| label: r-yt-3-5
 #| echo: !expr show_code
+#| eval: false
 var.test(uni_A, uni_B)
 t.test(uni_A, uni_B, var.equal = TRUE)
 ```
 
-::: {.workspace lines="16"}
+```{r}
+#| label: r-yt-3-5-out
+print(var.test(uni_A, uni_B))
+mask_print(t.test(uni_A, uni_B, var.equal = TRUE), list(c("^t = ", 1)))
+```
+
+::: {.workspace lines="6"}
+:::
+
+::: {.workspace steps="names" method="pvalue"}
 :::
 
 ::: {.answer title="Your Turn 3.5.1"}
@@ -294,7 +304,7 @@ universities are equal at the 0.05 level of significance.
 |:---|:---|:---|
 | Paired data | paired $t$ on $d$ (Section 3.3) | `t.test(x1, x2, paired = TRUE)` |
 | Independent, equal variances | pooled $t$: $s_p^2 = \dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}$, $t_{\text{cal}} = \dfrac{\bar{x}_1-\bar{x}_2}{\sqrt{s_p^2(1/n_1+1/n_2)}}$, df $= n_1+n_2-2$ | `t.test(x1, x2, var.equal = TRUE)` |
-| Independent, unequal variances | Welch $t$ | `t.test(x1, x2)` |
+| Independent, unequal variances | Welch $t$ | `t.test(x1, x2, var.equal = FALSE)` |
 | CI (pooled) | $(\bar{x}_1-\bar{x}_2) \pm t_{1-\alpha/2,\,n_1+n_2-2}\,\text{SE}$ | two-sided output |
 
 ```{r}
@@ -304,7 +314,7 @@ north <- round(rnorm(14, 9.2, 2.6), 1)
 south <- round(rnorm(16, 7.4, 0.9), 1)
 ev <- var.test(north, south)
 ep <- t.test(north, south, var.equal = TRUE, alternative = "greater")
-ew <- t.test(north, south, alternative = "greater")
+ew <- t.test(north, south, var.equal = FALSE, alternative = "greater")
 ```
 
 ### Exercises
@@ -324,7 +334,7 @@ North. Three outputs are shown.
 #| echo: !expr show_code
 cat("Output 1\n"); var.test(north, south)
 cat("Output 2\n"); t.test(north, south, var.equal = TRUE, alternative = "greater")
-cat("Output 3\n"); t.test(north, south, alternative = "greater")
+cat("Output 3\n"); t.test(north, south, var.equal = FALSE, alternative = "greater")
 ```
 
 (a) Which of Output 2 and Output 3 should she use? Explain.

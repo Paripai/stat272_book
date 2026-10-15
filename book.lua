@@ -9,9 +9,15 @@
 --                      (Sessions 4-6)
 --      steps="none"  : ruled lines only (default; Sessions 7-12)
 --      lines="N"     : ruled lines per step (or in total for steps="none")
---    slides: a "Your Turn: Work Space" slide with the same step names and
---            ruled lines, short enough not to scroll, so the teacher can
---            write on it with the chalkboard pen together with the students.
+--      method="pvalue": Step 4 is the p-value instead of the critical value
+--                      (fades the same way: full in Session 7, names in
+--                      Sessions 8-9, none afterwards)
+--      table="anova" rows="Region,Error,Total": an empty ANOVA table to
+--                      fill in, placed before the steps or lines
+--    slides: a "Your Turn: Work Space" slide with the same steps (and table),
+--            short enough not to scroll, so the teacher can write on it with
+--            the chalkboard pen together with the students. Spaces that are
+--            only ruled lines are left out of the slides.
 --    HTML  : removed (the problem itself is shown in the text).
 --
 -- 2. ::: {.answer title="Your Turn 2.2.1"}
@@ -19,8 +25,8 @@
 --      HTML  : a collapsed callout, opened with a click
 --      PDF   : moved to the next ::: {.solutions-here} marker, which is placed
 --              at the end of every section
---      slides: starts a new slide, so the answer comes after the problem;
---              answers to Exercises are left out of the slides
+--      slides: left out (the teacher works Your Turn with the class on the
+--              work-space slide; students have the solutions in the book)
 
 --
 -- 3. ::: {.quiz session="N"}
@@ -48,27 +54,71 @@ local function labelled_line(label)
          "~{\\color{black!30}\\hrulefill}"
 end
 
-local step_names = {
-  "Step 1: Hypotheses",
-  "Step 2: Level of significance",
-  "Step 3: Test statistic",
-  "Step 4: Critical value and critical region",
-  "Step 5: Decision and interpretation",
-}
+local function step_names_for(method)
+  return {
+    "Step 1: Hypotheses",
+    "Step 2: Level of significance",
+    "Step 3: Test statistic",
+    method == "pvalue" and "Step 4: p-value" or "Step 4: Critical value and critical region",
+    "Step 5: Decision and interpretation",
+  }
+end
 
 -- prompts inside each framed box (steps = "full")
-local step_prompts = {
-  { "$H_0$:", "$H_1$:" },
-  { "$\\alpha$ =" },
-  { "Formula:", "Substitution:", "Result:" },
-  { "Critical value(s):", "Critical region:" },
-  { "Decision:", "", "Interpretation:", "" },
-}
+local function step_prompts_for(method)
+  if method == "pvalue" then
+    return {
+      { "$H_0$:", "$H_1$:" },
+      { "$\\alpha$ =" },
+      { "Test statistic:", "df:" },
+      { "p-value:" },
+      { "Decision:", "", "Interpretation:", "" },
+    }
+  end
+  return {
+    { "$H_0$:", "$H_1$:" },
+    { "$\\alpha$ =" },
+    { "Formula:", "Substitution:", "Result:" },
+    { "Critical value(s):", "Critical region:" },
+    { "Decision:", "", "Interpretation:", "" },
+  }
+end
+
+local function split_rows(div)
+  local rows = {}
+  for r in (div.attributes["rows"] or "Treatments,Error,Total"):gmatch("[^,]+") do
+    rows[#rows + 1] = r
+  end
+  return rows
+end
+
+local function anova_table_tex(div)
+  local t = { "\\par\\medskip\\begin{center}{\\renewcommand{\\arraystretch}{2.2}",
+              "\\begin{tabular}{|p{3cm}|p{1.6cm}|p{2.8cm}|p{2.8cm}|p{2.4cm}|}\\hline",
+              "\\textbf{Source} & \\textbf{df} & \\textbf{SS} & \\textbf{MS} & \\textbf{$F$} \\\\ \\hline" }
+  for _, r in ipairs(split_rows(div)) do
+    t[#t + 1] = r .. " & & & & \\\\ \\hline"
+  end
+  t[#t + 1] = "\\end{tabular}}\\end{center}"
+  return table.concat(t, "\n")
+end
+
+local function anova_table_html(div)
+  local t = { '<table class="ws-table"><tr><th>Source</th><th>df</th><th>SS</th><th>MS</th><th>F</th></tr>' }
+  for _, r in ipairs(split_rows(div)) do
+    t[#t + 1] = "<tr><td>" .. r .. "</td><td></td><td></td><td></td><td></td></tr>"
+  end
+  t[#t + 1] = "</table>"
+  return table.concat(t, "\n")
+end
 
 local function workspace(div)
   local steps = div.attributes["steps"] or "none"
   local n = tonumber(div.attributes["lines"] or "")
+  local method = div.attributes["method"]
+  local step_names, step_prompts = step_names_for(method), step_prompts_for(method)
   local tex = { "\\par\\medskip" }
+  if div.attributes["table"] == "anova" then tex[#tex + 1] = anova_table_tex(div) end
 
   if steps == "full" then
     for i, name in ipairs(step_names) do
@@ -94,18 +144,29 @@ local function workspace(div)
 end
 
 -- Slide version of the writing space (HTML, styled in slides/custom.scss)
-local html_prompts = {
-  { "H<sub>0</sub>:", "H<sub>1</sub>:" },
-  { "&alpha; =" },
-  { "Formula:", "Substitution:", "Result:" },
-  { "Critical value(s):", "Critical region:" },
-  { "Decision:", "Interpretation:" },
-}
+local function html_prompts_for(method)
+  if method == "pvalue" then
+    return {
+      { "H<sub>0</sub>:", "H<sub>1</sub>:" }, { "&alpha; =" },
+      { "Test statistic:", "df:" }, { "p-value:" }, { "Decision:", "Interpretation:" },
+    }
+  end
+  return {
+    { "H<sub>0</sub>:", "H<sub>1</sub>:" }, { "&alpha; =" },
+    { "Formula:", "Substitution:", "Result:" },
+    { "Critical value(s):", "Critical region:" }, { "Decision:", "Interpretation:" },
+  }
+end
 
 local function workspace_slide(div)
   local steps = div.attributes["steps"] or "none"
-  local n = tonumber(div.attributes["lines"] or "")
+  local has_table = div.attributes["table"] == "anova"
+  -- spaces that are only ruled lines are not shown on the slides
+  if steps == "none" and not has_table then return {} end
+  local method = div.attributes["method"]
+  local step_names, html_prompts = step_names_for(method), html_prompts_for(method)
   local h = { '<div class="ws">' }
+  if has_table then h[#h + 1] = anova_table_html(div) end
   local function line(label)
     h[#h + 1] = '<div class="ws-line">' .. (label or "") .. '</div>'
   end
@@ -119,8 +180,6 @@ local function workspace_slide(div)
       h[#h + 1] = '<div class="ws-step">' .. name .. '</div>'
       line(); line()
     end
-  else
-    for _ = 1, math.min(n or 10, 10) do line() end
   end
   h[#h + 1] = '</div>'
   return {
@@ -139,12 +198,9 @@ local function solution(div)
     pending[#pending + 1] = blocks
     return {}
   elseif fmt_slides then
-    if title:match("^Exercise") then return {} end
-    local blocks = pandoc.List({
-      pandoc.Header(2, pandoc.Str("Solution: " .. title), pandoc.Attr("", { "deck" }))
-    })
-    blocks:extend(div.content)
-    return blocks
+    -- no solutions on the slides: the teacher works the problems with the
+    -- class, and students have the solutions in the book
+    return {}
   else
     return quarto.Callout({
       type = "tip",

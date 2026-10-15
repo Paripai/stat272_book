@@ -74,8 +74,10 @@ $B_j$ and grand total $G$:
 | Error | $(t-1)(b-1)$ | SSE | MSE | |
 | Total | $tb-1$ | SST | | |
 
-**Test for treatments:** $H_0: \mu_1 = \cdots = \mu_t$; reject $H_0$ if
-$F_{\text{cal}} > F_{1-\alpha,\,t-1,\,(t-1)(b-1)}$. The block row is printed by
+**Test for treatments:** $H_0: \mu_1 = \cdots = \mu_t$. The critical region is
+$F_{\text{cal}} > F_{1-\alpha,\,t-1,\,(t-1)(b-1)}$ (always right-sided). In this
+chapter we decide with the p-value: reject $H_0$ if the p-value in the
+treatment row is less than $\alpha$. The block row is printed by
 R, but our question is about the treatments.
 
 **In R:** `summary(aov(y ~ trt + block))`, then `TukeyHSD(model, "trt")` to
@@ -92,7 +94,6 @@ SSE <- round(SST - SSTr - SSB, 4)
 dfE <- (tt - 1) * (bb - 1)
 MSTr <- round(SSTr / (tt - 1), 4); MSB <- round(SSB / (bb - 1), 4); MSE <- round(SSE / dfE, 4)
 F_tr <- round(MSTr / MSE, 3); F_b <- round(MSB / MSE, 3)
-Fc <- crit_F(.95, tt - 1, dfE)
 orb <- summary(model_rcbd)[[1]]
 tkr <- TukeyHSD(model_rcbd, "strategy")$strategy
 ocrd <- summary(aov(sales ~ strategy, data = rb))[[1]]
@@ -149,7 +150,6 @@ $$
 **Step 3: Test statistic.** $F_{\text{cal}} = `r num(MSTr)`/`r num(MSE)` = `r fmt(F_tr, 3)`$, df = (`r tt - 1`, `r dfE`)
 
 **Step 4: p-value.** From the R output below, p-value = `r fmt(orb[1, "Pr(>F)"], 4)`.
-(With the table: $F_{0.95,\,`r tt - 1`,\,`r dfE`} = `r Fc`$.)
 
 **Step 5: Decision and interpretation.** p-value = `r fmt(orb[1, "Pr(>F)"], 4)` <
 $\alpha$ = 0.05, so we reject $H_0$. That is, the mean weekly sales are not all
@@ -269,7 +269,7 @@ and car and home loans have equal mean rates.
 |:---|:---|
 | Sums of squares | $\text{SSTr} = \sum T_i^2/b - \text{CF}$; $\text{SSB} = \sum B_j^2/t - \text{CF}$; $\text{SSE} = \text{SST} - \text{SSTr} - \text{SSB}$ |
 | df | treatments $t-1$; blocks $b-1$; error $(t-1)(b-1)$; total $tb-1$ |
-| Test for treatments | $F_{\text{cal}} = \text{MSTr}/\text{MSE}$, df $= (t-1,\ (t-1)(b-1))$ |
+| Test for treatments | $F_{\text{cal}} = \text{MSTr}/\text{MSE}$, df $= (t-1,\ (t-1)(b-1))$; reject $H_0$ if p-value $< \alpha$ |
 | R | `summary(aov(y ~ trt + block))`; `TukeyHSD(model, "trt")` |
 
 ### Exercises
@@ -286,14 +286,15 @@ treatments and (if any) the blocks.
 :::
 
 **4.3.2** An RCBD has 4 treatments and 6 blocks, with SST = 120, SSTr = 36 and
-SSB = 54. Complete the ANOVA table and test the treatments at $\alpha$ = 0.05.
+SSB = 54. Complete the ANOVA table. The p-value for treatments is
+`r fmt(pf(6, 3, 15, lower.tail = FALSE), 4)`; test the treatments at $\alpha$ = 0.05.
 
 ::: {.answer title="Exercise 4.3.2"}
 SSE = 120 $-$ 36 $-$ 54 = 30; df: treatments 3, blocks 5, error 15, total 23.
 MSTr = 36/3 = 12, MSB = 54/5 = 10.8, MSE = 30/15 = 2.
-$F_{\text{cal}}$ = 12/2 = 6.000 for treatments. $F_{0.95,\,3,\,15} = `r crit_F(.95, 3, 15)`$;
-$6.000 > `r crit_F(.95, 3, 15)`$, so $F_{\text{cal}}$ falls in the critical region and
-we reject $H_0$: the treatment means are not all equal at the 0.05 level of significance.
+$F_{\text{cal}}$ = 12/2 = 6.000 for treatments.
+p-value = `r fmt(pf(6, 3, 15, lower.tail = FALSE), 4)` < $\alpha$ = 0.05, so we reject
+$H_0$. That is, the treatment means are not all equal at the 0.05 level of significance.
 :::
 
 ::: {.solutions-here}

@@ -92,14 +92,13 @@ $t_{0.05,\,15} = -t_{0.95,\,15} = `r fmt(-crit_t(.95, 15), 3)`$.
 ::: {.callout-note icon=false}
 ## Your Turn 2.2.1
 
-Shade the area to the left on each curve, then find
+Find
 (a) $t_{0.975,\,15}$, (b) $t_{0.01,\,20}$, (c) $t_{0.95,\,60}$.
 :::
 
 ```{r}
-#| label: fig-yt-2-2-1
+#| label: curves-2-2-1
 #| layout-ncol: 3
-#| fig-cap: "Shade the area to the left before reading Table 5"
 #| fig-subcap: ["", "", ""]
 #| fig-height: 1.8
 #| fig-width: 3.2
