@@ -18,9 +18,11 @@ bill <- bills$bill
 
 ### Concept
 
-In Section 3.2 we found p-values for $z$ tests from Table 4. For $t$, $\chi^2$
-and $F$ the printed tables give only a few areas, so we cannot read an exact
-p-value from them. Statistical software calculates the p-value for us. The
+In Section 3.2 we saw where the p-value of a $z$ test comes from, and made
+decisions with p-values that were given to us. In
+practice the p-value is calculated by statistical software. The printed tables
+cannot give it for $t$, $\chi^2$ or $F$, so from now on we read the test
+statistic, the p-value and the confidence interval from the output of R. The
 p-value means the same thing as before: an area beyond the test statistic, in
 the direction of $H_1$, now under the $t$ curve.
 

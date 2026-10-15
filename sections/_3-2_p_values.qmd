@@ -16,14 +16,16 @@ z_debt  <- two_prop_z(171, 300, 165, 250)    # Example 3.1.1, H1: p1 != p2
 z_brand <- two_prop_z(58, 200, 36, 180)      # Your Turn 3.1.1, H1: pA > pB
 z_wage  <- round((358.4 - 380) / 10, 3)      # Example 2.1.1, H1: mu < 380
 z_card  <- two_prop_z(84, 240, 96, 240)      # Exercise 3.1.2, H1: p1 < p2
-z_cop   <- round((148 / 400 - 0.30) / round(sqrt(0.30 * 0.70 / 400), 4), 3)  # Example 2.3.1, H1: p > 0.30
+z_grad  <- round((160 / 250 - 0.70) / round(sqrt(0.70 * 0.30 / 250), 4), 3)  # Your Turn 2.3.1, H1: p != 0.70
+t_debt  <- round((184500 - 170000) / round(41200 / sqrt(20), 4), 3)            # Exercise 2.2.1, H1: mu > 170000
+chi_pork <- 42.75                                                              # Your Turn 2.4.2, H1: sigma^2 != 9
 ```
 
 ### Learning Objectives
 
-1. Explain what a p-value is.
-2. Find the p-value of a $z$ test from Table 4 for a left-sided, right-sided or two-sided test.
-3. Make the decision of a test with the p-value, and check that it agrees with the critical region.
+1. Make the decision of a test with the p-value.
+2. Write the decision and the interpretation of a test from its p-value.
+3. See that the p-value and the critical region give the same decision.
 
 ### Concept
 
@@ -55,9 +57,9 @@ The p-value is an **area beyond the test statistic**, in the direction of $H_1$:
 #| layout-ncol: 3
 #| fig-cap: "The p-value as an area under the z curve (orange)"
 #| fig-subcap:
-#|   - "H1: <"
-#|   - "H1: >"
-#|   - "H1: ≠"
+#|   - "Left-sided"
+#|   - "Right-sided"
+#|   - "Two-sided"
 #| fig-height: 2
 #| fig-width: 3.3
 pval_plot(-1.5, "left", "z")
@@ -76,16 +78,6 @@ The p-value is **not** the probability that $H_0$ is true. It is calculated
 assuming $H_0$ is true.
 :::
 
-### Finding a p-value from the $z$ Table
-
-Table 4 gives the area to the **left** of a positive $z$. To find a p-value:
-
-1. Round $|z_{\text{cal}}|$ to 2 decimals and read the area to its left, $P(Z \le |z_{\text{cal}}|)$.
-2. The area in one tail beyond it is $1 - P(Z \le |z_{\text{cal}}|)$.
-3. Take one tail for a one-sided test (in the direction of $H_1$), or twice that area for a two-sided test.
-
-The p-value is rounded to 4 decimals.
-
 ```{r}
 #| label: ex-3-2
 e <- pz_table(z_debt, "two")
@@ -95,8 +87,9 @@ e <- pz_table(z_debt, "two")
 
 **Example 3.2.1.** In Example 3.1.1 (household debt, urban vs rural) we
 tested $H_0: p_1 = p_2$ against $H_1: p_1 \ne p_2$ and found
-$z_{\text{cal}} = `r fmt(z_debt, 3)`$. Find the p-value and make the decision at
-$\alpha$ = 0.05. Compare with the critical-region method.
+$z_{\text{cal}} = `r fmt(z_debt, 3)`$. The p-value of this test is
+`r fmt(e$p, 4)`. Make the decision at $\alpha$ = 0.05 and compare it with the
+critical-region method.
 
 ::: {.callout-tip icon=false collapse=false}
 ## Solution
@@ -113,13 +106,13 @@ $\pm`r fmt(abs(z_debt), 3)`$.
 pval_plot(z_debt, "two", "z")
 ```
 
-From Table 4, $P(Z \le `r fmt(e$a, 2)`) = `r fmt(e$F, 4)`$, so one tail is
-$1 - `r fmt(e$F, 4)` = `r fmt(e$tail, 4)`$ and
+**Where does `r fmt(e$p, 4)` come from?** (shown for illustration only; in this
+course p-values are given or read from R output.) From Table 4,
+$P(Z \le `r fmt(e$a, 2)`) = `r fmt(e$F, 4)`$, so one tail is
+$1 - `r fmt(e$F, 4)` = `r fmt(e$tail, 4)`$, and for a two-sided test
 $$
 \text{p-value} = 2(`r fmt(e$tail, 4)`) = `r fmt(e$p, 4)`.
 $$
-
-The test in five steps, with the p-value in Step 4:
 
 **Step 1: Hypotheses.** $H_0: p_1 = p_2$ $\quad H_1: p_1 \ne p_2$
 
@@ -131,20 +124,23 @@ The test in five steps, with the p-value in Step 4:
 
 **Step 5: Decision and interpretation.** p-value = `r fmt(e$p, 4)` < $\alpha$ =
 0.05, so we reject $H_0$. That is, the proportion of households with debt is
-different in urban and rural areas at the 0.05 level of significance.
+different in urban and rural areas at the 0.05 level of significance; since
+$\hat{p}_1 < \hat{p}_2$, the proportion is lower in urban areas.
 
 | Method | Comparison | Decision |
 |:---|:---|:---|
 | Critical region (Example 3.1.1) | $z_{\text{cal}} = `r fmt(z_debt, 3)` < `r fmt(-crit_z(.975), 3)`$ | reject $H_0$ |
 | p-value | p-value = `r fmt(e$p, 4)` < 0.05 | reject $H_0$ |
 
-Both methods give the same decision.
+Both methods give the same decision, and the interpretation is written in the
+same way.
 :::
 
 ```{r}
 #| label: yt-3-2
-y1 <- pz_table(z_brand, "right")
-y2 <- pz_table(z_wage, "left")
+y1 <- pz_table(z_brand, "right")$p
+y2 <- pz_table(z_grad, "two")$p
+y3 <- pz_table(z_card, "left")$p
 ```
 
 ### Your Turn
@@ -152,80 +148,73 @@ y2 <- pz_table(z_wage, "left")
 ::: {.callout-note icon=false}
 ## Your Turn 3.2.1
 
-Find the p-value from Table 4 and make the decision at $\alpha$ = 0.05.
+Each test was done earlier with the critical region. Use the p-value to write
+the decision and the interpretation at $\alpha$ = 0.05.
 
-(a) Your Turn 3.1.1 (brand switching): $H_1: p_A > p_B$, $z_{\text{cal}} = `r fmt(z_brand, 3)`$.
-(b) Example 2.1.1 (construction wages): $H_1: \mu < 380$, $z_{\text{cal}} = `r fmt(z_wage, 3)`$.
+(a) Your Turn 3.1.1 (brand switching): $H_0: p_A = p_B$, $H_1: p_A > p_B$, p-value = `r fmt(y1, 4)`.
+(b) Your Turn 2.3.1 (graduate jobs): $H_0: p = 0.70$, $H_1: p \ne 0.70$, $\hat{p}$ = 0.64, p-value = `r fmt(y2, 4)`.
+(c) Exercise 3.1.2 (price displays): $H_0: p_1 = p_2$, $H_1: p_1 < p_2$, p-value = `r fmt(y3, 4)`.
 :::
 
-```{r}
-#| label: curves-3-2-1
-#| layout-ncol: 2
-#| fig-subcap: ["", ""]
-#| fig-height: 1.8
-#| fig-width: 3.6
-blank_curve("z"); blank_curve("z")
-```
-
-::: {.workspace lines="8"}
+::: {.workspace lines="12"}
 :::
 
 ::: {.answer title="Your Turn 3.2.1"}
-(a) Right-sided: p-value = area to the right of $`r fmt(z_brand, 3)`$.
-$P(Z \le `r fmt(y1$a, 2)`) = `r fmt(y1$F, 4)`$, so p-value $= 1 - `r fmt(y1$F, 4)` = `r fmt(y1$p, 4)`$.
-p-value = `r fmt(y1$p, 4)` < $\alpha$ = 0.05, so we reject $H_0$ (the same decision as in Your Turn 3.1.1).
+(a) p-value = `r fmt(y1, 4)` < $\alpha$ = 0.05, so we reject $H_0$. That is,
+the proportion of customers who switched is higher for Brand A than for Brand B
+at the 0.05 level of significance.
 
-(b) Left-sided: p-value = area to the left of $`r fmt(z_wage, 3)`$. By symmetry it equals
-the area to the right of `r fmt(abs(z_wage), 2)`: $1 - `r fmt(y2$F, 4)` = `r fmt(y2$p, 4)`$.
-p-value = `r fmt(y2$p, 4)` < $\alpha$ = 0.05, so we reject $H_0$ (the same decision as in Example 2.1.1).
+(b) p-value = `r fmt(y2, 4)` < $\alpha$ = 0.05, so we reject $H_0$. That is,
+the proportion of graduates who find a job within six months is different from
+0.70 at the 0.05 level of significance; since $\hat{p}$ = 0.64, the proportion
+is lower than 0.70.
+
+(c) p-value = `r fmt(y3, 4)` $\ge$ $\alpha$ = 0.05, so we accept $H_0$. That
+is, the purchase rates with the two displays are equal at the 0.05 level of
+significance.
+
+All three decisions are the same as with the critical region.
 :::
 
 ### Formula Summary
 
 | | |
 |:---|:---|
-| p-value | probability, assuming $H_0$ is true, of a test statistic at least as extreme as observed, in the direction of $H_1$ |
-| From Table 4 | one tail $= 1 - P(Z \le |z_{\text{cal}}|)$; one-sided: p-value = one tail (in the direction of $H_1$); two-sided: p-value = 2 × one tail |
-| Decision | reject $H_0$ if p-value $< \alpha$; accept $H_0$ if p-value $\ge \alpha$ |
+| p-value | an area beyond the test statistic, in the direction of $H_1$ (both tails for $\ne$) |
+| Decision | p-value = ... [<, $\ge$] $\alpha$ = 0.05, so we [reject / accept] $H_0$. |
+| Interpretation | That is, ... at the 0.05 level of significance. (reject: write $H_1$; accept: write $H_0$; two-sided reject: add the direction) |
 
 ```{r}
 #| label: ex-3-2-exercises
-x1 <- pz_table(z_cop, "right")
-x2 <- pz_table(z_card, "left")
+x1 <- round(pt(t_debt, 19, lower.tail = FALSE), 4)
+x2 <- round(2 * pchisq(chi_pork, 19, lower.tail = FALSE), 4)
 ```
 
 ### Exercises
 
-**3.2.1** Find the p-value from Table 4 and make the decision at $\alpha$ = 0.05.
-
-(a) Example 2.3.1 (co-payment scheme): $H_1: p > 0.30$, $z_{\text{cal}} = `r fmt(z_cop, 3)`$.
-(b) Exercise 3.1.2 (price displays): $H_1: p_1 < p_2$, $z_{\text{cal}} = `r fmt(z_card, 3)`$.
-
-::: {.answer title="Exercise 3.2.1"}
-(a) Right-sided: p-value $= 1 - P(Z \le `r fmt(x1$a, 2)`) = 1 - `r fmt(x1$F, 4)` = `r fmt(x1$p, 4)`$ < 0.05: reject $H_0$.
-
-(b) Left-sided: p-value $= P(Z \le `r fmt(z_card, 3)`) = 1 - P(Z \le `r fmt(x2$a, 2)`) = 1 - `r fmt(x2$F, 4)` = `r fmt(x2$p, 4)`$ $\ge$ 0.05: accept $H_0$.
-
-Both agree with the critical-region decisions in Sections 2.3 and 3.1.
-:::
-
-**3.2.2** For each p-value, write the decision at $\alpha$ = 0.05:
+**3.2.1** For each p-value, write the decision at $\alpha$ = 0.05:
 (a) 0.0312, (b) 0.0500, (c) 0.1847, (d) 0.0005.
 
-::: {.answer title="Exercise 3.2.2"}
+::: {.answer title="Exercise 3.2.1"}
 (a) 0.0312 < 0.05: reject $H_0$.
 (b) 0.0500 $\ge$ 0.05: accept $H_0$.
 (c) 0.1847 $\ge$ 0.05: accept $H_0$.
 (d) 0.0005 < 0.05: reject $H_0$.
 :::
 
-**3.2.3** A student says: "The p-value is 0.03, so there is a 3% chance that
-$H_0$ is true." Explain what is wrong.
+**3.2.2** Write the decision and the interpretation at $\alpha$ = 0.05.
 
-::: {.answer title="Exercise 3.2.3"}
-The p-value is calculated assuming $H_0$ is true. It is the probability of a
-result at least as extreme as the sample result if $H_0$ were true, not the
-probability that $H_0$ is true.
+(a) Exercise 2.2.1 (household debt in a district): $H_0: \mu = 170000$, $H_1: \mu > 170000$, p-value = `r fmt(x1, 4)`.
+(b) Your Turn 2.4.2 (weekly pork price): $H_0: \sigma^2 = 9$, $H_1: \sigma^2 \ne 9$, $s$ = 4.5, p-value = `r fmt(x2, 4)`.
+
+::: {.answer title="Exercise 3.2.2"}
+(a) p-value = `r fmt(x1, 4)` $\ge$ $\alpha$ = 0.05, so we accept $H_0$. That is,
+the mean household debt in the district is equal to 170,000 baht at the 0.05
+level of significance.
+
+(b) p-value = `r fmt(x2, 4)` < $\alpha$ = 0.05, so we reject $H_0$. That is, the
+standard deviation of the weekly pork price is different from 3 baht at the 0.05
+level of significance; since $s$ = 4.5, it is higher than 3 baht.
 :::
 
 ::: {.solutions-here}
