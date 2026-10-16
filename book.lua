@@ -31,7 +31,7 @@
 --
 -- 3. ::: {.quiz session="N"}
 --    Placed at the end of the last section taught in a session.
---      slides: a "Quiz: Session N" slide (title only)
+--      slides: a "Quiz MN" slide (M1–M11) (title only)
 --      book  : removed
 
 local fmt_pdf = quarto.doc.is_format("pdf")
@@ -238,7 +238,7 @@ return {
         if not fmt_slides then return {} end
         local n = div.attributes["session"] or ""
         return {
-          pandoc.Header(2, pandoc.Str("Quiz: Session " .. n), pandoc.Attr("", { "deck" })),
+          pandoc.Header(2, pandoc.Str("Quiz M" .. n), pandoc.Attr("", { "deck" })),
         }
       elseif div.classes:includes("solutions-here") then
         return solutions_here(div)
